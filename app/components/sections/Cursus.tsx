@@ -1,6 +1,6 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 type Step = {
   year: string;
@@ -24,7 +24,7 @@ function TimelineItem({
       className="relative pl-10 pb-12 last:pb-0"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", stiffness: 70, damping: 14, delay }}
+      transition={{ type: "spring", stiffness: 70, damping: 14,delay }}
       viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
     >
       {/* Pastille (point) */}
@@ -95,14 +95,22 @@ export default function Cursus() {
 
   // Ligne verticale qui se dessine au scroll (scaleY piloté par scrollYProgress)
   const lineRef = useRef<HTMLDivElement | null>(null);
+
+   // 👉 choper le <main> qui scrolle
+   const containerRef = useRef<HTMLElement | null>(null);
+   useEffect(() => {
+     containerRef.current = document.querySelector("#cursus");
+   }, []);
+
   const { scrollYProgress } = useScroll({
+    container:containerRef,
     target: lineRef,
     offset: ["start 80%", "end 20%"], // ajustable : début/fin de l’animation
   });
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <section id="cursus" className="scroll-mt-24 w-full bg-gradient-to-b from-white to-gray-50 px-6 py-20">
+    <section id="cursus" className="scroll-mt-24 w-full bg-gradient-to-b from-white to-gray-50 px-6 py-20  snap-start  ">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <motion.header
@@ -123,8 +131,8 @@ export default function Cursus() {
           {/* Ligne verticale animée (se “dessine”) */}
           <motion.span
             aria-hidden
-            className="absolute left-4 top-1 w-0.5 bg-gray-200"
-            style={{ scaleY, transformOrigin: "top", height: "100%" }}
+            className="absolute left-4 top-1 w-0.5 bg-gray-200 will-change-transform"
+            style={{ scaleY, transformOrigin: "top"}}
           />
 
           {/* Items */}

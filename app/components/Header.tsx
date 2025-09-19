@@ -2,10 +2,10 @@
 import { useCallback } from "react";
 
 const navItems = [
-  { label: "Home", target: "hero" },
-  { label: "About me", target: "aboutme" },
-  { label: "Projects", target: "projects" },
-  { label: "Cursus", target: "cursus" },
+  { label: "Accueil", target: "hero" },
+  { label: "À propos", target: "aboutme" },
+  { label: "Projets", target: "projects" },
+  { label: "Parcours", target: "cursus" },
   { label: "Contact", target: "Contact" },
 ];
 
