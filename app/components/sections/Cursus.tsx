@@ -1,6 +1,6 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useEffect, useMemo, useRef } from "react";
+import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 type Step = {
   year: string;
@@ -21,10 +21,10 @@ function TimelineItem({
 
   return (
     <motion.div
-      className="relative pl-10 pb-12 last:pb-0"
+      className="relative pl-10 pb-6 last:pb-0"
       initial={{ opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ type: "spring", stiffness: 70, damping: 14,delay }}
+      transition={{ type: "spring", stiffness: 70, damping: 14, delay }}
       viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
     >
       {/* Pastille (point) */}
@@ -39,7 +39,7 @@ function TimelineItem({
 
       {/* Contenu */}
       <div className="flex flex-col gap-2">
-        <h3 className="text-lg font-semibold text-gray-900">
+        <h3 className="text-sm font-semibold text-gray-900">
           {year} — {title}
         </h3>
         {subtitle && <p className="text-sm text-gray-600">{subtitle}</p>}
@@ -93,24 +93,11 @@ export default function Cursus() {
     },
   ];
 
-  // Ligne verticale qui se dessine au scroll (scaleY piloté par scrollYProgress)
-  const lineRef = useRef<HTMLDivElement | null>(null);
-
-   // 👉 choper le <main> qui scrolle
-   const containerRef = useRef<HTMLElement | null>(null);
-   useEffect(() => {
-     containerRef.current = document.querySelector("#cursus");
-   }, []);
-
-  const { scrollYProgress } = useScroll({
-    container:containerRef,
-    target: lineRef,
-    offset: ["start 80%", "end 20%"], // ajustable : début/fin de l’animation
-  });
-  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
+ 
+ 
 
   return (
-    <section id="cursus" className="scroll-mt-24 w-full bg-gradient-to-b from-white to-gray-50 px-6 py-20  snap-start  ">
+    <section id="cursus" className=" w-full bg-gradient-to-b from-white to-gray-50 px-6  h-screen snap-start  ">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <motion.header
@@ -121,18 +108,21 @@ export default function Cursus() {
           viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
         >
           <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Parcours</p>
-          <h2 className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl">
+          <h2 className="mt-1 text-2xl font-extrabold text-gray-900 md:text-4xl">
             Mon Cursus & Expérience
           </h2>
         </motion.header>
 
         {/* Timeline container */}
-        <div ref={lineRef} className="relative">
+        <div  className="relative">
           {/* Ligne verticale animée (se “dessine”) */}
           <motion.span
             aria-hidden
-            className="absolute left-4 top-1 w-0.5 bg-gray-200 will-change-transform"
-            style={{ scaleY, transformOrigin: "top"}}
+            className="absolute left-4 top-0 bottom-0 w-px bg-gray-200 origin-top will-change-transform"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.25, margin: "-10% 0px -10% 0px" }}
           />
 
           {/* Items */}

@@ -31,7 +31,7 @@ export default function Hero() {
                 >
                     {/* Texte (typing) */}
                     <motion.p
-                        className="text-lg font-semibold text-gray-600"
+                        className="font-sans font-heading text-lg font-semibold text-gray-600"
 
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -41,7 +41,7 @@ export default function Hero() {
                     </motion.p>
 
                     <motion.h1
-                        className="text-5xl font-extrabold text-gray-900"
+                        className=" font-sans font-heading text-5xl font-extrabold text-gray-900"
                         initial={{ opacity: 0, y: 14 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.70 }}
@@ -50,7 +50,7 @@ export default function Hero() {
                     </motion.h1>
 
                     <motion.h2
-                        className="text-2xl font-medium text-red-500"
+                        className="font-sans text-2xl font-medium text-red-500"
                         initial={{ opacity: 0, y: 16 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.90 }}

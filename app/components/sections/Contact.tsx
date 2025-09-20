@@ -187,7 +187,7 @@ export default function Contact() {
 
     return (
         <section
-            id="Contact"
+            id="contact"
             className="w-full bg-gradient-to-b from-white to-gray-50 px-6 pt-10 snap-start  "
             aria-labelledby="contact-title"
         >

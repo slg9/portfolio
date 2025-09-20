@@ -160,12 +160,12 @@ function ProjectCard({
             {/* Content */}
             <div className="flex flex-col gap-4 p-5">
                 <h3 className="text-xl font-bold text-gray-900">{title}</h3>
-                <p className="text-sm leading-relaxed text-gray-600">{description}</p>
+                <p className="text-xs leading-relaxed text-gray-600">{description}</p>
 
                 {/* Tags */}
                 <ul className="flex flex-wrap gap-2">
                     {tags.map((t) => (
-                        <li key={t} className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-xs text-gray-700">
+                        <li key={t} className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-[7px] text-gray-700">
                             {t}
                         </li>
                     ))}
@@ -252,7 +252,7 @@ export default function Projects() {
             <div className="mx-auto max-w-6xl">
                 {/* Header reveal */}
                 <motion.header
-                    className="mb-10 flex flex-col items-center text-center md:mb-14"
+                    className="mb-8 flex flex-col items-center text-center md:mb-10"
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 70, damping: 14 }}
@@ -267,8 +267,8 @@ export default function Projects() {
                     </p>
                 </motion.header>
 
-                {/* Grid */}
-                <motion.div className="flex gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory px-4 -mx-4 scrollbar-none" ref={ref} style={{ maskImage }}>
+              
+                <motion.div className="flex gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory px-4  scrollbar-none" ref={ref} style={{ maskImage }}>
                     {PROJECTS.map((p, i) => (
                         <ProjectCard key={p.title} {...p} index={i} />
                     ))}
