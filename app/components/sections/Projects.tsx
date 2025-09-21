@@ -122,7 +122,7 @@ function ProjectCard({
     index = 0,
 }: Project & { index?: number }) {
     // Décalage progressif par index (stagger)
-    const revealDelay = useMemo(() => 0.08 * index, [index]);
+    const revealDelay = useMemo(() => 0.1 * (index%3)+0.1, [index]);
 
     return (
         <motion.article
@@ -131,7 +131,7 @@ function ProjectCard({
             // Scroll reveal
             initial={{ opacity: 0, y: 24, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ type: "spring", stiffness: 90, damping: 14, delay: 0 }}
+            transition={{ type: "spring", stiffness: 90, damping: 14, delay: revealDelay }}
             viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
             // Hover moderne : lift + scale + light tilt
             whileHover={{ y: -6, scale: 1.05, rotateX: 1.2, rotateY: -1.2 }}
@@ -255,10 +255,10 @@ export default function Projects() {
                     className="mb-8 flex flex-col items-center text-center md:mb-10"
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 70, damping: 14 }}
+                    transition={{ type: "spring", stiffness: 70, damping: 14 ,delay:0.2}}
                     viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
                 >
-                    <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Portfolio</p>
+                    <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">Portfolio</p>
                     <h2 id="projects-title" className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl">
                         Quelques Projets
                     </h2>

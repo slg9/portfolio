@@ -13,7 +13,7 @@ export default function Home() {
 
   return (
     
-      <main className="flex flex-col gap-[32px] row-start-2 pt-16 scroll-pt-24  h-screen overflow-y-scroll snap-y snap-mandatory">
+      <main className="flex flex-col gap-[32px] row-start-2 pt-16 scroll-pt-24  md:h-screen md:overflow-y-scroll md:snap-y md:snap-mandatory">
         <Hero/>
      
         <AboutMe/>

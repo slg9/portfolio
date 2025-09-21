@@ -17,7 +17,7 @@ function TimelineItem({
   index,
 }: Step & { index: number }) {
   // petit décalage progressif pour le reveal
-  const delay = useMemo(() => 0.06 * index, [index]);
+  const delay = useMemo(() => 0.2 * index, [index]);
 
   return (
     <motion.div
@@ -29,7 +29,7 @@ function TimelineItem({
     >
       {/* Pastille (point) */}
       <motion.span
-        className="absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-red-500 bg-white text-xs font-bold text-red-500 shadow-sm"
+        className="absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-indigo-500 bg-white text-xs font-bold bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent shadow-sm"
         whileHover={{ scale: 1.2 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 300, damping: 18 }}
@@ -104,10 +104,10 @@ export default function Cursus() {
           className="mb-10 text-center"
           initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 70, damping: 14 }}
+          transition={{ type: "spring", stiffness: 70, damping: 14,delay:0.2 }}
           viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
         >
-          <p className="text-sm font-semibold uppercase tracking-widest text-red-500">Parcours</p>
+          <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">Parcours</p>
           <h2 className="mt-1 text-2xl font-extrabold text-gray-900 md:text-4xl">
             Mon Cursus & Expérience
           </h2>
@@ -121,7 +121,7 @@ export default function Cursus() {
             className="absolute left-4 top-0 bottom-0 w-px bg-gray-200 origin-top will-change-transform"
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
+            transition={{ duration: 0.9, ease: "easeOut",delay:0.2 }}
             viewport={{ once: true, amount: 0.25, margin: "-10% 0px -10% 0px" }}
           />
 

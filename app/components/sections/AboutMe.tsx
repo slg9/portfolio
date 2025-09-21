@@ -26,32 +26,32 @@ const AboutMe = () => {
         a.click();
         document.body.removeChild(a);
     }
-    const ref = useRef(null)
-    const { scrollYProgress } = useScroll({ target: ref })
-    const y = useParallax(scrollYProgress, -80)
+
 
     return (
         <section
-            ref={ref}
+
             id="aboutme"
             className="scroll-mt-24 flex flex-col items-center justify-center w-full px-6 py-16 bg-white h-screen snap-start  "
         >
-            <motion.div
+            {/* Background subtil */}
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(50rem_40rem_at_80%_-10%,rgba(99,102,241,.12),transparent_60%)]" />
+            <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,.03))]" />
 
-                style={{ y }}>
+            <div>
 
                 {/* Header */}
                 <motion.header
                     className="mb-10 flex flex-col items-center text-center md:mb-14"
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 60, damping: 12 }}
+                    transition={{ type: "spring", stiffness: 60, damping: 12 ,delay:0.2}}
                     viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
 
                 >
                     <h2
                         id="projects-title"
-                        className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl"
+                        className="text-3xl font-extrabold tracking-[-0.01em] text-slate-900 md:text-4xl"
                     >
                         À propos de moi
                     </h2>
@@ -64,7 +64,7 @@ const AboutMe = () => {
                             className="text-3xl font-bold text-gray-800"
                             initial={{ opacity: 0, y: 18 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.05 }}
+                            transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.3 }}
                             viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
 
                         >
@@ -93,6 +93,8 @@ const AboutMe = () => {
                             Porté par la curiosité et le sens du détail, j’aime travailler sur des projets à la fois porteurs de sens et techniquement exigeants, depuis les premières étapes de conception jusqu’à la mise en production.
                         </motion.p>
 
+                       
+
                         {/* Bouton */}
                         <div className="flex gap-5 ">
                             <motion.div
@@ -103,8 +105,7 @@ const AboutMe = () => {
                                 viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                             >
                                 <button
-                                    className="px-6 py-3 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-medium shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-200"
-                                    type="button"
+                                    className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md" type="button"
                                     onClick={handleScroll}
                                 >
                                     Contactez-moi
@@ -118,7 +119,7 @@ const AboutMe = () => {
                                 viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                             >
                                 <button
-                                    className="px-6 py-3 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-medium shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-200"
+                                    className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-5 py-3 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                                     type="button"
                                     onClick={handleDownloadCV}
                                 >
@@ -129,7 +130,7 @@ const AboutMe = () => {
 
                     </div>
                 </div>
-            </motion.div>
+            </div>
         </section>
     );
 };

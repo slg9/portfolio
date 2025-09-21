@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { useState } from "react";
 
 type FormState = "idle" | "loading" | "success" | "error";
@@ -166,8 +167,8 @@ export default function Contact() {
             if (!response.ok) {
                 throw new Error("Échec de l'envoi de l'email via Mailjet.");
             }
-            
-          
+
+
             setState("success");
             setForm({
                 name: "",
@@ -188,27 +189,46 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="w-full bg-gradient-to-b from-white to-gray-50 px-6 pt-10 snap-start  "
+            className="w-full bg-gradient-to-b from-white to-gray-50 px-6  snap-start  "
             aria-labelledby="contact-title"
         >
             <div className="mx-auto max-w-3xl">
                 {/* Header */}
                 <header className="mb-10 text-center md:mb-14">
-                    <p className="text-sm font-semibold uppercase tracking-widest text-red-500">
+                    <motion.p
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.1 }}
+                        viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
+                        className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">
                         Contact
-                    </p>
-                    <h2
+                    </motion.p>
+                    <motion.h2
                         id="contact-title"
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.2 }}
+                        viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                         className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl"
                     >
                         Créons quelque chose de remarquable
-                    </h2>
-                    <p className="mx-auto mt-3 max-w-2xl text-gray-600">
-                        Parlez-moi de votre projet (objectifs, échéances, contraintes). Je vous répondrai rapidement.          </p>
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, y: 24 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.3 }}
+                        viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
+                        className="mx-auto mt-3 max-w-2xl text-gray-600">
+                        Parlez-moi de votre projet (objectifs, échéances, contraintes). Je vous répondrai rapidement.          </motion.p>
                 </header>
 
                 {/* Card */}
-                <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
+                <motion.div
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.4 }}
+                    viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
+                    className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
                     <form onSubmit={onSubmit} noValidate className="space-y-6">
                         <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                             <InputField
@@ -290,7 +310,7 @@ export default function Contact() {
                             <button
                                 type="submit"
                                 disabled={state === "loading"}
-                                className="px-6 py-3 rounded-lg bg-gradient-to-r from-red-500 to-red-600 text-white font-medium shadow-md hover:shadow-lg hover:scale-105 transition-transform duration-200"
+                                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md" 
 
                             >
                                 {state === "loading" ? (
@@ -307,7 +327,7 @@ export default function Contact() {
                             </button>
                         </div>
                     </form>
-                </div>
+                </motion.div>
 
                 {/* Tip de contact direct */}
                 <p className="mt-6 text-center text-sm text-gray-500">
