@@ -45,7 +45,7 @@ export default function Hero() {
           transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.35 }}
           className="mt-3 text-lg text-slate-600"
         >
-          And I am a Software engineer.
+          And I am a Software engineer focused on clean architecture, delightful UX, and performance.
         </motion.p>
 
         {/* Photo + ring */}
