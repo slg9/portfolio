@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
-import { animate, motion, MotionValue, useMotionValue, useMotionValueEvent, useScroll } from "framer-motion";
-import { useMemo, useRef } from "react";
+import { createPortal } from "react-dom";
+import { animate, motion, MotionValue, useMotionValue, useMotionValueEvent, useScroll,AnimatePresence } from "framer-motion";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Project = {
     title: string;
@@ -21,12 +22,12 @@ const PROJECTS: Project[] = [
         imageSrc: "/projects/econnect.png",
     },
     {
-        title: "Orthophoniste (Plateforme Ortho)",
+        title: "Begaiement (Plateforme Ortho)",
         description:
             "Catalogue de podcasts pro, relation patient (objectifs/prescriptions), stats. Web app React, API REST Go, PostgreSQL.",
         tags: ["React", "Golang", "API REST", "PostgreSQL", "Google Analytics", "Stripe", "Docker", "CI/CD", "Data Modeling"],
         //imageSrc: "/projects/orthophonosite.jpg",
-        imageSrc: "/projects/econnect.png",
+        imageSrc: "/projects/begaiement.png",
     },
     {
         title: "QR Win – Back Office & APIs",
@@ -120,90 +121,160 @@ function ProjectCard({
     liveUrl,
     codeUrl,
     index = 0,
-}: Project & { index?: number }) {
-    // Décalage progressif par index (stagger)
-    const revealDelay = useMemo(() => 0.1 * (index%3)+0.1, [index]);
-
-    return (
-        <motion.article
-            className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm
-                 shrink-0 w-[72vw] sm:w-[300px] md:w-[340px]"
-            // Scroll reveal
-            initial={{ opacity: 0, y: 24, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ type: "spring", stiffness: 90, damping: 14, delay: revealDelay }}
-            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-            // Hover moderne : lift + scale + light tilt
-            whileHover={{ y: -6, scale: 1.05, rotateX: 1.2, rotateY: -1.2 }}
-            style={{ transformStyle: "preserve-3d" }}
-        >
-
-            {/* Halo/Glow subtil au hover via pseudo-radial */}
-            <div
-                className="pointer-events-none absolute inset-0 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-20"
-                style={{ background: "radial-gradient(600px circle at 0% 0%, rgba(255,0,64,.25), transparent 40%)" }}
-            />
-
-            {/* Image */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden">
-                <Image
-                    src={imageSrc}
-                    alt={`${title} cover`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 640px) 72vw, (max-width: 768px) 300px, 340px"
-                    priority={false}
-                />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/85 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </div>
-
-            {/* Content */}
-            <div className="flex flex-col gap-4 p-5">
-                <h3 className="text-xl font-bold text-gray-900">{title}</h3>
-                <p className="text-xs leading-relaxed text-gray-600">{description}</p>
-
-                {/* Tags */}
-                <ul className="flex flex-wrap gap-2">
-                    {tags.map((t) => (
-                        <li key={t} className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-[7px] text-gray-700">
-                            {t}
-                        </li>
-                    ))}
-                </ul>
-
-                {/* Actions */}
-                {(liveUrl || codeUrl) && (
-                    <div className="mt-2 flex items-center gap-3">
-                        {liveUrl && (
-                            <a
-                                href={liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900/30"
-                                aria-label={`Visit ${title} live`}
-                            >
-                                <ExternalLinkIcon />
-                                Live
-                            </a>
-                        )}
-                        {codeUrl && (
-                            <a
-                                href={codeUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900/10"
-                                aria-label={`Open ${title} source code`}
-                            >
-                                <CodeIcon />
-                                Code
-                            </a>
-                        )}
-                    </div>
-                )}
-            </div>
-        </motion.article>
+  }: Project & { index?: number }) {
+    const revealDelay = useMemo(() => 0.1 * (index % 3) + 0.1, [index]);
+    const [open, setOpen] = useState(false);
+  
+    // id commun pour l’anim “shared element” (optionnelle)
+    const imgLayoutId = useMemo(
+      () => `project-image-${title.replace(/\s+/g, "-").toLowerCase()}`,
+      [title]
     );
-}
+  
+    return (
+      <>
+        <motion.article
+          className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm
+                     shrink-0 w-[72vw] sm:w-[300px] md:w-[340px]"
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ type: "spring", stiffness: 90, damping: 14, delay: revealDelay }}
+          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+          whileHover={{ y: -6, scale: 1.05, rotateX: 1.2, rotateY: -1.2 }}
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          {/* Halo/Glow */}
+          <div
+            className="pointer-events-none absolute inset-0 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-20"
+            style={{ background: "radial-gradient(600px circle at 0% 0%, rgba(255,0,64,.25), transparent 40%)" }}
+          />
+  
+          {/* Image (bouton) */}
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="relative aspect-[16/9] w-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40"
+            aria-label={`Agrandir ${title}`}
+          >
+            <motion.div layoutId={imgLayoutId} className="relative h-full w-full">
+              <Image
+                src={imageSrc}
+                alt={`${title} cover`}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 640px) 72vw, (max-width: 768px) 300px, 340px"
+                priority={false}
+              />
+            </motion.div>
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/85 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          </button>
+  
+          {/* Content */}
+          <div className="flex flex-col gap-4 p-5">
+            <h3 className="text-xl font-bold text-gray-900">{title}</h3>
+            <p className="text-xs leading-relaxed text-gray-600">{description}</p>
+  
+            <ul className="flex flex-wrap gap-2">
+              {tags.map((t) => (
+                <li key={t} className="rounded-full border border-gray-200 bg-gray-50 px-3 py-1 text-[10px] text-gray-700">
+                  {t}
+                </li>
+              ))}
+            </ul>
+  
+            {(liveUrl || codeUrl) && (
+              <div className="mt-2 flex items-center gap-3">
+                {liveUrl && (
+                  <a
+                    href={liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900/30"
+                    aria-label={`Visit ${title} live`}
+                  >
+                    <ExternalLinkIcon />
+                    Live
+                  </a>
+                )}
+                {codeUrl && (
+                  <a
+                    href={codeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900/10"
+                    aria-label={`Open ${title} source code`}
+                  >
+                    <CodeIcon />
+                    Code
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </motion.article>
+  
+        {/* Modal / Lightbox */}
+        <Lightbox
+          open={open}
+          onClose={() => setOpen(false)}
+          src={imageSrc}
+          alt={`${title} cover large`}
+          layoutId={imgLayoutId}     // marche encore mieux si tu utilises <LayoutGroup> autour de la grille
+          title={title}
+          liveUrl={liveUrl}
+          codeUrl={codeUrl}
+        />
+      </>
+    );
+  }
+
+  function Lightbox({
+    open, onClose, src, alt, layoutId, title, liveUrl, codeUrl,
+  }: {
+    open: boolean; onClose: () => void; src: string; alt: string;
+    layoutId?: string; title?: string; liveUrl?: string | null; codeUrl?: string | null;
+  }) {
+    useEffect(() => {
+      if (!open) return;
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+      window.addEventListener("keydown", onKey);
+      return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
+    }, [open, onClose]);
+  
+    if (!open) return null;
+  
+    return createPortal(
+      <AnimatePresence>
+        <motion.div className="fixed inset-0 z-[100]" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}}>
+          <motion.div className="absolute inset-0 bg-black/60 backdrop-blur-sm" initial={{opacity:0}} animate={{opacity:1}} exit={{opacity:0}} onClick={onClose}/>
+          <motion.figure
+            role="dialog" aria-modal="true" aria-label={alt}
+            className="absolute inset-0 flex items-center justify-center p-4 md:p-6"
+            initial={{ scale: 0.98, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.98, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 140, damping: 18 }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <motion.div layoutId={layoutId} className="relative w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-2xl bg-black shadow-2xl">
+              <Image src={src} alt={alt} fill className="object-contain" sizes="100vw" priority />
+              <button onClick={onClose} aria-label="Fermer" className="absolute right-3 top-3 inline-grid h-9 w-9 place-items-center rounded-full bg-white/90 text-gray-900 shadow hover:bg-white">✕</button>
+              {(title || liveUrl || codeUrl) && (
+                <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-between gap-3 bg-gradient-to-t from-black/70 via-black/30 to-transparent px-4 pb-4 pt-12 text-white">
+                  <span className="text-sm font-medium">{title}</span>
+                  <span className="flex gap-2">
+                    {liveUrl && <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-gray-900 shadow hover:bg-white">Live</a>}
+                    {codeUrl && <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-gray-900 shadow hover:bg-white">Code</a>}
+                  </span>
+                </figcaption>
+              )}
+            </motion.div>
+          </motion.figure>
+        </motion.div>
+      </AnimatePresence>,
+      document.body
+    );
+  }
 
 /* ---------- Section ---------- */
 export default function Projects() {
@@ -248,7 +319,7 @@ export default function Projects() {
         return maskImage
     }
     return (
-        <section id="projects" className="scroll-mt-16 w-full bg-white px-6  h-screen snap-start  " aria-labelledby="projects-title">
+        <section id="projects" className="scroll-mt-16 w-full bg-white px-6  h-screen md:snap-start md:snap-always  " aria-labelledby="projects-title">
             <div className="mx-auto max-w-6xl">
                 {/* Header reveal */}
                 <motion.header
@@ -259,7 +330,7 @@ export default function Projects() {
                     viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
                 >
                     <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">Portfolio</p>
-                    <h2 id="projects-title" className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl">
+                    <h2 id="projects-title" className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl bg-gradient-to-r from-fuchsia-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent">
                         Quelques Projets
                     </h2>
                     <p className="mt-3 max-w-2xl text-gray-600">

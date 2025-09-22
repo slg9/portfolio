@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[88vh] snap-start isolate overflow-hidden"
+      className="relative min-h-[95vh] py-24 md:snap-start md:snap-always isolate overflow-hidden"
     >
       {/* Background: grid + radial */}
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(40rem_40rem_at_50%_-10%,rgba(99,102,241,.18),transparent_60%)]" />
@@ -25,7 +25,7 @@ export default function Hero() {
           transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.1 }}
           className="mb-3 inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/60 px-3 py-1 text-xs font-medium text-slate-600 shadow-sm backdrop-blur"
         >
-          👋 Hi, I am
+          👋 Salut, je m’appelle
         </motion.span>
 
         {/* Title */}
@@ -43,9 +43,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.35 }}
-          className="mt-3 text-lg text-slate-600"
+          className="mt-3 text-lg text-slate-600 max-w-[700px]"
         >
-          And I am a Software engineer focused on clean architecture, delightful UX, and performance.
+          Et je suis Ingénieur full-stack passionné par les architectures solides, les applications performantes et les expériences utilisateurs intuitives.
         </motion.p>
 
         {/* Photo + ring */}
@@ -71,7 +71,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ type: "spring", stiffness: 90, damping: 16, delay: 0.6 }}
-          className="mt-10 flex items-center gap-4"
+          className="my-10 flex items-center gap-4"
         >
           <a
             href={linkedinUrl}
@@ -99,7 +99,7 @@ export default function Hero() {
 
         {/* Small trust bar (facultatif) */}
         <div className="mt-6 text-xs text-slate-500">
-          Available for full-stack / backend roles
+          Disponible pour du full-stack / backend roles
         </div>
       </div>
     </section>

@@ -97,7 +97,7 @@ export default function Cursus() {
  
 
   return (
-    <section id="cursus" className=" w-full bg-gradient-to-b from-white to-gray-50 px-6  h-screen snap-start  ">
+    <section id="cursus" className=" w-full bg-gradient-to-b from-white to-gray-50 px-6  md:snap-start md:snap-always  ">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <motion.header

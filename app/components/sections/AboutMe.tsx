@@ -12,7 +12,7 @@ function useParallax(value: MotionValue<number>, distance: number) {
 }
 const AboutMe = () => {
     const handleScroll = () => {
-        const section = document.getElementById("Contact");
+        const section = document.getElementById("contact");
         if (section) section.scrollIntoView({ behavior: "smooth" });
     };
 
@@ -32,12 +32,9 @@ const AboutMe = () => {
         <section
 
             id="aboutme"
-            className="scroll-mt-24 flex flex-col items-center justify-center w-full px-6 py-16 bg-white h-screen snap-start  "
+            className="scroll-mt-24 flex flex-col items-center justify-center w-full px-6 py-16 bg-white h-screen md:snap-start md:snap-always  "
         >
-            {/* Background subtil */}
-            <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(50rem_40rem_at_80%_-10%,rgba(99,102,241,.12),transparent_60%)]" />
-            <div className="pointer-events-none absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,transparent,rgba(0,0,0,.03))]" />
-
+          
             <div>
 
                 {/* Header */}
@@ -51,7 +48,7 @@ const AboutMe = () => {
                 >
                     <h2
                         id="projects-title"
-                        className="text-3xl font-extrabold tracking-[-0.01em] text-slate-900 md:text-4xl"
+                        className="text-3xl font-extrabold tracking-[-0.01em] text-slate-900 md:text-4xl bg-gradient-to-r from-fuchsia-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent"
                     >
                         À propos de moi
                     </h2>
@@ -78,8 +75,8 @@ const AboutMe = () => {
                             transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.2 }}
                             viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                         >
-                            Côté back-end, je conçois des API robustes avec une exigence forte en qualité, tests et automatisation.
-                            Côté front-end, j’aime créer des interfaces modernes, dynamiques et accessibles, centrées sur l’utilisateur.
+                            Côté back-end, je conçois des API robustes avec une attention particulière à la qualité, la maintenabilité et l’automatisation..
+                            Côté front-end, je développe en React, en intégrant les designs et en assurant la logique de l’application : récupération et affichage des données, interactions et fluidité de l’expérience utilisateur.
                         </motion.p>
 
                         <motion.p

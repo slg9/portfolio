@@ -1,6 +1,9 @@
 "use client";
 import { motion } from "framer-motion";
 import { useState } from "react";
+import ContactForm from "../ContactForm";
+import { sendMailjet } from "@/app/actions/SendMailjet";
+
 
 type FormState = "idle" | "loading" | "success" | "error";
 
@@ -119,54 +122,7 @@ export default function Contact() {
         if (!validate()) return;
         try {
             setState("loading");
-            // Envoi de l'email via l'API Mailjet
-            const mailjetApiKey = process.env.NEXT_PUBLIC_MAILJET_API_KEY;
-            const mailjetApiSecret = process.env.NEXT_PUBLIC_MAILJET_API_SECRET;
-            const mailjetUrl = "https://api.mailjet.com/v3.1/send";
-
-            const mailData = {
-                Messages: [
-                    {
-                        From: {
-                            Email: "sebastien@neitsa.fr",
-                            Name: "Sébastien Legros"
-                        },
-                        To: [
-                            {
-                                Email: "sebastien@neitsa.fr",
-                                Name: "Sébastien Legros"
-                            }
-                        ],
-                        Subject: form.subject,
-                        TextPart: `Nom: ${form.name}\nEmail: ${form.email}\nTéléphone: ${form.phone}\n\n${form.message}`,
-                        HTMLPart: `
-                            <h3>Vous avez reçu un nouveau message via le formulaire de contact :</h3>
-                            <ul>
-                                <li><strong>Nom :</strong> ${form.name}</li>
-                                <li><strong>Email :</strong> ${form.email}</li>
-                                <li><strong>Téléphone :</strong> ${form.phone}</li>
-                            </ul>
-                            <p><strong>Message :</strong></p>
-                            <p>${form.message.replace(/\n/g, "<br/>")}</p>
-                        `
-                    }
-                ]
-            };
-
-            const response = await fetch(mailjetUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization:
-                        "Basic " +
-                        btoa(`${mailjetApiKey}:${mailjetApiSecret}`)
-                },
-                body: JSON.stringify(mailData)
-            });
-
-            if (!response.ok) {
-                throw new Error("Échec de l'envoi de l'email via Mailjet.");
-            }
+            
 
 
             setState("success");
@@ -189,7 +145,7 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="w-full bg-gradient-to-b from-white to-gray-50 px-6  snap-start  "
+            className="w-full bg-gradient-to-b from-white to-gray-50 px-6  md:snap-start md:snap-always  "
             aria-labelledby="contact-title"
         >
             <div className="mx-auto max-w-3xl">
@@ -228,105 +184,8 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.4 }}
                     viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                    className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm md:p-8">
-                    <form onSubmit={onSubmit} noValidate className="space-y-6">
-                        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                            <InputField
-                                id="name"
-                                label="Votre nom"
-                                required
-                                value={form.name}
-                                onChange={(v) => setForm((f) => ({ ...f, name: v }))}
-                                autoComplete="name"
-                            />
-                            <InputField
-                                id="email"
-                                label="Email"
-                                type="email"
-                                required
-                                value={form.email}
-                                onChange={(v) => setForm((f) => ({ ...f, email: v }))}
-                                autoComplete="email"
-                            />
-                        </div>
-
-                        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                            <InputField
-                                id="phone"
-                                label="Tel (facultatif)"
-                                type="tel"
-                                value={form.phone}
-                                onChange={(v) => setForm((f) => ({ ...f, phone: v }))}
-                                autoComplete="tel"
-                            />
-                            <InputField
-                                id="subject"
-                                label="Objet"
-                                required
-                                value={form.subject}
-                                onChange={(v) => setForm((f) => ({ ...f, subject: v }))}
-                            />
-                        </div>
-
-                        <TextareaField
-                            id="message"
-                            label="Votre message"
-                            required
-                            value={form.message}
-                            onChange={(v) => setForm((f) => ({ ...f, message: v }))}
-                            rows={8}
-                        />
-
-                        {/* Honeypot anti-spam (visuellement caché) */}
-                        <div className="hidden">
-                            <label htmlFor="company">Company (leave empty)</label>
-                            <input
-                                id="company"
-                                name="company"
-                                type="text"
-                                value={form.company}
-                                onChange={(e) =>
-                                    setForm((f) => ({ ...f, company: e.target.value }))
-                                }
-                                autoComplete="off"
-                                tabIndex={-1}
-                            />
-                        </div>
-
-                        {/* Errors */}
-                        {Object.keys(errors).length > 0 && (
-                            <ul className="space-y-1 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-                                {Object.entries(errors).map(([k, v]) => (
-                                    <li key={k}>{v}</li>
-                                ))}
-                            </ul>
-                        )}
-
-                        {/* CTA */}
-                        <div className="flex items-center justify-between gap-4">
-                            <p className="text-xs text-gray-500">
-                                En envoyant ce formulaire, vous acceptez d’être recontacté concernant votre demande
-                            </p>
-                            <button
-                                type="submit"
-                                disabled={state === "loading"}
-                                className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md" 
-
-                            >
-                                {state === "loading" ? (
-                                    <>
-                                        <Spinner /> Envoi en cours …
-                                    </>
-                                ) : state === "success" ? (
-                                    "Message envoyé ✓"
-                                ) : state === "error" ? (
-                                    "Réessayer"
-                                ) : (
-                                    "Envoyer"
-                                )}
-                            </button>
-                        </div>
-                    </form>
+                    className="rounded-2xl border border-0 bg-white p-6  md:p-8">
+                    <ContactForm action={sendMailjet} />
                 </motion.div>
 
                 {/* Tip de contact direct */}

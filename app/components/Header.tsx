@@ -1,4 +1,5 @@
 "use client";
+
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
@@ -6,78 +7,140 @@ const NAV = [
   { label: "Accueil",  target: "hero" },
   { label: "À propos", target: "aboutme" },
   { label: "Projets",  target: "projects" },
+  { label: "Technos",  target: "techno" },   // ⚠️ assure-toi que la section a bien id="techno"
   { label: "Parcours", target: "cursus" },
   { label: "Contact",  target: "contact" },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [active, setActive] = useState<string>("hero"); // section courante
+  const [active, setActive] = useState<string>("hero");
 
-  // --- Scroll to section
-  const go = useCallback((id: string) => {
-    const el = document.getElementById(id) || document.getElementById(id.toLowerCase());
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      setOpen(false);
+  // --- scroller: window ou <main> (si ta page scrolle dans main)
+  const scrollerRef = useRef<Window | HTMLElement>(typeof window !== "undefined" ? window : ({} as any));
+  useEffect(() => {
+    const maybeMain = document.querySelector("main") as HTMLElement | null;
+    if (maybeMain && maybeMain.scrollHeight > maybeMain.clientHeight) {
+      scrollerRef.current = maybeMain;
+    } else {
+      scrollerRef.current = window;
     }
   }, []);
 
-  // --- Lock scroll when drawer open
-  useEffect(() => {
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = open ? "hidden" : prev || "";
-    return () => { document.body.style.overflow = prev; };
-  }, [open]);
-
-  // --- Observe sections to highlight active item
-  useEffect(() => {
-    const ids = NAV.map(n => n.target);
-    const sections = ids
-      .map((id) => document.getElementById(id) || document.getElementById(id.toLowerCase()))
-      .filter(Boolean) as HTMLElement[];
-
-    if (!sections.length) return;
-
-    const obs = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target?.id) setActive(visible.target.id.toLowerCase());
-      },
-      { rootMargin: "-30% 0px -50% 0px", threshold: [0.2, 0.4, 0.6] }
-    );
-
-    sections.forEach(s => obs.observe(s));
-    return () => obs.disconnect();
+  // --- util: sections présentes dans le DOM
+  const getSections = useCallback(() => {
+    return NAV.map(n => {
+      const el = document.getElementById(n.target) || document.getElementById(n.target.toLowerCase());
+      return el as HTMLElement | null;
+    }).filter(Boolean) as HTMLElement[];
   }, []);
 
-  // --- Classes
+  // --- ScrollSpy: section la plus proche du centre de l'écran
+  const lockUntilRef = useRef(0); // pour ne pas écraser l'active juste après un clic
+  useEffect(() => {
+    let ticking = false;
+
+    const compute = () => {
+      ticking = false;
+
+      // on garde la valeur choisie par le clic pendant 600ms
+      if (Date.now() < lockUntilRef.current) return;
+
+      const sections = getSections();
+      if (!sections.length) return;
+
+      const viewportH = window.innerHeight; // getBoundingClientRect est relatif au viewport
+      const centerY = viewportH / 2;
+
+      let bestId = active;
+      let bestDist = Number.POSITIVE_INFINITY;
+
+      for (const el of sections) {
+        const r = el.getBoundingClientRect();
+        // ignorons ce qui est totalement hors écran (optionnel)
+        if (r.bottom <= 0 || r.top >= viewportH) continue;
+
+        const elCenter = r.top + r.height / 2;
+        const dist = Math.abs(elCenter - centerY);
+        if (dist < bestDist) {
+          bestDist = dist;
+          bestId = el.id.toLowerCase();
+        }
+      }
+      if (bestId && bestId !== active) setActive(bestId);
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(compute);
+      }
+    };
+    const onResize = onScroll;
+
+    const scroller = scrollerRef.current as any;
+    (scroller === window ? window : scroller).addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize, { passive: true });
+
+    // calcule initial
+    compute();
+
+    return () => {
+      (scroller === window ? window : scroller).removeEventListener("scroll", onScroll as any);
+      window.removeEventListener("resize", onResize as any);
+    };
+  }, [active, getSections]);
+
+  // --- Scroll progress (fonctionne avec window OU main)
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const update = () => {
+      const scroller = scrollerRef.current as any;
+      if (scroller === window) {
+        const doc = document.documentElement;
+        const top = doc.scrollTop;
+        const max = doc.scrollHeight - doc.clientHeight || 1;
+        setProgress((top / max) * 100);
+      } else {
+        const el = scroller as HTMLElement;
+        const top = el.scrollTop;
+        const max = el.scrollHeight - el.clientHeight || 1;
+        setProgress((top / max) * 100);
+      }
+    };
+    update();
+
+    const scroller = scrollerRef.current as any;
+    (scroller === window ? window : scroller).addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    return () => {
+      (scroller === window ? window : scroller).removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
+  // --- Scroll to section (underline immédiat + lock 600ms)
+  const go = useCallback((id: string) => {
+    const el = document.getElementById(id) || document.getElementById(id.toLowerCase());
+    if (!el) return;
+    setActive(el.id.toLowerCase());
+    lockUntilRef.current = Date.now() + 600;
+
+    // scroll doux
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setOpen(false);
+  }, []);
+
+  // --- styles
   const linkBase =
     "relative cursor-pointer px-2 py-1 text-sm font-medium text-slate-700 transition-colors hover:text-slate-900";
   const glass =
     "bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border border-slate-200/70";
-
-  // --- Scroll progress (fine touche)
-  const [progress, setProgress] = useState(0);
-  useEffect(() => {
-    const onScroll = () => {
-      const h = document.documentElement;
-      const p = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
-      setProgress(p);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // LayoutId for underline
   const underlineId = useMemo(() => "nav-underline", []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      {/* fine barre de progression */}
+      {/* barre de progression */}
       <div className="h-0.5 bg-transparent">
         <motion.div
           className="h-0.5 bg-gradient-to-r from-indigo-600 to-sky-500"
@@ -87,7 +150,7 @@ export default function Header() {
 
       <div className={`mx-auto mt-2 w-[min(100%-1rem,1100px)] rounded-2xl ${glass} shadow-sm`}>
         <div className="flex items-center justify-between px-4 py-3 md:px-6">
-          {/* Logo / nom */}
+          {/* Logo */}
           <button
             onClick={() => go("hero")}
             className="group inline-flex items-center gap-2 text-left"
@@ -111,6 +174,7 @@ export default function Header() {
                     <button
                       onClick={() => go(item.target)}
                       className={linkBase}
+                      aria-current={isActive ? "page" : undefined}
                     >
                       {item.label}
                       {isActive && (
@@ -191,6 +255,7 @@ export default function Header() {
                           onClick={() => go(item.target)}
                           className={`w-full rounded-lg px-4 py-3 text-left text-[15px] font-medium transition
                                       ${isActive ? "text-slate-900 bg-slate-100" : "text-slate-800 hover:bg-slate-100"}`}
+                          aria-current={isActive ? "page" : undefined}
                         >
                           {item.label}
                         </button>
