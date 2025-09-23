@@ -41,18 +41,18 @@ function TimelineItem({
 
       {/* Contenu */}
       <div className="flex flex-col gap-2">
-        <h3 className="text-sm font-semibold text-gray-900">
+        <h3 className="text-xs font-semibold text-gray-900">
           {year} : {title}
         </h3>
-        {subtitle && <p className="text-sm text-gray-600">{subtitle}</p>}
+        {subtitle && <p className="text-xs text-gray-600">{subtitle}</p>}
         {tags && (
           <ul className="flex flex-wrap gap-2">
             {tags.map((t) => (
               <li
                 key={t}
-                className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-indigo-50 to-sky-50 px-3 py-1.5 text-sm font-medium text-slate-700 shadow-sm border border-slate-200/60 hover:shadow-md hover:-translate-y-0.5 transition"
+                className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-indigo-50 to-sky-50 px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm border border-slate-200/60 hover:shadow-md hover:-translate-y-0.5 transition"
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-400 to-sky-400" />
+                <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-400 to-sky-400 text-xs" />
                 {t}
               </li>
             ))}
@@ -102,7 +102,7 @@ export default function Cursus() {
 
 
   return (
-    <section id="cursus" className=" w-full bg-gradient-to-b from-white to-gray-50 px-6 py-10 md:snap-start md:snap-always  ">
+    <section id="cursus" className=" w-full bg-gradient-to-b from-white to-gray-50 px-6 py-20 md:snap-start md:snap-always  ">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <motion.header
@@ -120,7 +120,7 @@ export default function Cursus() {
 
         {/* Timeline container */}
         <div className="flex flex-col md:flex-row gap-12 items-center max-w-5xl">
-          <div className="relative max-w-[600px]">
+          <div className="relative max-w-[700px]">
             {/* Ligne verticale animée (se “dessine”) */}
             <motion.span
               aria-hidden

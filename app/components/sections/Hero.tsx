@@ -4,7 +4,7 @@ import { Easing, motion } from "framer-motion";
 
 const linkedinUrl = "https://www.linkedin.com/in/sébastien-legros-23a85085";
 const githubUrl = "https://github.com/slg9";
-const mailUrl = "mailto:sebastien@neitsa.fr";
+const mailUrl = "mailto:slegros9@gmail.com";
 
 export default function Hero() {
   const ease: Easing[] = ["anticipate","backIn"];

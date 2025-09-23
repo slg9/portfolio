@@ -17,7 +17,7 @@ const AboutMe = () => {
   };
 
   const handleDownloadCV = () => {
-    const lienCV = "/docs/Sebastien_Legros_CV.pdf";
+    const lienCV = "/docs/Sebastien_Legros_CV-2025.pdf";
     const a = document.createElement("a");
     a.href = lienCV;
     a.download = "Sebastien_Legros_CV-2025.pdf";

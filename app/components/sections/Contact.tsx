@@ -193,9 +193,9 @@ export default function Contact() {
                     Plutôt par e-mail{" "}
                     <a
                         className="font-medium text-gray-900 underline underline-offset-4"
-                        href="mailto:sebastien@neitsa.fr"
+                        href="mailto:slegros9@gmail.com"
                     >
-                        sebastien@neitsa.fr
+                        slegros9@gmail.com
                     </a>
                 </p>
             </div>
