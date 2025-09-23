@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "framer-motion": "^12.23.15",
+    "lottie-react": "^2.4.1",
     "next": "15.5.3",
     "node-mailjet": "^6.0.9",
     "react": "19.1.0",

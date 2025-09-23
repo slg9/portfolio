@@ -25,6 +25,7 @@ const SKILLS: Skill[] = [
   { name: "Apollo", level: 70, slug: "apollographql.svg", color: "#311C87" },
   { name: "Node.js", level: 60, slug: "nodejs.png", color: "#68a063" },
   { name: "PostgreSQL", level: 70, slug: "postgresql.png", color: "#336791" },
+  { name: "MongoDB", level: 60, slug: "mongodb.png", color: "#3F9937" },
   { name: "Git", level: 70, slug: "git.svg", color: "#f34f29" },
   { name: "GitHub Actions", level: 60, slug: "githubaction.svg", color: "#2088FF" },
   { name: "Docker", level: 70, slug: "docker.svg", color: "#0db7ed" },
@@ -32,6 +33,8 @@ const SKILLS: Skill[] = [
   { name: "CapRover", level: 60, slug: "caprover.png", color: "#26a69a" },
   { name: "PHP", level: 60, slug: "php.png", color: "#777BB4" },
   { name: "CakePHP", level: 50, slug: "cakephp.png", color: "#D33C43" },
+  { name: "Java", level: 50, slug: "java.svg", color: "#E32C2C" },
+  { name: "Spring", level: 40, slug: "spring.spring", color: "#77BC20" },
 ];
 
 export default function Techno() {
