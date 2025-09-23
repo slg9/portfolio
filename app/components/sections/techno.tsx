@@ -41,7 +41,7 @@ export default function Techno() {
   return (
     <section
       id="techno"
-      className="relative overflow-hidden min-h-screen md:py-20 md:snap-start md:snap-always "
+      className="relative overflow-hidden min-h-screen py-20 md:snap-start md:snap-always "
       style={{ minHeight: "140vh" }}
     >
       <BackgroundFX />

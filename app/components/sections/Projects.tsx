@@ -335,7 +335,7 @@ export default function Projects() {
     return maskImage
   }
   return (
-    <section id="projects" className="scroll-mt-16 w-full bg-white px-6  h-screen md:snap-start md:snap-always  " aria-labelledby="projects-title">
+    <section id="projects" className="scroll-mt-24 w-full bg-white px-6 pt-24  md:h-screen md:snap-start md:snap-always   " aria-labelledby="projects-title">
       <div className="mx-auto max-w-6xl">
         {/* Header reveal */}
         <motion.header
