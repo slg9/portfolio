@@ -31,7 +31,7 @@ function TimelineItem({
     >
       {/* Pastille (point) */}
       <motion.span
-        className="absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-indigo-500 bg-white text-xs font-bold bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent shadow-sm"
+        className="absolute left-1 top-1 flex h-6 w-6 items-center justify-center rounded-full border-2 border-indigo-500 dark:border-white bg-white dark:bg-transparent text-xs font-bold shadow-sm"
         whileHover={{ scale: 1.2 }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: "spring", stiffness: 300, damping: 18 }}
@@ -41,16 +41,16 @@ function TimelineItem({
 
       {/* Contenu */}
       <div className="flex flex-col gap-2">
-        <h3 className="text-xs font-semibold text-gray-900">
+        <h3 className="text-xs font-semibold text-gray-900 dark:text-slate-400">
           {year} : {title}
         </h3>
-        {subtitle && <p className="text-xs text-gray-600">{subtitle}</p>}
+        {subtitle && <p className="text-xs text-gray-600 dark:text-slate-300">{subtitle}</p>}
         {tags && (
           <ul className="flex flex-wrap gap-2">
             {tags.map((t) => (
               <li
                 key={t}
-                className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-indigo-50 to-sky-50 px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm border border-slate-200/60 hover:shadow-md hover:-translate-y-0.5 transition"
+                className="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-transparent px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-400 shadow-sm border border-slate-200/60 hover:shadow-md hover:-translate-y-0.5 transition"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-400 to-sky-400 text-xs" />
                 {t}
@@ -102,7 +102,7 @@ export default function Cursus() {
 
 
   return (
-    <section id="cursus" className=" w-full bg-gradient-to-b from-white to-gray-50 px-6 py-20 md:snap-start md:snap-always  ">
+    <section id="cursus" className=" w-full bg-white dark:bg-transparent px-6 py-20 md:snap-start md:snap-always  ">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <motion.header
@@ -113,7 +113,7 @@ export default function Cursus() {
           viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
         >
           <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">Parcours</p>
-          <h2 className="mt-1 text-2xl font-extrabold text-gray-900 md:text-4xl">
+          <h2 className="mt-1 text-2xl font-extrabold text-gray-900 dark:text-slate-400 md:text-4xl">
             Mon Cursus & Expérience
           </h2>
         </motion.header>

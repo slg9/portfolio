@@ -145,7 +145,7 @@ export default function Contact() {
     return (
         <section
             id="contact"
-            className="w-full bg-gradient-to-b from-white to-gray-50 px-6  md:snap-start md:snap-always  "
+            className="w-full bg-white dark:bg-transparent px-6  md:snap-start md:snap-always  "
             aria-labelledby="contact-title"
         >
             <div className="mx-auto max-w-3xl">
@@ -165,7 +165,7 @@ export default function Contact() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.2 }}
                         viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                        className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl"
+                        className="mt-2 text-3xl font-extrabold text-gray-900 dark:text-slate-300 md:text-4xl"
                     >
                         Créons quelque chose de remarquable
                     </motion.h2>
@@ -174,7 +174,7 @@ export default function Contact() {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.3 }}
                         viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                        className="mx-auto mt-3 max-w-2xl text-gray-600">
+                        className="mx-auto mt-3 max-w-2xl text-gray-600 dark:text-slate-400">
                         Parlez-moi de votre projet (objectifs, échéances, contraintes). Je vous répondrai rapidement.          </motion.p>
                 </header>
 
@@ -184,15 +184,15 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.4 }}
                     viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                    className="rounded-2xl border border-0 bg-white p-6  md:p-8">
+                    className="rounded-2xl border border-0 bg-white dark:bg-transparent p-6  md:p-8">
                     <ContactForm action={sendMailjet} />
                 </motion.div>
 
                 {/* Tip de contact direct */}
-                <p className="mt-6 text-center text-sm text-gray-500">
+                <p className="mt-6 text-center text-sm text-gray-500 dark:text-slate-300">
                     Plutôt par e-mail{" "}
                     <a
-                        className="font-medium text-gray-900 underline underline-offset-4"
+                        className="font-medium text-gray-900 dark:text-slate-400 underline underline-offset-4"
                         href="mailto:slegros9@gmail.com"
                     >
                         slegros9@gmail.com

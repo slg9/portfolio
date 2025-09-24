@@ -58,7 +58,7 @@ export default function Techno() {
               Technologies & Expertise
             </span>
           </h2>
-          <p className="mt-3 text-base md:text-lg text-gray-600">
+          <p className="mt-3 text-base md:text-lg text-gray-600 dark:text-slate-400">
             Un écosystème moderne, des interfaces fluides, des backends robustes
           </p>
         </motion.div>

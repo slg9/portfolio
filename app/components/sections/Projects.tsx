@@ -134,7 +134,7 @@ function ProjectCard({
   return (
     <>
       <motion.article
-        className="group relative overflow-hidden rounded-3xl ring-1 ring-slate-200/60 bg-white/60 backdrop-blur-sm shadow-[0_1px_0_0_rgba(0,0,0,0.04)] shrink-0 w-[72vw] sm:w-[300px] md:w-[340px]"
+        className="group relative my-5 overflow-hidden rounded-3xl ring-1 ring-slate-200/60 dark:ring-slate-400 bg-white/60 dark:bg-transparent backdrop-blur-sm shadow-[0_1px_0_0_rgba(0,0,0,0.04)] shrink-0 w-[72vw] sm:w-[300px] md:w-[340px]"
         initial={{ opacity: 0, y: 24, scale: 0.98 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ type: "spring", stiffness: 90, damping: 14, delay: revealDelay }}
@@ -171,11 +171,11 @@ function ProjectCard({
 
         {/* Content */}
         <div className="flex flex-col gap-4 p-5">
-          <h3 className="text-lg font-semibold tracking-tight text-slate-900 line-clamp-2">
+          <h3 className="text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-300 line-clamp-2">
             {title}
           </h3>
 
-          <p className="text-sm leading-relaxed text-slate-600 line-clamp-3">
+          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-200 line-clamp-3">
             {description}
           </p>
 
@@ -184,7 +184,7 @@ function ProjectCard({
             {tags.map((t) => (
               <li
                 key={t}
-                className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-indigo-50 to-sky-50 px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm ring-1 ring-slate-200/60 hover:shadow-md hover:-translate-y-0.5 transition"
+                className="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-transparent px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-400 shadow-sm ring-1 ring-slate-200/60 hover:shadow-md hover:-translate-y-0.5 transition"
               >
                 <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-400 to-sky-400" />
                 {t}
@@ -335,7 +335,7 @@ export default function Projects() {
     return maskImage
   }
   return (
-    <section id="projects" className="scroll-mt-24 w-full bg-white px-6 pt-24  md:h-screen md:snap-start md:snap-always   " aria-labelledby="projects-title">
+    <section id="projects" className="scroll-mt-24 w-full bg-white dark:bg-transparent px-6 pt-24  md:h-screen md:snap-start md:snap-always   " aria-labelledby="projects-title">
       <div className="mx-auto max-w-6xl">
         {/* Header reveal */}
         <motion.header
@@ -349,7 +349,7 @@ export default function Projects() {
           <h2 id="projects-title" className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl bg-gradient-to-r from-fuchsia-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent">
             Quelques Projets
           </h2>
-          <p className="mt-3 max-w-2xl text-gray-600">
+          <p className="mt-3 max-w-2xl text-gray-600 dark:text-slate-400">
             Alliance d’un back-end robuste et d’un front-end soigné. Voici une sélection
           </p>
         </motion.header>

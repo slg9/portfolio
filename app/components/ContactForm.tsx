@@ -26,7 +26,7 @@ function InputField({
                 required={required}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
-                className="peer w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
+                className="peer w-full rounded-xl border border-gray-300 bg-white dark:bg-transparent px-4 py-3 outline-none transition focus:border-gray-900 focus:ring-2 dark:focus:ring-slate-300 focus:ring-gray-900/10 dark:text-slate-400"
             />
            
         </div>
@@ -54,11 +54,11 @@ function TextareaField({
                 required={required}
                 rows={rows}
                 placeholder={placeholder}
-                className="peer w-full rounded-xl border border-gray-300 bg-white px-4 py-3 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
+                className="peer w-full rounded-xl border border-gray-300 bg-white dark:bg-transparent px-4 py-3 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
             />
             <label
                 htmlFor={id}
-                className="pointer-events-none absolute left-3 top-3 bg-white px-1 text-sm text-gray-500 transition
+                className="pointer-events-none absolute left-3 top-3 bg-white dark:bg-transparent px-1 text-sm text-gray-500 dark:text-slate-400 transition
                  peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400
                  peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-gray-900"
             >
