@@ -71,10 +71,11 @@ export default function Hero() {
           transition={{ ease, duration: 2, delay: 0.34, damping: 30 }}
           className="mt-3 max-w-[700px] text-lg text-slate-600 dark:text-slate-300"
         >
-          Ingénieur full-stack passionné par les{" "}
-          <span className="font-semibold text-slate-900 dark:text-slate-100">architectures solides</span>, les{" "}
-          <span className="px-1 rounded bg-sky-100 dark:bg-sky-400/15">applications performantes</span> et les{" "}
-          <span className="px-1 rounded bg-emerald-100 dark:bg-emerald-400/15">expériences utilisateurs intuitives</span>.
+          Développeur full-stack spécialisé en{" "}
+          <span className="font-semibold text-slate-900 dark:text-slate-100">React, TypeScript, Go et Node.js</span>. 
+          Passionné par les{" "}
+          <span className="px-1 rounded bg-sky-100 dark:bg-sky-400/15">architectures modernes</span> et les{" "}
+          <span className="px-1 rounded bg-emerald-100 dark:bg-emerald-400/15">solutions techniques innovantes</span>.
         </motion.p>
 
         {/* Photo + ring */}
