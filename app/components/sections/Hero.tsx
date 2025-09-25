@@ -12,7 +12,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-[95vh] pb-24 pt-10 md:snap-start md:snap-always isolate overflow-hidden"
+      className="relative overflow-hidden min-h-screen py-10 md:snap-start md:snap-always"
     >
       {/* Background: radial glow */}
       <div className="
@@ -128,8 +128,8 @@ export default function Hero() {
             className="
               inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium shadow-sm transition hover:-translate-y-0.5 hover:shadow-md
               border-slate-200 bg-white text-slate-700
-              dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-200 dark:hover:shadow-slate-900/30
-            dark:invert
+              dark:border-slate-700 dark:bg-slate-600 dark:text-slate-200 dark:hover:shadow-slate-900/30
+            
               "
 
           >
@@ -145,7 +145,7 @@ export default function Hero() {
             className="
               inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold shadow-sm transition hover:-translate-y-0.5 hover:shadow-md
               bg-gradient-to-r from-indigo-600 to-sky-500 text-white
-              dark:from-indigo-500 dark:to-sky-500
+              dark:from-indigo-800 dark:to-sky-800
             "
           >
             <Image src="/gmail.png" alt="" width={18} height={18} aria-hidden />

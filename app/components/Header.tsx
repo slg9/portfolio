@@ -179,12 +179,7 @@ export default function Header() {
 
           {/* CTA + burger */}
           <div className="flex items-center gap-2">
-            <button
-              onClick={() => go("contact")}
-              className="hidden md:inline-flex items-center justify-center rounded-full bg-gradient-to-r from-indigo-600 to-sky-500 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-            >
-              Me contacter
-            </button>
+   
 
             <button
               className="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
@@ -266,15 +261,6 @@ export default function Header() {
                 </ul>
               </nav>
 
-              {/* footer CTA, fond assorti */}
-              <div className="absolute inset-x-0 bottom-0 border-t border-slate-300 bg-slate-100 p-4 dark:border-slate-700 dark:bg-slate-900">
-                <button
-                  onClick={() => go("contact")}
-                  className="w-full rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 px-4 py-3 text-white font-semibold shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
-                >
-                  Me contacter
-                </button>
-              </div>
             </motion.aside>
           </>
         )}
