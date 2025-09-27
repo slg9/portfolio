@@ -29,13 +29,9 @@ export const metadata: Metadata = {
   creator: "Sébastien Legros",
   publisher: "Sébastien Legros",
   icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.png', type: 'image/png' },
-    ],
-    apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/icon.png',
   },
   robots: {
     index: true,
@@ -85,6 +81,9 @@ export default function RootLayout({
     <html lang="fr">
       <head>
         <StructuredData />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/icon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
       </head>
       <body
         className={` ${fontBody.variable} ${geistMono.variable} antialiased font-sans`}
