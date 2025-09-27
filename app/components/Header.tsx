@@ -143,7 +143,7 @@ export default function Header() {
             className="group inline-flex items-center gap-2 text-left"
             aria-label="Aller à l’accueil"
           >
-            <span className="inline-grid size-8 place-items-center rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-500 text-white text-xs font-bold shadow-sm">
+            <span className="inline-grid size-8 place-items-center rounded-xl ">
               <Image 
                 src="/icon.png" 
                 alt="SL - Sébastien Legros" 
