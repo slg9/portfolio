@@ -2,14 +2,15 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 
 const NAV = [
-  { label: "Accueil",  target: "hero" },
+  { label: "Accueil", target: "hero" },
   { label: "À propos", target: "aboutme" },
-  { label: "Projets",  target: "projects" },
-  { label: "Technos",  target: "techno" },
+  { label: "Projets", target: "projects" },
+  { label: "Technos", target: "techno" },
   { label: "Parcours", target: "cursus" },
-  { label: "Contact",  target: "contact" },
+  { label: "Contact", target: "contact" },
 ];
 
 export default function Header() {
@@ -143,7 +144,14 @@ export default function Header() {
             aria-label="Aller à l’accueil"
           >
             <span className="inline-grid size-8 place-items-center rounded-xl bg-gradient-to-tr from-indigo-600 to-sky-500 text-white text-xs font-bold shadow-sm">
-              SL
+              <Image 
+                src="/icon.png" 
+                alt="SL - Sébastien Legros" 
+                width={32} 
+                height={32}
+                className="rounded-lg"
+                priority
+              />
             </span>
             <span className="text-base font-extrabold tracking-[-0.01em] text-slate-900 dark:text-slate-100">
               Sébastien Legros
@@ -179,7 +187,7 @@ export default function Header() {
 
           {/* CTA + burger */}
           <div className="flex items-center gap-2">
-   
+
 
             <button
               className="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
@@ -244,8 +252,8 @@ export default function Header() {
                           onClick={() => go(item.target)}
                           className={`w-full text-left px-5 py-4 text-[16px] font-semibold tracking-wide
                                       ${isActive
-                                        ? "text-slate-900 bg-white dark:bg-slate-800 dark:text-slate-100"
-                                        : "text-slate-900 hover:bg-white dark:text-slate-100 dark:hover:bg-slate-800"}`}
+                              ? "text-slate-900 bg-white dark:bg-slate-800 dark:text-slate-100"
+                              : "text-slate-900 hover:bg-white dark:text-slate-100 dark:hover:bg-slate-800"}`}
                           aria-current={isActive ? "page" : undefined}
                         >
                           {item.label.toUpperCase()}

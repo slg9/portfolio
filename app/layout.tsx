@@ -28,6 +28,15 @@ export const metadata: Metadata = {
   authors: [{ name: "Sébastien Legros" }],
   creator: "Sébastien Legros",
   publisher: "Sébastien Legros",
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   robots: {
     index: true,
     follow: true,
