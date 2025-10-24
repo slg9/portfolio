@@ -65,9 +65,9 @@ export default function LanguageSwitcher() {
         aria-label={t('changeLanguage')}
       >
         <span className="text-lg">{currentLanguage.flag}</span>
-        <span className="text-sm font-medium">{currentLanguage.name}</span>
+        <span className="text-sm font-medium hidden sm:inline">{currentLanguage.name}</span>
         <svg
-          className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-4 h-4 transition-transform hidden sm:block ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

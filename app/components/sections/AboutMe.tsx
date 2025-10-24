@@ -3,7 +3,8 @@ import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Lottie from "lottie-react";
 import devAnimation from "@/public/lotties/dev-coding.json";
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
+import { usePathname } from 'next/navigation';
 
 /* ---- Parallax util ---- */
 function useParallax(value: MotionValue<number>, distance: number) {
@@ -12,16 +13,27 @@ function useParallax(value: MotionValue<number>, distance: number) {
 
 const AboutMe = () => {
     const t = useTranslations('about');
+    const pathname = usePathname();
     const handleScroll = () => {
         const section = document.getElementById("contact");
         if (section) section.scrollIntoView({ behavior: "smooth" });
     };
 
     const handleDownloadCV = () => {
-        const lienCV = "/docs/Sebastien_Legros-CV_2025.pdf";
+        // Get current locale from pathname
+        const isEnglish = pathname.startsWith('/en');
+        
+        const lienCV = isEnglish 
+            ? "/docs/Sebastien_Legros_CV_EN.pdf" 
+            : "/docs/Sebastien_Legros_CV_FR.pdf";
+        
+        const fileName = isEnglish 
+            ? "Sebastien_Legros_CV_EN.pdf" 
+            : "Sebastien_Legros_CV_FR.pdf";
+        
         const a = document.createElement("a");
         a.href = lienCV;
-        a.download = "Sebastien_Legros-CV_2025.pdf";
+        a.download = fileName;
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
