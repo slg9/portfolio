@@ -3,6 +3,7 @@ import { Geist, Geist_Mono,Manrope } from "next/font/google";
 import "../globals.css";
 import Header from "../components/Header";
 import StructuredData from "../components/StructuredData";
+import PerformanceMonitor from "../components/PerformanceMonitor";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -127,6 +128,7 @@ export default async function RootLayout({
         className={` ${fontBody.variable} ${geistMono.variable} antialiased font-sans`}
       >
         <NextIntlClientProvider messages={messages}>
+          <PerformanceMonitor />
           <Header/>
           {children}
         </NextIntlClientProvider>
