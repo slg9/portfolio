@@ -2,6 +2,7 @@
 import React from "react";
 import { Easing, motion } from "framer-motion";
 import Link from "next/link";
+import { useTranslations } from 'next-intl';
 
 function TechPill({
   children,
@@ -26,6 +27,7 @@ function TechPill({
 }
 
 export default function Footer() {
+  const t = useTranslations('footer');
   const ease: Easing[] = ["easeIn", "easeInOut"];
 
   return (
@@ -47,15 +49,15 @@ export default function Footer() {
           viewport={{ once: true }}
           className="mt-8 text-center text-sm text-slate-600 dark:text-slate-300 flex flex-wrap items-center justify-center gap-y-2"
         >
-          <span className="mx-1">Construit avec</span>
+          <span className="mx-1">{t('builtWith')}</span>
           <TechPill color="from-slate-900 to-slate-700" delay={0.25}>Next.js</TechPill>
-          <span className="mx-1">, habillé par</span>
+          <span className="mx-1">, {t('styledBy')}</span>
           <TechPill color="from-sky-500 to-sky-400" delay={0.33}>Tailwind CSS</TechPill>
-          <span className="mx-1">, animé par</span>
+          <span className="mx-1">, {t('animatedBy')}</span>
           <TechPill color="from-pink-500 to-fuchsia-500" delay={0.41}>Framer Motion</TechPill>
-          <span className="mx-1">&</span>
+          <span className="mx-1">{t('and')}</span>
           <TechPill color="from-emerald-500 to-teal-400" delay={0.49}>Lottie</TechPill>
-          <span className="mx-1">, déployé sur</span>
+          <span className="mx-1">, {t('deployedOn')}</span>
           <TechPill color="from-gray-900 to-gray-700" delay={0.57}>Vercel</TechPill>
           <span className="mx-1">.</span>
         </motion.p>
@@ -74,14 +76,14 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="text-sm font-medium text-sky-700 hover:underline dark:text-sky-300"
           >
-            Voir le code source sur GitHub (CI/CD → Vercel)
+            {t('viewSource')}
           </Link>
         </motion.div>
 
         {/* Bas de page */}
         <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-200/70 pt-6 sm:flex-row dark:border-slate-700">
           <p className="text-xs text-slate-500 dark:text-slate-400 text-center sm:text-left">
-            © {new Date().getFullYear()} Sébastien Legros — Tous droits réservés
+            {t('copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
       </section>

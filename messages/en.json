@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "title": "Sébastien Legros | Full-Stack Developer & Software Engineer",
+    "description": "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js. 5+ years of experience in developing modern web applications and robust APIs. Portfolio of innovative projects and deep technical expertise.",
+    "keywords": "full-stack developer, React, TypeScript, Go, Node.js, software engineer, web developer, portfolio, Sébastien Legros",
+    "siteName": "Sébastien Legros Portfolio",
+    "alt": "Sébastien Legros - Full-Stack Developer"
+  },
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "technologies": "Technologies",
+    "experience": "Experience",
+    "contact": "Contact",
+    "menu": "Menu",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "goToHome": "Go to home",
+    "changeLanguage": "Change language"
+  },
+  "hero": {
+    "greeting": "👋 Hi, I'm",
+    "name": "Sébastien Legros",
+    "description": "Full-stack developer specialized in",
+    "technologies": "React, TypeScript, Go and Node.js",
+    "passionate": "Passionate about",
+    "modernArchitectures": "modern architectures",
+    "and": "and",
+    "innovativeSolutions": "innovative technical solutions",
+    "available": "Available for full-stack / backend roles"
+  },
+  "about": {
+    "title": "About me",
+    "subtitle": "Full-stack engineer — React, Go, PostgreSQL, Docker, CI/CD",
+    "intro": "I am a",
+    "developer": "developer",
+    "passionate": "passionate about creating",
+    "solidSolutions": "solid solutions",
+    "scalable": ", scalable and well-designed.",
+    "backend": "On the",
+    "backendDescription": " side, I design robust APIs (Go, PostgreSQL) with a strong focus on quality, maintainability and automation (CI/CD).",
+    "frontend": "On the",
+    "frontendDescription": " side, I develop accessible, performant and product-oriented interfaces in React/TypeScript.",
+    "curious": "Curious and pragmatic, I work from conception to production (Docker, monitoring, best practices), with constant attention to user experience and performance.",
+    "contactMe": "Contact me",
+    "downloadCV": "Download my CV"
+  },
+  "projects": {
+    "portfolio": "Portfolio",
+    "title": "Some Projects",
+    "subtitle": "Alliance of robust back-end and polished front-end. Here's a selection",
+    "expand": "Expand",
+    "live": "Live",
+    "code": "Code",
+    "close": "Close",
+    "items": {
+      "econnect": {
+        "title": "eConnect CRM",
+        "description": "Complete CRM: prospect management, email campaigns, partners, white-label sites, automated sending based on file progress, eDoc. Full-stack project (Go GraphQL, React, third-party REST). Modeling, costing, implementation."
+      },
+      "begaiement": {
+        "title": "Begaiement (Ortho Platform)",
+        "description": "Professional podcast catalog, patient relationship (objectives/prescriptions), stats. React web app, Go REST API, PostgreSQL."
+      },
+      "qrwin": {
+        "title": "QR Win – Back Office & APIs",
+        "description": "BO for stores/brands, Stripe subscriptions, stats, user management. QR codes for mini-games, rewards, virtual wallet. Mobile APIs in Go (REST)."
+      },
+      "happiz": {
+        "title": "Happiz – Backend & Back Office",
+        "description": "GraphQL backend for mobile hypnosis podcast app + Admin back office (content, users)."
+      },
+      "leon": {
+        "title": "Léon – Guided Podcast App",
+        "description": "Tourist guide-style podcast app. Model design, APIs, i18n v2, content pipeline."
+      },
+      "raoul": {
+        "title": "Raoul – MangoPay Payments",
+        "description": "Web app to manage payments via MangoPay (flows, KYC/Wallets, reconciliations)."
+      },
+      "psg": {
+        "title": "PSG – VIP Campaigns Back Office",
+        "description": "BO for SMS campaigns and food preferences of VIP guests at matches."
+      },
+      "fidelatoo": {
+        "title": "Fidelatoo",
+        "description": "Mobile loyalty app – writing and optimizing SQL queries."
+      },
+      "handimobi": {
+        "title": "Handimobi",
+        "description": "Final year project: Android app to locate PMR-accessible places + comments."
+      },
+      "ladar": {
+        "title": "Ladar",
+        "description": "Internship: Android app for connecting people based on interests and geolocation."
+      }
+    }
+  },
+  "technologies": {
+    "title": "Technologies & Expertise",
+    "subtitle": "A modern ecosystem, fluid interfaces, robust backends"
+  },
+  "experience": {
+    "title": "Experience",
+    "subtitle": "My Background & Experience",
+    "items": {
+      "dut": {
+        "period": "2010 - 2012",
+        "title": "DUT Networks & Telecommunications"
+      },
+      "master": {
+        "period": "2012 - 2015",
+        "title": "Computer & Telecommunications Engineering Degree (MASTER)"
+      },
+      "ird": {
+        "period": "2016 – 2017",
+        "title": "Research Engineer — IRD",
+        "description": "Creation of tools (web and mobile applications) for data collection and display in a research project context."
+      },
+      "region": {
+        "period": "2017 – 2021",
+        "title": "Systems & Networks Administrator — Réunion Region",
+        "description": "Infrastructure and security management"
+      },
+      "squirrel_dev": {
+        "period": "2021 – 2022",
+        "title": "Web Developer — Squirrel",
+        "description": "Creation of reactive interfaces with React, REST API integration for data management, and design system with Material UI / Bootstrap"
+      },
+      "squirrel_lead": {
+        "period": "2022 – 2025",
+        "title": "Software Engineer / Lead Web Dev — Squirrel",
+        "description": "Technical lead responsibility and full-stack development: scalable architecture design, front-end (React) and back-end (Golang/Node.js) implementation, GraphQL/REST API design and integration, data modeling and CI/CD pipeline setup"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Let's create something remarkable",
+    "description": "Tell me about your project (objectives, deadlines, constraints). I'll get back to you quickly.",
+    "preferEmail": "Prefer email",
+    "form": {
+      "name": "Your name",
+      "email": "Email",
+      "subject": "Subject",
+      "phone": "Phone",
+      "message": "Message",
+      "send": "Send",
+      "sending": "Sending…",
+      "success": "✅ Message sent!",
+      "error": "❌ Send failed.",
+      "required": "*",
+      "nameRequired": "Name required",
+      "emailRequired": "Valid email required.",
+      "subjectRequired": "Subject required.",
+      "messageTooShort": "Message too short.",
+      "spamDetected": "Spam detected."
+    }
+  },
+  "footer": {
+    "builtWith": "Built with",
+    "styledBy": "styled by",
+    "animatedBy": "animated by",
+    "and": "&",
+    "deployedOn": "deployed on",
+    "viewSource": "View source code on GitHub (CI/CD → Vercel)",
+    "copyright": "© {year} Sébastien Legros — All rights reserved"
+  }
+}

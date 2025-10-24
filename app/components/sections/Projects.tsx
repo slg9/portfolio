@@ -3,6 +3,7 @@ import Image from "next/image";
 import { createPortal } from "react-dom";
 import { animate, motion, MotionValue, useMotionValue, useMotionValueEvent, useScroll, AnimatePresence } from "framer-motion";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from 'next-intl';
 
 type Project = {
   title: string;
@@ -13,87 +14,7 @@ type Project = {
   codeUrl?: string;
 };
 
-const PROJECTS: Project[] = [
-  {
-    title: "eConnect CRM",
-    description:
-      "CRM complet : gestion de prospects, campagnes emails, partenaires, sites en marque blanche, envois automatisés selon l’avancement des dossiers, eDoc. Projet full-stack (Go GraphQL, React, REST tiers). Modélisation, chiffrage, mise en œuvre.",
-    tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "eDoc", "CRM", "Docker", "CI/CD", "Agile", "Data Modeling"],
-    imageSrc: "/projects/econnect.webp",
-  },
-  {
-    title: "Begaiement (Plateforme Ortho)",
-    description:
-      "Catalogue de podcasts pro, relation patient (objectifs/prescriptions), stats. Web app React, API REST Go, PostgreSQL.",
-    tags: ["React", "Golang", "API REST", "PostgreSQL", "Google Analytics", "Stripe", "Docker", "CI/CD", "Data Modeling"],
-    //imageSrc: "/projects/orthophonosite.jpg",
-    imageSrc: "/projects/begaiement.png",
-  },
-  {
-    title: "QR Win – Back Office & APIs",
-    description:
-      "BO pour stores/enseignes, abonnements Stripe, stats, gestion users. QR codes pour mini-jeux, gains, wallet virtuel. APIs mobiles en Go (REST).",
-    tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "Stripe", "Wallet", "Admin BO", "Games", "Docker", "CI/CD", "Data Modeling"],
-    //imageSrc: "/projects/qrwin.jpg",
-    imageSrc: "/projects/qrwin.png",
-  },
-  {
-    title: "Happiz – Backend & Back Office",
-    description:
-      "Backend GraphQL pour app mobile de podcasts d’hypnose + Back office d’admin (contenus, users).",
-    tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "Admin BO", "Mobile backend", "Achat In App", "Firebase", "Docker", "CI/CD"],
-    //imageSrc: "/projects/happiz.jpg",
-    imageSrc: "/projects/happiz.svg",
-  },
-  {
-    title: "Léon – App Podcast guidée",
-    description:
-      "App de podcasts type guide touristique. Design modèle, APIs, i18n v2, pipeline contenu.",
-    tags: ["Golang", "API GraphQL", "PostgreSQL", "i18n", "Achat In App", "Firebase", "Docker", "CI/CD"],
-    //imageSrc: "/projects/leon.jpg",
-    imageSrc: "/projects/leon.png",
-  },
-  {
-    title: "Raoul – Paiements MangoPay",
-    description:
-      "Appli web pour gérer des paiements via MangoPay (flux, KYC/Wallets, conciliations).",
-    tags: ["React", "Golang", "API REST", "MangoPay", "PostgreSQL", "Payments", "Docker", "CI/CD"],
-    //imageSrc: "/projects/raul.jpg",
-    imageSrc: "/projects/raoul.png",
-  },
-  {
-    title: "PSG – Back Office Campagnes VIP",
-    description:
-      "BO pour campagnes SMS et préférences alimentaires des VIP invités aux matchs.",
-    tags: ["React", "Golang", "API GraphQL", "Admin BO", "SMS Campaigns", "PostgreSQL", "Data Modeling", "Docker", "CI/CD"],
-    //imageSrc: "/projects/psg.jpg",
-    imageSrc: "/projects/psg.png",
-  },
-  {
-    title: "Fidelatoo",
-    description:
-      "App mobile de fidélité – écriture et optimisation de requêtes SQL.",
-    tags: ["Golang", "API GraphQL", "PostgreSQL"],
-    //imageSrc: "/projects/fidelatoo.jpg",
-    imageSrc: "/projects/fidelatoo.png",
-  },
-  {
-    title: "Handimobi",
-    description:
-      "PFE : app Android pour localiser les lieux accessibles PMR + commentaires.",
-    tags: ["CakePHP", "Java Android", "MySQL"],
-    //imageSrc: "/projects/handimob.jpg",
-    imageSrc: "/projects/handimobi.png",
-  },
-  {
-    title: "Ladar",
-    description:
-      "Stage : app Android de mise en relation selon centres d’intérêt et géoloc.",
-    tags: ["Kohana", "PHP", "Java Android", "MySQL"],
-    //imageSrc: "/projects/radar.jpg",
-    imageSrc: "/projects/ladar.png",
-  },
-];
+// Les projets seront maintenant chargés dynamiquement avec les traductions
 
 /* ---------- Icons ---------- */
 function ExternalLinkIcon() {
@@ -121,7 +42,8 @@ function ProjectCard({
   liveUrl,
   codeUrl,
   index = 0,
-}: Project & { index?: number }) {
+  t,
+}: Project & { index?: number; t: any }) {
   const revealDelay = useMemo(() => 0.1 * (index % 3) + 0.1, [index]);
   const [open, setOpen] = useState(false);
 
@@ -153,7 +75,7 @@ function ProjectCard({
           type="button"
           onClick={() => setOpen(true)}
           className="relative aspect-[16/9] w-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40"
-          aria-label={`Agrandir ${title}`}
+          aria-label={`${t('expand')} ${title}`}
         >
           <motion.div layoutId={imgLayoutId} className="relative h-full w-full">
             <Image
@@ -203,7 +125,7 @@ function ProjectCard({
                   aria-label={`Visit ${title} live`}
                 >
                   <ExternalLinkIcon />
-                  Live
+                  {t('live')}
                 </a>
               )}
               {codeUrl && (
@@ -215,7 +137,7 @@ function ProjectCard({
                   aria-label={`Open ${title} source code`}
                 >
                   <CodeIcon />
-                  Code
+                  {t('code')}
                 </a>
               )}
             </div>
@@ -239,16 +161,17 @@ function ProjectCard({
         title={title}
         liveUrl={liveUrl}
         codeUrl={codeUrl}
+        t={t}
       />
     </>
   );
 }
 
 function Lightbox({
-  open, onClose, src, alt, layoutId, title, liveUrl, codeUrl,
+  open, onClose, src, alt, layoutId, title, liveUrl, codeUrl, t,
 }: {
   open: boolean; onClose: () => void; src: string; alt: string;
-  layoutId?: string; title?: string; liveUrl?: string | null; codeUrl?: string | null;
+  layoutId?: string; title?: string; liveUrl?: string | null; codeUrl?: string | null; t: any;
 }) {
   useEffect(() => {
     if (!open) return;
@@ -274,13 +197,13 @@ function Lightbox({
         >
           <motion.div layoutId={layoutId} className="relative w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-2xl bg-black shadow-2xl">
             <Image src={src} alt={alt} fill className="object-contain" sizes="100vw" priority />
-            <button onClick={onClose} aria-label="Fermer" className="absolute right-3 top-3 inline-grid h-9 w-9 place-items-center rounded-full bg-white/90 text-gray-900 shadow hover:bg-white">✕</button>
+            <button onClick={onClose} aria-label={t('close')} className="absolute right-3 top-3 inline-grid h-9 w-9 place-items-center rounded-full bg-white/90 text-gray-900 shadow hover:bg-white">✕</button>
             {(title || liveUrl || codeUrl) && (
               <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-between gap-3 bg-gradient-to-t from-black/70 via-black/30 to-transparent px-4 pb-4 pt-12 text-white">
                 <span className="text-sm font-medium">{title}</span>
                 <span className="flex gap-2">
-                  {liveUrl && <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-gray-900 shadow hover:bg-white">Live</a>}
-                  {codeUrl && <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-gray-900 shadow hover:bg-white">Code</a>}
+                  {liveUrl && <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-gray-900 shadow hover:bg-white">{t('live')}</a>}
+                  {codeUrl && <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-gray-900 shadow hover:bg-white">{t('code')}</a>}
                 </span>
               </figcaption>
             )}
@@ -294,9 +217,74 @@ function Lightbox({
 
 /* ---------- Section ---------- */
 export default function Projects() {
+  const t = useTranslations('projects');
   const ref = useRef(null)
   const { scrollXProgress } = useScroll({ container: ref })
   const maskImage = useScrollOverflowMask(scrollXProgress)
+
+  // Charger les projets avec les traductions
+  const PROJECTS: Project[] = [
+    {
+      title: t('items.econnect.title'),
+      description: t('items.econnect.description'),
+      tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "eDoc", "CRM", "Docker", "CI/CD", "Agile", "Data Modeling"],
+      imageSrc: "/projects/econnect.webp",
+    },
+    {
+      title: t('items.begaiement.title'),
+      description: t('items.begaiement.description'),
+      tags: ["React", "Golang", "API REST", "PostgreSQL", "Google Analytics", "Stripe", "Docker", "CI/CD", "Data Modeling"],
+      imageSrc: "/projects/begaiement.png",
+    },
+    {
+      title: t('items.qrwin.title'),
+      description: t('items.qrwin.description'),
+      tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "Stripe", "Wallet", "Admin BO", "Games", "Docker", "CI/CD", "Data Modeling"],
+      imageSrc: "/projects/qrwin.png",
+    },
+    {
+      title: t('items.happiz.title'),
+      description: t('items.happiz.description'),
+      tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "Admin BO", "Mobile backend", "Achat In App", "Firebase", "Docker", "CI/CD"],
+      imageSrc: "/projects/happiz.svg",
+    },
+    {
+      title: t('items.leon.title'),
+      description: t('items.leon.description'),
+      tags: ["Golang", "API GraphQL", "PostgreSQL", "i18n", "Achat In App", "Firebase", "Docker", "CI/CD"],
+      imageSrc: "/projects/leon.png",
+    },
+    {
+      title: t('items.raoul.title'),
+      description: t('items.raoul.description'),
+      tags: ["React", "Golang", "API REST", "MangoPay", "PostgreSQL", "Payments", "Docker", "CI/CD"],
+      imageSrc: "/projects/raoul.png",
+    },
+    {
+      title: t('items.psg.title'),
+      description: t('items.psg.description'),
+      tags: ["React", "Golang", "API GraphQL", "Admin BO", "SMS Campaigns", "PostgreSQL", "Data Modeling", "Docker", "CI/CD"],
+      imageSrc: "/projects/psg.png",
+    },
+    {
+      title: t('items.fidelatoo.title'),
+      description: t('items.fidelatoo.description'),
+      tags: ["Golang", "API GraphQL", "PostgreSQL"],
+      imageSrc: "/projects/fidelatoo.png",
+    },
+    {
+      title: t('items.handimobi.title'),
+      description: t('items.handimobi.description'),
+      tags: ["CakePHP", "Java Android", "MySQL"],
+      imageSrc: "/projects/handimobi.png",
+    },
+    {
+      title: t('items.ladar.title'),
+      description: t('items.ladar.description'),
+      tags: ["Kohana", "PHP", "Java Android", "MySQL"],
+      imageSrc: "/projects/ladar.png",
+    },
+  ];
 
 
   function useScrollOverflowMask(scrollXProgress: MotionValue<number>) {
@@ -345,19 +333,19 @@ export default function Projects() {
           transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.2 }}
           viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
         >
-          <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">Portfolio</p>
+          <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">{t('portfolio')}</p>
           <h2 id="projects-title" className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl bg-gradient-to-r from-fuchsia-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent">
-            Quelques Projets
+            {t('title')}
           </h2>
           <p className="mt-3 max-w-2xl text-gray-600 dark:text-slate-400">
-            Alliance d’un back-end robuste et d’un front-end soigné. Voici une sélection
+            {t('subtitle')}
           </p>
         </motion.header>
 
 
         <motion.div className="flex gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory px-4  scrollbar-none" ref={ref} style={{ maskImage }}>
           {PROJECTS.map((p, i) => (
-            <ProjectCard key={p.title} {...p} index={i} />
+            <ProjectCard key={p.title} {...p} index={i} t={t} />
           ))}
         </motion.div>
       </div>

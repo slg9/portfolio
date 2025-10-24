@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono,Manrope } from "next/font/google";
+import { Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
-import Header from "./components/Header";
-import StructuredData from "./components/StructuredData";
-
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,10 +21,16 @@ const fontBody = Manrope({
   display: "swap",
 });
 
+const locales = ['fr', 'en'];
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
 export const metadata: Metadata = {
-  title: "Sébastien Legros | Développeur Full-Stack & Software Engineer",
-  description: "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js. 5+ ans d'expérience dans le développement d'applications web modernes et d'APIs robustes. Portfolio de projets innovants et expertise technique approfondie.",
-  keywords: ["développeur full-stack", "React", "TypeScript", "Go", "Node.js", "software engineer", "développeur web", "portfolio", "Sébastien Legros"],
+  title: "Sébastien Legros | Full-Stack Developer & Software Engineer",
+  description: "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js. 5+ years of experience in developing modern web applications and robust APIs.",
+  keywords: ["full-stack developer", "React", "TypeScript", "Go", "Node.js", "software engineer", "web developer", "portfolio", "Sébastien Legros"],
   authors: [{ name: "Sébastien Legros" }],
   creator: "Sébastien Legros",
   publisher: "Sébastien Legros",
@@ -44,28 +50,6 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  openGraph: {
-    type: 'website',
-    locale: 'fr_FR',
-    url: 'https://sebastienlegros.me',
-    title: 'Sébastien Legros | Développeur Full-Stack & Software Engineer',
-    description: 'Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js. Portfolio de projets innovants et expertise technique approfondie.',
-    siteName: 'Portfolio Sébastien Legros',
-    images: [
-      {
-        url: '/sebastien.png',
-        width: 1200,
-        height: 630,
-        alt: 'Sébastien Legros - Développeur Full-Stack',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Sébastien Legros | Développeur Full-Stack & Software Engineer',
-    description: 'Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js.',
-    images: ['/sebastien.png'],
-  },
   alternates: {
     canonical: 'https://sebastienlegros.me',
   },
@@ -74,23 +58,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  return (
-    <html lang="fr">
-      <head>
-        <StructuredData />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/icon.png" />
-      </head>
-      <body
-        className={` ${fontBody.variable} ${geistMono.variable} antialiased font-sans`}
-      >
-        <Header/>
-        {children}
-      </body>
-    </html>
-  );
+}) {
+  return children;
 }

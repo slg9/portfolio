@@ -3,6 +3,7 @@ import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Lottie from "lottie-react";
 import devAnimation from "@/public/lotties/dev-coding.json";
+import { useTranslations } from 'next-intl';
 
 /* ---- Parallax util ---- */
 function useParallax(value: MotionValue<number>, distance: number) {
@@ -10,6 +11,7 @@ function useParallax(value: MotionValue<number>, distance: number) {
 }
 
 const AboutMe = () => {
+    const t = useTranslations('about');
     const handleScroll = () => {
         const section = document.getElementById("contact");
         if (section) section.scrollIntoView({ behavior: "smooth" });
@@ -73,10 +75,10 @@ const AboutMe = () => {
               text-slate-900 dark:text-slate-100
             "
                     >
-                        À propos de moi
+                        {t('title')}
                     </h2>
                     <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                        Full-stack engineer — React, Go, PostgreSQL, Docker, CI/CD
+                        {t('subtitle')}
                     </p>
                 </motion.header>
 
@@ -91,15 +93,15 @@ const AboutMe = () => {
                             transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.3 }}
                             viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                         >
-                            Je suis{" "}
+                            {t('intro')}{" "}
                             <span className="underline decoration-4 decoration-fuchsia-400/70 underline-offset-4 dark:decoration-fuchsia-400/60">
-                                développeur
+                                {t('developer')}
                             </span>{" "}
-                            passionné par la création de{" "}
+                            {t('passionate')}{" "}
                             <span className="font-semibold text-slate-900 dark:text-slate-100">
-                                solutions solides
+                                {t('solidSolutions')}
                             </span>
-                            , évolutives et bien conçues.
+                            {t('scalable')}
                         </motion.h2>
 
                         <motion.p
@@ -109,12 +111,8 @@ const AboutMe = () => {
                             transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.2 }}
                             viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                         >
-                            Côté <span className="font-semibold">back-end</span>, je conçois des API
-                            robustes (Go, PostgreSQL) avec un fort accent sur la qualité, la
-                            maintenabilité et l’automatisation (CI/CD).
-                            Côté <span className="font-semibold">front-end</span>, je développe en
-                            React/TypeScript des interfaces accessibles, performantes et orientées
-                            produit.
+                            {t('backend')} <span className="font-semibold">back-end</span>{t('backendDescription')}
+                            {t('frontend')} <span className="font-semibold">front-end</span>{t('frontendDescription')}
                         </motion.p>
 
                         <motion.p
@@ -124,9 +122,7 @@ const AboutMe = () => {
                             transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.35 }}
                             viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                         >
-                            Curieux et pragmatique, j’interviens de la conception à la mise en
-                            production (Docker, monitoring, bonnes pratiques), avec une attention
-                            constante portée à l’expérience utilisateur et à la performance.
+                            {t('curious')}
                         </motion.p>
 
                         {/* Boutons */}
@@ -148,7 +144,7 @@ const AboutMe = () => {
                                     type="button"
                                     onClick={handleScroll}
                                 >
-                                    Contactez-moi
+                                    {t('contactMe')}
                                 </button>
                             </motion.div>
 
@@ -170,7 +166,7 @@ const AboutMe = () => {
                   type="button"
                   onClick={handleDownloadCV}
                 >
-                  Télécharger mon CV
+                  {t('downloadCV')}
                 </button>
               </motion.div>
             </div>

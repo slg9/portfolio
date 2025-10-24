@@ -3,6 +3,7 @@
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { useTranslations } from 'next-intl';
 
 type Skill = {
   name: string;
@@ -38,6 +39,8 @@ const SKILLS: Skill[] = [
 ];
 
 export default function Techno() {
+  const t = useTranslations('technologies');
+  
   return (
     <section
       id="techno"
@@ -55,11 +58,11 @@ export default function Techno() {
         >
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
             <span className="bg-gradient-to-r from-fuchsia-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent">
-              Technologies & Expertise
+              {t('title')}
             </span>
           </h2>
           <p className="mt-3 text-base md:text-lg text-gray-600 dark:text-slate-400">
-            Un écosystème moderne, des interfaces fluides, des backends robustes
+            {t('subtitle')}
           </p>
         </motion.div>
 

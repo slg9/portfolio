@@ -3,17 +3,20 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from 'next-intl';
+import LanguageSwitcher from './LanguageSwitcher';
 
-const NAV = [
-  { label: "Accueil", target: "hero" },
-  { label: "À propos", target: "aboutme" },
-  { label: "Projets", target: "projects" },
-  { label: "Technos", target: "techno" },
-  { label: "Parcours", target: "cursus" },
-  { label: "Contact", target: "contact" },
+const NAV_KEYS = [
+  { key: "home", target: "hero" },
+  { key: "about", target: "aboutme" },
+  { key: "projects", target: "projects" },
+  { key: "technologies", target: "techno" },
+  { key: "experience", target: "cursus" },
+  { key: "contact", target: "contact" },
 ];
 
 export default function Header() {
+  const t = useTranslations('navigation');
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("hero");
 
@@ -27,7 +30,7 @@ export default function Header() {
   }, []);
 
   const getSections = useCallback(() => {
-    return NAV.map(n => {
+    return NAV_KEYS.map(n => {
       const el = document.getElementById(n.target) || document.getElementById(n.target.toLowerCase());
       return el as HTMLElement | null;
     }).filter(Boolean) as HTMLElement[];
@@ -141,7 +144,7 @@ export default function Header() {
           <button
             onClick={() => go("hero")}
             className="group inline-flex items-center gap-2 text-left"
-            aria-label="Aller à l’accueil"
+            aria-label={t('goToHome')}
           >
             <span className="inline-grid size-8 place-items-center rounded-xl ">
               <Image 
@@ -161,7 +164,7 @@ export default function Header() {
           {/* Desktop nav */}
           <nav className="hidden md:block">
             <ul className="flex items-center gap-2">
-              {NAV.map((item) => {
+              {NAV_KEYS.map((item) => {
                 const isActive = active === item.target.toLowerCase();
                 return (
                   <li key={item.target} className="relative">
@@ -170,7 +173,7 @@ export default function Header() {
                       className={linkBase}
                       aria-current={isActive ? "page" : undefined}
                     >
-                      {item.label}
+                      {t(item.key)}
                       {isActive && (
                         <motion.span
                           layoutId={underlineId}
@@ -187,12 +190,12 @@ export default function Header() {
 
           {/* CTA + burger */}
           <div className="flex items-center gap-2">
-
+            <LanguageSwitcher />
 
             <button
               className="md:hidden inline-flex items-center justify-center rounded-lg p-2 text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
               onClick={() => setOpen(true)}
-              aria-label="Ouvrir le menu"
+              aria-label={t('openMenu')}
               aria-expanded={open}
               aria-controls="mobile-drawer"
             >
@@ -229,10 +232,10 @@ export default function Header() {
             >
               {/* top bar : grand 'MENU' + close à droite */}
               <div className="flex items-center justify-between px-6 py-5 border-b border-slate-300 dark:border-slate-700">
-                <span className="text-2xl font-extrabold tracking-wide uppercase">Menu</span>
+                <span className="text-2xl font-extrabold tracking-wide uppercase">{t('menu')}</span>
                 <button
                   onClick={() => setOpen(false)}
-                  aria-label="Fermer le menu"
+                  aria-label={t('closeMenu')}
                   className="rounded-md p-2 hover:bg-slate-200 dark:hover:bg-slate-800"
                 >
                   <svg width="22" height="22" viewBox="0 0 24 24" className="stroke-current">
@@ -244,7 +247,7 @@ export default function Header() {
               {/* liste */}
               <nav className="px-2 py-2">
                 <ul className="flex flex-col">
-                  {NAV.map((item, idx) => {
+                  {NAV_KEYS.map((item, idx) => {
                     const isActive = active === item.target.toLowerCase();
                     return (
                       <li key={item.target}>
@@ -256,10 +259,10 @@ export default function Header() {
                               : "text-slate-900 hover:bg-white dark:text-slate-100 dark:hover:bg-slate-800"}`}
                           aria-current={isActive ? "page" : undefined}
                         >
-                          {item.label.toUpperCase()}
+                          {t(item.key).toUpperCase()}
                         </button>
 
-                        {/* Divider après “Projets” pour rappeler la capture */}
+                        {/* Divider après "Projets" pour rappeler la capture */}
                         {idx === 2 && (
                           <hr className="mx-5 my-2 border-t border-slate-300 dark:border-slate-700" />
                         )}

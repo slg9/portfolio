@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import ContactForm from "../ContactForm";
 import { sendMailjet } from "@/app/actions/SendMailjet";
+import { useTranslations } from 'next-intl';
 
 
 type FormState = "idle" | "loading" | "success" | "error";
@@ -93,6 +94,7 @@ function TextareaField({
 }
 
 export default function Contact() {
+    const t = useTranslations('contact');
     const [state, setState] = useState<FormState>("idle");
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [form, setForm] = useState({
@@ -107,12 +109,12 @@ export default function Contact() {
 
     function validate() {
         const e: Record<string, string> = {};
-        if (!form.name.trim()) e.name = "Nom obligatoire";
-        if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Email valide obligatoire.";
-        if (!form.subject.trim()) e.subject = "Objet obligatoire.";
-        if (form.message.trim().length < 3) e.message = "Message trop court.";
+        if (!form.name.trim()) e.name = t('form.nameRequired');
+        if (!/^\S+@\S+\.\S+$/.test(form.email)) e.email = t('form.emailRequired');
+        if (!form.subject.trim()) e.subject = t('form.subjectRequired');
+        if (form.message.trim().length < 3) e.message = t('form.messageTooShort');
         // Honeypot
-        if (form.company.trim() !== "") e.company = "Spam détecté.";
+        if (form.company.trim() !== "") e.company = t('form.spamDetected');
         setErrors(e);
         return Object.keys(e).length === 0;
     }
@@ -157,7 +159,7 @@ export default function Contact() {
                         transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.1 }}
                         viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                         className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">
-                        Contact
+                        {t('title')}
                     </motion.p>
                     <motion.h2
                         id="contact-title"
@@ -167,7 +169,7 @@ export default function Contact() {
                         viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                         className="mt-2 text-3xl font-extrabold text-gray-900 dark:text-slate-300 md:text-4xl"
                     >
-                        Créons quelque chose de remarquable
+                        {t('subtitle')}
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 24 }}
@@ -175,7 +177,7 @@ export default function Contact() {
                         transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.3 }}
                         viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
                         className="mx-auto mt-3 max-w-2xl text-gray-600 dark:text-slate-400">
-                        Parlez-moi de votre projet (objectifs, échéances, contraintes). Je vous répondrai rapidement.          </motion.p>
+                        {t('description')}          </motion.p>
                 </header>
 
                 {/* Card */}
@@ -190,7 +192,7 @@ export default function Contact() {
 
                 {/* Tip de contact direct */}
                 <p className="mt-6 text-center text-sm text-gray-500 dark:text-slate-300">
-                    Plutôt par e-mail{" "}
+                    {t('preferEmail')}{" "}
                     <a
                         className="font-medium text-gray-900 dark:text-slate-400 underline underline-offset-4"
                         href="mailto:slegros9@gmail.com"

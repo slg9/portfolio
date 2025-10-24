@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useMemo } from "react";
 import timelineAnimation from "@/public/lotties/timeline.json";
 import Lottie from "lottie-react";
+import { useTranslations } from 'next-intl';
 
 type Step = {
   year: string;
@@ -66,34 +67,36 @@ function TimelineItem({
 }
 
 export default function Cursus() {
+  const t = useTranslations('experience');
+  
   const parcours: Step[] = [
-    { year: "2010 - 2012", title: "DUT Réseaux & Télécommunications" },
+    { year: "2010 - 2012", title: t('items.dut.title') },
     {
       year: "2012 - 2015",
-      title: "Diplôme d’ingénieur Informatique & Télécommunications (MASTER)",
+      title: t('items.master.title'),
     },
     {
       year: "2016 – 2017",
-      title: "Ingénieur d’études — IRD",
-      subtitle: "Création d’outils (applications web et mobiles) destinés à la collecte et à l’affichage de données dans le cadre d’un projet de recherche.",
+      title: t('items.ird.title'),
+      subtitle: t('items.ird.description'),
       tags: ["MongoDB","Express","React","Nodejs", "Domotique", "Java Android"],
     },
     {
       year: "2017 – 2021",
-      title: "Administrateur Systèmes & Réseaux — Région Réunion",
-      subtitle: "Gestion d’infrastructure et sécurité",
+      title: t('items.region.title'),
+      subtitle: t('items.region.description'),
       tags: ["Unix", "Windows Server", "Switch config", "Infra réseaux"],
     },
     {
       year: "2021 – 2022",
-      title: "Développeur Web — Squirrel",
-      subtitle: "Création d’interfaces réactives avec React, intégration d’API REST pour la gestion des données, et design system avec Material UI / Bootstrap",
+      title: t('items.squirrel_dev.title'),
+      subtitle: t('items.squirrel_dev.description'),
       tags: ["React", "Bootstrap", "Material UI", "Docker"],
     },
     {
       year: "2022 – 2025",
-      title: "Ingénieur Logiciel / Lead Dev Web — Squirrel",
-      subtitle: "Responsabilité du lead technique et développement full-stack : conception d’architectures évolutives, implémentation front-end (React) et back-end (Golang/Node.js), conception et intégration d’API GraphQL/REST, modélisation des données et mise en place de pipelines CI/CD",
+      title: t('items.squirrel_lead.title'),
+      subtitle: t('items.squirrel_lead.description'),
       tags: ["React", "Golang", "PostgreSQL","MongoDB","nodejs","Apollo GraphQL", "Docker", "CI/CD", "Data modeling"],
     },
   ];
@@ -112,9 +115,9 @@ export default function Cursus() {
           transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.2 }}
           viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
         >
-          <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">Parcours</p>
+          <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">{t('title')}</p>
           <h2 className="mt-1 text-2xl font-extrabold text-gray-900 dark:text-slate-400 md:text-4xl">
-            Mon Cursus & Expérience
+            {t('subtitle')}
           </h2>
         </motion.header>
 

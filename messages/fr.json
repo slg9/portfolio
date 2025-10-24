@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "title": "Sébastien Legros | Développeur Full-Stack & Software Engineer",
+    "description": "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js. 5+ ans d'expérience dans le développement d'applications web modernes et d'APIs robustes. Portfolio de projets innovants et expertise technique approfondie.",
+    "keywords": "développeur full-stack, React, TypeScript, Go, Node.js, software engineer, développeur web, portfolio, Sébastien Legros",
+    "siteName": "Portfolio Sébastien Legros",
+    "alt": "Sébastien Legros - Développeur Full-Stack"
+  },
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "technologies": "Technos",
+    "experience": "Parcours",
+    "contact": "Contact",
+    "menu": "Menu",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "goToHome": "Aller à l'accueil",
+    "changeLanguage": "Changer de langue"
+  },
+  "hero": {
+    "greeting": "👋 Salut, je m'appelle",
+    "name": "Sébastien Legros",
+    "description": "Développeur full-stack spécialisé en",
+    "technologies": "React, TypeScript, Go et Node.js",
+    "passionate": "Passionné par les",
+    "modernArchitectures": "architectures modernes",
+    "and": "et les",
+    "innovativeSolutions": "solutions techniques innovantes",
+    "available": "Disponible pour du full-stack / backend roles"
+  },
+  "about": {
+    "title": "À propos de moi",
+    "subtitle": "Full-stack engineer — React, Go, PostgreSQL, Docker, CI/CD",
+    "intro": "Je suis",
+    "developer": "développeur",
+    "passionate": "passionné par la création de",
+    "solidSolutions": "solutions solides",
+    "scalable": ", évolutives et bien conçues.",
+    "backend": "Côté",
+    "backendDescription": ", je conçois des API robustes (Go, PostgreSQL) avec un fort accent sur la qualité, la maintenabilité et l'automatisation (CI/CD).",
+    "frontend": "Côté",
+    "frontendDescription": ", je développe en React/TypeScript des interfaces accessibles, performantes et orientées produit.",
+    "curious": "Curieux et pragmatique, j'interviens de la conception à la mise en production (Docker, monitoring, bonnes pratiques), avec une attention constante portée à l'expérience utilisateur et à la performance.",
+    "contactMe": "Contactez-moi",
+    "downloadCV": "Télécharger mon CV"
+  },
+  "projects": {
+    "portfolio": "Portfolio",
+    "title": "Quelques Projets",
+    "subtitle": "Alliance d'un back-end robuste et d'un front-end soigné. Voici une sélection",
+    "expand": "Agrandir",
+    "live": "Live",
+    "code": "Code",
+    "close": "Fermer",
+    "items": {
+      "econnect": {
+        "title": "eConnect CRM",
+        "description": "CRM complet : gestion de prospects, campagnes emails, partenaires, sites en marque blanche, envois automatisés selon l'avancement des dossiers, eDoc. Projet full-stack (Go GraphQL, React, REST tiers). Modélisation, chiffrage, mise en œuvre."
+      },
+      "begaiement": {
+        "title": "Begaiement (Plateforme Ortho)",
+        "description": "Catalogue de podcasts pro, relation patient (objectifs/prescriptions), stats. Web app React, API REST Go, PostgreSQL."
+      },
+      "qrwin": {
+        "title": "QR Win – Back Office & APIs",
+        "description": "BO pour stores/enseignes, abonnements Stripe, stats, gestion users. QR codes pour mini-jeux, gains, wallet virtuel. APIs mobiles en Go (REST)."
+      },
+      "happiz": {
+        "title": "Happiz – Backend & Back Office",
+        "description": "Backend GraphQL pour app mobile de podcasts d'hypnose + Back office d'admin (contenus, users)."
+      },
+      "leon": {
+        "title": "Léon – App Podcast guidée",
+        "description": "App de podcasts type guide touristique. Design modèle, APIs, i18n v2, pipeline contenu."
+      },
+      "raoul": {
+        "title": "Raoul – Paiements MangoPay",
+        "description": "Appli web pour gérer des paiements via MangoPay (flux, KYC/Wallets, conciliations)."
+      },
+      "psg": {
+        "title": "PSG – Back Office Campagnes VIP",
+        "description": "BO pour campagnes SMS et préférences alimentaires des VIP invités aux matchs."
+      },
+      "fidelatoo": {
+        "title": "Fidelatoo",
+        "description": "App mobile de fidélité – écriture et optimisation de requêtes SQL."
+      },
+      "handimobi": {
+        "title": "Handimobi",
+        "description": "PFE : app Android pour localiser les lieux accessibles PMR + commentaires."
+      },
+      "ladar": {
+        "title": "Ladar",
+        "description": "Stage : app Android de mise en relation selon centres d'intérêt et géoloc."
+      }
+    }
+  },
+  "technologies": {
+    "title": "Technologies & Expertise",
+    "subtitle": "Un écosystème moderne, des interfaces fluides, des backends robustes"
+  },
+  "experience": {
+    "title": "Parcours",
+    "subtitle": "Mon Cursus & Expérience",
+    "items": {
+      "dut": {
+        "period": "2010 - 2012",
+        "title": "DUT Réseaux & Télécommunications"
+      },
+      "master": {
+        "period": "2012 - 2015",
+        "title": "Diplôme d'ingénieur Informatique & Télécommunications (MASTER)"
+      },
+      "ird": {
+        "period": "2016 – 2017",
+        "title": "Ingénieur d'études — IRD",
+        "description": "Création d'outils (applications web et mobiles) destinés à la collecte et à l'affichage de données dans le cadre d'un projet de recherche."
+      },
+      "region": {
+        "period": "2017 – 2021",
+        "title": "Administrateur Systèmes & Réseaux — Région Réunion",
+        "description": "Gestion d'infrastructure et sécurité"
+      },
+      "squirrel_dev": {
+        "period": "2021 – 2022",
+        "title": "Développeur Web — Squirrel",
+        "description": "Création d'interfaces réactives avec React, intégration d'API REST pour la gestion des données, et design system avec Material UI / Bootstrap"
+      },
+      "squirrel_lead": {
+        "period": "2022 – 2025",
+        "title": "Ingénieur Logiciel / Lead Dev Web — Squirrel",
+        "description": "Responsabilité du lead technique et développement full-stack : conception d'architectures évolutives, implémentation front-end (React) et back-end (Golang/Node.js), conception et intégration d'API GraphQL/REST, modélisation des données et mise en place de pipelines CI/CD"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Créons quelque chose de remarquable",
+    "description": "Parlez-moi de votre projet (objectifs, échéances, contraintes). Je vous répondrai rapidement.",
+    "preferEmail": "Plutôt par e-mail",
+    "form": {
+      "name": "Votre nom",
+      "email": "Email",
+      "subject": "Sujet",
+      "phone": "Téléphone",
+      "message": "Message",
+      "send": "Envoyer",
+      "sending": "Envoi…",
+      "success": "✅ Message envoyé !",
+      "error": "❌ Échec de l'envoi.",
+      "required": "*",
+      "nameRequired": "Nom obligatoire",
+      "emailRequired": "Email valide obligatoire.",
+      "subjectRequired": "Objet obligatoire.",
+      "messageTooShort": "Message trop court.",
+      "spamDetected": "Spam détecté."
+    }
+  },
+  "footer": {
+    "builtWith": "Construit avec",
+    "styledBy": "habillé par",
+    "animatedBy": "animé par",
+    "and": "&",
+    "deployedOn": "déployé sur",
+    "viewSource": "Voir le code source sur GitHub (CI/CD → Vercel)",
+    "copyright": "© {year} Sébastien Legros — Tous droits réservés"
+  }
+}

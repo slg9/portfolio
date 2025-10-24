@@ -1,6 +1,7 @@
 "use client";
 import { useFormStatus } from "react-dom";
 import { useState } from "react";
+import { useTranslations } from 'next-intl';
 
 function InputField({
     id,
@@ -73,6 +74,7 @@ export default function ContactForm({
 }: {
     action: (formData: FormData) => Promise<{ ok: boolean }>;
 }) {
+    const t = useTranslations('contact.form');
     const { pending } = useFormStatus();
     const [msg, setMsg] = useState<null | { type: "ok" | "err"; text: string }>(null);
 
@@ -81,11 +83,11 @@ export default function ContactForm({
         try {
             const res = await action(formData);
             if (res.ok) {
-                setMsg({ type: "ok", text: "✅ Message envoyé !" });
+                setMsg({ type: "ok", text: t('success') });
                 (document.getElementById("contact-form") as HTMLFormElement)?.reset();
             }
         } catch (e: any) {
-            setMsg({ type: "err", text: "❌ Échec de l’envoi." });
+            setMsg({ type: "err", text: t('error') });
             console.error(e);
         }
     }
@@ -93,22 +95,22 @@ export default function ContactForm({
     return (
         <form id="contact-form" action={clientAction} className="space-y-4 max-w-md mx-auto">
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                <InputField id="name" label="Votre nom" required placeholder="Nom" />
-                <InputField id="email" label="Email" type="email" placeholder="Email" required />
+                <InputField id="name" label={t('name')} required placeholder={t('name')} />
+                <InputField id="email" label={t('email')} type="email" placeholder={t('email')} required />
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                <InputField id="subject" label="Sujet" placeholder="Sujet"  />
-                <InputField id="phone" label="Téléphone" placeholder="Téléphone"  />
+                <InputField id="subject" label={t('subject')} placeholder={t('subject')}  />
+                <InputField id="phone" label={t('phone')} placeholder={t('phone')}  />
 
             </div>
-            <TextareaField id="message" label="Message" placeholder="Message" required />
+            <TextareaField id="message" label={t('message')} placeholder={t('message')} required />
 
             <button
                 type="submit"
                 disabled={pending}
                 className="rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 px-5 py-3 text-white font-semibold disabled:opacity-60"
             >
-                {pending ? "Envoi…" : "Envoyer"}
+                {pending ? t('sending') : t('send')}
             </button>
 
             {msg && (

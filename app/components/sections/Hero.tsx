@@ -1,12 +1,14 @@
 "use client";
 import Image from "next/image";
 import { Easing, motion } from "framer-motion";
+import { useTranslations } from 'next-intl';
 
 const linkedinUrl = "https://www.linkedin.com/in/sébastien-legros-23a85085";
 const githubUrl = "https://github.com/slg9";
 const mailUrl = "mailto:slegros9@gmail.com";
 
 export default function Hero() {
+  const t = useTranslations('hero');
   const ease: Easing[] = ["anticipate", "backIn"];
 
   return (
@@ -51,7 +53,7 @@ export default function Hero() {
             dark:supports-[backdrop-filter]:bg-white/10
           "
         >
-          👋 Salut, je m’appelle
+          {t('greeting')}
         </motion.span>
 
         {/* Title */}
@@ -61,7 +63,7 @@ export default function Hero() {
           transition={{ ease, duration: 2, damping: 30 }}
           className="text-5xl/tight font-extrabold tracking-[-0.02em] text-slate-900 sm:text-4xl dark:text-slate-100"
         >
-          Sébastien Legros
+          {t('name')}
         </motion.h1>
 
         {/* Sub */}
@@ -71,11 +73,11 @@ export default function Hero() {
           transition={{ ease, duration: 2, delay: 0.34, damping: 30 }}
           className="mt-3 max-w-[700px] text-lg text-slate-600 dark:text-slate-300"
         >
-          Développeur full-stack spécialisé en{" "}
-          <span className="font-semibold text-slate-900 dark:text-slate-100">React, TypeScript, Go et Node.js</span>. 
-          Passionné par les{" "}
-          <span className="px-1 rounded bg-sky-100 dark:bg-sky-400/15">architectures modernes</span> et les{" "}
-          <span className="px-1 rounded bg-emerald-100 dark:bg-emerald-400/15">solutions techniques innovantes</span>.
+          {t('description')}{" "}
+          <span className="font-semibold text-slate-900 dark:text-slate-100">{t('technologies')}</span>. 
+          {t('passionate')}{" "}
+          <span className="px-1 rounded bg-sky-100 dark:bg-sky-400/15">{t('modernArchitectures')}</span> {t('and')}{" "}
+          <span className="px-1 rounded bg-emerald-100 dark:bg-emerald-400/15">{t('innovativeSolutions')}</span>.
         </motion.p>
 
         {/* Photo + ring */}
@@ -160,7 +162,7 @@ export default function Hero() {
           transition={{ ease, duration: 0.7, delay: 0.95 }}
           className="mt-6 text-xs text-slate-500 dark:text-slate-400"
         >
-          Disponible pour du full-stack / backend roles
+          {t('available')}
         </motion.div>
       </div>
     </section>
