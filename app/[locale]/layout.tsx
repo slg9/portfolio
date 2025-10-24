@@ -48,6 +48,7 @@ export async function generateMetadata({
   };
 
   return {
+    metadataBase: new URL('https://sebastienlegros.me'),
     title: t('metadata.title'),
     description: t('metadata.description'),
     keywords: t('metadata.keywords'),

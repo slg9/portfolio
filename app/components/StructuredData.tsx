@@ -1,10 +1,18 @@
+import { useLocale } from 'next-intl';
+
 export default function StructuredData() {
+  const locale = useLocale();
+  
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Sébastien Legros",
-    "jobTitle": "Développeur Full-Stack & Software Engineer",
-    "description": "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js avec 5+ ans d'expérience",
+    "jobTitle": locale === 'en' 
+      ? "Full-Stack Developer & Software Engineer"
+      : "Développeur Full-Stack & Software Engineer",
+    "description": locale === 'en'
+      ? "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js with 5+ years of experience"
+      : "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js avec 5+ ans d'expérience",
     "url": "https://sebastienlegros.me",
     "image": "https://sebastienlegros.me/sebastien.png",
     "sameAs": [
@@ -28,18 +36,20 @@ export default function StructuredData() {
       "API REST",
       "Docker",
       "AWS",
-      "Développement Web",
-      "Développement Full-Stack"
+      locale === 'en' ? "Web Development" : "Développement Web",
+      locale === 'en' ? "Full-Stack Development" : "Développement Full-Stack"
     ],
     "hasOccupation": {
       "@type": "Occupation",
-      "name": "Développeur Full-Stack",
-      "description": "Développement d'applications web modernes et d'APIs robustes",
+      "name": locale === 'en' ? "Full-Stack Developer" : "Développeur Full-Stack",
+      "description": locale === 'en'
+        ? "Development of modern web applications and robust APIs"
+        : "Développement d'applications web modernes et d'APIs robustes",
       "skills": ["React", "TypeScript", "Go", "Node.js", "PostgreSQL", "GraphQL", "API REST"]
     },
     "alumniOf": {
       "@type": "Organization",
-      "name": "Formation en développement web"
+      "name": locale === 'en' ? "Web Development Training" : "Formation en développement web"
     }
   };
 
