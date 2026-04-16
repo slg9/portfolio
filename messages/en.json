@@ -168,19 +168,19 @@
   },
   "technologies": {
     "title": "Expertise",
-    "subtitle": "A stack chosen to ship fast, evolve cleanly and keep quality under control.",
+    "subtitle": "A hybrid profile across web applications, business APIs and desktop software, with a stack built to stay maintainable over time.",
     "groups": {
-      "frontend": {
-        "title": "Product frontend",
-        "description": "Clear, accessible interfaces that remain fast to iterate on."
+      "web": {
+        "title": "Web",
+        "description": "Modern, readable and maintainable web interfaces for product and back-office use cases."
       },
-      "backend": {
-        "title": "Backend & APIs",
-        "description": "Readable services, structured data and reliable business logic."
+      "api": {
+        "title": "API & data",
+        "description": "Robust APIs, clear business logic and structured SQL databases for reliable applications."
       },
-      "ops": {
-        "title": "Delivery & quality",
-        "description": "Production, automation and maintainability without drama."
+      "software": {
+        "title": "Software",
+        "description": "Business desktop applications in the .NET ecosystem with productivity-oriented frameworks and rich UI tooling."
       }
     }
   },

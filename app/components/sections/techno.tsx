@@ -5,16 +5,16 @@ import { useTranslations } from "next-intl";
 
 const groups = [
   {
-    key: "frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Material UI", "Framer Motion"],
+    key: "web",
+    items: ["React", "Blazor"],
   },
   {
-    key: "backend",
-    items: ["Go", "Node.js", "GraphQL", "REST APIs", "PostgreSQL", "MongoDB"],
+    key: "api",
+    items: ["Golang", "PostgreSQL", "SQL Server"],
   },
   {
-    key: "ops",
-    items: ["Docker", "CI/CD", "GitHub Actions", "Data modeling", "Monitoring", "Production delivery"],
+    key: "software",
+    items: ["C#", "XPO/XAF", "DevExpress", "WPF", "WinForms"],
   },
 ];
 

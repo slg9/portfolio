@@ -142,7 +142,7 @@ export default function Header() {
       className="fixed inset-x-0 top-0 z-50"
       initial={{ opacity: 0, y: -24, filter: "blur(10px)" }}
       animate={introReady ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -24, filter: "blur(10px)" }}
-      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.35, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Progress bar */}
       <div className="h-0.5 bg-transparent">
@@ -156,7 +156,7 @@ export default function Header() {
         className={`mx-auto mt-3 w-[min(100%-1rem,1120px)] rounded-full ${glass}`}
         initial={{ scale: 0.96 }}
         animate={introReady ? { scale: 1 } : { scale: 0.96 }}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 1.2, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="flex items-center justify-between gap-3 px-4 py-3 md:px-5">
           {/* Logo */}

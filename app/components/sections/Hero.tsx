@@ -126,8 +126,6 @@ export default function Hero() {
       transition={{ duration: 1.4, delay: 0.45, ease: heroEase }}
     >
       <div className="pointer-events-none absolute inset-0 -z-20 bg-[radial-gradient(circle_at_50%_15%,rgba(181,93,50,0.16),transparent_26%),radial-gradient(circle_at_20%_20%,rgba(53,89,122,0.1),transparent_18%),linear-gradient(to_bottom,rgba(255,255,255,0.06),transparent_40%)]" />
-      <div className="pointer-events-none absolute inset-x-0 top-24 -z-10 mx-auto h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(181,93,50,0.16),transparent_64%)] blur-3xl md:h-[34rem] md:w-[34rem]" />
-
       <motion.div
         initial="hidden"
         animate={introReady ? "show" : "hidden"}
@@ -149,16 +147,14 @@ export default function Hero() {
           transition={{ duration: 1.35, ease: heroEase }}
           className="relative mt-10 flex items-center justify-center"
         >
-          <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,rgba(53,89,122,0.14),transparent_62%)] blur-2xl" />
-          <div className="relative h-64 w-64 overflow-hidden rounded-full border border-white/40 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.55),rgba(255,255,255,0.05))] shadow-[0_30px_90px_rgba(0,0,0,0.08)] md:h-80 md:w-80">
+          <div className="relative h-[18rem] w-[14.5rem] md:h-[24rem] md:w-[19rem]">
             <Image
-              src="/sebastien.jpeg"
+              src="/sebastien-chatgpt.png"
               alt="Sébastien Legros"
               fill
               priority
-              className="object-cover object-center opacity-90 mix-blend-multiply [mask-image:linear-gradient(to_bottom,black_72%,transparent_100%)]"
+              className="object-contain object-center drop-shadow-[0_22px_50px_rgba(15,23,42,0.14)]"
             />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,transparent,rgba(247,242,234,0.14)_62%,rgba(247,242,234,0.52)_100%)]" />
           </div>
         </motion.div>
 
@@ -167,14 +163,14 @@ export default function Hero() {
         >
           <motion.span
             variants={lineReveal}
-            transition={{ duration: 1.15, ease: heroEase }}
+            transition={{ duration: 1.55, delay: 0.1, ease: heroEase }}
             className="block will-change-transform"
           >
             {t("name")}
           </motion.span>
           <motion.span
             variants={lineReveal}
-            transition={{ duration: 1.2, ease: heroEase }}
+            transition={{ duration: 1.65, delay: 0.18, ease: heroEase }}
             className="mt-2 block text-[var(--accent)] will-change-transform"
           >
             {t("role")}
@@ -183,7 +179,7 @@ export default function Hero() {
 
         <motion.p
           variants={revealUp}
-          transition={{ duration: 1.1, ease: heroEase }}
+          transition={{ duration: 1.45, delay: 0.22, ease: heroEase }}
           className="mt-5 max-w-xl text-[13px] leading-7 text-slate-700 dark:text-slate-300 sm:text-sm"
         >
           {t("summary")}

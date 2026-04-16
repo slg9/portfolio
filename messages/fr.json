@@ -168,19 +168,19 @@
   },
   "technologies": {
     "title": "Expertise",
-    "subtitle": "Une stack choisie pour livrer vite, faire évoluer proprement et garder le contrôle sur la qualité.",
+    "subtitle": "Un profil hybride entre applications web, APIs métier et logiciels desktop, avec une stack choisie pour durer et rester maintenable.",
     "groups": {
-      "frontend": {
-        "title": "Frontend produit",
-        "description": "Interfaces claires, accessibles et rapides à itérer."
+      "web": {
+        "title": "Web",
+        "description": "Interfaces web modernes, lisibles et maintenables pour des produits front et back-office."
       },
-      "backend": {
-        "title": "Backend & APIs",
-        "description": "Services lisibles, données structurées et logique métier fiable."
+      "api": {
+        "title": "API & données",
+        "description": "APIs robustes, logique métier claire et bases SQL structurées pour des applications fiables."
       },
-      "ops": {
-        "title": "Livraison & qualité",
-        "description": "Mise en production, automatisation et maintenance sereine."
+      "software": {
+        "title": "Logiciel",
+        "description": "Applications métier desktop en environnement .NET avec frameworks orientés productivité et UI riches."
       }
     }
   },
