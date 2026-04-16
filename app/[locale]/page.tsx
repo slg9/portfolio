@@ -5,27 +5,22 @@ import Cursus from "../components/sections/Cursus";
 import Footer from "../components/sections/FooterInfo";
 import Hero from "../components/sections/Hero";
 import Projects from "../components/sections/Projects";
+import ScrollStory from "../components/sections/ScrollStory";
 import Techno from "../components/sections/techno";
-
-import Hr from "../components/ui/Hr";
 
 
 export default function Home() {
-
-
   return (
-
     <main
-      className="flex flex-col gap-[32px] pt-16 scroll-pt-24  md:h-screen md:overflow-y-scroll md:snap-y md:snap-mandatory">
+      className="flex flex-col pt-16 scroll-pt-24">
       <Hero />
+      <ScrollStory />
       <AboutMe />
       <Projects />
-      <Techno/>
+      <Techno />
       <Cursus />
       <Contact />
-      <Footer/>
+      <Footer />
     </main>
-
-
   );
 }

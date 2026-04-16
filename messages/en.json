@@ -1,17 +1,17 @@
 {
   "metadata": {
     "title": "Sébastien Legros | Full-Stack Developer & Software Engineer",
-    "description": "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js. 5+ years of experience in developing modern web applications and robust APIs. Portfolio of innovative projects and deep technical expertise.",
+    "description": "Full-stack developer specialized in React, TypeScript, Go and Node.js. I build robust, maintainable web products with clear product thinking.",
     "keywords": "full-stack developer, React, TypeScript, Go, Node.js, software engineer, web developer, portfolio, Sébastien Legros",
     "siteName": "Sébastien Legros Portfolio",
     "alt": "Sébastien Legros - Full-Stack Developer"
   },
   "navigation": {
     "home": "Home",
-    "about": "About",
+    "about": "Approach",
     "projects": "Projects",
-    "technologies": "Technologies",
-    "experience": "Experience",
+    "technologies": "Expertise",
+    "experience": "Background",
     "contact": "Contact",
     "menu": "Menu",
     "openMenu": "Open menu",
@@ -19,91 +19,174 @@
     "goToHome": "Go to home",
     "changeLanguage": "Change language"
   },
+  "loading": {
+    "prefix": "Almost there,",
+    "words": "setting up the frontend|wiring the animations|warming up the stack|finishing the interface"
+  },
   "hero": {
-    "greeting": "👋 Hi, I'm",
+    "welcome": "Welcome to my portfolio",
     "name": "Sébastien Legros",
-    "description": "Full-stack developer specialized in",
-    "technologies": "React, TypeScript, Go and Node.js",
-    "passionate": "Passionate about",
-    "modernArchitectures": "modern architectures",
-    "and": "and",
-    "innovativeSolutions": "innovative technical solutions",
-    "available": "Available for full-stack / backend roles"
+    "role": "Web & software developer",
+    "summary": "Today I design both web applications and business software. Frontend, backend, desktop and data: React, Blazor, C#, WPF, WinForms, DevExpress, SQL Server, XAF/XPO and robust application architecture.",
+    "eyebrow": "Full-stack engineer based in Reunion Island",
+    "titleLine1": "I build clear interfaces,",
+    "titleLine2": "solid backends",
+    "titleLine3": "and products meant to last.",
+    "intro": "I work across the full product chain, from architecture to production, with a strong focus on readability, maintainability and business impact.",
+    "primaryCta": "View projects",
+    "secondaryCta": "Get in touch",
+    "tertiaryCta": "Download CV",
+    "scrollCue": "Scroll to build the site",
+    "availability": "Available for full-stack, backend or technical lead roles.",
+    "stats": {
+      "years": "5+ years",
+      "yearsLabel": "shipping web products and production APIs",
+      "projects": "10+ projects",
+      "projectsLabel": "delivered across CRM, SaaS, payments and mobile backends",
+      "stack": "React • Blazor • C# • SQL Server",
+      "stackLabel": "web, business software and data on one solid foundation"
+    },
+    "highlights": {
+      "architecture": "Clear architecture",
+      "product": "Product thinking",
+      "delivery": "Reliable delivery"
+    }
+  },
+  "story": {
+    "eyebrow": "Scroll-built experience",
+    "steps": {
+      "0": {
+        "label": "Arrival",
+        "title": "First, a clear, calm and readable presence.",
+        "body": "I wanted the opening to feel more like an intentional presentation page than a noisy landing page: centered portrait, short copy, a clear tone and a reason to keep going."
+      },
+      "1": {
+        "label": "Structure",
+        "title": "Then the profile, the stack and the intent settle into place.",
+        "body": "As you scroll, the useful blocks appear progressively: identity, role, technologies and hierarchy. Nothing drops all at once; each layer arrives when it should."
+      },
+      "2": {
+        "label": "Project",
+        "title": "Finally, the page shifts into concrete work: case study, imagery and contact.",
+        "body": "Going down assembles a fuller interface. Going back up naturally undoes it. The portfolio behaves like a reversible experience rather than a static page."
+      }
+    },
+    "visual": {
+      "hello": "Starting point",
+      "welcomeTitle": "A simple message, a portrait, a direction.",
+      "welcomeBody": "No unnecessary noise. Just a clear presence that makes you want to keep reading.",
+      "profileRole": "React, Blazor, C#, WPF, WinForms, SQL Server",
+      "caseStudy": "Case study",
+      "caseTitle": "Content lands better once the structure is there.",
+      "caseBody": "When the foundation is readable, projects, impact and contact can be revealed with much more rhythm.",
+      "finalCta": "Need a product to structure, ship or clean up?"
+    }
   },
   "about": {
-    "title": "About me",
-    "subtitle": "Full-stack engineer — React, Go, PostgreSQL, Docker, CI/CD",
-    "intro": "I am a",
-    "developer": "developer",
-    "passionate": "passionate about creating",
-    "solidSolutions": "solid solutions",
-    "scalable": ", scalable and well-designed.",
-    "backend": "On the",
-    "backendDescription": " side, I design robust APIs (Go, PostgreSQL) with a strong focus on quality, maintainability and automation (CI/CD).",
-    "frontend": "On the",
-    "frontendDescription": " side, I develop accessible, performant and product-oriented interfaces in React/TypeScript.",
-    "curious": "Curious and pragmatic, I work from conception to production (Docker, monitoring, best practices), with constant attention to user experience and performance.",
-    "contactMe": "Contact me",
-    "downloadCV": "Download my CV"
+    "title": "An approach shaped by clarity, product thinking and execution",
+    "subtitle": "I favor systems that stay easy to evolve, interfaces that stay readable, and technical decisions that genuinely support the product.",
+    "body": "I enjoy building real-world web applications: back-offices, business platforms, APIs, payment flows, content systems, integrations and internal tools. My goal is to turn a fuzzy need into something usable, stable and clean to maintain over time.",
+    "pillars": {
+      "build": {
+        "title": "Design the right thing",
+        "description": "I start from the actual need, the user flow and the business constraints before committing to implementation details."
+      },
+      "scale": {
+        "title": "Build it cleanly",
+        "description": "Structure, naming, controlled technical debt and codebases the team can pick up without friction matter a lot to me."
+      },
+      "ship": {
+        "title": "Ship with confidence",
+        "description": "CI/CD, Docker, APIs, perceived quality and interface polish: the finish matters as much as the feature itself."
+      }
+    },
+    "contactMe": "Start a conversation",
+    "downloadCV": "Download CV"
   },
   "projects": {
-    "portfolio": "Portfolio",
-    "title": "Some Projects",
-    "subtitle": "Alliance of robust back-end and polished front-end. Here's a selection",
-    "expand": "Expand",
-    "live": "Live",
+    "portfolio": "Selected work",
+    "title": "Projects built to be useful, not just attractive",
+    "subtitle": "A selection of products and tools where I worked on architecture, experience and production readiness.",
+    "roleLabel": "Role",
+    "stackLabel": "Stack",
+    "impactLabel": "Impact",
+    "showDetails": "View details",
+    "hideDetails": "Hide details",
+    "archiveTitle": "More work",
+    "live": "View",
     "code": "Code",
-    "close": "Close",
     "items": {
       "econnect": {
         "title": "eConnect CRM",
-        "description": "Complete CRM: prospect management, email campaigns, partners, white-label sites, automated sending based on file progress, eDoc. Full-stack project (Go GraphQL, React, third-party REST). Modeling, costing, implementation."
+        "summary": "Design and development of a complete CRM used to manage prospects, partners, campaigns and business automations.",
+        "role": "Technical design, estimation, data modeling, Go GraphQL APIs, React interfaces and third-party integrations.",
+        "impact": "A centralized product foundation to track cases, automate communication workflows and support multiple white-label variants."
       },
       "begaiement": {
-        "title": "Begaiement (Ortho Platform)",
-        "description": "Professional podcast catalog, patient relationship (objectives/prescriptions), stats. React web app, Go REST API, PostgreSQL."
+        "title": "Begaiement",
+        "summary": "A speech therapy platform combining content, patient follow-up and product-specific workflows.",
+        "role": "Full-stack development of the React application, Go REST API, PostgreSQL modeling and overall journey structuring.",
+        "impact": "A clearer tool to manage content, therapeutic goals and patient relationship flows in one place."
       },
       "qrwin": {
-        "title": "QR Win – Back Office & APIs",
-        "description": "BO for stores/brands, Stripe subscriptions, stats, user management. QR codes for mini-games, rewards, virtual wallet. Mobile APIs in Go (REST)."
+        "title": "QR Win",
+        "summary": "Back-office and APIs to run game mechanics, subscriptions and reward flows around QR code activations.",
+        "role": "Go API design, admin tooling, Stripe subscriptions, virtual wallets and operator-facing interfaces.",
+        "impact": "A technical base able to orchestrate campaigns, users, rewards and transactional logic without fragmented tools."
       },
       "happiz": {
-        "title": "Happiz – Backend & Back Office",
-        "description": "GraphQL backend for mobile hypnosis podcast app + Admin back office (content, users)."
+        "title": "Happiz",
+        "summary": "GraphQL backend and editorial back-office for a mobile audio content application.",
+        "role": "Model design, GraphQL APIs, administration interfaces and tooling for content and user management.",
+        "impact": "A more reliable stack to operate the product, manage content publishing and keep administration straightforward."
       },
       "leon": {
-        "title": "Léon – Guided Podcast App",
-        "description": "Tourist guide-style podcast app. Model design, APIs, i18n v2, content pipeline."
+        "title": "Leon",
+        "description": "Guided podcast app with APIs, i18n, editorial pipeline and mobile product logic."
       },
       "raoul": {
-        "title": "Raoul – MangoPay Payments",
-        "description": "Web app to manage payments via MangoPay (flows, KYC/Wallets, reconciliations)."
+        "title": "Raoul",
+        "description": "Web application for MangoPay-based payment management with flows, KYC, wallets and reconciliations."
       },
       "psg": {
-        "title": "PSG – VIP Campaigns Back Office",
-        "description": "BO for SMS campaigns and food preferences of VIP guests at matches."
+        "title": "PSG VIP",
+        "description": "Back-office for SMS campaigns and guest information management under operational constraints."
       },
       "fidelatoo": {
         "title": "Fidelatoo",
-        "description": "Mobile loyalty app – writing and optimizing SQL queries."
+        "description": "SQL query work and optimization on a mobile loyalty product."
       },
       "handimobi": {
         "title": "Handimobi",
-        "description": "Final year project: Android app to locate PMR-accessible places + comments."
+        "description": "Android application to locate wheelchair-accessible places and enrich field information."
       },
       "ladar": {
         "title": "Ladar",
-        "description": "Internship: Android app for connecting people based on interests and geolocation."
+        "description": "Android app matching people through shared interests and geolocation."
       }
     }
   },
   "technologies": {
-    "title": "Technologies & Expertise",
-    "subtitle": "A modern ecosystem, fluid interfaces, robust backends"
+    "title": "Expertise",
+    "subtitle": "A stack chosen to ship fast, evolve cleanly and keep quality under control.",
+    "groups": {
+      "frontend": {
+        "title": "Product frontend",
+        "description": "Clear, accessible interfaces that remain fast to iterate on."
+      },
+      "backend": {
+        "title": "Backend & APIs",
+        "description": "Readable services, structured data and reliable business logic."
+      },
+      "ops": {
+        "title": "Delivery & quality",
+        "description": "Production, automation and maintainability without drama."
+      }
+    }
   },
   "experience": {
-    "title": "Experience",
-    "subtitle": "My Background & Experience",
+    "title": "Background",
+    "subtitle": "A path from infrastructure to product engineering, then technical leadership.",
     "items": {
       "dut": {
         "period": "2010 - 2012",
@@ -111,45 +194,51 @@
       },
       "master": {
         "period": "2012 - 2015",
-        "title": "Computer & Telecommunications Engineering Degree (MASTER)"
+        "title": "Computer & Telecommunications Engineering Degree"
       },
       "ird": {
         "period": "2016 – 2017",
         "title": "Research Engineer — IRD",
-        "description": "Creation of tools (web and mobile applications) for data collection and display in a research project context."
+        "description": "Built web and mobile tools for research data collection and visualization."
       },
       "region": {
         "period": "2017 – 2021",
-        "title": "Systems & Networks Administrator — Réunion Region",
-        "description": "Infrastructure and security management"
+        "title": "Systems & Networks Administrator — Reunion Region",
+        "description": "Infrastructure, security, operations and a strong reliability mindset."
       },
       "squirrel_dev": {
         "period": "2021 – 2022",
         "title": "Web Developer — Squirrel",
-        "description": "Creation of reactive interfaces with React, REST API integration for data management, and design system with Material UI / Bootstrap"
+        "description": "Built React interfaces, integrated APIs and grew into product-driven development."
       },
       "squirrel_lead": {
         "period": "2022 – 2025",
-        "title": "Software Engineer / Lead Web Dev — Squirrel",
-        "description": "Technical lead responsibility and full-stack development: scalable architecture design, front-end (React) and back-end (Golang/Node.js) implementation, GraphQL/REST API design and integration, data modeling and CI/CD pipeline setup"
+        "title": "Software Engineer / Lead Web Developer — Squirrel",
+        "description": "Architecture, full-stack development, GraphQL/REST APIs, data modeling and CI/CD pipelines."
+      },
+      "willow": {
+        "period": "2026 – present",
+        "title": "Software Designer & Developer — Willow",
+        "description": "Design and development of web and business applications with C#, MVVM, WPF, WinForms, DevExpress and Blazor, powered by SQL Server, XAF/XPO, Azure AI and Azure DevOps."
       }
     }
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "Let's create something remarkable",
-    "description": "Tell me about your project (objectives, deadlines, constraints). I'll get back to you quickly.",
-    "preferEmail": "Prefer email",
+    "subtitle": "Need to structure, ship or strengthen a product?",
+    "description": "I can help on an existing product, a technical foundation that needs to be stabilized, or a new initiative that should start cleanly.",
+    "availability": "Fast answer by email. Open to freelance work, full-time opportunities and technical roles with ownership.",
+    "preferEmail": "Or directly by email",
     "form": {
-      "name": "Your name",
+      "name": "Name",
       "email": "Email",
       "subject": "Subject",
       "phone": "Phone",
       "message": "Message",
-      "send": "Send",
+      "send": "Send message",
       "sending": "Sending…",
-      "success": "✅ Message sent!",
-      "error": "❌ Send failed.",
+      "success": "Message sent.",
+      "error": "Send failed.",
       "required": "*",
       "nameRequired": "Name required",
       "emailRequired": "Valid email required.",
@@ -164,7 +253,7 @@
     "animatedBy": "animated by",
     "and": "&",
     "deployedOn": "deployed on",
-    "viewSource": "View source code on GitHub (CI/CD → Vercel)",
+    "viewSource": "View source on GitHub",
     "copyright": "© {year} Sébastien Legros — All rights reserved"
   }
 }

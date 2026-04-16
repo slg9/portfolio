@@ -1,8 +1,7 @@
 "use client";
 
-import { useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 const languages = [
@@ -15,43 +14,25 @@ export default function LanguageSwitcher() {
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [currentLocale, setCurrentLocale] = useState<string>('fr');
   
-  // Extract locale from pathname - more robust detection
   const getLocaleFromPath = (path: string) => {
     if (path.startsWith('/en')) return 'en';
     if (path.startsWith('/fr')) return 'fr';
-    return 'fr'; // default to French
+    return 'fr';
   };
   
-  const localeFromPath = getLocaleFromPath(pathname);
-  const hookLocale = useLocale();
-  // Use localeFromPath as primary source since hookLocale seems unreliable
-  const locale = localeFromPath;
-  
-  // Debug log (remove in production)
-  console.log('LanguageSwitcher - pathname:', pathname, 'hookLocale:', hookLocale, 'localeFromPath:', localeFromPath, 'final locale:', locale);
-  
-  // Force re-render when pathname changes
-  useEffect(() => {
-    const newLocale = getLocaleFromPath(pathname);
-    setCurrentLocale(newLocale);
-  }, [pathname]);
+  const currentLocale = getLocaleFromPath(pathname);
 
   const handleLanguageChange = (newLocale: string) => {
-    // Remove the current locale from the pathname
     let pathWithoutLocale = pathname;
     
-    // Remove any existing locale prefix
     if (pathname.startsWith('/en')) {
       pathWithoutLocale = pathname.replace('/en', '') || '/';
     } else if (pathname.startsWith('/fr')) {
       pathWithoutLocale = pathname.replace('/fr', '') || '/';
     }
     
-    // Navigate to the new locale
     router.push(`/${newLocale}${pathWithoutLocale}`);
-    
     setIsOpen(false);
   };
 
@@ -61,13 +42,13 @@ export default function LanguageSwitcher() {
     <div className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-white/60 dark:bg-white/10 text-slate-700 dark:text-slate-200 hover:bg-white/80 dark:hover:bg-white/20 transition-colors"
+        className="flex h-10 items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-3 text-sm font-medium text-slate-700 shadow-[0_10px_28px_rgba(0,0,0,0.04)] hover:bg-white dark:text-slate-200"
         aria-label={t('changeLanguage')}
       >
-        <span className="text-lg">{currentLanguage.flag}</span>
-        <span className="text-sm font-medium hidden sm:inline">{currentLanguage.name}</span>
+        <span className="text-base">{currentLanguage.flag}</span>
+        <span className="hidden sm:inline">{currentLanguage.name}</span>
         <svg
-          className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -77,13 +58,13 @@ export default function LanguageSwitcher() {
       </button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 w-48 bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700 z-50">
+        <div className="absolute right-0 top-full z-50 mt-2 w-44 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)] shadow-[0_18px_42px_rgba(0,0,0,0.08)]">
           {languages.map((language) => (
             <button
               key={language.code}
               onClick={() => handleLanguageChange(language.code)}
-              className={`w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors first:rounded-t-lg last:rounded-b-lg ${
-                language.code === currentLocale ? 'bg-slate-100 dark:bg-slate-700' : ''
+              className={`flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-black/5 dark:hover:bg-white/5 ${
+                language.code === currentLocale ? 'bg-black/5 dark:bg-white/5' : ''
               }`}
             >
               <span className="text-lg">{language.flag}</span>
@@ -91,7 +72,7 @@ export default function LanguageSwitcher() {
                 {language.name}
               </span>
               {language.code === currentLocale && (
-                <svg className="w-4 h-4 ml-auto text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="ml-auto h-4 w-4 text-[var(--accent)]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
               )}

@@ -1,210 +1,100 @@
 "use client";
-import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import Lottie from "lottie-react";
-import devAnimation from "@/public/lotties/dev-coding.json";
-import { useTranslations, useLocale } from 'next-intl';
-import { usePathname } from 'next/navigation';
 
-/* ---- Parallax util ---- */
-function useParallax(value: MotionValue<number>, distance: number) {
-    return useTransform(value, [0, 1], [-distance, distance]);
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
+
+function Pillar({
+  title,
+  description,
+  index,
+}: {
+  title: string;
+  description: string;
+  index: number;
+}) {
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -4, scale: 1.01 }}
+      transition={{ duration: 0.5, delay: 0.08 * index }}
+      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-6 shadow-[0_18px_48px_rgba(0,0,0,0.06)]"
+    >
+      <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[var(--accent)]">
+        0{index + 1}
+      </span>
+      <h3 className="mt-4 text-xl font-bold tracking-tight text-slate-950 dark:text-white">
+        {title}
+      </h3>
+      <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{description}</p>
+    </motion.article>
+  );
 }
 
-const AboutMe = () => {
-    const t = useTranslations('about');
-    const pathname = usePathname();
-    const handleScroll = () => {
-        const section = document.getElementById("contact");
-        if (section) section.scrollIntoView({ behavior: "smooth" });
-    };
+export default function AboutMe() {
+  const t = useTranslations("about");
+  const pathname = usePathname();
+  const cvHref = pathname.startsWith("/en")
+    ? "/docs/Sebastien_Legros_CV_EN.pdf"
+    : "/docs/Sebastien_Legros_CV_FR.pdf";
 
-    const handleDownloadCV = () => {
-        // Get current locale from pathname
-        const isEnglish = pathname.startsWith('/en');
-        
-        const lienCV = isEnglish 
-            ? "/docs/Sebastien_Legros_CV_EN.pdf" 
-            : "/docs/Sebastien_Legros_CV_FR.pdf";
-        
-        const fileName = isEnglish 
-            ? "Sebastien_Legros_CV_EN.pdf" 
-            : "Sebastien_Legros_CV_FR.pdf";
-        
-        const a = document.createElement("a");
-        a.href = lienCV;
-        a.download = fileName;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-    };
-
-    return (
-        <section
-            id="aboutme"
-            className="
-        relative overflow-hidden min-h-screen py-10 md:snap-start md:snap-always flex flex-col items-center justify-center px-6
-      "
-        >
-            {/* --- Background layers : adaptent le contraste en dark --- */}
-            <div
-                className="
-          pointer-events-none absolute inset-0 -z-10
-          bg-[radial-gradient(50rem_40rem_at_50%_-10%,rgba(99,102,241,.12),transparent_60%)]
-          dark:bg-[radial-gradient(50rem_40rem_at_50%_-10%,rgba(99,102,241,.10),transparent_60%)]
-        "
-            />
-            <div
-                className="
-          pointer-events-none absolute inset-0 -z-10
-          bg-[linear-gradient(to_bottom,rgba(0,0,0,.02),transparent)]
-          dark:bg-[linear-gradient(to_bottom,rgba(255,255,255,.03),transparent)]
-        "
-            />
-            <div
-                className="
-          pointer-events-none absolute inset-0 -z-10
-          [mask-image:radial-gradient(ellipse_at_center,black,transparent_70%)]
-          bg-[length:32px_32px]
-          bg-[linear-gradient(to_right,rgba(0,0,0,.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,.06)_1px,transparent_1px)]
-          dark:bg-[linear-gradient(to_right,rgba(255,255,255,.07)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,.07)_1px,transparent_1px)]
-        "
-            />
-
-            <div className="w-full max-w-5xl">
-                {/* Header */}
-                <motion.header
-                    className="mb-10 flex flex-col items-center text-center md:mb-14"
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.2 }}
-                    viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                >
-                    <h2
-                        id="projects-title"
-                        className="
-              text-3xl md:text-4xl font-extrabold tracking-[-0.01em]
-              text-slate-900 dark:text-slate-100
-            "
-                    >
-                        {t('title')}
-                    </h2>
-                    <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
-                        {t('subtitle')}
-                    </p>
-                </motion.header>
-
-                <div className="flex flex-col md:flex-row gap-12  items-center max-w-5xl mx-auto relative overflow-hidden">
-                    
-                    {/* Texte */}
-                    <div className="flex-1 space-y-6 text-center md:text-left">
-                        <motion.h2
-                            className="text-xl font-bold text-slate-900 dark:text-slate-100"
-                            initial={{ opacity: 0, y: 18 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.3 }}
-                            viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                        >
-                            {t('intro')}{" "}
-                            <span className="underline decoration-4 decoration-fuchsia-400/70 underline-offset-4 dark:decoration-fuchsia-400/60">
-                                {t('developer')}
-                            </span>{" "}
-                            {t('passionate')}{" "}
-                            <span className="font-semibold text-slate-900 dark:text-slate-100">
-                                {t('solidSolutions')}
-                            </span>
-                            {t('scalable')}
-                        </motion.h2>
-
-                        <motion.p
-                            className="text-lg leading-relaxed text-slate-600 dark:text-slate-300"
-                            initial={{ opacity: 0, y: 22 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.2 }}
-                            viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                        >
-                            {t('backend')} <span className="font-semibold">back-end</span>{t('backendDescription')}
-                            {t('frontend')} <span className="font-semibold">front-end</span>{t('frontendDescription')}
-                        </motion.p>
-
-                        <motion.p
-                            className="text-lg leading-relaxed text-slate-600 dark:text-slate-300"
-                            initial={{ opacity: 0, y: 24 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.35 }}
-                            viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                        >
-                            {t('curious')}
-                        </motion.p>
-
-                        {/* Boutons */}
-                        <div className="flex gap-5 justify-center md:justify-start">
-                            <motion.div
-                                initial={{ opacity: 0, y: 26 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.5 }}
-                                viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                            >
-                                <button
-                                    className="
-                    inline-flex items-center justify-center rounded-lg
-                    bg-gradient-to-r from-indigo-600 to-sky-500
-                    px-5 py-3 text-sm font-semibold text-white shadow-sm
-                    transition hover:-translate-y-0.5 hover:shadow-md
-                    dark:from-indigo-500 dark:to-sky-500
-                  "
-                                    type="button"
-                                    onClick={handleScroll}
-                                >
-                                    {t('contactMe')}
-                                </button>
-                            </motion.div>
-
-                            <motion.div
-                                initial={{ opacity: 0, y: 26 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ type: "spring", stiffness: 60, damping: 12, delay: 0.5 }}
-                                viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-                            >
-                                <button
-                                    className="
-                    inline-flex items-center justify-center rounded-lg
-                    border px-5 py-3 text-sm font-medium shadow-sm transition
-                    border-slate-200 bg-white text-slate-700
-                    hover:-translate-y-0.5 hover:shadow-md
-                    dark:border-slate-700 dark:bg-slate-800/80 dark:text-slate-200
-                    dark:hover:shadow-slate-900/30
-                  "
-                  type="button"
-                  onClick={handleDownloadCV}
-                >
-                  {t('downloadCV')}
-                </button>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Lottie */}
-          <motion.aside
-            className="flex-1 w-full max-w-[520px]"
-            initial={{ opacity: 0, x: 20, y: 20, rotate: 10 }}
-            whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0 }}
-            transition={{ type: "spring", stiffness: 60, damping: 30, delay: 0.2 }}
-            viewport={{ once: true, margin: "-20% 0px -10% 0px" }}
-            aria-hidden="true"
+  return (
+    <section id="aboutme" className="px-6 py-16 md:px-10 md:py-20">
+      <div className="mx-auto max-w-6xl">
+        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55 }}
+            viewport={{ once: true }}
           >
-            <Lottie
-              animationData={devAnimation}
-              loop
-              autoplay
-              style={{ width: "100%", height: "100%" }}
-              className="drop-shadow-sm"
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
+              {t("title")}
+            </p>
+            <h2 className="mt-4 max-w-lg text-[1.85rem] font-extrabold tracking-[-0.04em] text-slate-950 dark:text-white md:text-[2.4rem]">
+              {t("subtitle")}
+            </h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.08 }}
+            viewport={{ once: true }}
+            className="rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-6 shadow-[0_18px_50px_rgba(0,0,0,0.05)] md:p-8"
+          >
+            <p className="max-w-2xl text-sm leading-7 text-slate-700 dark:text-slate-300 md:text-[15px]">{t("body")}</p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#contact"
+                className="rounded-full bg-slate-950 px-6 py-3 text-sm font-semibold text-white dark:bg-white dark:text-slate-950"
+              >
+                {t("contactMe")}
+              </a>
+              <a
+                href={cvHref}
+                download
+                className="rounded-full border border-[var(--line)] px-6 py-3 text-sm font-semibold text-slate-900 dark:text-white"
+              >
+                {t("downloadCV")}
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-3">
+          {["build", "scale", "ship"].map((item, index) => (
+            <Pillar
+              key={item}
+              index={index}
+              title={t(`pillars.${item}.title`)}
+              description={t(`pillars.${item}.description`)}
             />
-          </motion.aside>
+          ))}
         </div>
       </div>
     </section>
   );
-};
-
-export default AboutMe;
+}

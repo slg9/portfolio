@@ -27,9 +27,18 @@ function InputField({
                 required={required}
                 placeholder={placeholder}
                 autoComplete={autoComplete}
-                className="peer w-full rounded-xl border border-gray-300 bg-white dark:bg-transparent px-4 py-3 outline-none transition focus:border-gray-900 focus:ring-2 dark:focus:ring-slate-300 focus:ring-gray-900/10 dark:text-slate-400"
+                className="peer w-full rounded-2xl border border-[var(--line)] bg-[var(--surface)] px-4 py-4 outline-none transition focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10 dark:text-slate-100"
             />
-           
+            <label
+                htmlFor={id}
+                className="pointer-events-none absolute left-4 top-4 bg-[var(--surface)] px-1 text-sm text-slate-500 transition
+                 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm
+                 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-slate-900
+                 peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-xs
+                 dark:peer-focus:text-white"
+            >
+                {label} {required && <span className="text-red-500">*</span>}
+            </label>
         </div>
     );
 }
@@ -55,13 +64,15 @@ function TextareaField({
                 required={required}
                 rows={rows}
                 placeholder={placeholder}
-                className="peer w-full rounded-xl border border-gray-300 bg-white dark:bg-transparent px-4 py-3 outline-none transition focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10"
+                className="peer w-full rounded-2xl border border-[var(--line)] bg-[var(--surface)] px-4 py-4 outline-none transition focus:border-slate-900 focus:ring-2 focus:ring-slate-900/10 dark:text-slate-100"
             />
             <label
                 htmlFor={id}
-                className="pointer-events-none absolute left-3 top-3 bg-white dark:bg-transparent px-1 text-sm text-gray-500 dark:text-slate-400 transition
-                 peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400
-                 peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-xs peer-focus:text-gray-900"
+                className="pointer-events-none absolute left-4 top-4 bg-[var(--surface)] px-1 text-sm text-slate-500 transition
+                 peer-placeholder-shown:top-4 peer-placeholder-shown:text-sm
+                 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-slate-900
+                 peer-not-placeholder-shown:-top-2 peer-not-placeholder-shown:text-xs
+                 dark:peer-focus:text-white"
             >
                 {label} {required && <span className="text-red-500">*</span>}
             </label>
@@ -93,28 +104,28 @@ export default function ContactForm({
     }
 
     return (
-        <form id="contact-form" action={clientAction} className="space-y-4 max-w-md mx-auto">
+        <form id="contact-form" action={clientAction} className="space-y-4">
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                <InputField id="name" label={t('name')} required placeholder={t('name')} />
-                <InputField id="email" label={t('email')} type="email" placeholder={t('email')} required />
+                <InputField id="name" label={t('name')} required />
+                <InputField id="email" label={t('email')} type="email" required />
             </div>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                <InputField id="subject" label={t('subject')} placeholder={t('subject')}  />
-                <InputField id="phone" label={t('phone')} placeholder={t('phone')}  />
+                <InputField id="subject" label={t('subject')} />
+                <InputField id="phone" label={t('phone')} />
 
             </div>
-            <TextareaField id="message" label={t('message')} placeholder={t('message')} required />
+            <TextareaField id="message" label={t('message')} required />
 
             <button
                 type="submit"
                 disabled={pending}
-                className="rounded-lg bg-gradient-to-r from-indigo-600 to-sky-500 px-5 py-3 text-white font-semibold disabled:opacity-60"
+                className="rounded-full bg-slate-950 px-6 py-3 text-white font-semibold disabled:opacity-60 dark:bg-white dark:text-slate-950"
             >
                 {pending ? t('sending') : t('send')}
             </button>
 
             {msg && (
-                <p className={`text-sm ${msg.type === "ok" ? "text-emerald-600" : "text-rose-600"}`}>
+                <p className={`text-sm ${msg.type === "ok" ? "text-emerald-700" : "text-rose-700"}`}>
                     {msg.text}
                 </p>
             )}

@@ -1,355 +1,195 @@
 "use client";
-import Image from "next/image";
-import { createPortal } from "react-dom";
-import { animate, motion, MotionValue, useMotionValue, useMotionValueEvent, useScroll, AnimatePresence } from "framer-motion";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { useTranslations } from 'next-intl';
 
-type Project = {
-  title: string;
-  description: string;
-  tags: string[];
+import Image from "next/image";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+
+type FeaturedProject = {
+  key: "econnect" | "begaiement" | "qrwin" | "happiz";
   imageSrc: string;
-  liveUrl?: string;
-  codeUrl?: string;
+  stack: string[];
 };
 
-// Les projets seront maintenant chargés dynamiquement avec les traductions
+type ArchiveProject = {
+  key: "leon" | "raoul" | "psg" | "fidelatoo" | "handimobi" | "ladar";
+};
 
-/* ---------- Icons ---------- */
-function ExternalLinkIcon() {
+const featuredProjects: FeaturedProject[] = [
+  {
+    key: "econnect",
+    imageSrc: "/projects/econnect.webp",
+    stack: ["React", "Go", "GraphQL", "PostgreSQL", "Docker", "CI/CD"],
+  },
+  {
+    key: "begaiement",
+    imageSrc: "/projects/begaiement.png",
+    stack: ["React", "Go", "REST", "PostgreSQL", "Analytics", "Stripe"],
+  },
+  {
+    key: "qrwin",
+    imageSrc: "/projects/qrwin.png",
+    stack: ["React", "Go", "REST", "Stripe", "Wallet", "Back-office"],
+  },
+  {
+    key: "happiz",
+    imageSrc: "/projects/happiz.svg",
+    stack: ["React", "Go", "GraphQL", "Mobile backend", "Firebase", "Admin"],
+  },
+];
+
+const archiveProjects: ArchiveProject[] = [
+  { key: "leon" },
+  { key: "raoul" },
+  { key: "psg" },
+  { key: "fidelatoo" },
+  { key: "handimobi" },
+  { key: "ladar" },
+];
+
+export default function Projects() {
+  const t = useTranslations("projects");
+  const [expandedProject, setExpandedProject] = useState<string | null>(featuredProjects[0].key);
+
   return (
-    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" className="-mt-0.5" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M7 17l10-10M7 7h10v10" strokeLinejoin="round" strokeLinecap="round" />
-    </svg>
-  );
-}
-function CodeIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M16 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M8 6l-6 6 6 6" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-/* ---------- Card ---------- */
-function ProjectCard({
-  title,
-  description,
-  tags,
-  imageSrc,
-  liveUrl,
-  codeUrl,
-  index = 0,
-  t,
-}: Project & { index?: number; t: any }) {
-  const revealDelay = useMemo(() => 0.1 * (index % 3) + 0.1, [index]);
-  const [open, setOpen] = useState(false);
-
-  // id commun pour l’anim “shared element” (optionnelle)
-  const imgLayoutId = useMemo(
-    () => `project-image-${title.replace(/\s+/g, "-").toLowerCase()}`,
-    [title]
-  );
-
-  return (
-    <>
-      <motion.article
-        className="group relative my-5 overflow-hidden rounded-3xl ring-1 ring-slate-200/60 dark:ring-slate-400 bg-white/60 dark:bg-transparent backdrop-blur-sm shadow-[0_1px_0_0_rgba(0,0,0,0.04)] shrink-0 w-[72vw] sm:w-[300px] md:w-[340px]"
-        initial={{ opacity: 0, y: 24, scale: 0.98 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ type: "spring", stiffness: 90, damping: 14, delay: revealDelay }}
-        viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-        whileHover={{ y: -4, scale: 1.015, rotateX: 0.4, rotateY: -0.4 }}
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        {/* Accent glow plus discret */}
-        <div
-          className="pointer-events-none absolute inset-0 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-15"
-          style={{ background: "radial-gradient(520px circle at 10% 0%, rgba(59,130,246,.25), transparent 45%)" }}
-        />
-
-        {/* Cover image */}
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="relative aspect-[16/9] w-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40"
-          aria-label={`${t('expand')} ${title}`}
+    <section id="projects" className="px-6 py-16 md:px-10 md:py-20" aria-labelledby="projects-title">
+      <div className="mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55 }}
+          viewport={{ once: true }}
+          className="max-w-3xl"
         >
-          <motion.div layoutId={imgLayoutId} className="relative h-full w-full">
-            <Image
-              src={imageSrc}
-              alt={`${title} cover`}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-              sizes="(max-width: 640px) 72vw, (max-width: 768px) 300px, 340px"
-              priority={index < 3} // Priorité pour les 3 premières images
-              loading={index < 3 ? "eager" : "lazy"}
-              placeholder="blur"
-              blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkqGx0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-            />
-          </motion.div>
-          {/* Film subtle pour la lisibilité au hover */}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/80 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        </button>
-
-        {/* Content */}
-        <div className="flex flex-col gap-4 p-5">
-          <h3 className="text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-300 line-clamp-2">
-            {title}
-          </h3>
-
-          <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-200 line-clamp-3">
-            {description}
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
+            {t("portfolio")}
           </p>
+          <h2
+            id="projects-title"
+            className="mt-4 text-[1.9rem] font-extrabold tracking-[-0.04em] text-slate-950 dark:text-white md:text-[2.5rem]"
+          >
+            {t("title")}
+          </h2>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700 dark:text-slate-300 md:text-[15px]">
+            {t("subtitle")}
+          </p>
+        </motion.div>
 
-          {/* Tags modernisés */}
-          <ul className="mt-1 flex flex-wrap gap-2">
-            {tags.map((t) => (
-              <li
-                key={t}
-                className="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-transparent px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-400 shadow-sm ring-1 ring-slate-200/60 hover:shadow-md hover:-translate-y-0.5 transition"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-r from-indigo-400 to-sky-400" />
-                {t}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-10 space-y-6">
+          {featuredProjects.map((project, index) => (
+            <motion.article
+              key={project.key}
+              initial={{ opacity: 0, y: 22 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -4 }}
+              transition={{ duration: 0.55, delay: index * 0.06 }}
+              viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+              className="grid gap-5 rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-4 shadow-[0_20px_55px_rgba(0,0,0,0.05)] transition-shadow hover:shadow-[0_28px_70px_rgba(0,0,0,0.08)] md:grid-cols-[0.92fr_1.08fr] md:p-6"
+            >
+              <div className="group relative overflow-hidden rounded-[1.5rem] bg-[var(--surface-strong)]">
+                <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/18 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <Image
+                  src={project.imageSrc}
+                  alt={t(`items.${project.key}.title`)}
+                  width={900}
+                  height={640}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+              </div>
 
-          {(liveUrl || codeUrl) && (
-            <div className="mt-2 flex items-center gap-3">
-              {liveUrl && (
-                <a
-                  href={liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900/30"
-                  aria-label={`Visit ${title} live`}
-                >
-                  <ExternalLinkIcon />
-                  {t('live')}
-                </a>
-              )}
-              {codeUrl && (
-                <a
-                  href={codeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-900 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-gray-900/10"
-                  aria-label={`Open ${title} source code`}
-                >
-                  <CodeIcon />
-                  {t('code')}
-                </a>
-              )}
-            </div>
+              <div className="flex flex-col justify-between">
+                <div>
+                  <h3 className="text-2xl font-bold tracking-tight text-slate-950 dark:text-white md:text-[1.75rem]">
+                    {t(`items.${project.key}.title`)}
+                  </h3>
+                  <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-700 dark:text-slate-300">
+                    {t(`items.${project.key}.summary`)}
+                  </p>
 
+                  <div className="mt-5 flex flex-wrap gap-2">
+                    {project.stack.slice(0, 4).map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-200"
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
 
-          )}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setExpandedProject((current) => (current === project.key ? null : project.key))
+                    }
+                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 transition hover:text-[var(--accent)] dark:text-white"
+                    aria-expanded={expandedProject === project.key}
+                  >
+                    {expandedProject === project.key ? t("hideDetails") : t("showDetails")}
+                    <motion.span animate={{ rotate: expandedProject === project.key ? 45 : 0 }}>
+                      +
+                    </motion.span>
+                  </button>
+
+                  <motion.dl
+                    initial={false}
+                    animate={{
+                      height: expandedProject === project.key ? "auto" : 0,
+                      opacity: expandedProject === project.key ? 1 : 0,
+                    }}
+                    transition={{ duration: 0.28, ease: "easeOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="mt-5 space-y-4 border-t border-[var(--line)] pt-5">
+                      <div>
+                        <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                          {t("roleLabel")}
+                        </dt>
+                        <dd className="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
+                          {t(`items.${project.key}.role`)}
+                        </dd>
+                      </div>
+                      <div>
+                        <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                          {t("impactLabel")}
+                        </dt>
+                        <dd className="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
+                          {t(`items.${project.key}.impact`)}
+                        </dd>
+                      </div>
+                    </div>
+                  </motion.dl>
+                </div>
+              </div>
+            </motion.article>
+          ))}
         </div>
 
-        {/* Hairline intérieur pour le “finish” */}
-        <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/60" />
-      </motion.article>
-
-
-      {/* Modal / Lightbox */}
-      <Lightbox
-        open={open}
-        onClose={() => setOpen(false)}
-        src={imageSrc}
-        alt={`${title} cover large`}
-        layoutId={imgLayoutId}     // marche encore mieux si tu utilises <LayoutGroup> autour de la grille
-        title={title}
-        liveUrl={liveUrl}
-        codeUrl={codeUrl}
-        t={t}
-      />
-    </>
-  );
-}
-
-function Lightbox({
-  open, onClose, src, alt, layoutId, title, liveUrl, codeUrl, t,
-}: {
-  open: boolean; onClose: () => void; src: string; alt: string;
-  layoutId?: string; title?: string; liveUrl?: string | null; codeUrl?: string | null; t: any;
-}) {
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
-    window.addEventListener("keydown", onKey);
-    return () => { document.body.style.overflow = prev; window.removeEventListener("keydown", onKey); };
-  }, [open, onClose]);
-
-  if (!open) return null;
-
-  return createPortal(
-    <AnimatePresence>
-      <motion.div className="fixed inset-0 z-[100]" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-        <motion.div className="absolute inset-0 bg-black/60 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose} />
-        <motion.figure
-          role="dialog" aria-modal="true" aria-label={alt}
-          className="absolute inset-0 flex items-center justify-center p-4 md:p-6"
-          initial={{ scale: 0.98, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.98, opacity: 0 }}
-          transition={{ type: "spring", stiffness: 140, damping: 18 }}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <motion.div layoutId={layoutId} className="relative w-full max-w-5xl aspect-[16/9] overflow-hidden rounded-2xl bg-black shadow-2xl">
-            <Image src={src} alt={alt} fill className="object-contain" sizes="100vw" priority />
-            <button onClick={onClose} aria-label={t('close')} className="absolute right-3 top-3 inline-grid h-9 w-9 place-items-center rounded-full bg-white/90 text-gray-900 shadow hover:bg-white">✕</button>
-            {(title || liveUrl || codeUrl) && (
-              <figcaption className="absolute inset-x-0 bottom-0 flex flex-wrap items-center justify-between gap-3 bg-gradient-to-t from-black/70 via-black/30 to-transparent px-4 pb-4 pt-12 text-white">
-                <span className="text-sm font-medium">{title}</span>
-                <span className="flex gap-2">
-                  {liveUrl && <a href={liveUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-gray-900 shadow hover:bg-white">{t('live')}</a>}
-                  {codeUrl && <a href={codeUrl} target="_blank" rel="noopener noreferrer" className="rounded-lg bg-white/90 px-3 py-1.5 text-sm font-semibold text-gray-900 shadow hover:bg-white">{t('code')}</a>}
-                </span>
-              </figcaption>
-            )}
-          </motion.div>
-        </motion.figure>
-      </motion.div>
-    </AnimatePresence>,
-    document.body
-  );
-}
-
-/* ---------- Section ---------- */
-export default function Projects() {
-  const t = useTranslations('projects');
-  const ref = useRef(null)
-  const { scrollXProgress } = useScroll({ container: ref })
-  const maskImage = useScrollOverflowMask(scrollXProgress)
-
-  // Charger les projets avec les traductions
-  const PROJECTS: Project[] = [
-    {
-      title: t('items.econnect.title'),
-      description: t('items.econnect.description'),
-      tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "eDoc", "CRM", "Docker", "CI/CD", "Agile", "Data Modeling"],
-      imageSrc: "/projects/econnect.webp",
-    },
-    {
-      title: t('items.begaiement.title'),
-      description: t('items.begaiement.description'),
-      tags: ["React", "Golang", "API REST", "PostgreSQL", "Google Analytics", "Stripe", "Docker", "CI/CD", "Data Modeling"],
-      imageSrc: "/projects/begaiement.png",
-    },
-    {
-      title: t('items.qrwin.title'),
-      description: t('items.qrwin.description'),
-      tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "Stripe", "Wallet", "Admin BO", "Games", "Docker", "CI/CD", "Data Modeling"],
-      imageSrc: "/projects/qrwin.png",
-    },
-    {
-      title: t('items.happiz.title'),
-      description: t('items.happiz.description'),
-      tags: ["React", "Golang", "API GraphQL", "PostgreSQL", "Admin BO", "Mobile backend", "Achat In App", "Firebase", "Docker", "CI/CD"],
-      imageSrc: "/projects/happiz.svg",
-    },
-    {
-      title: t('items.leon.title'),
-      description: t('items.leon.description'),
-      tags: ["Golang", "API GraphQL", "PostgreSQL", "i18n", "Achat In App", "Firebase", "Docker", "CI/CD"],
-      imageSrc: "/projects/leon.png",
-    },
-    {
-      title: t('items.raoul.title'),
-      description: t('items.raoul.description'),
-      tags: ["React", "Golang", "API REST", "MangoPay", "PostgreSQL", "Payments", "Docker", "CI/CD"],
-      imageSrc: "/projects/raoul.png",
-    },
-    {
-      title: t('items.psg.title'),
-      description: t('items.psg.description'),
-      tags: ["React", "Golang", "API GraphQL", "Admin BO", "SMS Campaigns", "PostgreSQL", "Data Modeling", "Docker", "CI/CD"],
-      imageSrc: "/projects/psg.png",
-    },
-    {
-      title: t('items.fidelatoo.title'),
-      description: t('items.fidelatoo.description'),
-      tags: ["Golang", "API GraphQL", "PostgreSQL"],
-      imageSrc: "/projects/fidelatoo.png",
-    },
-    {
-      title: t('items.handimobi.title'),
-      description: t('items.handimobi.description'),
-      tags: ["CakePHP", "Java Android", "MySQL"],
-      imageSrc: "/projects/handimobi.png",
-    },
-    {
-      title: t('items.ladar.title'),
-      description: t('items.ladar.description'),
-      tags: ["Kohana", "PHP", "Java Android", "MySQL"],
-      imageSrc: "/projects/ladar.png",
-    },
-  ];
-
-
-  function useScrollOverflowMask(scrollXProgress: MotionValue<number>) {
-    const left = `0%`
-    const right = `100%`
-    const leftInset = `20%`
-    const rightInset = `80%`
-    const transparent = `#0000`
-    const opaque = `#000`
-    const maskImage = useMotionValue(
-      `linear-gradient(90deg, ${opaque}, ${opaque} ${left}, ${opaque} ${rightInset}, ${transparent})`
-    )
-
-    useMotionValueEvent(scrollXProgress, "change", (value) => {
-      if (value === 0) {
-        animate(
-          maskImage,
-          `linear-gradient(90deg, ${opaque}, ${opaque} ${left}, ${opaque} ${rightInset}, ${transparent})`
-        )
-      } else if (value === 1) {
-        animate(
-          maskImage,
-          `linear-gradient(90deg, ${transparent}, ${opaque} ${leftInset}, ${opaque} ${right}, ${opaque})`
-        )
-      } else if (
-        scrollXProgress.getPrevious() === 0 ||
-        scrollXProgress.getPrevious() === 1
-      ) {
-        animate(
-          maskImage,
-          `linear-gradient(90deg, ${transparent}, ${opaque} ${leftInset}, ${opaque} ${rightInset}, ${transparent})`
-        )
-      }
-    })
-
-    return maskImage
-  }
-  return (
-    <section id="projects" className=" w-full bg-white dark:bg-transparent px-6 pt-6  md:h-screen md:snap-start md:snap-always   " aria-labelledby="projects-title">
-      <div className="mx-auto max-w-6xl">
-        {/* Header reveal */}
-        <motion.header
-          className="mb-8 flex flex-col items-center text-center md:mb-10"
-          initial={{ opacity: 0, y: 12 }}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ type: "spring", stiffness: 70, damping: 14, delay: 0.2 }}
-          viewport={{ once: true, margin: "-15% 0px -10% 0px" }}
+          transition={{ duration: 0.55 }}
+          viewport={{ once: true }}
+          className="mt-10 rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.05)] md:p-6"
         >
-          <p className="text-sm font-semibold uppercase tracking-widest bg-gradient-to-r from-indigo-600 to-sky-500 bg-clip-text text-transparent">{t('portfolio')}</p>
-          <h2 id="projects-title" className="mt-2 text-3xl font-extrabold text-gray-900 md:text-4xl bg-gradient-to-r from-fuchsia-500 via-sky-500 to-emerald-400 bg-clip-text text-transparent">
-            {t('title')}
-          </h2>
-          <p className="mt-3 max-w-2xl text-gray-600 dark:text-slate-400">
-            {t('subtitle')}
-          </p>
-        </motion.header>
-
-
-        <motion.div className="flex gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory px-4  scrollbar-none" ref={ref} style={{ maskImage }}>
-          {PROJECTS.map((p, i) => (
-            <ProjectCard key={p.title} {...p} index={i} t={t} />
-          ))}
+          <h3 className="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+            {t("archiveTitle")}
+          </h3>
+          <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            {archiveProjects.map((project) => (
+              <article
+                key={project.key}
+                className="rounded-[1.5rem] border border-[var(--line)] bg-transparent p-5"
+              >
+                <h4 className="text-lg font-semibold text-slate-950 dark:text-white">
+                  {t(`items.${project.key}.title`)}
+                </h4>
+                <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                  {t(`items.${project.key}.description`)}
+                </p>
+              </article>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
