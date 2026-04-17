@@ -149,7 +149,7 @@ export default function Hero() {
         >
           <div className="relative h-[18rem] w-[14.5rem] md:h-[24rem] md:w-[19rem]">
             <Image
-              src="/sebastien-chatgpt.png"
+              src="/sebastien.png"
               alt="Sébastien Legros"
               fill
               priority

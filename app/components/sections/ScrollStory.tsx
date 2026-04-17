@@ -139,7 +139,7 @@ export default function ScrollStory() {
                 className="absolute left-6 top-8 w-[12rem] rounded-[1.5rem] border border-[var(--line)] bg-white/92 p-4 shadow-[0_18px_44px_rgba(0,0,0,0.08)] md:w-[14rem]"
               >
                 <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full bg-[#efe4d4]">
-                  <Image src="/sebastien-chatgpt.png" alt="Sébastien Legros" fill className="object-cover opacity-90 mix-blend-multiply" />
+                  <Image src="/sebastien.png" alt="Sébastien Legros" fill className="object-cover opacity-90 mix-blend-multiply" />
                 </div>
                 <p className="mt-4 text-center text-sm font-bold text-slate-950">Sébastien Legros</p>
                 <p className="mt-1 text-center text-xs leading-5 text-slate-600">{t("visual.profileRole")}</p>

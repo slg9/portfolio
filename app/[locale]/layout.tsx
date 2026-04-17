@@ -87,7 +87,7 @@ export async function generateMetadata({
       siteName: t('metadata.siteName'),
       images: [
         {
-          url: '/sebastien-chatgpt.png',
+          url: '/sebastien.png',
           width: 1200,
           height: 630,
           alt: t('metadata.alt'),
@@ -98,7 +98,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t('metadata.title'),
       description: t('metadata.description'),
-      images: ['/sebastien-chatgpt.png'],
+      images: ['/sebastien.png'],
     },
     alternates: {
       canonical: 'https://sebastienlegros.me',
