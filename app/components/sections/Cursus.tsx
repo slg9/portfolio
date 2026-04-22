@@ -94,7 +94,7 @@ function TimelineItem({
             viewport={{ once: true }}
             style={{ textAlign: "right", paddingRight: 8, paddingTop: 4 }}
           >
-            <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.08)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
+            <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
               {year.split("–")[0].trim()}
             </span>
           </motion.div>
@@ -185,7 +185,7 @@ function TimelineItem({
             viewport={{ once: true }}
             style={{ paddingLeft: 8, paddingTop: 4 }}
           >
-            <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.08)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
+            <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
               {year.split("–")[0].trim()}
             </span>
           </motion.div>

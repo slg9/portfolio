@@ -4,6 +4,8 @@ import createNextIntlPlugin from 'next-intl/plugin';
 const withNextIntl = createNextIntlPlugin('./i18n.ts');
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ['192.168.1.25'],
+
   // Optimisation des images
   images: {
     formats: ['image/webp', 'image/avif'],

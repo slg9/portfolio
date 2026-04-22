@@ -85,7 +85,7 @@
   "about": {
     "title": "An approach shaped by clarity, product thinking and execution",
     "subtitle": "I favor systems that stay easy to evolve, interfaces that stay readable, and technical decisions that genuinely support the product.",
-    "body": "I enjoy building real-world web applications: back-offices, business platforms, APIs, payment flows, content systems, integrations and internal tools. My goal is to turn a fuzzy need into something usable, stable and clean to maintain over time.",
+    "body": "I enjoy building real-world web applications and business desktop software: back-offices, SaaS platforms, custom C# applications, APIs, payment flows, content systems, integrations and internal tools. My goal is to turn a fuzzy need into something usable, stable and clean to maintain over time.",
     "pillars": {
       "build": {
         "title": "Design the right thing",
@@ -243,7 +243,7 @@
     "title": "Contact",
     "subtitle": "Need to structure, ship or strengthen a product?",
     "description": "I can help on an existing product, a technical foundation that needs to be stabilized, or a new initiative that should start cleanly.",
-    "availability": "Fast answer by email. Open to freelance work, full-time opportunities and technical roles with ownership.",
+    "availability": "Open to freelance work",
     "preferEmail": "Or directly by email",
     "form": {
       "name": "Name",

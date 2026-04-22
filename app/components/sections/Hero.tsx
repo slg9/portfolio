@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
+import { usePerformanceTier } from "@/app/hooks/usePerformanceTier";
 
 // ── SATELLITE TECHNOLOGIES ────────────────────────────────────────────────────
 const TECHS = [
@@ -22,16 +23,16 @@ const TECHS = [
 
 // [radius, speed rad/s, startAngle, inclination]
 const ORBITS: [number, number, number, number][] = [
-  [110, 0.55, 0.0, 0],
-  [110, 0.55, Math.PI, 0],
-  [160, 0.38, 0.5, 15],
-  [160, 0.38, 0.5 + Math.PI, 15],
-  [210, 0.28, 1.0, -10],
-  [210, 0.28, 1.0 + Math.PI, -10],
-  [255, 0.20, 0.3, 8],
-  [255, 0.20, 0.3 + Math.PI, 8],
-  [295, 0.15, 1.6, -5],
-  [295, 0.15, 1.6 + Math.PI, -5],
+  [148, 0.55, 0.0, 0],
+  [148, 0.55, Math.PI, 0],
+  [192, 0.38, 0.5, 15],
+  [192, 0.38, 0.5 + Math.PI, 15],
+  [232, 0.28, 1.0, -10],
+  [232, 0.28, 1.0 + Math.PI, -10],
+  [270, 0.20, 0.3, 8],
+  [270, 0.20, 0.3 + Math.PI, 8],
+  [306, 0.15, 1.6, -5],
+  [306, 0.15, 1.6 + Math.PI, -5],
 ];
 
 const CANVAS_SIZE = 700;
@@ -50,22 +51,21 @@ function useIsMobile(bp = 900) {
 }
 
 // ── ORBITAL CANVAS ────────────────────────────────────────────────────────────
-function OrbitalCanvas() {
+function OrbitalCanvas({ fps = 60, compact = false }: { fps?: number; compact?: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const tooltipRef = useRef<HTMLDivElement>(null);
   const mobTipRef  = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const tooltipEl = tooltipRef.current;
     const mobTipEl  = mobTipRef.current;
-    if (!canvas || !tooltipEl || !mobTipEl) return;
+    if (!canvas || !mobTipEl) return;
 
     const ctx2d = canvas.getContext("2d");
     if (!ctx2d) return;
 
     const cvs = canvas as HTMLCanvasElement;
-    const tip = tooltipEl as HTMLDivElement;
+    const tip = tooltipRef.current; // null en mode compact
     const mob = mobTipEl as HTMLDivElement;
     const c = ctx2d as CanvasRenderingContext2D;
 
@@ -79,9 +79,40 @@ function OrbitalCanvas() {
     cvs.width = CANVAS_SIZE;
     cvs.height = CANVAS_SIZE;
 
-    const angles = ORBITS.map((o) => o[2]);
-    const satOrbits = ORBITS.map((_, i) => i);
-    const paused = new Array(TECHS.length).fill(false);
+    const FRAME_MS = 1000 / fps;
+
+    // Compact (mobile): 2 orbits, 5 satellites each, evenly spaced
+    // Radii choisies pour être visibles à 320px CSS (scale = 320/700 ≈ 0.46)
+    const TAU = Math.PI * 2;
+    // Compact (mobile) : 2 orbites, rayon calculé pour sortir de la photo (160px = rayon 80px écran)
+    // À 430px CSS : ratio 430/700 = 0.614 → photo radius canvas = 80/0.614 = 130 → inner orbit 248 > 130 ✓
+    // À 360px CSS : ratio 360/700 = 0.514 → photo radius canvas = 80/0.514 = 156 → inner orbit 248 > 156 ✓
+    const activeOrbits: [number, number, number, number][] = compact
+      ? [
+          [248, 0.42, 0,               0],
+          [248, 0.42, TAU / 5,         0],
+          [248, 0.42, (2 * TAU) / 5,   0],
+          [248, 0.42, (3 * TAU) / 5,   0],
+          [248, 0.42, (4 * TAU) / 5,   0],
+          [328, 0.28, TAU / 10,         4],
+          [328, 0.28, TAU / 10 + TAU / 5,       4],
+          [328, 0.28, TAU / 10 + (2 * TAU) / 5, 4],
+          [328, 0.28, TAU / 10 + (3 * TAU) / 5, 4],
+          [328, 0.28, TAU / 10 + (4 * TAU) / 5, 4],
+        ]
+      : ORBITS;
+
+    // Anneaux uniques à dessiner (évite les doublons sur compact)
+    const ringRadii: { r: number; inc: number }[] = compact
+      ? [{ r: 248, inc: 0 }, { r: 328, inc: 4 }]
+      : ORBITS.map(([r, , , inc]) => ({ r, inc }));
+
+    const angles = activeOrbits.map((o) => o[2]);
+    const satOrbits = activeOrbits.map((_, i) => i);
+    // frozenUntil[i] : timestamp (ms) jusqu'auquel le satellite est figé
+    // Après dégel, la vitesse remonte progressivement sur RESUME_MS
+    const frozenUntil = new Array(TECHS.length).fill(0);
+    const RESUME_MS = 900;
     let hoveredIdx = -1;
     let dragIdx = -1;
     let dragCx = 0;
@@ -90,11 +121,56 @@ function OrbitalCanvas() {
     let animId: number;
     let mobTimer: number | null = null;
 
+    function freezeSat(i: number, ms = 1400) {
+      frozenUntil[i] = performance.now() + ms;
+    }
+
+    // ── SCALE ANIMATION (balloon inflate on tap, compact only) ────────────────
+    type ScalePhase = "idle" | "inflate" | "hold" | "deflate";
+    const scalePhase  = new Array(TECHS.length).fill("idle") as ScalePhase[];
+    const scaleStart  = new Array(TECHS.length).fill(0);
+    const INFLATE_MS  = 180;
+    const HOLD_MS     = 500;
+    const DEFLATE_MS  = 500;
+
+    function easeOutBack(t: number) {
+      const c1 = 1.70158, c3 = c1 + 1;
+      return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+    }
+
+    function getBalloonScale(i: number, now: number): number {
+      const phase = scalePhase[i];
+      if (phase === "idle") return 1;
+      const el = now - scaleStart[i];
+      if (phase === "inflate") {
+        const t = Math.min(el / INFLATE_MS, 1);
+        const s = 1 + easeOutBack(t); // 1→2 avec overshoot
+        if (t >= 1) { scalePhase[i] = "hold"; scaleStart[i] = now; }
+        return s;
+      }
+      if (phase === "hold") {
+        if (el >= HOLD_MS) { scalePhase[i] = "deflate"; scaleStart[i] = now; }
+        return 2;
+      }
+      if (phase === "deflate") {
+        const t = Math.min(el / DEFLATE_MS, 1);
+        const s = 2 - t; // 2→1 linéaire
+        if (t >= 1) { scalePhase[i] = "idle"; }
+        return s;
+      }
+      return 1;
+    }
+
+    function triggerBalloon(i: number) {
+      scalePhase[i] = "inflate";
+      scaleStart[i] = performance.now();
+    }
+
     function getSatPos(satI: number) {
       const cx = CANVAS_SIZE / 2;
       const cy = CANVAS_SIZE / 2;
       const orbitI = satOrbits[satI];
-      const [radius, , , inc] = ORBITS[orbitI];
+      const [radius, , , inc] = activeOrbits[orbitI];
       const ry2 = radius * Math.cos((inc * Math.PI) / 180);
       return {
         x: cx + radius * Math.cos(angles[satI]),
@@ -102,19 +178,23 @@ function OrbitalCanvas() {
       };
     }
 
+    const hitRadius = compact ? 34 : 34;
+
     function getHit(cx: number, cy: number) {
       let found = -1;
       TECHS.forEach((_, i) => {
         if (dragIdx === i) return;
         const { x, y } = getSatPos(i);
-        if (Math.hypot(cx - x, cy - y) < 24) found = i;
+        if (Math.hypot(cx - x, cy - y) < hitRadius) found = i;
       });
       return found;
     }
 
-    function showMobTip(name: string) {
+    function showMobTip(name: string, color = "#0A84FF") {
       mob.textContent = name;
       mob.style.opacity = "1";
+      mob.style.borderColor = color;
+      mob.style.color = color;
       if (mobTimer) window.clearTimeout(mobTimer);
       mobTimer = window.setTimeout(() => { mob.style.opacity = "0"; }, 2200);
     }
@@ -124,17 +204,28 @@ function OrbitalCanvas() {
       const cy = CANVAS_SIZE / 2;
       const dist = Math.hypot(dragCx - cx, dragCy - cy);
       let best = 0, bestDiff = Infinity;
-      for (let i = 0; i < ORBITS.length; i++) {
-        const diff = Math.abs(dist - ORBITS[i][0]);
+      for (let i = 0; i < activeOrbits.length; i++) {
+        const diff = Math.abs(dist - activeOrbits[i][0]);
         if (diff < bestDiff) { bestDiff = diff; best = i; }
       }
       satOrbits[dragIdx] = best;
       angles[dragIdx] = Math.atan2(dragCy - cy, dragCx - cx);
-      paused[dragIdx] = false;
+      frozenUntil[dragIdx] = performance.now(); // dégel progressif après drag
       dragIdx = -1;
     }
 
+    // Tailles badges compact (canvas 700 affiché à 430px = ratio 0.614)
+    // Cible écran : ~52×30px normal, ~62×36px hover, font ~16px
+    // → canvas : 52/0.614=85, 30/0.614=49, font 16/0.614=26
+    const BW  = compact ? 48  : 50;   // badge width normal
+    const BH  = compact ? 27  : 26;   // badge height normal
+    const BWH = compact ? 56  : 62;   // badge width hovered
+    const BHH = compact ? 32  : 32;   // badge height hovered
+    const FS  = compact ? 15  : 12;   // font size normal
+    const FSH = compact ? 18  : 14;   // font size hovered
+
     function draw(now: number) {
+      if (now - lastT < FRAME_MS) { animId = requestAnimationFrame(draw); return; }
       const dt = Math.min((now - lastT) / 1000, 0.05);
       lastT = now;
       const cx = CANVAS_SIZE / 2;
@@ -142,41 +233,46 @@ function OrbitalCanvas() {
 
       c.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
 
-      ORBITS.forEach(([radius, , , inc], i) => {
-        const ry2 = radius * Math.cos((inc * Math.PI) / 180);
-        const orbitHovered = TECHS.some((_, si) => hoveredIdx === si && satOrbits[si] === i);
+      // Dessiner les anneaux (dédupliqués)
+      ringRadii.forEach(({ r, inc }) => {
+        const ry2 = r * Math.cos((inc * Math.PI) / 180);
+        const orbitHovered = !compact && TECHS.some((_, si) => hoveredIdx === si && activeOrbits[satOrbits[si]][0] === r);
         c.save();
         c.beginPath();
-        c.ellipse(cx, cy, radius, ry2, 0, 0, Math.PI * 2);
-        c.strokeStyle = `rgba(10,132,255,${orbitHovered ? 0.2 : 0.07})`;
-        c.lineWidth = orbitHovered ? 1 : 0.6;
-        c.setLineDash([]);
+        c.ellipse(cx, cy, r, ry2, 0, 0, Math.PI * 2);
+        c.strokeStyle = `rgba(10,132,255,${orbitHovered ? 0.4 : 0.2})`;
+        c.lineWidth = compact ? (orbitHovered ? 2.5 : 1.8) : (orbitHovered ? 1.5 : 1);
         c.stroke();
         c.restore();
       });
 
+      const nowMs = performance.now();
       angles.forEach((_, i) => {
-        if (!paused[i] && dragIdx !== i) {
-          angles[i] += ORBITS[satOrbits[i]][1] * dt;
-        }
+        if (dragIdx === i) return;
+        if (nowMs < frozenUntil[i]) return; // figé
+        const elapsed = nowMs - frozenUntil[i];
+        const factor = elapsed < RESUME_MS ? elapsed / RESUME_MS : 1; // rampe 0→1
+        angles[i] += activeOrbits[satOrbits[i]][1] * dt * factor;
       });
 
       TECHS.forEach((tech, i) => {
         const isHov = hoveredIdx === i || dragIdx === i;
         const { x, y } = dragIdx === i ? { x: dragCx, y: dragCy } : getSatPos(i);
-        const w = isHov ? 44 : 34;
-        const h = isHov ? 24 : 18;
+        const w = isHov ? BWH : BW;
+        const h = isHov ? BHH : BH;
+        const sc = compact ? getBalloonScale(i, nowMs) : 1;
 
         c.save();
+        if (sc !== 1) { c.translate(x, y); c.scale(sc, sc); c.translate(-x, -y); }
         c.beginPath();
         c.roundRect(x - w / 2, y - h / 2, w, h, h / 2);
-        c.fillStyle = tech.color + "22";
+        c.fillStyle = tech.color + "33";
         c.fill();
         c.strokeStyle = tech.color;
-        c.lineWidth = isHov ? 1.5 : 1;
+        c.lineWidth = isHov ? (compact ? 2.5 : 1.5) : (compact ? 2 : 1.2);
         c.stroke();
         c.fillStyle = tech.color;
-        c.font = `${isHov ? 700 : 600} ${isHov ? 11 : 9}px Manrope, sans-serif`;
+        c.font = `${isHov ? 700 : 600} ${isHov ? FSH : FS}px Manrope, sans-serif`;
         c.textAlign = "center";
         c.textBaseline = "middle";
         c.fillText(tech.abbr, x, y);
@@ -198,19 +294,16 @@ function OrbitalCanvas() {
       }
       const found = getHit(mx, my);
       if (found !== hoveredIdx) {
-        if (hoveredIdx >= 0 && dragIdx !== hoveredIdx) paused[hoveredIdx] = false;
+        if (hoveredIdx >= 0 && dragIdx !== hoveredIdx) frozenUntil[hoveredIdx] = performance.now(); // dégel progressif
         hoveredIdx = found;
         if (found >= 0) {
-          paused[found] = true;
-          tip.textContent = TECHS[found].name;
-          tip.style.opacity = "1";
-          tip.style.transform = "translateY(0)";
+          frozenUntil[found] = Infinity; // figé tant que hoveredIdx === found
+          if (tip) { tip.textContent = TECHS[found].name; tip.style.opacity = "1"; tip.style.transform = "translateY(0)"; }
         } else {
-          tip.style.opacity = "0";
-          tip.style.transform = "translateY(4px)";
+          if (tip) { tip.style.opacity = "0"; tip.style.transform = "translateY(4px)"; }
         }
       }
-      if (found >= 0) {
+      if (found >= 0 && tip) {
         tip.style.left = e.clientX + 16 + "px";
         tip.style.top  = e.clientY - 10 + "px";
       }
@@ -222,7 +315,7 @@ function OrbitalCanvas() {
       const found = getHit(mx, my);
       if (found >= 0) {
         dragIdx = found; dragCx = mx; dragCy = my;
-        paused[found] = true;
+        frozenUntil[found] = Infinity;
         cvs.style.cursor = "grabbing";
         e.preventDefault();
       }
@@ -233,18 +326,22 @@ function OrbitalCanvas() {
       snapToOrbit();
       hoveredIdx = -1;
       cvs.style.cursor = "default";
-      tip.style.opacity = "0";
+      if (tip) tip.style.opacity = "0";
     }
 
     function onMouseLeave() {
-      if (hoveredIdx >= 0 && dragIdx !== hoveredIdx) paused[hoveredIdx] = false;
+      if (hoveredIdx >= 0) frozenUntil[hoveredIdx] = performance.now(); // dégel progressif
       hoveredIdx = -1;
-      tip.style.opacity = "0";
+      if (tip) tip.style.opacity = "0";
       if (dragIdx >= 0) { snapToOrbit(); cvs.style.cursor = "default"; }
     }
 
     // ── TOUCH ────────────────────────────────────────────────────────────────
+    // touchedIdx = satellite touché (potentiel tap ou drag, pas encore confirmé)
+    // dragIdx    = drag confirmé (mouvement > seuil)
+    let touchedIdx = -1;
     let touchStartCx = 0, touchStartCy = 0, touchMoved = false;
+    let longPressTimer: number | null = null;
 
     function onTouchStart(e: TouchEvent) {
       const t = e.touches[0];
@@ -252,16 +349,27 @@ function OrbitalCanvas() {
       touchStartCx = x; touchStartCy = y; touchMoved = false;
       const found = getHit(x, y);
       if (found >= 0) {
-        dragIdx = found; dragCx = x; dragCy = y;
-        paused[found] = true;
-        // Pas de preventDefault ici → le scroll natif reste possible au départ
+        touchedIdx = found;
+        frozenUntil[found] = Infinity; // figer immédiatement, sans blip
+        // Long press : afficher le tooltip si le doigt reste immobile
+        longPressTimer = window.setTimeout(() => {
+          showMobTip(TECHS[found].name, TECHS[found].color);
+        }, 380);
       }
     }
 
     function onTouchMove(e: TouchEvent) {
       const t = e.touches[0];
       const { x, y } = toCanvas(t.clientX, t.clientY);
-      if (Math.hypot(x - touchStartCx, y - touchStartCy) > 12) touchMoved = true;
+      if (Math.hypot(x - touchStartCx, y - touchStartCy) > 14) {
+        touchMoved = true;
+        if (longPressTimer) { window.clearTimeout(longPressTimer); longPressTimer = null; }
+        // Confirmer le drag seulement ici — évite le blip au simple tap
+        if (touchedIdx >= 0 && dragIdx < 0) {
+          dragIdx = touchedIdx;
+          dragCx = x; dragCy = y;
+        }
+      }
       if (dragIdx >= 0) {
         dragCx = x; dragCy = y;
         angles[dragIdx] = Math.atan2(y - CANVAS_SIZE / 2, x - CANVAS_SIZE / 2);
@@ -269,16 +377,28 @@ function OrbitalCanvas() {
       }
     }
 
-    function onTouchEnd(e: TouchEvent) {
-      if (dragIdx >= 0) {
-        if (!touchMoved) showMobTip(TECHS[dragIdx].name);
+    function onTouchEnd(_e: TouchEvent) {
+      if (longPressTimer) { window.clearTimeout(longPressTimer); longPressTimer = null; }
+
+      if (!touchMoved && touchedIdx >= 0) {
+        // Tap simple : afficher tooltip + arrêt prolongé (2.2s) puis reprise progressive
+        showMobTip(TECHS[touchedIdx].name, TECHS[touchedIdx].color);
+        freezeSat(touchedIdx, 2200);
+        triggerBalloon(touchedIdx);
+      } else if (touchMoved && dragIdx >= 0) {
+        // Drag terminé : snap + tooltip + ballon + arrêt
+        const di = dragIdx;
         snapToOrbit();
-      } else if (!touchMoved) {
-        const t = e.changedTouches[0];
-        const { x, y } = toCanvas(t.clientX, t.clientY);
-        const found = getHit(x, y);
-        if (found >= 0) showMobTip(TECHS[found].name);
+        showMobTip(TECHS[di].name, TECHS[di].color);
+        freezeSat(di, 2200);
+        triggerBalloon(di);
+      } else if (touchedIdx >= 0) {
+        // Mouvement sans drag confirmé : dégel progressif
+        frozenUntil[touchedIdx] = performance.now();
       }
+
+      touchedIdx = -1;
+      dragIdx = -1;
     }
 
     cvs.addEventListener("mousemove",  onMouseMove);
@@ -292,6 +412,7 @@ function OrbitalCanvas() {
     return () => {
       cancelAnimationFrame(animId);
       if (mobTimer) window.clearTimeout(mobTimer);
+      if (longPressTimer) window.clearTimeout(longPressTimer);
       cvs.removeEventListener("mousemove",  onMouseMove);
       cvs.removeEventListener("mousedown",  onMouseDown);
       cvs.removeEventListener("mouseup",    onMouseUp);
@@ -333,23 +454,25 @@ function OrbitalCanvas() {
           whiteSpace: "nowrap", zIndex: 20,
         }}
       />
-      {/* Mouse hover tooltip */}
-      <div
-        ref={tooltipRef}
-        style={{
-          position: "fixed", zIndex: 9990,
-          background: "rgba(4,4,15,0.92)",
-          backdropFilter: "blur(12px)",
-          border: "1px solid rgba(10,132,255,0.3)",
-          borderRadius: 10,
-          padding: "6px 12px",
-          fontSize: "0.78rem", fontWeight: 500, color: "#F0F4FF",
-          pointerEvents: "none",
-          opacity: 0, transform: "translateY(4px)",
-          transition: "opacity 0.18s ease, transform 0.18s ease",
-          whiteSpace: "nowrap",
-        }}
-      />
+      {/* Mouse hover tooltip — desktop only */}
+      {!compact && (
+        <div
+          ref={tooltipRef}
+          style={{
+            position: "fixed", zIndex: 9990,
+            background: "rgba(4,4,15,0.92)",
+            backdropFilter: "blur(12px)",
+            border: "1px solid rgba(10,132,255,0.3)",
+            borderRadius: 10,
+            padding: "6px 12px",
+            fontSize: "0.78rem", fontWeight: 500, color: "#F0F4FF",
+            pointerEvents: "none",
+            opacity: 0, transform: "translateY(4px)",
+            transition: "opacity 0.18s ease, transform 0.18s ease",
+            whiteSpace: "nowrap",
+          }}
+        />
+      )}
     </>
   );
 }
@@ -445,11 +568,12 @@ function PhotoCard() {
 }
 
 // ── BIENVENUE HANDWRITING ANIMATION ──────────────────────────────────────────
-function WelcomeHandwriting({ text }: { text: string }) {
+function WelcomeHandwriting({ text, simple = false }: { text: string; simple?: boolean }) {
   const revealRef = useRef<SVGRectElement>(null);
   const nibRef = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
+    if (simple) return; // version simplifiée : pas de RAF
     if (!revealRef.current || !nibRef.current) return;
     const reveal = revealRef.current as SVGRectElement;
     const nib = nibRef.current as SVGCircleElement;
@@ -483,7 +607,33 @@ function WelcomeHandwriting({ text }: { text: string }) {
 
     animId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animId);
-  }, []);
+  }, [simple]);
+
+  // Version simple : texte visible immédiatement, fondu CSS via le parent
+  if (simple) {
+    return (
+      <svg viewBox="0 0 580 68" className="hero-welcome-svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="heroWgf" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#0A84FF" />
+            <stop offset="50%" stopColor="#00D4FF" />
+            <stop offset="100%" stopColor="#00FFB3" />
+          </linearGradient>
+        </defs>
+        <text
+          x="290" y="54"
+          textAnchor="middle"
+          fontFamily="var(--font-script), cursive"
+          fontSize="46"
+          fontWeight="700"
+          fill="url(#heroWgf)"
+          style={{ letterSpacing: "0.02em" }}
+        >
+          {text}
+        </text>
+      </svg>
+    );
+  }
 
   return (
     <svg viewBox="0 0 580 68" className="hero-welcome-svg" aria-hidden="true">
@@ -498,7 +648,8 @@ function WelcomeHandwriting({ text }: { text: string }) {
         <rect ref={revealRef} x="0" y="0" width="0" height="80" />
       </clipPath>
       <text
-        x="2" y="54"
+        x="290" y="54"
+        textAnchor="middle"
         fontFamily="var(--font-script), cursive"
         fontSize="46"
         fontWeight="700"
@@ -513,7 +664,6 @@ function WelcomeHandwriting({ text }: { text: string }) {
         cx="2" cy="46" r="3.5"
         fill="#00D4FF"
         opacity="0"
-        style={{ filter: "drop-shadow(0 0 5px #00D4FF) drop-shadow(0 0 12px rgba(0,212,255,0.6))" }}
       />
     </svg>
   );
@@ -563,6 +713,14 @@ export default function Hero() {
   const [introReady, setIntroReady] = useState(false);
   const [heroVisible, setHeroVisible] = useState(false);
   const isMobile = useIsMobile(900);
+  const caps = usePerformanceTier();
+
+  // Derived from real device capabilities
+  const isLowEnd = caps ? (caps.isMobile || (caps.cores !== null && caps.cores < 6)) : false;
+  const canvasFps = caps ? (caps.tier === "high" ? 60 : caps.tier === "medium" ? 45 : 24) : 60;
+  const showGlows = !isLowEnd;
+  const orbitalDelay = isLowEnd ? 0.4 : 2.5;
+  const simpleWelcome = isLowEnd;
 
   const cvHref = pathname.startsWith("/en")
     ? "/docs/Sebastien_Legros_CV_EN.pdf"
@@ -612,38 +770,42 @@ export default function Hero() {
         .hero-orbital-mobile { display:none; }
         .hero-scroll-indicator { display:flex; }
         @media (max-width:900px) {
-          .hero-grid { grid-template-columns:1fr; padding:88px 6vw 56px; min-height:auto; height:auto; gap:0; overflow:visible; }
+          .hero-grid { grid-template-columns:1fr; padding:112px 6vw 56px; min-height:auto; height:auto; gap:0; overflow:hidden; }
           .hero-left { max-width:100%; gap:20px; }
           .hero-right { display:none; }
-          .hero-orbital-mobile { display:block; position:relative; height:320px; overflow:hidden; margin:4px 0; }
-          .hero-orbital-canvas { width:320px !important; height:320px !important; touch-action:pan-y; }
+          .hero-orbital-mobile { display:block; position:relative; height:430px; overflow:hidden; margin:8px 0; }
+          .hero-orbital-canvas { width:430px !important; height:430px !important; touch-action:pan-y; }
           .hero-scroll-indicator { display:none; }
+          .hero-welcome-svg { width:100%; }
+          .hero-welcome-wrapper { display:flex; justify-content:center; }
+          .hero-name { text-align:center; }
         }
         @media (max-width:600px) {
-          .hero-grid { padding:72px 5vw 40px; }
-          .hero-orbital-mobile { height:260px; }
-          .hero-orbital-canvas { width:260px !important; height:260px !important; }
+          .hero-grid { padding:100px 5vw 40px; }
+          .hero-orbital-mobile { height:360px; }
+          .hero-orbital-canvas { width:360px !important; height:360px !important; }
         }
       `}</style>
 
-      {/* Blue glow top-left */}
-      <div style={{
-        position: "absolute", borderRadius: "50%", pointerEvents: "none",
-        filter: "blur(100px)", opacity: 0.18,
-        width: 700, height: 700,
-        background: "radial-gradient(#0A84FF, transparent 70%)",
-        top: -200, left: -150,
-        animation: "heroGlow1 14s ease-in-out infinite alternate",
-      }} />
-      {/* Pink glow bottom-right */}
-      <div style={{
-        position: "absolute", borderRadius: "50%", pointerEvents: "none",
-        filter: "blur(100px)", opacity: 0.12,
-        width: 500, height: 500,
-        background: "radial-gradient(#FF2D6B, transparent 70%)",
-        bottom: -100, right: 100,
-        animation: "heroGlow2 18s ease-in-out infinite alternate-reverse",
-      }} />
+      {/* Glows — supprimés sur les appareils low-end */}
+      {showGlows && <>
+        <div className="hero-glow" style={{
+          position: "absolute", borderRadius: "50%", pointerEvents: "none",
+          filter: "blur(100px)", opacity: 0.18,
+          width: 700, height: 700,
+          background: "radial-gradient(#0A84FF, transparent 70%)",
+          top: -200, left: -150,
+          animation: "heroGlow1 14s ease-in-out infinite alternate",
+        }} />
+        <div className="hero-glow" style={{
+          position: "absolute", borderRadius: "50%", pointerEvents: "none",
+          filter: "blur(100px)", opacity: 0.12,
+          width: 500, height: 500,
+          background: "radial-gradient(#FF2D6B, transparent 70%)",
+          bottom: -100, right: 100,
+          animation: "heroGlow2 18s ease-in-out infinite alternate-reverse",
+        }} />
+      </>}
 
       {/* Grid overlay */}
       <div style={{
@@ -676,15 +838,32 @@ export default function Hero() {
 
         {/* Bienvenue handwriting */}
         <motion.div
+          className="hero-welcome-wrapper"
           initial={{ opacity: 0 }}
           animate={heroVisible ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
-          <WelcomeHandwriting text={t("welcome")} />
+          <WelcomeHandwriting text={t("welcome")} simple={simpleWelcome} />
         </motion.div>
+
+        {/* Orbital system — mobile only, between welcome and name */}
+        {isMobile && heroVisible && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: orbitalDelay }}
+            className="hero-orbital-mobile"
+          >
+            <OrbitalCanvas fps={canvasFps} compact />
+            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", zIndex: 10 }}>
+              <PhotoCard />
+            </div>
+          </motion.div>
+        )}
 
         {/* Name */}
         <motion.div
+          className="hero-name"
           initial={{ opacity: 0, y: 20 }}
           animate={heroVisible ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -710,21 +889,6 @@ export default function Hero() {
             Legros
           </span>
         </motion.div>
-
-        {/* Orbital system — mobile only, appears right after the name */}
-        {isMobile && heroVisible && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1 }}
-            className="hero-orbital-mobile"
-          >
-            <OrbitalCanvas />
-            <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", zIndex: 10 }}>
-              <PhotoCard />
-            </div>
-          </motion.div>
-        )}
 
         {/* Title pill + role */}
         <motion.div
@@ -880,7 +1044,7 @@ export default function Hero() {
           transition={{ duration: 1, delay: 1 }}
           className="hero-right"
         >
-          {heroVisible && <OrbitalCanvas />}
+          {heroVisible && <OrbitalCanvas fps={canvasFps} />}
           <div style={{ position: "relative", zIndex: 10 }}>
             <PhotoCard />
           </div>

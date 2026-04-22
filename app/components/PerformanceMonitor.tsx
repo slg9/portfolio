@@ -5,7 +5,6 @@ import Lottie from "lottie-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 import devCodingAnimation from "@/public/lotties/dev-coding.json";
-
 export default function PerformanceMonitor() {
   const t = useTranslations("loading");
   const reduceMotion = useReducedMotion();
@@ -66,6 +65,7 @@ export default function PerformanceMonitor() {
   }, [reduceMotion, words.length]);
 
   return (
+    <>
     <AnimatePresence>
       {visible && (
         <motion.div
@@ -110,7 +110,7 @@ export default function PerformanceMonitor() {
                   />
                 </div>
 
-                <div className="min-h-7 text-center text-sm font-medium text-slate-600 dark:text-slate-300">
+                <div className="min-h-7 text-center text-sm font-medium" style={{ color: "#6B7A99" }}>
                   <span className="mr-2">{t("prefix")}</span>
                   <AnimatePresence mode="wait">
                     <motion.span
@@ -119,7 +119,8 @@ export default function PerformanceMonitor() {
                       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                       exit={{ opacity: 0, y: -10, filter: "blur(6px)" }}
                       transition={{ duration: 0.25 }}
-                      className="inline-block font-semibold text-slate-950 dark:text-white"
+                      className="inline-block font-semibold"
+                      style={{ color: "#F0F4FF" }}
                     >
                       {words[wordIndex]}
                     </motion.span>
@@ -131,5 +132,7 @@ export default function PerformanceMonitor() {
         </motion.div>
       )}
     </AnimatePresence>
+
+    </>
   );
 }

@@ -184,6 +184,7 @@ export default function ContactForm({
                     <Lottie
                         animationData={sendAnimation}
                         loop={false}
+                        onComplete={() => setStatus("idle")}
                         style={{ width: "100%", height: "auto" }}
                     />
                 </div>

@@ -45,6 +45,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  if (!locales.includes(locale as any)) return {};
   const messages = await getMessages({ locale });
   const t = (key: string) => {
     const keys = key.split('.');
