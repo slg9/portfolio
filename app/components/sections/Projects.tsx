@@ -256,6 +256,8 @@ function ArchiveCard3D({
   const rotateY = useSpring(useTransform(mx, [0, 1], [-9, 9]), { stiffness: 260, damping: 26 });
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    // Ignore if touch-initiated (e.buttons === 0 and no actual pointer)
+    if (e.nativeEvent instanceof MouseEvent && (e.nativeEvent as MouseEvent).movementX === 0 && (e.nativeEvent as MouseEvent).movementY === 0) return;
     const rect = cardRef.current?.getBoundingClientRect();
     if (!rect) return;
     mx.set((e.clientX - rect.left) / rect.width);
@@ -270,11 +272,11 @@ function ArchiveCard3D({
   return (
     <motion.div
       ref={cardRef}
-      initial={{ opacity: 0, y: 28, scale: 0.88 }}
+      initial={{ opacity: 0, y: 20, scale: 0.92 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, margin: "-5% 0px -5% 0px" }}
-      transition={{ duration: 0.65, delay: index * 0.055, ease: [0.22, 1, 0.36, 1] }}
-      style={{ perspective: "900px" }}
+      transition={{ duration: 0.55, delay: index * 0.045, ease: [0.22, 1, 0.36, 1] }}
+      style={{ perspective: "900px", touchAction: "pan-y" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
@@ -289,6 +291,7 @@ function ArchiveCard3D({
           background: "rgba(8,10,30,0.88)",
           padding: "22px",
           cursor: "pointer",
+          touchAction: "pan-y",
         }}
         animate={{
           borderColor: expanded ? `${color}55` : "rgba(255,255,255,0.07)",
@@ -419,8 +422,8 @@ export default function Projects() {
           {featuredProjects.map((project, index) => (
             <motion.article
               key={project.key}
-              initial={{ opacity: 0, y: 26, scale: 0.975, filter: "blur(10px)" }}
-              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+              initial={{ opacity: 0, y: 26, scale: 0.975 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
               whileHover={{ y: -4, borderColor: "rgba(10,132,255,0.3)", boxShadow: "0 28px 70px rgba(10,132,255,0.08)" }}
               transition={{ duration: 0.85, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
@@ -429,6 +432,7 @@ export default function Projects() {
                 borderRadius: 22, border: "1px solid rgba(255,255,255,0.07)",
                 background: "rgba(8,10,30,0.7)", padding: "16px",
                 boxShadow: "0 20px 55px rgba(0,0,0,0.22)",
+                touchAction: "pan-y",
               }}
               className="md:grid-cols-[0.92fr_1.08fr] md:p-6"
             >

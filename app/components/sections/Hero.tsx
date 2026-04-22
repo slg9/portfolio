@@ -481,6 +481,7 @@ function OrbitalCanvas({ fps = 60, compact = false }: { fps?: number; compact?: 
 function PhotoCard() {
   const sceneRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
+  const isSpinningRef = useRef(false);
 
   useEffect(() => {
     const scene = sceneRef.current;
@@ -488,6 +489,7 @@ function PhotoCard() {
     if (!scene || !card) return;
 
     function onMove(e: MouseEvent) {
+      if (isSpinningRef.current) return;
       const r = scene!.getBoundingClientRect();
       const x = (e.clientX - r.left) / r.width - 0.5;
       const y = (e.clientY - r.top) / r.height - 0.5;
@@ -496,15 +498,33 @@ function PhotoCard() {
     }
 
     function onLeave() {
+      if (isSpinningRef.current) return;
       card!.style.transform = "";
       card!.style.boxShadow = "";
     }
 
+    function onClick() {
+      if (isSpinningRef.current) return;
+      isSpinningRef.current = true;
+      card!.style.transition = "none";
+      card!.style.animation = "heroPhotoSpin 0.72s cubic-bezier(0.4,0,0.2,1)";
+    }
+
+    function onAnimationEnd() {
+      card!.style.animation = "";
+      card!.style.transition = "transform 0.7s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s ease";
+      isSpinningRef.current = false;
+    }
+
     scene.addEventListener("mousemove", onMove);
     scene.addEventListener("mouseleave", onLeave);
+    scene.addEventListener("click", onClick);
+    card.addEventListener("animationend", onAnimationEnd);
     return () => {
       scene.removeEventListener("mousemove", onMove);
       scene.removeEventListener("mouseleave", onLeave);
+      scene.removeEventListener("click", onClick);
+      card.removeEventListener("animationend", onAnimationEnd);
     };
   }, []);
 
@@ -760,6 +780,7 @@ export default function Hero() {
         @keyframes heroScrollDot { 0%{top:-16px;opacity:1;} 80%{top:50px;opacity:0.2;} 100%{top:50px;opacity:0;} }
         @keyframes heroFrameGlow { 0%{opacity:0.5;} 100%{opacity:1;} }
         @keyframes heroGs { 0%{background-position:0%;} 100%{background-position:200%;} }
+        @keyframes heroPhotoSpin { 0%{transform:rotateY(0deg);} 50%{transform:rotateY(180deg) scale(1.05);} 100%{transform:rotateY(360deg);} }
 
         /* Hero responsive */
         .hero-grid { display:grid; grid-template-columns:1fr 1fr; align-items:center; padding:0 7vw; min-height:100vh; }

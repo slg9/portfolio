@@ -27,7 +27,7 @@
     "welcome": "Bienvenue sur mon portfolio",
     "name": "Sébastien Legros",
     "role": "Développeur web & logiciel",
-    "summary": "Aujourd’hui, je conçois à la fois des applications web et des logiciels métier. Front, back, desktop et data: React, Blazor, C#, WPF, WinForms, DevExpress, SQL Server, XAF/XPO et architectures robustes.",
+    "summary": "Aujourd’hui, je conçois à la fois des applications web et des logiciels métier. Front, back, desktop et data: React, Blazor, Golang, C#, WPF, WinForms, DevExpress, SQL Server, PostgreSQL, XAF/XPO et architectures robustes.",
     "eyebrow": "Full-stack engineer basé à La Réunion",
     "titleLine1": "Je conçois des interfaces nettes,",
     "titleLine2": "des backends solides",
@@ -75,7 +75,7 @@
       "hello": "Point de départ",
       "welcomeTitle": "Un message simple, une photo, une direction.",
       "welcomeBody": "Pas de bruit inutile. Juste une présence claire qui donne envie de lire.",
-      "profileRole": "React, Blazor, C#, WPF, WinForms, SQL Server",
+      "profileRole": "React, Blazor,Golang, C#, WPF, WinForms, SQL Server",
       "caseStudy": "Case study",
       "caseTitle": "Le contenu arrive après la structure.",
       "caseBody": "Quand la base est lisible, on peut révéler projets, impact et contact avec beaucoup plus de fluidité.",
@@ -271,6 +271,8 @@
     "and": "&",
     "deployedOn": "déployé sur",
     "viewSource": "Voir le code source sur GitHub",
-    "copyright": "© {year} Sébastien Legros — Tous droits réservés"
+    "copyright": "© {year} Sébastien Legros — Tous droits réservés",
+    "stack": "Stack",
+    "productionReady": "production ready"
   }
 }

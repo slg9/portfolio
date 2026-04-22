@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useSpring, useVelocity, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -131,6 +131,70 @@ export default function Header() {
 
   const underlineId = useMemo(() => "nav-underline", []);
 
+  // ── NAV CURSOR BLOB ───────────────────────────────────────────────────────────
+  const navRef = useRef<HTMLElement>(null);
+
+  // Fluid spring — high mass + low damping = natural overshoot & gentle settling
+  const rawX = useMotionValue(0);
+  const rawY = useMotionValue(0);
+  const springX = useSpring(rawX, { stiffness: 110, damping: 17, mass: 0.9 });
+  const springY = useSpring(rawY, { stiffness: 110, damping: 17, mass: 0.9 });
+
+  // Width spring — pill expansion on snap
+  const rawW = useMotionValue(38);
+  const springW = useSpring(rawW, { stiffness: 160, damping: 24, mass: 0.6 });
+
+  // Velocity of the spring output (lags behind cursor → feels physical)
+  const vx = useVelocity(springX);
+  const vy = useVelocity(springY);
+
+  // Gentle squash-and-stretch — barely perceptible at rest, visible on fast sweeps
+  const speed = useTransform([vx, vy], ([x, y]) =>
+    Math.sqrt((x as number) ** 2 + (y as number) ** 2)
+  );
+  const stretch = useTransform(speed, [0, 220, 800], [1, 1.14, 1.38], { clamp: true });
+  const squash  = useTransform(speed, [0, 220, 800], [1, 0.90, 0.76], { clamp: true });
+
+  // Rotation follows movement direction; freezes when nearly still
+  const angle = useTransform([vx, vy], ([x, y]) => {
+    const s = Math.sqrt((x as number) ** 2 + (y as number) ** 2);
+    if (s < 18) return 0;
+    return Math.atan2(y as number, x as number) * (180 / Math.PI);
+  });
+
+  // Centered position (top-left of blob = center − half-size)
+  const BLOB_H = 38;
+  const bulletX = useTransform([springX, springW], ([sx, sw]) => (sx as number) - (sw as number) / 2);
+  const bulletY = useTransform(springY, sy => sy - BLOB_H / 2);
+
+  const [navActive, setNavActive] = useState(false);
+  const snappedRef = useRef(false);
+  const [snapped, setSnapped] = useState(false);
+
+  const onNavMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
+    if (snappedRef.current || !navRef.current) return;
+    const rect = navRef.current.getBoundingClientRect();
+    rawX.set(e.clientX - rect.left);
+    rawY.set(e.clientY - rect.top);
+  }, [rawX, rawY]);
+
+  const onItemEnter = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
+    if (!navRef.current) return;
+    const btnRect = e.currentTarget.getBoundingClientRect();
+    const navRect = navRef.current.getBoundingClientRect();
+    rawX.set(btnRect.left + btnRect.width / 2 - navRect.left);
+    rawY.set(btnRect.top + btnRect.height / 2 - navRect.top);
+    rawW.set(btnRect.width + 6);
+    snappedRef.current = true;
+    setSnapped(true);
+  }, [rawX, rawY, rawW]);
+
+  const onItemLeave = useCallback(() => {
+    rawW.set(BLOB_H);
+    snappedRef.current = false;
+    setSnapped(false);
+  }, [rawW]);
+
   return (
     <motion.header
       className="fixed inset-x-0 top-0 z-50"
@@ -191,14 +255,63 @@ export default function Header() {
           </button>
 
           {/* Desktop nav */}
-          <nav className="hidden md:block">
-            <ul className="flex items-center gap-1">
+          <nav
+            ref={navRef}
+            className="hidden md:block"
+            style={{ position: "relative" }}
+            onMouseEnter={() => setNavActive(true)}
+            onMouseLeave={() => { setNavActive(false); snappedRef.current = false; setSnapped(false); }}
+            onMouseMove={onNavMouseMove}
+          >
+            {/* Foggy cursor orb — behind text */}
+            <AnimatePresence>
+              {navActive && (
+                <motion.div
+                  key="nav-blob"
+                  style={{
+                    position: "absolute",
+                    top: 0, left: 0,
+                    x: bulletX,
+                    y: bulletY,
+                    width: springW,
+                    height: BLOB_H,
+                    borderRadius: BLOB_H / 2,
+                    scaleX: stretch,
+                    scaleY: squash,
+                    rotate: angle,
+                    pointerEvents: "none",
+                    zIndex: 0,
+                    // Radial gradient → dense core fading to transparent edges
+                    background: snapped
+                      ? "radial-gradient(ellipse at center, rgba(10,132,255,0.38) 0%, rgba(10,132,255,0.10) 60%, transparent 100%)"
+                      : "radial-gradient(ellipse at center, rgba(10,132,255,0.45) 0%, rgba(10,132,255,0.10) 55%, transparent 100%)",
+                    // Soft diffuse glow around the orb
+                    boxShadow: snapped
+                      ? "0 0 28px 10px rgba(10,132,255,0.14), 0 0 6px 2px rgba(10,132,255,0.22)"
+                      : "0 0 22px 8px rgba(10,132,255,0.18)",
+                    // Blur the blob itself for smoky/foggy edges
+                    filter: "blur(6px)",
+                  }}
+                  initial={{ opacity: 0, scale: 0.4 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.4 }}
+                  transition={{
+                    opacity: { duration: 0.35, ease: "easeOut" },
+                    scale:   { type: "spring", stiffness: 180, damping: 22 },
+                  }}
+                />
+              )}
+            </AnimatePresence>
+
+            <ul className="flex items-center gap-1" style={{ position: "relative", zIndex: 1 }}>
               {NAV_KEYS.map((item) => {
                 const isActive = active === item.target.toLowerCase();
                 return (
                   <li key={item.target} className="relative">
                     <button
                       onClick={() => go(item.target)}
+                      onMouseEnter={onItemEnter}
+                      onMouseLeave={onItemLeave}
                       className="relative cursor-pointer rounded-full px-3 py-2 text-sm font-medium transition-colors"
                       style={{ color: isActive ? "#F0F4FF" : "#6B7A99" }}
                       aria-current={isActive ? "page" : undefined}

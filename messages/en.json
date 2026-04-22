@@ -27,7 +27,7 @@
     "welcome": "Welcome to my portfolio",
     "name": "Sébastien Legros",
     "role": "Web & software developer",
-    "summary": "Today I design both web applications and business software. Frontend, backend, desktop and data: React, Blazor, C#, WPF, WinForms, DevExpress, SQL Server, XAF/XPO and robust application architecture.",
+    "summary": "Today I design both web applications and business software. Frontend, backend, desktop and data: React, Blazor,Golang, C#, WPF, WinForms, DevExpress, SQL Server,PostgreSQL, XAF/XPO and robust application architecture.",
     "eyebrow": "Full-stack engineer based in Reunion Island",
     "titleLine1": "I build clear interfaces,",
     "titleLine2": "solid backends",
@@ -75,7 +75,7 @@
       "hello": "Starting point",
       "welcomeTitle": "A simple message, a portrait, a direction.",
       "welcomeBody": "No unnecessary noise. Just a clear presence that makes you want to keep reading.",
-      "profileRole": "React, Blazor, C#, WPF, WinForms, SQL Server",
+      "profileRole": "React, Blazor, Golang, C#, WPF, WinForms, SQL Server",
       "caseStudy": "Case study",
       "caseTitle": "Content lands better once the structure is there.",
       "caseBody": "When the foundation is readable, projects, impact and contact can be revealed with much more rhythm.",
@@ -271,6 +271,8 @@
     "and": "&",
     "deployedOn": "deployed on",
     "viewSource": "View source on GitHub",
-    "copyright": "© {year} Sébastien Legros — All rights reserved"
+    "copyright": "© {year} Sébastien Legros — All rights reserved",
+    "stack": "Stack",
+    "productionReady": "production ready"
   }
 }
