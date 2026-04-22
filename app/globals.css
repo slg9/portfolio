@@ -70,3 +70,49 @@ button {
 * {
   border-color: var(--line);
 }
+
+/* ── MOBILE PERFORMANCE ──────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  /* Freeze all Framer Motion blur filters — très lourds sur GPU mobile */
+  [style*="filter"] {
+    filter: none !important;
+  }
+
+  /* Désactiver les animations CSS des icônes (pillar, techno) */
+  .pillar-home-ring,
+  .pillar-center-pulse,
+  .pillar-gear-big,
+  .pillar-gear-small,
+  .pd1, .pd2,
+  .pillar-check-draw,
+  .react-orbit1, .react-orbit2, .react-orbit3,
+  .react-nucleus,
+  .api-node1, .api-node2, .api-node3, .api-node4,
+  .api-spoke,
+  .code-line1, .code-line2, .code-line3, .code-line4,
+  .win-cursor {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Désactiver les glows animés du hero */
+  [class*="heroGlow"],
+  [style*="heroGlow1"],
+  [style*="heroGlow2"] {
+    animation: none !important;
+  }
+
+  /* S'assurer que le scroll fonctionne */
+  html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    height: auto;
+    min-height: 100%;
+  }
+
+  /* Le canvas orbital ne doit pas bloquer le scroll vertical quand on ne drag pas */
+  .hero-orbital-canvas {
+    touch-action: pan-y;
+  }
+}

@@ -1,5 +1,7 @@
 "use server";
 
+import { Resend } from "resend";
+
 function escapeHtml(str: string) {
   return String(str)
     .replace(/&/g, "&amp;").replace(/</g, "&lt;")
@@ -27,7 +29,6 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
 </head>
 <body style="margin:0;padding:0;background:#04040F;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;">
 
-  <!-- Outer wrapper -->
   <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#04040F;padding:40px 16px;">
     <tr><td align="center">
       <table width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;">
@@ -37,7 +38,7 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
           <td style="height:3px;background:linear-gradient(90deg,#0A84FF,#00D4FF,#00FFB3);border-radius:3px 3px 0 0;"></td>
         </tr>
 
-        <!-- Header card -->
+        <!-- Header -->
         <tr>
           <td style="background:#080A1E;border-left:1px solid rgba(255,255,255,0.07);border-right:1px solid rgba(255,255,255,0.07);padding:28px 32px 20px;">
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
@@ -62,7 +63,7 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
           </td>
         </tr>
 
-        <!-- Divider line -->
+        <!-- Divider -->
         <tr>
           <td style="background:#080A1E;border-left:1px solid rgba(255,255,255,0.07);border-right:1px solid rgba(255,255,255,0.07);padding:0 32px;">
             <div style="height:1px;background:linear-gradient(90deg,#0A84FF,rgba(10,132,255,0.2),transparent);"></div>
@@ -82,19 +83,13 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
           </td>
         </tr>
 
-        <!-- Message block -->
+        <!-- Message -->
         <tr>
           <td style="background:#080A1E;border-left:1px solid rgba(255,255,255,0.07);border-right:1px solid rgba(255,255,255,0.07);padding:0 32px 28px;">
-            <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              <tr>
-                <td>
-                  <div style="background:#04040F;border:1px solid rgba(10,132,255,0.2);border-left:3px solid #0A84FF;border-radius:10px;padding:20px 22px;">
-                    <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#0A84FF;">Message</p>
-                    <p style="margin:0;font-size:14px;line-height:1.8;color:#C8D0E8;white-space:pre-wrap;">${escapeHtml(message)}</p>
-                  </div>
-                </td>
-              </tr>
-            </table>
+            <div style="background:#04040F;border:1px solid rgba(10,132,255,0.2);border-left:3px solid #0A84FF;border-radius:10px;padding:20px 22px;">
+              <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#0A84FF;">Message</p>
+              <p style="margin:0;font-size:14px;line-height:1.8;color:#C8D0E8;white-space:pre-wrap;">${escapeHtml(message)}</p>
+            </div>
           </td>
         </tr>
 
@@ -146,50 +141,28 @@ export async function sendMailjet(formData: FormData) {
     throw new Error("Missing required fields");
   }
 
-  const html = buildHtml(name, email, phone, company, subject, message);
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   const textPart = [
     `De : ${name} <${email}>`,
-    phone   ? `Téléphone : ${phone}`   : null,
+    phone   ? `Téléphone : ${phone}`    : null,
     company ? `Entreprise : ${company}` : null,
     subject ? `Sujet : ${subject}`      : null,
     "",
     message,
   ].filter(Boolean).join("\n");
 
-  const payload = {
-    Messages: [
-      {
-        // IMPORTANT: utiliser un domaine vérifié dans Mailjet (pas @gmail.com)
-        // pour éviter les spams — configurer MAIL_FROM_EMAIL avec un domaine propre
-        From:    { Email: process.env.MAIL_FROM_EMAIL!, Name: process.env.MAIL_FROM_NAME || "Portfolio" },
-        To:      [{ Email: process.env.MAIL_TO_EMAIL!, Name: process.env.MAIL_TO_NAME || "Sébastien" }],
-        ReplyTo: { Email: email, Name: name },
-        Subject: subject ? `[Portfolio] ${subject}` : `[Portfolio] Message de ${name}`,
-        TextPart: textPart,
-        HTMLPart: html,
-        CustomID: "portfolio-contact",
-      },
-    ],
-  };
-
-  const auth = Buffer.from(
-    `${process.env.MJ_APIKEY_PUBLIC}:${process.env.MJ_APIKEY_PRIVATE}`
-  ).toString("base64");
-
-  const res = await fetch("https://api.mailjet.com/v3.1/send", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Basic ${auth}`,
-    },
-    body: JSON.stringify(payload),
-    cache: "no-store",
+  const { error } = await resend.emails.send({
+    from: process.env.RESEND_FROM_EMAIL!,
+    to:   [process.env.MAIL_TO_EMAIL!],
+    replyTo: `${name} <${email}>`,
+    subject: subject ? `[Portfolio] ${subject}` : `[Portfolio] Message de ${name}`,
+    text: textPart,
+    html: buildHtml(name, email, phone, company, subject, message),
   });
 
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(`Mailjet error ${res.status}: ${text || res.statusText}`);
+  if (error) {
+    throw new Error(`Resend error: ${error.message}`);
   }
 
   return { ok: true };

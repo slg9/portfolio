@@ -254,7 +254,7 @@ function OrbitalCanvas() {
       if (found >= 0) {
         dragIdx = found; dragCx = x; dragCy = y;
         paused[found] = true;
-        e.preventDefault();
+        // Pas de preventDefault ici → le scroll natif reste possible au départ
       }
     }
 
@@ -285,7 +285,7 @@ function OrbitalCanvas() {
     cvs.addEventListener("mousedown",  onMouseDown);
     cvs.addEventListener("mouseup",    onMouseUp);
     cvs.addEventListener("mouseleave", onMouseLeave);
-    cvs.addEventListener("touchstart", onTouchStart, { passive: false });
+    cvs.addEventListener("touchstart", onTouchStart, { passive: true });
     cvs.addEventListener("touchmove",  onTouchMove,  { passive: false });
     cvs.addEventListener("touchend",   onTouchEnd);
 
@@ -591,7 +591,7 @@ export default function Hero() {
       style={{
         position: "relative",
         background: "#04040F",
-        overflowX: "hidden",
+        overflow: "hidden",
       }}
     >
       {/* Keyframe styles */}
@@ -612,17 +612,17 @@ export default function Hero() {
         .hero-orbital-mobile { display:none; }
         .hero-scroll-indicator { display:flex; }
         @media (max-width:900px) {
-          .hero-grid { grid-template-columns:1fr; padding:88px 6vw 56px; min-height:auto; gap:0; }
+          .hero-grid { grid-template-columns:1fr; padding:88px 6vw 56px; min-height:auto; height:auto; gap:0; overflow:visible; }
           .hero-left { max-width:100%; gap:20px; }
           .hero-right { display:none; }
           .hero-orbital-mobile { display:block; position:relative; height:320px; overflow:hidden; margin:4px 0; }
-          .hero-orbital-canvas { width:320px !important; height:320px !important; }
+          .hero-orbital-canvas { width:320px !important; height:320px !important; touch-action:pan-y; }
           .hero-scroll-indicator { display:none; }
         }
         @media (max-width:600px) {
           .hero-grid { padding:72px 5vw 40px; }
-          .hero-orbital-mobile { height:280px; }
-          .hero-orbital-canvas { width:280px !important; height:280px !important; }
+          .hero-orbital-mobile { height:260px; }
+          .hero-orbital-canvas { width:260px !important; height:260px !important; }
         }
       `}</style>
 
