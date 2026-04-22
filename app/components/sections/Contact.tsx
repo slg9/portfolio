@@ -9,52 +9,92 @@ export default function Contact() {
   const t = useTranslations("contact");
 
   return (
-    <motion.section
+    <section
       id="contact"
-      className="px-6 py-16 md:px-10 md:py-20"
       aria-labelledby="contact-title"
-      initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: true, margin: "-8% 0px -8% 0px" }}
+      style={{
+        position: "relative",
+        background: "#04040F",
+        padding: "72px 8vw",
+      }}
     >
-      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+      {/* Top divider */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 1,
+          background: "linear-gradient(90deg, transparent, rgba(10,132,255,0.3), transparent)",
+        }}
+      />
+
+      <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr]" style={{ maxWidth: 1152, margin: "0 auto" }}>
+        {/* Left column */}
         <motion.div
           initial={{ opacity: 0, y: 18, x: -16, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, x: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
+          {/* Tag */}
+          <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
+            <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }} />
             {t("title")}
-          </p>
+          </div>
+
           <h2
             id="contact-title"
-            className="mt-4 max-w-lg text-3xl font-extrabold tracking-[-0.04em] text-slate-950 dark:text-white md:text-4xl"
+            style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0, maxWidth: 420 }}
           >
             {t("subtitle")}
           </h2>
-          <p className="mt-5 max-w-xl text-base leading-8 text-slate-700 dark:text-slate-300">
+          <p style={{ marginTop: 20, maxWidth: "48ch", fontSize: "1rem", lineHeight: 2, color: "#6B7A99", fontFamily: "var(--font-body), sans-serif" }}>
             {t("description")}
           </p>
-          <p className="mt-5 max-w-xl text-sm leading-7 text-slate-600 dark:text-slate-300">
-            {t("availability")}
-          </p>
 
-          <div className="mt-8 space-y-3 text-sm">
+          {/* Availability badge */}
+          <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(0,255,179,0.08)", border: "1px solid rgba(0,255,179,0.2)", borderRadius: 999, padding: "6px 14px" }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#00FFB3", boxShadow: "0 0 8px #00FFB3", animation: "pulse 2s ease-in-out infinite", flexShrink: 0 }} />
+            <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "#00FFB3" }}>
+              {t("availability")}
+            </span>
+          </div>
+
+          {/* Info rows */}
+          <div style={{ marginTop: 32, display: "flex", flexDirection: "column", gap: 12 }}>
             <motion.a
-              className="block rounded-[1.5rem] border border-[var(--line)] bg-[var(--surface)] px-5 py-4 font-medium text-slate-900 shadow-[0_18px_48px_rgba(0,0,0,0.05)] dark:text-white"
               href="mailto:slegros9@gmail.com"
               initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-              whileHover={{ y: -2 }}
+              whileHover={{ y: -2, borderColor: "rgba(10,132,255,0.3)" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                borderRadius: 18,
+                border: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(8,10,30,0.7)",
+                padding: "14px 20px",
+                fontSize: "0.9rem",
+                fontWeight: 500,
+                color: "#F0F4FF",
+                textDecoration: "none",
+                boxShadow: "0 18px 48px rgba(0,0,0,0.18)",
+              }}
             >
+              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "rgba(10,132,255,0.12)", border: "1px solid rgba(10,132,255,0.2)", flexShrink: 0 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/>
+                </svg>
+              </span>
               slegros9@gmail.com
             </motion.a>
+
             <motion.a
-              className="block rounded-[1.5rem] border border-[var(--line)] bg-[var(--surface)] px-5 py-4 font-medium text-slate-900 shadow-[0_18px_48px_rgba(0,0,0,0.05)] dark:text-white"
               href="https://www.linkedin.com/in/sébastien-legros-23a85085"
               target="_blank"
               rel="noopener noreferrer"
@@ -62,37 +102,83 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.75, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-              whileHover={{ y: -2 }}
+              whileHover={{ y: -2, borderColor: "rgba(10,132,255,0.3)" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                borderRadius: 18,
+                border: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(8,10,30,0.7)",
+                padding: "14px 20px",
+                fontSize: "0.9rem",
+                fontWeight: 500,
+                color: "#F0F4FF",
+                textDecoration: "none",
+                boxShadow: "0 18px 48px rgba(0,0,0,0.18)",
+              }}
             >
+              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "rgba(10,132,255,0.12)", border: "1px solid rgba(10,132,255,0.2)", flexShrink: 0 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#0A84FF">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+                </svg>
+              </span>
               LinkedIn
             </motion.a>
           </div>
         </motion.div>
 
+        {/* Right column — form card */}
         <motion.div
           initial={{ opacity: 0, y: 18, x: 16, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, x: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.85, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
           whileHover={{ y: -4 }}
-          className="relative overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-6 shadow-[0_20px_55px_rgba(0,0,0,0.05)] md:p-8"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: 22,
+            border: "1px solid rgba(255,255,255,0.07)",
+            background: "rgba(8,10,30,0.7)",
+            padding: "32px",
+            boxShadow: "0 20px 55px rgba(0,0,0,0.22)",
+          }}
         >
           <motion.div
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 0.85, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-            className="absolute inset-x-8 top-0 h-px origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent)]/35 to-transparent"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 32,
+              right: 32,
+              height: 1,
+              transformOrigin: "left",
+              background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.35), transparent)",
+            }}
           />
           <ContactForm action={sendMailjet} />
-          <p className="mt-6 text-sm text-slate-600 dark:text-slate-300">
+          <p style={{ marginTop: 24, fontSize: "0.875rem", color: "#6B7A99" }}>
             {t("preferEmail")}{" "}
-            <a className="font-semibold text-slate-950 underline underline-offset-4 dark:text-white" href="mailto:slegros9@gmail.com">
+            <a
+              style={{ fontWeight: 600, color: "#F0F4FF", textDecoration: "underline", textUnderlineOffset: 4 }}
+              href="mailto:slegros9@gmail.com"
+            >
               slegros9@gmail.com
             </a>
           </p>
         </motion.div>
       </div>
-    </motion.section>
+
+      <style>{`
+        @keyframes pulse {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50% { opacity: 0.6; transform: scale(1.2); }
+        }
+      `}</style>
+    </section>
   );
 }

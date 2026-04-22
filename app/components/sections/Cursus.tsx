@@ -7,44 +7,191 @@ type Step = {
   year: string;
   title: string;
   subtitle?: string;
+  type?: "work" | "education";
 };
 
 function TimelineItem({
   year,
   title,
   subtitle,
+  type = "work",
   index,
 }: Step & { index: number }) {
+  const isEven = index % 2 === 0;
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -24, y: 18, scale: 0.98, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
-      whileHover={{ y: -4, x: 2 }}
-      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-      className="relative pl-12"
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "1fr 32px 1fr",
+        gap: "0 24px",
+        alignItems: "start",
+        position: "relative",
+      }}
     >
-      <motion.span
-        whileInView={{ scale: [0.75, 1.08, 1] }}
-        transition={{ duration: 0.55, delay: index * 0.1 + 0.12, ease: [0.22, 1, 0.36, 1] }}
-        viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-        className="absolute left-0 top-1 flex h-7 w-7 items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-xs font-bold text-[var(--accent)]"
-      >
-        •
-      </motion.span>
-      <div className="relative overflow-hidden rounded-[1.5rem] border border-[var(--line)] bg-[var(--surface)] px-5 py-5 shadow-[0_18px_46px_rgba(0,0,0,0.05)]">
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          whileInView={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 0.85, delay: index * 0.1 + 0.14, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-          className="absolute inset-x-5 top-0 h-px origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent)]/35 to-transparent"
-        />
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">{year}</p>
-        <h3 className="mt-2 text-xl font-bold tracking-tight text-slate-950 dark:text-white">{title}</h3>
-        {subtitle && <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{subtitle}</p>}
+      {/* Left side */}
+      <div style={{ display: "flex", justifyContent: "flex-end", paddingTop: 8 }}>
+        {isEven ? (
+          /* Card on left for even items */
+          <motion.div
+            initial={{ opacity: 0, x: -24, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            whileHover={{ y: -4, borderColor: "rgba(10,132,255,0.3)", boxShadow: "0 0 32px rgba(10,132,255,0.1)" }}
+            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+            style={{
+              width: "100%",
+              position: "relative",
+              overflow: "hidden",
+              borderRadius: 18,
+              border: "1px solid rgba(255,255,255,0.07)",
+              background: "rgba(8,10,30,0.7)",
+              padding: "20px 24px",
+              boxShadow: "0 18px 46px rgba(0,0,0,0.18)",
+            }}
+          >
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.85, delay: index * 0.1 + 0.14, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 20,
+                right: 20,
+                height: 1,
+                transformOrigin: "left",
+                background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.35), transparent)",
+              }}
+            />
+            {/* Badge */}
+            <span style={{
+              display: "inline-block",
+              borderRadius: 999,
+              padding: "2px 10px",
+              fontSize: "0.625rem",
+              fontWeight: 700,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              marginBottom: 10,
+              background: type === "work" ? "rgba(10,132,255,0.12)" : "rgba(0,255,179,0.1)",
+              color: type === "work" ? "#0A84FF" : "#00FFB3",
+              border: `1px solid ${type === "work" ? "rgba(10,132,255,0.25)" : "rgba(0,255,179,0.2)"}`,
+            }}>
+              {type === "work" ? "Work" : "Education"}
+            </span>
+            <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", marginBottom: 8 }}>{year}</p>
+            <h3 style={{ fontSize: "1.1rem", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}>{title}</h3>
+            {subtitle && <p style={{ marginTop: 10, fontSize: "0.875rem", lineHeight: 1.75, color: "#6B7A99" }}>{subtitle}</p>}
+          </motion.div>
+        ) : (
+          /* Ghost year on left for odd items */
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+            viewport={{ once: true }}
+            style={{ textAlign: "right", paddingRight: 8, paddingTop: 4 }}
+          >
+            <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.08)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
+              {year.split("–")[0].trim()}
+            </span>
+          </motion.div>
+        )}
       </div>
-    </motion.div>
+
+      {/* Spine node */}
+      <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <motion.div
+          initial={{ scale: 0.4, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.55, delay: index * 0.1 + 0.12, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+          style={{
+            width: 14,
+            height: 14,
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #0A84FF, #00D4FF)",
+            boxShadow: "0 0 16px rgba(10,132,255,0.5)",
+            marginTop: 20,
+            flexShrink: 0,
+            zIndex: 1,
+          }}
+        />
+      </div>
+
+      {/* Right side */}
+      <div style={{ paddingTop: 8 }}>
+        {!isEven ? (
+          /* Card on right for odd items */
+          <motion.div
+            initial={{ opacity: 0, x: 24, filter: "blur(8px)" }}
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            whileHover={{ y: -4, borderColor: "rgba(10,132,255,0.3)", boxShadow: "0 0 32px rgba(10,132,255,0.1)" }}
+            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              borderRadius: 18,
+              border: "1px solid rgba(255,255,255,0.07)",
+              background: "rgba(8,10,30,0.7)",
+              padding: "20px 24px",
+              boxShadow: "0 18px 46px rgba(0,0,0,0.18)",
+            }}
+          >
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              whileInView={{ scaleX: 1, opacity: 1 }}
+              transition={{ duration: 0.85, delay: index * 0.1 + 0.14, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 20,
+                right: 20,
+                height: 1,
+                transformOrigin: "left",
+                background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.35), transparent)",
+              }}
+            />
+            {/* Badge */}
+            <span style={{
+              display: "inline-block",
+              borderRadius: 999,
+              padding: "2px 10px",
+              fontSize: "0.625rem",
+              fontWeight: 700,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              marginBottom: 10,
+              background: type === "work" ? "rgba(10,132,255,0.12)" : "rgba(0,255,179,0.1)",
+              color: type === "work" ? "#0A84FF" : "#00FFB3",
+              border: `1px solid ${type === "work" ? "rgba(10,132,255,0.25)" : "rgba(0,255,179,0.2)"}`,
+            }}>
+              {type === "work" ? "Work" : "Education"}
+            </span>
+            <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", marginBottom: 8 }}>{year}</p>
+            <h3 style={{ fontSize: "1.1rem", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}>{title}</h3>
+            {subtitle && <p style={{ marginTop: 10, fontSize: "0.875rem", lineHeight: 1.75, color: "#6B7A99" }}>{subtitle}</p>}
+          </motion.div>
+        ) : (
+          /* Ghost year on right for even items */
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+            viewport={{ once: true }}
+            style={{ paddingLeft: 8, paddingTop: 4 }}
+          >
+            <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.08)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
+              {year.split("–")[0].trim()}
+            </span>
+          </motion.div>
+        )}
+      </div>
+    </div>
   );
 }
 
@@ -52,54 +199,84 @@ export default function Cursus() {
   const t = useTranslations("experience");
 
   const parcours: Step[] = [
-    { year: "2026 – aujourd’hui", title: t("items.willow.title"), subtitle: t("items.willow.description") },
-    { year: "2022 – 2025", title: t("items.squirrel_lead.title"), subtitle: t("items.squirrel_lead.description") },
-    { year: "2021 – 2022", title: t("items.squirrel_dev.title"), subtitle: t("items.squirrel_dev.description") },
-    { year: "2017 – 2021", title: t("items.region.title"), subtitle: t("items.region.description") },
-    { year: "2016 – 2017", title: t("items.ird.title"), subtitle: t("items.ird.description") },
-    { year: "2012 - 2015", title: t("items.master.title") },
-    { year: "2010 - 2012", title: t("items.dut.title") },
+    { year: "2026 – aujourd'hui", title: t("items.willow.title"), subtitle: t("items.willow.description"), type: "work" },
+    { year: "2022 – 2025", title: t("items.squirrel_lead.title"), subtitle: t("items.squirrel_lead.description"), type: "work" },
+    { year: "2021 – 2022", title: t("items.squirrel_dev.title"), subtitle: t("items.squirrel_dev.description"), type: "work" },
+    { year: "2017 – 2021", title: t("items.region.title"), subtitle: t("items.region.description"), type: "work" },
+    { year: "2016 – 2017", title: t("items.ird.title"), subtitle: t("items.ird.description"), type: "work" },
+    { year: "2012 - 2015", title: t("items.master.title"), type: "education" },
+    { year: "2010 - 2012", title: t("items.dut.title"), type: "education" },
   ];
 
   return (
-    <motion.section
+    <section
       id="cursus"
-      className="px-6 py-16 md:px-10 md:py-20"
-      initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: true, margin: "-8% 0px -8% 0px" }}
+      style={{
+        position: "relative",
+        background: "#04040F",
+        padding: "72px 8vw",
+      }}
     >
-      <div className="mx-auto max-w-6xl">
+      {/* Top divider */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 1,
+          background: "linear-gradient(90deg, transparent, rgba(10,132,255,0.3), transparent)",
+        }}
+      />
+
+      <div style={{ maxWidth: 1152, margin: "0 auto" }}>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-          className="max-w-3xl"
+          style={{ maxWidth: 720, marginBottom: 56 }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
+          {/* Tag */}
+          <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
+            <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }} />
             {t("title")}
-          </p>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.04em] text-slate-950 dark:text-white md:text-4xl">
+          </div>
+          <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}>
             {t("subtitle")}
           </h2>
         </motion.div>
 
-        <div className="relative mt-8 space-y-8">
-          <motion.span
+        {/* Timeline */}
+        <div style={{ position: "relative" }}>
+          {/* Vertical spine */}
+          <motion.div
             initial={{ scaleY: 0, opacity: 0 }}
             whileInView={{ scaleY: 1, opacity: 1 }}
-            transition={{ duration: 1.15, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-            className="absolute bottom-0 left-[13px] top-0 w-px origin-top bg-[var(--line)]"
+            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true, margin: "-5% 0px -5% 0px" }}
+            style={{
+              position: "absolute",
+              left: "calc(50% - 0.5px)",
+              top: 0,
+              bottom: 0,
+              width: 1,
+              transformOrigin: "top",
+              background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #00FFB3)",
+              opacity: 0.35,
+            }}
             aria-hidden
           />
-          {parcours.map((step, index) => (
-            <TimelineItem key={step.year + step.title} index={index} {...step} />
-          ))}
+
+          {/* Items */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
+            {parcours.map((step, index) => (
+              <TimelineItem key={step.year + step.title} index={index} {...step} />
+            ))}
+          </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

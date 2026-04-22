@@ -66,78 +66,144 @@ export default function Projects() {
   const [expandedProject, setExpandedProject] = useState<string | null>(featuredProjects[0].key);
 
   return (
-    <section id="projects" className="px-6 py-16 md:px-10 md:py-20" aria-labelledby="projects-title">
-      <div className="mx-auto max-w-6xl">
+    <section
+      id="projects"
+      aria-labelledby="projects-title"
+      style={{
+        position: "relative",
+        background: "#04040F",
+        padding: "72px 8vw",
+      }}
+    >
+      {/* Top divider */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: 1,
+          background: "linear-gradient(90deg, transparent, rgba(10,132,255,0.3), transparent)",
+        }}
+      />
+
+      <div style={{ maxWidth: 1152, margin: "0 auto" }}>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
-          className="max-w-3xl"
+          style={{ maxWidth: 720, position: "relative" }}
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
+          {/* Tag */}
+          <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
+            <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }} />
             {t("portfolio")}
-          </p>
-          <h2
-            id="projects-title"
-            className="mt-4 text-[1.9rem] font-extrabold tracking-[-0.04em] text-slate-950 dark:text-white md:text-[2.5rem]"
-          >
-            {t("title")}
-          </h2>
-          <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-700 dark:text-slate-300 md:text-[15px]">
+          </div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
+            <h2
+              id="projects-title"
+              style={{ fontSize: "clamp(1.9rem, 3vw, 2.5rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}
+            >
+              {t("title")}
+            </h2>
+            <span style={{ fontSize: "4rem", fontWeight: 800, color: "rgba(255,255,255,0.04)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none" }}>
+              {featuredProjects.length}
+            </span>
+          </div>
+          <p style={{ marginTop: 16, maxWidth: "56ch", fontSize: "0.9375rem", lineHeight: 1.75, color: "#6B7A99" }}>
             {t("subtitle")}
           </p>
         </motion.div>
 
-        <div className="mt-10 space-y-6">
+        {/* Featured project cards */}
+        <div style={{ marginTop: 40, display: "flex", flexDirection: "column", gap: 24 }}>
           {featuredProjects.map((project, index) => (
             <motion.article
               key={project.key}
               initial={{ opacity: 0, y: 26, scale: 0.975, filter: "blur(10px)" }}
               whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-              whileHover={{ y: -4 }}
+              whileHover={{ y: -4, borderColor: "rgba(10,132,255,0.3)", boxShadow: "0 28px 70px rgba(10,132,255,0.08)" }}
               transition={{ duration: 0.85, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-              className="relative overflow-hidden grid gap-5 rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-4 shadow-[0_20px_55px_rgba(0,0,0,0.05)] transition-shadow hover:shadow-[0_28px_70px_rgba(0,0,0,0.08)] md:grid-cols-[0.92fr_1.08fr] md:p-6"
+              style={{
+                position: "relative",
+                overflow: "hidden",
+                display: "grid",
+                gap: 20,
+                borderRadius: 22,
+                border: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(8,10,30,0.7)",
+                padding: "16px",
+                boxShadow: "0 20px 55px rgba(0,0,0,0.22)",
+              }}
+              className="md:grid-cols-[0.92fr_1.08fr] md:p-6"
             >
+              {/* Top accent line */}
               <motion.div
                 initial={{ scaleX: 0, opacity: 0 }}
                 whileInView={{ scaleX: 1, opacity: 1 }}
                 transition={{ duration: 0.9, delay: 0.1 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-                className="absolute inset-x-5 top-0 h-px origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent)]/35 to-transparent"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 20,
+                  right: 20,
+                  height: 1,
+                  transformOrigin: "left",
+                  background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.35), transparent)",
+                }}
               />
-              <div className="group relative overflow-hidden rounded-[1.5rem] bg-[var(--surface-strong)]">
-                <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/18 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+
+              {/* Image */}
+              <div
+                style={{ position: "relative", overflow: "hidden", borderRadius: 18, background: "rgba(10,12,40,0.8)" }}
+                className="group"
+              >
+                <div style={{ position: "absolute", inset: 0, zIndex: 10, background: "linear-gradient(to top, rgba(0,0,0,0.18), transparent)", opacity: 0, transition: "opacity 300ms" }} className="group-hover:opacity-100 pointer-events-none" />
                 <Image
                   src={project.imageSrc}
                   alt={t(`items.${project.key}.title`)}
                   width={900}
                   height={640}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 500ms" }}
+                  className="group-hover:scale-[1.04]"
                 />
               </div>
 
-              <div className="flex flex-col justify-between">
+              {/* Content */}
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div>
-                  <h3 className="text-2xl font-bold tracking-tight text-slate-950 dark:text-white md:text-[1.75rem]">
+                  <h3 style={{ fontSize: "clamp(1.3rem, 2vw, 1.75rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}>
                     {t(`items.${project.key}.title`)}
                   </h3>
-                  <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-700 dark:text-slate-300">
+                  <p style={{ marginTop: 12, fontSize: "0.875rem", lineHeight: 1.75, color: "#6B7A99", display: "-webkit-box", WebkitLineClamp: 3, WebkitBoxOrient: "vertical", overflow: "hidden" }}>
                     {t(`items.${project.key}.summary`)}
                   </p>
 
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  {/* Stack pills */}
+                  <div style={{ marginTop: 20, display: "flex", flexWrap: "wrap", gap: 8 }}>
                     {project.stack.slice(0, 4).map((item) => (
                       <span
                         key={item}
-                        className="rounded-full border border-[var(--line)] px-3 py-1.5 text-[11px] font-medium text-slate-700 dark:text-slate-200"
+                        style={{
+                          borderRadius: 999,
+                          border: "1px solid rgba(10,132,255,0.25)",
+                          background: "rgba(10,132,255,0.08)",
+                          padding: "6px 12px",
+                          fontSize: "0.6875rem",
+                          fontWeight: 500,
+                          color: "#00D4FF",
+                        }}
                       >
                         {item}
                       </span>
                     ))}
                   </div>
 
+                  {/* Expand button */}
                   <motion.button
                     type="button"
                     onClick={() =>
@@ -148,15 +214,29 @@ export default function Projects() {
                     transition={{ duration: 0.75, delay: 0.18 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
                     viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
                     whileHover={{ x: 2 }}
-                    className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 transition hover:text-[var(--accent)] dark:text-white"
+                    style={{
+                      marginTop: 20,
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: 8,
+                      fontSize: "0.875rem",
+                      fontWeight: 600,
+                      color: "#F0F4FF",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      padding: 0,
+                      transition: "color 180ms ease",
+                    }}
                     aria-expanded={expandedProject === project.key}
                   >
                     {expandedProject === project.key ? t("hideDetails") : t("showDetails")}
-                    <motion.span animate={{ rotate: expandedProject === project.key ? 45 : 0 }}>
+                    <motion.span animate={{ rotate: expandedProject === project.key ? 45 : 0 }} style={{ color: "#0A84FF", fontSize: "1.1rem" }}>
                       +
                     </motion.span>
                   </motion.button>
 
+                  {/* Expanded details */}
                   <motion.dl
                     initial={false}
                     animate={{
@@ -164,22 +244,22 @@ export default function Projects() {
                       opacity: expandedProject === project.key ? 1 : 0,
                     }}
                     transition={{ duration: 0.28, ease: "easeOut" }}
-                    className="overflow-hidden"
+                    style={{ overflow: "hidden" }}
                   >
-                    <div className="mt-5 space-y-4 border-t border-[var(--line)] pt-5">
+                    <div style={{ marginTop: 20, borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: 20, display: "flex", flexDirection: "column", gap: 16 }}>
                       <div>
-                        <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                        <dt style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF" }}>
                           {t("roleLabel")}
                         </dt>
-                        <dd className="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
+                        <dd style={{ marginTop: 8, fontSize: "0.875rem", lineHeight: 1.75, color: "#6B7A99" }}>
                           {t(`items.${project.key}.role`)}
                         </dd>
                       </div>
                       <div>
-                        <dt className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
+                        <dt style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF" }}>
                           {t("impactLabel")}
                         </dt>
-                        <dd className="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-300">
+                        <dd style={{ marginTop: 8, fontSize: "0.875rem", lineHeight: 1.75, color: "#6B7A99" }}>
                           {t(`items.${project.key}.impact`)}
                         </dd>
                       </div>
@@ -191,21 +271,40 @@ export default function Projects() {
           ))}
         </div>
 
+        {/* Archive section */}
         <motion.div
           initial={{ opacity: 0, y: 22, scale: 0.98, filter: "blur(10px)" }}
           whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
-          className="relative mt-10 overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.05)] md:p-6"
+          style={{
+            position: "relative",
+            overflow: "hidden",
+            borderRadius: 22,
+            border: "1px solid rgba(255,255,255,0.07)",
+            background: "rgba(8,10,30,0.7)",
+            padding: "24px",
+            boxShadow: "0 18px 50px rgba(0,0,0,0.22)",
+            marginTop: 40,
+          }}
+          className="md:p-6"
         >
           <motion.div
             initial={{ scaleX: 0, opacity: 0 }}
             whileInView={{ scaleX: 1, opacity: 1 }}
             transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className="absolute inset-x-6 top-0 h-px origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent)]/35 to-transparent"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 24,
+              right: 24,
+              height: 1,
+              transformOrigin: "left",
+              background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.35), transparent)",
+            }}
           />
-          <h3 className="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
+          <h3 style={{ fontSize: "1.5rem", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}>
             {t("archiveTitle")}
           </h3>
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -216,13 +315,18 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                whileHover={{ y: -3 }}
-                className="rounded-[1.5rem] border border-[var(--line)] bg-transparent p-5"
+                whileHover={{ y: -3, borderColor: "rgba(10,132,255,0.3)" }}
+                style={{
+                  borderRadius: 18,
+                  border: "1px solid rgba(255,255,255,0.07)",
+                  background: "transparent",
+                  padding: 20,
+                }}
               >
-                <h4 className="text-lg font-semibold text-slate-950 dark:text-white">
+                <h4 style={{ fontSize: "1.0625rem", fontWeight: 700, color: "#F0F4FF", margin: 0 }}>
                   {t(`items.${project.key}.title`)}
                 </h4>
-                <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
+                <p style={{ marginTop: 12, fontSize: "0.875rem", lineHeight: 1.75, color: "#6B7A99" }}>
                   {t(`items.${project.key}.description`)}
                 </p>
               </motion.article>

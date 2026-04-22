@@ -253,14 +253,15 @@
       "message": "Message",
       "send": "Envoyer le message",
       "sending": "Envoi…",
-      "success": "Message envoyé.",
+      "success": "Message envoyé avec succès !",
       "error": "Échec de l'envoi.",
       "required": "*",
       "nameRequired": "Nom obligatoire",
       "emailRequired": "Email valide obligatoire.",
       "subjectRequired": "Objet obligatoire.",
       "messageTooShort": "Message trop court.",
-      "spamDetected": "Spam détecté."
+      "spamDetected": "Spam détecté.",
+      "sendAnother": "Envoyer un autre message"
     }
   },
   "footer": {

@@ -11,7 +11,8 @@ import Techno from "../components/sections/techno";
 export default function Home() {
   return (
     <main
-      className="flex flex-col pt-16 scroll-pt-24">
+      className="flex flex-col scroll-pt-24"
+      style={{ background: "#04040F" }}>
       <Hero />
       <AboutMe />
       <Projects />

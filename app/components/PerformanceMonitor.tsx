@@ -17,20 +17,50 @@ export default function PerformanceMonitor() {
     document.body.style.overflow = "hidden";
     document.body.dataset.introReady = "false";
 
-    const wordTimer = window.setInterval(() => {
-      setWordIndex((current) => (current + 1) % words.length);
-    }, 700);
+    const MIN_MS = reduceMotion ? 700 : 1400;
+    const MAX_MS = 6000; // safety fallback
 
-    const timer = window.setTimeout(() => {
+    let minDone = false;
+    let loaded = false;
+    let fired = false;
+
+    function fire() {
+      if (fired) return;
+      fired = true;
       document.body.dataset.introReady = "true";
       window.dispatchEvent(new CustomEvent("portfolio:intro-ready"));
       setVisible(false);
       document.body.style.overflow = "";
-    }, reduceMotion ? 700 : 2300);
+    }
+
+    function maybeReady() {
+      if (minDone && loaded) fire();
+    }
+
+    // Minimum display time so the loader isn't a flash
+    const minTimer = window.setTimeout(() => {
+      minDone = true;
+      maybeReady();
+    }, MIN_MS);
+
+    // Safety: fire no matter what after MAX_MS
+    const maxTimer = window.setTimeout(fire, MAX_MS);
+
+    // Wait for all resources (images, scripts, lazy chunks) to finish
+    if (document.readyState === "complete") {
+      loaded = true;
+    } else {
+      window.addEventListener("load", () => { loaded = true; maybeReady(); }, { once: true });
+    }
+
+    const wordTimer = window.setInterval(() => {
+      setWordIndex((current) => (current + 1) % words.length);
+    }, 700);
 
     return () => {
       window.clearInterval(wordTimer);
-      window.clearTimeout(timer);
+      window.clearTimeout(minTimer);
+      window.clearTimeout(maxTimer);
       document.body.style.overflow = "";
     };
   }, [reduceMotion, words.length]);

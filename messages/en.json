@@ -253,14 +253,15 @@
       "message": "Message",
       "send": "Send message",
       "sending": "Sending…",
-      "success": "Message sent.",
+      "success": "Message sent successfully!",
       "error": "Send failed.",
       "required": "*",
       "nameRequired": "Name required",
       "emailRequired": "Valid email required.",
       "subjectRequired": "Subject required.",
       "messageTooShort": "Message too short.",
-      "spamDetected": "Spam detected."
+      "spamDetected": "Spam detected.",
+      "sendAnother": "Send another message"
     }
   },
   "footer": {

@@ -31,62 +31,74 @@ export default function Footer() {
   const ease: Easing[] = ["easeIn", "easeInOut"];
 
   return (
-    <footer id="footer" className="relative isolate" aria-labelledby="footer-heading">
-      {/* Ligne top */}
-      <div className="pointer-events-none absolute -top-px inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent dark:via-slate-700 md:snap-start" />
+    <footer
+      id="footer"
+      aria-labelledby="footer-heading"
+      style={{
+        borderTop: "1px solid rgba(255,255,255,0.05)",
+        background: "#04040F",
+        textAlign: "center",
+        padding: "32px 24px",
+      }}
+    >
+      {/* Built-with sentence with pills */}
+      <motion.p
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ ease, duration: 0.7, delay: 0.2 }}
+        viewport={{ once: true }}
+        style={{
+          fontSize: "0.75rem",
+          color: "rgba(255,255,255,0.2)",
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "4px 0",
+        }}
+      >
+        <span className="mx-1">{t('builtWith')}</span>
+        <TechPill color="from-slate-700 to-slate-600" delay={0.25}>Next.js</TechPill>
+        <span className="mx-1">, {t('styledBy')}</span>
+        <TechPill color="from-sky-600 to-sky-500" delay={0.33}>Tailwind CSS</TechPill>
+        <span className="mx-1">, {t('animatedBy')}</span>
+        <TechPill color="from-pink-600 to-fuchsia-600" delay={0.41}>Framer Motion</TechPill>
+        <span className="mx-1">{t('and')}</span>
+        <TechPill color="from-emerald-600 to-teal-500" delay={0.49}>Lottie</TechPill>
+        <span className="mx-1">, {t('deployedOn')}</span>
+        <TechPill color="from-gray-700 to-gray-600" delay={0.57}>Vercel</TechPill>
+        <span className="mx-1">.</span>
+      </motion.p>
 
-      {/* Background aura */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60rem_20rem_at_50%_120%,rgba(56,189,248,0.08),transparent_60%)]" />
-
-      <section className="mx-auto w-full max-w-6xl px-6 py-8">
-   
-
-        {/* Phrase avec pills inline */}
-        <motion.p
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ ease, duration: 0.7, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mt-8 text-center text-sm text-slate-600 dark:text-slate-300 flex flex-wrap items-center justify-center gap-y-2"
+      {/* GitHub link */}
+      <motion.div
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ ease, duration: 0.7, delay: 0.6 }}
+        viewport={{ once: true }}
+        style={{ marginTop: 16 }}
+      >
+        <Link
+          href="https://github.com/slg9/portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            fontSize: "0.75rem",
+            color: "rgba(10,132,255,0.5)",
+            textDecoration: "none",
+            transition: "color 180ms ease",
+          }}
         >
-          <span className="mx-1">{t('builtWith')}</span>
-          <TechPill color="from-slate-900 to-slate-700" delay={0.25}>Next.js</TechPill>
-          <span className="mx-1">, {t('styledBy')}</span>
-          <TechPill color="from-sky-500 to-sky-400" delay={0.33}>Tailwind CSS</TechPill>
-          <span className="mx-1">, {t('animatedBy')}</span>
-          <TechPill color="from-pink-500 to-fuchsia-500" delay={0.41}>Framer Motion</TechPill>
-          <span className="mx-1">{t('and')}</span>
-          <TechPill color="from-emerald-500 to-teal-400" delay={0.49}>Lottie</TechPill>
-          <span className="mx-1">, {t('deployedOn')}</span>
-          <TechPill color="from-gray-900 to-gray-700" delay={0.57}>Vercel</TechPill>
-          <span className="mx-1">.</span>
-        </motion.p>
+          {t('viewSource')}
+        </Link>
+      </motion.div>
 
-        {/* Lien GitHub / CI-CD */}
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ ease, duration: 0.7, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="mt-6 text-center"
-        >
-          <Link
-            href="https://github.com/slg9/portfolio"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm font-medium text-sky-700 hover:underline dark:text-sky-300"
-          >
-            {t('viewSource')}
-          </Link>
-        </motion.div>
-
-        {/* Bas de page */}
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-slate-200/70 pt-6 sm:flex-row dark:border-slate-700">
-          <p className="text-xs text-slate-500 dark:text-slate-400 text-center sm:text-left">
-            {t('copyright', { year: new Date().getFullYear() })}
-          </p>
-        </div>
-      </section>
+      {/* Copyright */}
+      <div style={{ marginTop: 16 }}>
+        <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.2)" }}>
+          {t('copyright', { year: new Date().getFullYear() })}
+        </p>
+      </div>
     </footer>
   );
 }
