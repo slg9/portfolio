@@ -88,10 +88,12 @@ export default function ScrollStory() {
               {[0, 1, 2].map((step) => (
                 <motion.span
                   key={step}
+                  whileHover={{ y: -2, scale: 1.02 }}
                   animate={{
                     backgroundColor: activeStep === step ? "var(--foreground)" : "rgba(23,23,23,0.06)",
                     color: activeStep === step ? "var(--background)" : "rgb(71 85 105)",
                   }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                   className="rounded-full px-3 py-1.5 text-xs font-semibold"
                 >
                   {t(`steps.${step}.label`)}
@@ -102,6 +104,8 @@ export default function ScrollStory() {
 
           <motion.div
             style={{ y: shellY, rotate: shellRotate }}
+            whileHover={{ y: -4 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="relative h-[26rem] overflow-hidden rounded-[1.8rem] border border-[var(--line)] bg-[#fbf7f1] shadow-[0_18px_60px_rgba(0,0,0,0.08)] md:h-[32rem]"
           >
             <div className="flex items-center gap-2 border-b border-[var(--line)] px-4 py-3">
@@ -121,6 +125,8 @@ export default function ScrollStory() {
 
               <motion.div
                 style={{ opacity: introOpacity, y: introY }}
+                whileHover={{ y: -3, scale: 1.01 }}
+                transition={{ duration: 0.35 }}
                 className="absolute left-6 top-6 max-w-[17rem] rounded-[1.5rem] border border-[var(--line)] bg-white/88 p-5 shadow-[0_16px_40px_rgba(0,0,0,0.06)]"
               >
                 <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
@@ -136,6 +142,8 @@ export default function ScrollStory() {
 
               <motion.div
                 style={{ opacity: profileOpacity, y: profileY }}
+                whileHover={{ y: -3, scale: 1.01 }}
+                transition={{ duration: 0.35 }}
                 className="absolute left-6 top-8 w-[12rem] rounded-[1.5rem] border border-[var(--line)] bg-white/92 p-4 shadow-[0_18px_44px_rgba(0,0,0,0.08)] md:w-[14rem]"
               >
                 <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full bg-[#efe4d4]">
@@ -147,6 +155,8 @@ export default function ScrollStory() {
 
               <motion.div
                 style={{ opacity: profileOpacity, y: profileY }}
+                whileHover={{ y: -3, scale: 1.01 }}
+                transition={{ duration: 0.35 }}
                 className="absolute right-6 top-8 max-w-[18rem] rounded-[1.5rem] border border-[var(--line)] bg-white/92 p-5 shadow-[0_18px_44px_rgba(0,0,0,0.08)]"
               >
                 <div className="h-2.5 w-20 rounded-full bg-[var(--accent)]/30" />
@@ -155,15 +165,17 @@ export default function ScrollStory() {
                 <div className="mt-3 h-4 w-[65%] rounded-full bg-black/7" />
                 <div className="mt-5 flex flex-wrap gap-2">
                   {["React", "Go", "PostgreSQL"].map((item) => (
-                    <span key={item} className="rounded-full border border-[var(--line)] px-3 py-1 text-[11px] font-medium text-slate-700">
+                    <motion.span key={item} whileHover={{ y: -2 }} className="rounded-full border border-[var(--line)] px-3 py-1 text-[11px] font-medium text-slate-700">
                       {item}
-                    </span>
+                    </motion.span>
                   ))}
                 </div>
               </motion.div>
 
               <motion.div
                 style={{ opacity: projectOpacity, y: projectY, scale: projectScale }}
+                whileHover={{ y: -4, scale: 1.01 }}
+                transition={{ duration: 0.35 }}
                 className="absolute inset-x-10 bottom-24 rounded-[1.45rem] border border-[var(--line)] bg-white/92 p-3 shadow-[0_18px_42px_rgba(0,0,0,0.07)] md:inset-x-16 md:bottom-24 md:p-4"
               >
                 <div className="grid items-center gap-3 md:grid-cols-[0.88fr_1.12fr]">
@@ -192,12 +204,14 @@ export default function ScrollStory() {
 
               <motion.div
                 style={{ opacity: contactOpacity, y: contactY }}
+                whileHover={{ y: -3, scale: 1.01 }}
+                transition={{ duration: 0.35 }}
                 className="absolute inset-x-6 bottom-6 flex flex-wrap items-center justify-between gap-3 rounded-[1.2rem] border border-[var(--line)] bg-[var(--foreground)] px-4 py-3 text-white shadow-[0_16px_38px_rgba(0,0,0,0.14)]"
               >
                 <span className="text-sm font-semibold">{t("visual.finalCta")}</span>
-                <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/90">
+                <motion.span whileHover={{ y: -1 }} className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/90">
                   slegros9@gmail.com
-                </span>
+                </motion.span>
               </motion.div>
             </div>
           </motion.div>

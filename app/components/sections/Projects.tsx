@@ -12,7 +12,17 @@ type FeaturedProject = {
 };
 
 type ArchiveProject = {
-  key: "leon" | "raoul" | "psg" | "fidelatoo" | "handimobi" | "ladar";
+  key:
+    | "actuflux"
+    | "prelys"
+    | "cineactu"
+    | "elearning"
+    | "leon"
+    | "raoul"
+    | "psg"
+    | "fidelatoo"
+    | "handimobi"
+    | "ladar";
 };
 
 const featuredProjects: FeaturedProject[] = [
@@ -39,6 +49,10 @@ const featuredProjects: FeaturedProject[] = [
 ];
 
 const archiveProjects: ArchiveProject[] = [
+  { key: "actuflux" },
+  { key: "prelys" },
+  { key: "cineactu" },
+  { key: "elearning" },
   { key: "leon" },
   { key: "raoul" },
   { key: "psg" },
@@ -55,9 +69,9 @@ export default function Projects() {
     <section id="projects" className="px-6 py-16 md:px-10 md:py-20" aria-labelledby="projects-title">
       <div className="mx-auto max-w-6xl">
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
+          initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
           className="max-w-3xl"
         >
@@ -79,13 +93,20 @@ export default function Projects() {
           {featuredProjects.map((project, index) => (
             <motion.article
               key={project.key}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 26, scale: 0.975, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               whileHover={{ y: -4 }}
-              transition={{ duration: 0.55, delay: index * 0.06 }}
+              transition={{ duration: 0.85, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-              className="grid gap-5 rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-4 shadow-[0_20px_55px_rgba(0,0,0,0.05)] transition-shadow hover:shadow-[0_28px_70px_rgba(0,0,0,0.08)] md:grid-cols-[0.92fr_1.08fr] md:p-6"
+              className="relative overflow-hidden grid gap-5 rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-4 shadow-[0_20px_55px_rgba(0,0,0,0.05)] transition-shadow hover:shadow-[0_28px_70px_rgba(0,0,0,0.08)] md:grid-cols-[0.92fr_1.08fr] md:p-6"
             >
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.9, delay: 0.1 + index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                className="absolute inset-x-5 top-0 h-px origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent)]/35 to-transparent"
+              />
               <div className="group relative overflow-hidden rounded-[1.5rem] bg-[var(--surface-strong)]">
                 <div className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-black/18 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 <Image
@@ -117,11 +138,16 @@ export default function Projects() {
                     ))}
                   </div>
 
-                  <button
+                  <motion.button
                     type="button"
                     onClick={() =>
                       setExpandedProject((current) => (current === project.key ? null : project.key))
                     }
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.75, delay: 0.18 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+                    viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+                    whileHover={{ x: 2 }}
                     className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-slate-900 transition hover:text-[var(--accent)] dark:text-white"
                     aria-expanded={expandedProject === project.key}
                   >
@@ -129,7 +155,7 @@ export default function Projects() {
                     <motion.span animate={{ rotate: expandedProject === project.key ? 45 : 0 }}>
                       +
                     </motion.span>
-                  </button>
+                  </motion.button>
 
                   <motion.dl
                     initial={false}
@@ -166,19 +192,31 @@ export default function Projects() {
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55 }}
+          initial={{ opacity: 0, y: 22, scale: 0.98, filter: "blur(10px)" }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
-          className="mt-10 rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.05)] md:p-6"
+          className="relative mt-10 overflow-hidden rounded-[1.75rem] border border-[var(--line)] bg-[var(--surface)] p-5 shadow-[0_18px_50px_rgba(0,0,0,0.05)] md:p-6"
         >
+          <motion.div
+            initial={{ scaleX: 0, opacity: 0 }}
+            whileInView={{ scaleX: 1, opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            className="absolute inset-x-6 top-0 h-px origin-left bg-gradient-to-r from-[var(--accent)] via-[var(--accent)]/35 to-transparent"
+          />
           <h3 className="text-2xl font-bold tracking-tight text-slate-950 dark:text-white">
             {t("archiveTitle")}
           </h3>
           <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {archiveProjects.map((project) => (
-              <article
+              <motion.article
                 key={project.key}
+                initial={{ opacity: 0, y: 20, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                whileHover={{ y: -3 }}
                 className="rounded-[1.5rem] border border-[var(--line)] bg-transparent p-5"
               >
                 <h4 className="text-lg font-semibold text-slate-950 dark:text-white">
@@ -187,7 +225,7 @@ export default function Projects() {
                 <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">
                   {t(`items.${project.key}.description`)}
                 </p>
-              </article>
+              </motion.article>
             ))}
           </div>
         </motion.div>

@@ -43,7 +43,7 @@
       "yearsLabel": "shipping web products and production APIs",
       "projects": "10+ projects",
       "projectsLabel": "delivered across CRM, SaaS, payments and mobile backends",
-      "stack": "React • Blazor • C# • SQL Server",
+      "stack": "React • Blazor • C# • Go • SQL Server •PostgreSQL",
       "stackLabel": "web, business software and data on one solid foundation"
     },
     "highlights": {
@@ -139,6 +139,22 @@
         "summary": "GraphQL backend and editorial back-office for a mobile audio content application.",
         "role": "Model design, GraphQL APIs, administration interfaces and tooling for content and user management.",
         "impact": "A more reliable stack to operate the product, manage content publishing and keep administration straightforward."
+      },
+      "actuflux": {
+        "title": "ActuFlux",
+        "description": "An automated editorial pipeline in Go with a Next.js dashboard, Remotion/FFmpeg video rendering, subtitles and content orchestration."
+      },
+      "prelys": {
+        "title": "Prelys Suite",
+        "description": "A Go API plus React back-office ecosystem used to manage documents, business workflows, content and admin tooling."
+      },
+      "cineactu": {
+        "title": "CineActu",
+        "description": "A Next.js cinema-focused application with Supabase, Redis, Stripe payments and alert-driven product logic."
+      },
+      "elearning": {
+        "title": "E-learning English",
+        "description": "A learning platform built with Next.js, Prisma/PostgreSQL, rich interfaces, content import flows and AI-assisted features."
       },
       "leon": {
         "title": "Leon",
