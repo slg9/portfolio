@@ -24,10 +24,11 @@
     "words": "setting up the frontend|wiring the animations|warming up the stack|finishing the interface"
   },
   "hero": {
+    "badge": "Open to freelance",
     "welcome": "Welcome to my portfolio",
     "name": "Sébastien Legros",
     "role": "Web & software developer",
-    "summary": "Today I design both web applications and business software. Frontend, backend, desktop and data: React, Blazor,Golang, C#, WPF, WinForms, DevExpress, SQL Server,PostgreSQL, XAF/XPO and robust application architecture.",
+    "summary": "I design web and software applications — frontend, backend, API, through to deployment.",
     "eyebrow": "Full-stack engineer based in Reunion Island",
     "titleLine1": "I build clear interfaces,",
     "titleLine2": "solid backends",

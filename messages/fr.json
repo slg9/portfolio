@@ -24,10 +24,11 @@
     "words": "on prépare le front|on branche les animations|on chauffe le setup|on finalise l’interface"
   },
   "hero": {
+    "badge": "Open to freelance",
     "welcome": "Bienvenue sur mon portfolio",
     "name": "Sébastien Legros",
     "role": "Développeur web & logiciel",
-    "summary": "Aujourd’hui, je conçois à la fois des applications web et des logiciels métier. Front, back, desktop et data: React, Blazor, Golang, C#, WPF, WinForms, DevExpress, SQL Server, PostgreSQL, XAF/XPO et architectures robustes.",
+    "summary": "Je conçois des applications web et logicielles — frontend, backend, API, jusqu’au déploiement.",
     "eyebrow": "Full-stack engineer basé à La Réunion",
     "titleLine1": "Je conçois des interfaces nettes,",
     "titleLine2": "des backends solides",
