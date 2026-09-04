@@ -4,6 +4,7 @@ import "../globals.css";
 import Header from "../components/Header";
 import StructuredData from "../components/StructuredData";
 import PerformanceMonitor from "../components/PerformanceMonitor";
+import WelcomeCurtain from "../components/WelcomeCurtain";
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -139,9 +140,11 @@ export default async function RootLayout({
       </head>
       <body
         className={` ${fontBody.variable} ${fontDisplay.variable} ${fontScript.variable} ${geistMono.variable} antialiased font-sans`}
+        suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>
           <PerformanceMonitor />
+          <WelcomeCurtain />
           <Header/>
           {children}
         </NextIntlClientProvider>

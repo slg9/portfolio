@@ -21,19 +21,18 @@
   },
   "loading": {
     "prefix": "On arrive,",
-    "words": "on prépare le front|on branche les animations|on chauffe le setup|on finalise l’interface"
+    "words": "on prépare le front|on branche les animations|on chauffe le setup|on finalise l'interface"
   },
   "hero": {
-    "badge": "Open to freelance",
     "welcome": "Bienvenue sur mon portfolio",
     "name": "Sébastien Legros",
     "role": "Développeur web & logiciel",
-    "summary": "Je conçois des applications web et logicielles — frontend, backend, API, jusqu’au déploiement.",
+    "summary": "Je conçois des applications web et logicielles — frontend, backend, API, jusqu'au déploiement.",
     "eyebrow": "Full-stack engineer basé à La Réunion",
     "titleLine1": "Je conçois des interfaces nettes,",
     "titleLine2": "des backends solides",
-    "titleLine3": "et des produits qui tiennent dans le temps.",
-    "intro": "J’interviens sur l’ensemble de la chaîne produit, de l’architecture à la mise en production, avec une exigence forte sur la lisibilité, la maintenabilité et l’impact métier.",
+    "titleLine3": "et des produits qui durent.",
+    "intro": "J'interviens sur l'ensemble de la chaîne produit, de l'architecture à la mise en production, avec une exigence forte sur la lisibilité, la maintenabilité et l'impact métier.",
     "primaryCta": "Voir les projets",
     "secondaryCta": "Me contacter",
     "tertiaryCta": "Télécharger le CV",
@@ -58,17 +57,17 @@
     "steps": {
       "0": {
         "label": "Accueil",
-        "title": "On pose d’abord une présence claire, calme et lisible.",
-        "body": "Je voulais une entrée qui ressemble plus à une vraie page de présentation qu’à une landing surchargée: une photo centrée, du texte court, un ton net et une invitation à continuer."
+        "title": "On pose d'abord une présence claire, calme et lisible.",
+        "body": "Je voulais une entrée qui ressemble plus à une vraie page de présentation qu'à une landing surchargée: une photo centrée, du texte court, un ton net et une invitation à continuer."
       },
       "1": {
         "label": "Structure",
-        "title": "Puis le profil, la stack et l’intention prennent leur place.",
-        "body": "Le scroll ajoute progressivement les blocs utiles: identité, rôle, technologies et hiérarchie. Rien n’est jeté d’un coup, tout apparaît au bon moment."
+        "title": "Puis le profil, la stack et l'intention prennent leur place.",
+        "body": "Le scroll ajoute progressivement les blocs utiles: identité, rôle, technologies et hiérarchie. Rien n'est jeté d'un coup, tout apparaît au bon moment."
       },
       "2": {
         "label": "Projet",
-        "title": "Enfin, le site bascule vers du concret: cas d’usage, image et contact.",
+        "title": "Enfin, le site bascule vers du concret: cas d'usage, image et contact.",
         "body": "En descendant, on assemble une interface plus aboutie. En remontant, tout se déconstruit naturellement. Le portfolio devient une expérience réversible, pas une page figée."
       }
     },
@@ -86,7 +85,7 @@
   "about": {
     "title": "Une approche orientée clarté, produit et exécution",
     "subtitle": "Je privilégie les systèmes simples à faire évoluer, les interfaces lisibles et les décisions techniques qui servent réellement le produit.",
-    "body": "Mon terrain de jeu, ce sont les applications web à vrai usage et les logiciels bureautiques métier: back-offices, plateformes SaaS, logiciels C# sur mesure, APIs, paiements, contenus, intégrations et outils internes. J’aime transformer un besoin flou en solution utilisable, stable et propre à maintenir dans la durée.",
+    "body": "Mon terrain de jeu, ce sont les applications web à vrai usage et les logiciels bureautiques métier: back-offices, plateformes SaaS, logiciels C# sur mesure, APIs, paiements, contenus, intégrations et outils internes. J'aime transformer un besoin flou en solution utilisable, stable et propre à maintenir dans la durée.",
     "pillars": {
       "build": {
         "title": "Concevoir juste",
@@ -94,11 +93,11 @@
       },
       "scale": {
         "title": "Construire propre",
-        "description": "J’accorde de l’importance à la structure, au naming, à la dette maîtrisée et à une base de code que l’équipe peut reprendre sans friction."
+        "description": "J'accorde de l'importance à la structure, au naming, à la dette maîtrisée et à une base de code que l'équipe peut reprendre sans friction."
       },
       "ship": {
         "title": "Livrer serein",
-        "description": "CI/CD, Docker, APIs, qualité perçue et détails d’interface: la finition compte autant que la fonctionnalité."
+        "description": "CI/CD, Docker, APIs, qualité perçue et détails d'interface: la finition compte autant que la fonctionnalité."
       }
     },
     "contactMe": "Démarrer une discussion",
@@ -107,7 +106,7 @@
   "projects": {
     "portfolio": "Sélection",
     "title": "Des projets pensés pour être utiles, pas seulement beaux",
-    "subtitle": "Une sélection de produits et d’outils où j’ai travaillé l’architecture, l’expérience et la mise en production.",
+    "subtitle": "Une sélection de produits et d'outils où j'ai travaillé l'architecture, l'expérience et la mise en production.",
     "roleLabel": "Rôle",
     "stackLabel": "Stack",
     "impactLabel": "Impact",
@@ -118,68 +117,68 @@
     "code": "Code",
     "items": {
       "econnect": {
-        "title": "eConnect CRM",
-        "summary": "Conception et développement d’un CRM complet pour piloter prospects, partenaires, campagnes et automatisations métier.",
-        "role": "Conception technique, chiffrage, data modeling, API GraphQL en Go, interfaces React et intégrations tierces.",
-        "impact": "Une base produit centralisée pour suivre les dossiers, automatiser les communications et faire vivre plusieurs déclinaisons en marque blanche."
+        "title": "Plateforme CRM Métier",
+        "summary": "Conception et développement d'un CRM complet pour centraliser la gestion des prospects, les workflows partenaires, le suivi des campagnes et les automatisations métier.",
+        "role": "Conception technique, modélisation des données, APIs Go GraphQL, interfaces React back-office et intégrations de services tiers.",
+        "impact": "Une base produit unifiée pour suivre les dossiers clients, automatiser les workflows de communication et supporter plusieurs configurations opérateurs."
       },
       "begaiement": {
-        "title": "Begaiement",
-        "summary": "Plateforme orientée orthophonie mêlant contenus, suivi patient et logique produit métier.",
-        "role": "Développement full-stack de l’application React, API REST en Go, modélisation PostgreSQL et structuration des parcours.",
-        "impact": "Un outil plus lisible pour gérer contenus, objectifs thérapeutiques et relation patient dans une même interface."
+        "title": "Plateforme de Soins Thérapeutiques",
+        "summary": "Une plateforme de soins spécialisée combinant du contenu structuré, le suivi patient et des workflows thérapeutiques métier.",
+        "role": "Développement full-stack de l'application React, API Go REST, modélisation PostgreSQL et structuration du parcours patient.",
+        "impact": "Un outil plus lisible pour gérer le contenu, les objectifs thérapeutiques et les relations patients en un seul endroit."
       },
       "qrwin": {
-        "title": "QR Win",
-        "summary": "Back-office et APIs pour piloter des mécaniques de jeu, d’abonnement et de récompense autour de QR codes.",
-        "role": "Conception d’APIs Go, administration métier, gestion Stripe, wallets virtuels et interfaces de pilotage.",
-        "impact": "Un socle technique capable d’orchestrer campagnes, utilisateurs, gains et logique transactionnelle sans disperser les outils."
+        "title": "Moteur de Gamification & Campagnes",
+        "summary": "Back-office et APIs pour orchestrer des mécaniques de jeu, des plans d'abonnement et des flux de récompenses liés à des déclencheurs physiques.",
+        "role": "Conception API Go, outils d'administration, abonnements Stripe, système de portefeuille virtuel et interfaces de gestion opérateur.",
+        "impact": "Une base technique capable d'orchestrer campagnes, utilisateurs, récompenses et logique transactionnelle sans outillage fragmenté."
       },
       "happiz": {
-        "title": "Happiz",
-        "summary": "Backend GraphQL et back-office pour une application mobile de contenus audio et de gestion éditoriale.",
-        "role": "Conception des modèles, APIs GraphQL, interface d’administration et outillage de gestion des contenus et utilisateurs.",
-        "impact": "Une stack plus robuste pour opérer le produit, faire vivre les contenus et garder une administration claire côté équipe."
+        "title": "Plateforme Audio Mobile",
+        "summary": "Backend GraphQL et back-office éditorial pour une application mobile délivrant du contenu audio structuré aux utilisateurs.",
+        "role": "Modélisation, APIs GraphQL, interfaces d'administration et outils de gestion du contenu et des utilisateurs.",
+        "impact": "Une base plus fiable pour opérer le produit, gérer la publication de contenu et maintenir une administration simple."
       },
       "actuflux": {
-        "title": "ActuFlux",
-        "description": "Pipeline éditorial automatisé en Go avec dashboard Next.js, rendu vidéo Remotion/FFmpeg, sous-titrage et orchestration de contenus."
+        "title": "Pipeline Éditorial Automatisé",
+        "description": "Pipeline éditorial vidéo automatisé en Go avec un dashboard Next.js, rendu Remotion/FFmpeg, génération de sous-titres et orchestration de contenu."
       },
       "prelys": {
-        "title": "Prelys Suite",
-        "description": "Écosystème API Go + back-office React pour piloter documents, workflows métier, contenus et outils d’administration."
+        "title": "Suite de Gestion Documentaire",
+        "description": "API Go et écosystème back-office React pour gérer documents, workflows métier, contenus structurés et outils d'administration."
       },
       "cineactu": {
-        "title": "CineActu",
-        "description": "Application Next.js autour de contenus cinéma avec intégrations Supabase, Redis, paiements Stripe et logique d’alertes."
+        "title": "Plateforme d'Alertes Cinéma",
+        "description": "Application Next.js dédiée au cinéma avec Supabase, Redis, paiements Stripe et logique d'alertes produit."
       },
       "elearning": {
         "title": "E-learning English",
-        "description": "Plateforme d’apprentissage en Next.js avec Prisma/PostgreSQL, interface riche, import de contenus et briques d’IA."
+        "description": "Plateforme d'apprentissage en Next.js avec Prisma/PostgreSQL, interface riche, import de contenus et briques d'IA."
       },
       "leon": {
-        "title": "Léon",
-        "description": "Application de podcasts guidés avec APIs, i18n, pipeline éditorial et logique produit mobile."
+        "title": "Plateforme de Podcasts Guidés",
+        "description": "Application mobile de contenus audio structurés avec APIs, pipeline éditorial, i18n et logique produit."
       },
       "raoul": {
-        "title": "Raoul",
-        "description": "Application web de gestion de paiements MangoPay avec flux, KYC, wallets et conciliations."
+        "title": "Back-Office Paiements & KYC",
+        "description": "Plateforme web de gestion MangoPay : flux de paiement, vérification KYC, wallets et conciliations."
       },
       "psg": {
-        "title": "PSG VIP",
-        "description": "Back-office pour campagnes SMS et gestion d’informations invités à forte contrainte opérationnelle."
+        "title": "Back-Office Campagnes VIP",
+        "description": "Back-office de gestion de campagnes SMS et d'informations invités VIP sous contraintes opérationnelles."
       },
       "fidelatoo": {
-        "title": "Fidelatoo",
-        "description": "Travail de requêtage et optimisation SQL sur une application mobile de fidélité."
+        "title": "Analytics SQL Fidélité",
+        "description": "Optimisation de requêtes SQL et travail de performance sur un produit mobile de fidélisation avec des modèles de données complexes."
       },
       "handimobi": {
-        "title": "Handimobi",
-        "description": "Application Android pour repérer les lieux accessibles PMR et enrichir l’information terrain."
+        "title": "Application Terrain Accessibilité",
+        "description": "Application Android pour localiser des lieux accessibles aux fauteuils roulants et enrichir les informations d'accessibilité terrain."
       },
       "ladar": {
-        "title": "Ladar",
-        "description": "Application Android de mise en relation basée sur les centres d’intérêt et la géolocalisation."
+        "title": "App de Mise en Relation par Intérêts",
+        "description": "Application Android mettant en relation des personnes via leurs intérêts communs et la proximité géographique."
       }
     }
   },
@@ -189,11 +188,11 @@
     "groups": {
       "web": {
         "title": "Web",
-        "description": "Interfaces web modernes, lisibles et maintenables pour des produits front et back-office."
+        "description": "Interfaces web en React/TypeScript et Next.js, back-offices Blazor en C# — du composant à la mise en production."
       },
       "api": {
         "title": "API & données",
-        "description": "APIs robustes, logique métier claire et bases SQL structurées pour des applications fiables."
+        "description": "APIs REST et GraphQL en Go, Node.js ou ASP.NET Core, sur PostgreSQL et SQL Server — architecture claire, logique métier maîtrisée."
       },
       "software": {
         "title": "Logiciel",
@@ -211,12 +210,12 @@
       },
       "master": {
         "period": "2012 - 2015",
-        "title": "Diplôme d’ingénieur Informatique & Télécommunications"
+        "title": "Diplôme d'ingénieur Informatique & Télécommunications"
       },
       "ird": {
         "period": "2016 – 2017",
-        "title": "Ingénieur d’études — IRD",
-        "description": "Développement d’outils web et mobiles pour la collecte et la restitution de données de recherche."
+        "title": "Ingénieur d'études — IRD",
+        "description": "Développement d'outils web et mobiles pour la collecte et la restitution de données de recherche."
       },
       "region": {
         "period": "2017 – 2021",
@@ -226,7 +225,7 @@
       "squirrel_dev": {
         "period": "2021 – 2022",
         "title": "Développeur Web — Squirrel",
-        "description": "Création d’interfaces React, intégration d’APIs et montée en puissance sur les besoins produit."
+        "description": "Création d'interfaces React, intégration d'APIs et montée en puissance sur les besoins produit."
       },
       "squirrel_lead": {
         "period": "2022 – 2025",
@@ -234,9 +233,9 @@
         "description": "Architecture, développement full-stack, APIs GraphQL/REST, modélisation des données et pipelines CI/CD."
       },
       "willow": {
-        "period": "2026 – aujourd’hui",
+        "period": "2026 – aujourd'hui",
         "title": "Concepteur Développeur — Willow",
-        "description": "Conception et développement d’applications web et logicielles avec C#, MVVM, WPF, WinForms, DevExpress et Blazor, autour de SQL Server, XAF/XPO, Azure AI et Azure DevOps."
+        "description": "Conception et développement d'applications web et logicielles avec C#, MVVM, WPF, WinForms, DevExpress et Blazor, autour de SQL Server, XAF/XPO, Azure AI et Azure DevOps."
       }
     }
   },

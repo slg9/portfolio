@@ -19,17 +19,20 @@ export default function Header() {
   const t = useTranslations('navigation');
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("hero");
+  // Header slides in only after the welcome curtain has been scrolled away
   const [introReady, setIntroReady] = useState(false);
 
   useEffect(() => {
-    if (document.body.dataset.introReady === "true") {
+    // Already past the curtain (hard refresh mid-page, or back navigation)
+    if (document.body.dataset.curtainGone === "true") {
       setIntroReady(true);
       return;
     }
 
-    const onReady = () => setIntroReady(true);
-    window.addEventListener("portfolio:intro-ready", onReady);
-    return () => window.removeEventListener("portfolio:intro-ready", onReady);
+    // Petit délai pour laisser le hero visible seul avant l'entrée du header
+    const onGone = () => setTimeout(() => setIntroReady(true), 420);
+    window.addEventListener("portfolio:curtain-gone", onGone);
+    return () => window.removeEventListener("portfolio:curtain-gone", onGone);
   }, []);
 
   const scrollerRef = useRef<Window | HTMLElement>(
@@ -226,6 +229,11 @@ export default function Header() {
       >
         <div className="flex items-center justify-between gap-3 px-4 py-3 md:px-5">
           {/* Logo */}
+          <motion.div
+            initial={{ opacity: 0, x: -14, filter: "blur(6px)" }}
+            animate={introReady ? { opacity: 1, x: 0, filter: "blur(0px)" } : { opacity: 0, x: -14, filter: "blur(6px)" }}
+            transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+          >
           <button
             onClick={() => go("hero")}
             className="group inline-flex min-w-0 items-center gap-3 text-left"
@@ -253,6 +261,7 @@ export default function Header() {
               </span>
             </span>
           </button>
+          </motion.div>
 
           {/* Desktop nav */}
           <nav
@@ -304,10 +313,16 @@ export default function Header() {
             </AnimatePresence>
 
             <ul className="flex items-center gap-1" style={{ position: "relative", zIndex: 1 }}>
-              {NAV_KEYS.map((item) => {
+              {NAV_KEYS.map((item, idx) => {
                 const isActive = active === item.target.toLowerCase();
                 return (
-                  <li key={item.target} className="relative">
+                  <motion.li
+                    key={item.target}
+                    className="relative"
+                    initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
+                    animate={introReady ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -10, filter: "blur(4px)" }}
+                    transition={{ duration: 0.55, delay: 0.18 + idx * 0.07, ease: [0.22, 1, 0.36, 1] }}
+                  >
                     <button
                       onClick={() => go(item.target)}
                       onMouseEnter={onItemEnter}
@@ -333,14 +348,19 @@ export default function Header() {
                         />
                       )}
                     </button>
-                  </li>
+                  </motion.li>
                 );
               })}
             </ul>
           </nav>
 
           {/* CTA + burger */}
-          <div className="flex items-center gap-2">
+          <motion.div
+            className="flex items-center gap-2"
+            initial={{ opacity: 0, x: 14, filter: "blur(6px)" }}
+            animate={introReady ? { opacity: 1, x: 0, filter: "blur(0px)" } : { opacity: 0, x: 14, filter: "blur(6px)" }}
+            transition={{ duration: 0.7, delay: 0.60, ease: [0.22, 1, 0.36, 1] }}
+          >
             <LanguageSwitcher />
 
             <button
@@ -355,7 +375,7 @@ export default function Header() {
                 <path d="M4 7h16M4 12h16M4 17h16" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
 

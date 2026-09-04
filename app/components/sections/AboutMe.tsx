@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 
 const PILLAR_ICONS = [
-  /* 01 — Bullseye: homing rings */
+  /* 01 — Bullseye */
   <svg key="bullseye" width="72" height="72" viewBox="0 0 72 72">
     <circle cx="36" cy="36" r="30" fill="none" stroke="rgba(10,132,255,.1)" strokeWidth=".8"/>
     <circle cx="36" cy="36" r="20" fill="none" stroke="rgba(10,132,255,.18)" strokeWidth=".8"/>
@@ -64,15 +64,7 @@ const PILLAR_ICONS = [
   </svg>,
 ];
 
-function Pillar({
-  title,
-  description,
-  index,
-}: {
-  title: string;
-  description: string;
-  index: number;
-}) {
+function Pillar({ title, description, index }: { title: string; description: string; index: number }) {
   const num = String(index + 1).padStart(2, "0");
   return (
     <motion.article
@@ -82,44 +74,26 @@ function Pillar({
       transition={{ duration: 0.75, delay: 0.1 * index, ease: [0.22, 1, 0.36, 1] }}
       viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
       style={{
-        position: "relative",
-        overflow: "hidden",
-        borderRadius: 20,
+        position: "relative", overflow: "hidden", borderRadius: 20,
         border: "1px solid rgba(255,255,255,0.07)",
         background: "rgba(8,10,30,0.7)",
         padding: "24px",
         boxShadow: "0 18px 48px rgba(0,0,0,0.18)",
       }}
     >
-      {/* Top accent line */}
       <motion.div
         initial={{ scaleX: 0, opacity: 0 }}
         whileInView={{ scaleX: 1, opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.12 * index, ease: [0.22, 1, 0.36, 1] }}
         viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 24,
-          right: 24,
-          height: 1,
-          transformOrigin: "left",
-          background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.4), transparent)",
-        }}
+        style={{ position: "absolute", top: 0, left: 24, right: 24, height: 1, transformOrigin: "left", background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.4), transparent)" }}
       />
-      {/* Animated icon */}
       <div style={{ height: 80, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", marginBottom: 4 }}>
-        <span style={{ position: "absolute", top: 0, right: 0, fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.15em", color: "rgba(10,132,255,0.25)" }}>
-          {num}
-        </span>
+        <span style={{ position: "absolute", top: 0, right: 0, fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.15em", color: "rgba(10,132,255,0.25)" }}>{num}</span>
         {PILLAR_ICONS[index]}
       </div>
-      <h3 style={{ marginTop: 8, fontSize: "1rem", fontWeight: 700, color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif" }}>
-        {title}
-      </h3>
-      <p style={{ marginTop: 10, fontSize: "0.82rem", lineHeight: 1.7, color: "#6B7A99" }}>
-        {description}
-      </p>
+      <h3 style={{ marginTop: 8, fontSize: "1rem", fontWeight: 700, color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif" }}>{title}</h3>
+      <p style={{ marginTop: 10, fontSize: "0.82rem", lineHeight: 1.7, color: "#6B7A99" }}>{description}</p>
     </motion.article>
   );
 }
@@ -184,7 +158,29 @@ const PILLAR_STYLE = `
     stroke-dashoffset: 14;
     animation: pillarCheckDraw 2s ease-in-out infinite 1s;
   }
+
+  @keyframes aboutPulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: .4; transform: scale(1.5); }
+  }
+
+  .about-bento {
+    display: grid;
+    gap: 16px;
+  }
+  @media (min-width: 768px) {
+    .about-bento {
+      grid-template-columns: 1.45fr 1fr;
+    }
+  }
 `;
+
+// ── STATS DATA ────────────────────────────────────────────────────────────────
+const STATS = [
+  { value: "12+", label: "Projets livrés" },
+  { value: "5+",  label: "Ans d'expérience" },
+  { value: "8+",  label: "Technologies" },
+];
 
 export default function AboutMe() {
   const t = useTranslations("about");
@@ -195,143 +191,139 @@ export default function AboutMe() {
 
   return (
     <>
-    <style>{PILLAR_STYLE}</style>
-    <section
-      id="aboutme"
-      style={{
-        position: "relative",
-        background: "#04040F",
-        padding: "72px 8vw",
-      }}
-    >
-      {/* Top divider */}
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(10,132,255,0.3), transparent)",
-        }}
-      />
+      <style>{PILLAR_STYLE}</style>
+      <section id="aboutme" style={{ position: "relative", background: "#04040F", padding: "80px 8vw" }}>
 
-      <div style={{ maxWidth: 1152, margin: "0 auto" }}>
-        {/* Grid: left header, right body+CTA */}
-        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-          >
-            {/* Tag */}
-            <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-              <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }} />
-              {t("title")}
-            </div>
-            <h2 style={{ maxWidth: 420, fontSize: "clamp(1.85rem, 3vw, 2.4rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", marginTop: 0 }}>
-              {t("subtitle")}
-            </h2>
-          </motion.div>
+        {/* Top divider */}
+        <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(10,132,255,0.3), transparent)" }}/>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24, scale: 0.98, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 0.85, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-            style={{
-              position: "relative",
-              overflow: "hidden",
-              borderRadius: 22,
-              border: "1px solid rgba(255,255,255,0.07)",
-              background: "rgba(8,10,30,0.7)",
-              padding: "32px",
-              boxShadow: "0 18px 50px rgba(0,0,0,0.22)",
-            }}
-          >
+        <div style={{ maxWidth: 1152, margin: "0 auto" }}>
+
+          {/* ── Bento grid row 1 ── */}
+          <div className="about-bento">
+
+            {/* Main bio card */}
             <motion.div
-              initial={{ scaleX: 0, opacity: 0 }}
-              whileInView={{ scaleX: 1, opacity: 1 }}
-              transition={{ duration: 0.85, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true }}
               style={{
-                position: "absolute",
-                top: 0,
-                left: 32,
-                right: 32,
-                height: 1,
-                transformOrigin: "left",
-                background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.4), transparent)",
+                position: "relative", overflow: "hidden", borderRadius: 22,
+                border: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(8,10,30,0.7)",
+                padding: "36px",
+                boxShadow: "0 18px 50px rgba(0,0,0,0.22)",
               }}
-            />
-            <p style={{ maxWidth: "56ch", fontSize: "0.9375rem", lineHeight: 1.75, color: "#6B7A99", fontFamily: "var(--font-body), sans-serif" }}>
-              {t("body")}
-            </p>
-            <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 12 }}>
-              <motion.a
-                href="#contact"
-                initial={{ opacity: 0, y: 18, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                whileHover={{ y: -2, scale: 1.02 }}
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  borderRadius: 999,
-                  background: "linear-gradient(135deg, #0A84FF, #00D4FF)",
-                  padding: "12px 24px",
-                  fontSize: "0.875rem",
-                  fontWeight: 600,
-                  color: "#fff",
-                  textDecoration: "none",
-                  display: "inline-block",
-                }}
-              >
-                {t("contactMe")}
-              </motion.a>
-              <motion.a
-                href={cvHref}
-                download
-                initial={{ opacity: 0, y: 18, scale: 0.96 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.26, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true }}
-                whileHover={{ y: -2 }}
-                style={{
-                  position: "relative",
-                  overflow: "hidden",
-                  borderRadius: 999,
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  padding: "12px 24px",
-                  fontSize: "0.875rem",
-                  fontWeight: 600,
-                  color: "#F0F4FF",
-                  textDecoration: "none",
-                  display: "inline-block",
-                  background: "transparent",
-                }}
-              >
-                {t("downloadCV")}
-              </motion.a>
-            </div>
-          </motion.div>
-        </div>
+                style={{ position: "absolute", top: 0, left: 36, right: 36, height: 1, transformOrigin: "left", background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.4), transparent)" }}
+              />
 
-        {/* Pillar cards */}
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          {["build", "scale", "ship"].map((item, index) => (
-            <Pillar
-              key={item}
-              index={index}
-              title={t(`pillars.${item}.title`)}
-              description={t(`pillars.${item}.description`)}
-            />
-          ))}
+              {/* Tag */}
+              <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
+                <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }}/>
+                {t("title")}
+              </div>
+
+              <h2 style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.15rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", marginTop: 0, marginBottom: 20, maxWidth: 500 }}>
+                {t("subtitle")}
+              </h2>
+
+              <p style={{ fontSize: "0.9375rem", lineHeight: 1.78, color: "#6B7A99", maxWidth: "58ch" }}>
+                {t("body")}
+              </p>
+
+              <div style={{ marginTop: 32, display: "flex", flexWrap: "wrap", gap: 12 }}>
+                <a
+                  href="#contact"
+                  style={{ borderRadius: 999, background: "linear-gradient(135deg,#0A84FF,#00D4FF)", padding: "11px 24px", fontSize: "0.875rem", fontWeight: 700, color: "#fff", textDecoration: "none", display: "inline-block", transition: "transform .2s,box-shadow .2s", boxShadow: "0 0 20px rgba(10,132,255,.25)", letterSpacing: ".03em" }}
+                  onMouseEnter={e => { const el=e.currentTarget as HTMLElement; el.style.transform="translateY(-2px)"; el.style.boxShadow="0 8px 28px rgba(10,132,255,.45)"; }}
+                  onMouseLeave={e => { const el=e.currentTarget as HTMLElement; el.style.transform=""; el.style.boxShadow="0 0 20px rgba(10,132,255,.25)"; }}
+                >
+                  {t("contactMe")}
+                </a>
+                <a
+                  href={cvHref}
+                  download
+                  style={{ borderRadius: 999, border: "1.5px solid rgba(255,255,255,.1)", padding: "11px 24px", fontSize: "0.875rem", fontWeight: 600, color: "rgba(240,244,255,.8)", textDecoration: "none", display: "inline-block", transition: "border-color .2s,transform .2s,color .2s" }}
+                  onMouseEnter={e => { const el=e.currentTarget as HTMLElement; el.style.borderColor="rgba(255,255,255,.22)"; el.style.transform="translateY(-2px)"; el.style.color="#F0F4FF"; }}
+                  onMouseLeave={e => { const el=e.currentTarget as HTMLElement; el.style.borderColor="rgba(255,255,255,.1)"; el.style.transform=""; el.style.color="rgba(240,244,255,.8)"; }}
+                >
+                  {t("downloadCV")}
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Stats card */}
+            <motion.div
+              initial={{ opacity: 0, y: 22, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              viewport={{ once: true }}
+              style={{
+                position: "relative", overflow: "hidden", borderRadius: 22,
+                border: "1px solid rgba(255,255,255,0.07)",
+                background: "rgba(8,10,30,0.7)",
+                padding: "32px",
+                boxShadow: "0 18px 50px rgba(0,0,0,0.22)",
+                display: "flex", flexDirection: "column", justifyContent: "space-between",
+                minHeight: 260,
+              }}
+            >
+              {/* Top accent — green */}
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                whileInView={{ scaleX: 1, opacity: 1 }}
+                transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                style={{ position: "absolute", top: 0, left: 32, right: 32, height: 1, transformOrigin: "left", background: "linear-gradient(90deg, #00FFB3, rgba(0,255,179,.3), transparent)" }}
+              />
+
+              {/* Corner glow */}
+              <div style={{ position: "absolute", top: -30, right: -30, width: 120, height: 120, borderRadius: "50%", background: "radial-gradient(circle,rgba(0,255,179,.08),transparent 70%)", pointerEvents: "none" }}/>
+
+              {/* Stats */}
+              <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+                {STATS.map(({ value, label }) => (
+                  <div key={label} style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
+                    <span style={{ fontSize: "2.6rem", fontWeight: 800, color: "#F0F4FF", letterSpacing: "-.045em", lineHeight: 1, fontFamily: "var(--font-display),sans-serif" }}>
+                      {value}
+                    </span>
+                    <span style={{ fontSize: ".68rem", color: "rgba(255,255,255,.3)", letterSpacing: ".12em", textTransform: "uppercase" }}>
+                      {label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Availability badge */}
+              <div style={{ marginTop: 28, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(0,255,179,.06)", border: "1px solid rgba(0,255,179,.18)", borderRadius: 100, padding: "6px 14px", alignSelf: "flex-start" }}>
+                <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#00FFB3", boxShadow: "0 0 8px #00FFB3", animation: "aboutPulse 2s ease-in-out infinite" }}/>
+                <span style={{ fontSize: ".65rem", fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: "#00FFB3" }}>
+                  Open to freelance
+                </span>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* ── Pillar cards ── */}
+          <div className="grid gap-4 md:grid-cols-3" style={{ marginTop: 16 }}>
+            {["build", "scale", "ship"].map((item, index) => (
+              <Pillar
+                key={item}
+                index={index}
+                title={t(`pillars.${item}.title`)}
+                description={t(`pillars.${item}.description`)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
   );
 }

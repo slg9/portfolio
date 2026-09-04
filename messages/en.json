@@ -24,7 +24,6 @@
     "words": "setting up the frontend|wiring the animations|warming up the stack|finishing the interface"
   },
   "hero": {
-    "badge": "Open to freelance",
     "welcome": "Welcome to my portfolio",
     "name": "Sébastien Legros",
     "role": "Web & software developer",
@@ -118,68 +117,68 @@
     "code": "Code",
     "items": {
       "econnect": {
-        "title": "eConnect CRM",
-        "summary": "Design and development of a complete CRM used to manage prospects, partners, campaigns and business automations.",
-        "role": "Technical design, estimation, data modeling, Go GraphQL APIs, React interfaces and third-party integrations.",
-        "impact": "A centralized product foundation to track cases, automate communication workflows and support multiple white-label variants."
+        "title": "Business CRM Platform",
+        "summary": "Design and development of a complete CRM to centralize prospect management, partner workflows, campaign tracking and business automations.",
+        "role": "Technical design, data modeling, Go GraphQL APIs, React back-office interfaces and third-party service integrations.",
+        "impact": "A unified platform foundation to track customer cases, automate communication workflows and support multiple operator configurations."
       },
       "begaiement": {
-        "title": "Begaiement",
-        "summary": "A speech therapy platform combining content, patient follow-up and product-specific workflows.",
-        "role": "Full-stack development of the React application, Go REST API, PostgreSQL modeling and overall journey structuring.",
-        "impact": "A clearer tool to manage content, therapeutic goals and patient relationship flows in one place."
+        "title": "Therapeutic Care Platform",
+        "summary": "A specialized care platform combining structured content, patient follow-up and domain-specific therapeutic workflows.",
+        "role": "Full-stack development of the React application, Go REST API, PostgreSQL modeling and overall patient journey structuring.",
+        "impact": "A clearer tool to manage content, therapeutic goals and patient relationship flows in one coherent place."
       },
       "qrwin": {
-        "title": "QR Win",
-        "summary": "Back-office and APIs to run game mechanics, subscriptions and reward flows around QR code activations.",
-        "role": "Go API design, admin tooling, Stripe subscriptions, virtual wallets and operator-facing interfaces.",
-        "impact": "A technical base able to orchestrate campaigns, users, rewards and transactional logic without fragmented tools."
+        "title": "Gamification & Campaign Engine",
+        "summary": "Back-office and APIs to orchestrate game mechanics, subscription plans and reward flows around physical activation triggers.",
+        "role": "Go API design, admin tooling, Stripe subscriptions, virtual wallet system and operator-facing management interfaces.",
+        "impact": "A technical base able to orchestrate campaigns, users, rewards and transactional logic without fragmented tooling."
       },
       "happiz": {
-        "title": "Happiz",
-        "summary": "GraphQL backend and editorial back-office for a mobile audio content application.",
-        "role": "Model design, GraphQL APIs, administration interfaces and tooling for content and user management.",
-        "impact": "A more reliable stack to operate the product, manage content publishing and keep administration straightforward."
+        "title": "Mobile Audio Content Platform",
+        "summary": "GraphQL backend and editorial back-office for a mobile application delivering structured audio content to end users.",
+        "role": "Model design, GraphQL APIs, administration interfaces and tooling for content publishing and user management.",
+        "impact": "A more reliable stack to operate the product, manage content publishing workflows and keep administration straightforward."
       },
       "actuflux": {
-        "title": "ActuFlux",
-        "description": "An automated editorial pipeline in Go with a Next.js dashboard, Remotion/FFmpeg video rendering, subtitles and content orchestration."
+        "title": "Automated Editorial Pipeline",
+        "description": "An automated video editorial pipeline in Go with a Next.js dashboard, Remotion/FFmpeg video rendering, subtitle generation and content orchestration."
       },
       "prelys": {
-        "title": "Prelys Suite",
-        "description": "A Go API plus React back-office ecosystem used to manage documents, business workflows, content and admin tooling."
+        "title": "Document Management Suite",
+        "description": "A Go API plus React back-office ecosystem to manage documents, business workflows, structured content and admin tooling."
       },
       "cineactu": {
-        "title": "CineActu",
-        "description": "A Next.js cinema-focused application with Supabase, Redis, Stripe payments and alert-driven product logic."
+        "title": "Cinema Alert Platform",
+        "description": "A Next.js cinema-focused application with Supabase, Redis, Stripe payments and alert-driven notification logic."
       },
       "elearning": {
         "title": "E-learning English",
         "description": "A learning platform built with Next.js, Prisma/PostgreSQL, rich interfaces, content import flows and AI-assisted features."
       },
       "leon": {
-        "title": "Leon",
-        "description": "Guided podcast app with APIs, i18n, editorial pipeline and mobile product logic."
+        "title": "Guided Podcast Platform",
+        "description": "Mobile audio content app with APIs, editorial pipeline, i18n and structured product logic."
       },
       "raoul": {
-        "title": "Raoul",
-        "description": "Web application for MangoPay-based payment management with flows, KYC, wallets and reconciliations."
+        "title": "Payments & KYC Back-Office",
+        "description": "Web platform for MangoPay payment management: payment flows, KYC verification, wallets and reconciliations."
       },
       "psg": {
-        "title": "PSG VIP",
-        "description": "Back-office for SMS campaigns and guest information management under operational constraints."
+        "title": "VIP Campaign Back-Office",
+        "description": "Back-office for SMS campaign management and VIP guest information handling under operational constraints."
       },
       "fidelatoo": {
-        "title": "Fidelatoo",
-        "description": "SQL query work and optimization on a mobile loyalty product."
+        "title": "SQL Loyalty Analytics",
+        "description": "SQL query optimization and performance work on a mobile loyalty product with complex data models."
       },
       "handimobi": {
-        "title": "Handimobi",
-        "description": "Android application to locate wheelchair-accessible places and enrich field information."
+        "title": "Accessibility Field App",
+        "description": "Android application to locate wheelchair-accessible places and enrich accessibility field information."
       },
       "ladar": {
-        "title": "Ladar",
-        "description": "Android app matching people through shared interests and geolocation."
+        "title": "Interest-Based Matching App",
+        "description": "Android app matching people through shared interests and geolocation-based proximity."
       }
     }
   },
@@ -189,11 +188,11 @@
     "groups": {
       "web": {
         "title": "Web",
-        "description": "Modern, readable and maintainable web interfaces for product and back-office use cases."
+        "description": "React/TypeScript and Next.js interfaces, Blazor back-offices in C# — from component to production."
       },
       "api": {
         "title": "API & data",
-        "description": "Robust APIs, clear business logic and structured SQL databases for reliable applications."
+        "description": "REST and GraphQL APIs in Go, Node.js or ASP.NET Core, on PostgreSQL and SQL Server — clean architecture, solid business logic."
       },
       "software": {
         "title": "Software",

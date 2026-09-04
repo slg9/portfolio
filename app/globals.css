@@ -4,7 +4,7 @@
   --background: #04040F;
   --foreground: #F0F4FF;
   --surface: rgba(8,10,30,0.7);
-  --surface-strong: rgba(10,12,40,0.8);
+  --surface-strong: rgba(10,12,40,0.85);
   --line: rgba(255,255,255,0.07);
   --accent: #0A84FF;
   --accent2: #00D4FF;
@@ -27,9 +27,15 @@
   font-family: var(--font-display), var(--font-body), sans-serif;
 }
 
+html,
+body {
+  /* overflow-x: clip prevents horizontal scrollbar without creating a scroll
+     container — so position:sticky children keep working correctly */
+  overflow-x: clip;
+}
+
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 @media (max-width: 600px) {
@@ -42,8 +48,19 @@ body {
   background: #04040F;
   color: var(--foreground);
   font-family: var(--font-body), sans-serif;
-  overflow-x: hidden;
   text-rendering: optimizeLegibility;
+}
+
+/* Grain noise overlay — subtil, cinématique */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.038;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 300px 300px;
 }
 
 h1,

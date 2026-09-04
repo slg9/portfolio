@@ -1,15 +1,15 @@
 "use client";
 
-import Image from "next/image";
 import { useState, useRef } from "react";
 import React from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useTranslations } from "next-intl";
 
-// ── TYPES ─────────────────────────────────────────────────────────────────────
+// ── TYPES ────────────────────────────────────────────────────────────────────────────
 type FeaturedProject = {
   key: "econnect" | "begaiement" | "qrwin" | "happiz";
-  imageSrc: string;
+  accent: string;
+  Visual: () => React.ReactElement;
   stack: string[];
 };
 
@@ -17,12 +17,171 @@ type ArchiveKey =
   | "actuflux" | "prelys" | "cineactu" | "elearning"
   | "leon" | "raoul" | "psg" | "fidelatoo" | "handimobi" | "ladar";
 
-// ── DATA ──────────────────────────────────────────────────────────────────────
+// ── CONCEPT VISUALS ────────────────────────────────────────────────────────────
+
+function VisualCRM() {
+  const nodes = [
+    { cx: 80,  cy: 80,  r: 22, main: true  },
+    { cx: 175, cy: 44,  r: 12, main: false },
+    { cx: 200, cy: 112, r: 10, main: false },
+    { cx: 148, cy: 158, r: 12, main: false },
+    { cx: 30,  cy: 140, r: 10, main: false },
+    { cx: 20,  cy: 50,  r: 9,  main: false },
+  ];
+  const edges = [[0,1],[0,2],[0,3],[0,4],[0,5],[1,2],[3,4]];
+  return (
+    <svg width="220" height="200" viewBox="0 0 220 200" fill="none" aria-hidden>
+      {edges.map(([a,b],i) => (
+        <motion.line key={i}
+          x1={nodes[a].cx} y1={nodes[a].cy} x2={nodes[b].cx} y2={nodes[b].cy}
+          stroke="rgba(10,132,255,.28)" strokeWidth="1.2" strokeDasharray="4 4"
+          animate={{ strokeDashoffset: [0, -24] }}
+          transition={{ repeat: Infinity, duration: 2 + i * 0.4, ease: "linear" }}
+        />
+      ))}
+      {edges.slice(0,4).map(([a,b],i) => (
+        <motion.circle key={"p"+i} r="3" fill="#0A84FF"
+          animate={{
+            cx: [nodes[a].cx, nodes[b].cx, nodes[a].cx],
+            cy: [nodes[a].cy, nodes[b].cy, nodes[a].cy],
+            opacity: [0, 1, 0],
+          }}
+          transition={{ repeat: Infinity, duration: 2.4, delay: i * 0.55, ease: "easeInOut" }}
+        />
+      ))}
+      {nodes.map((n, i) => (
+        <g key={i}>
+          <circle cx={n.cx} cy={n.cy} r={n.r + 6} fill={"rgba(10,132,255," + (n.main ? ".12" : ".06") + ")"}/>
+          <circle cx={n.cx} cy={n.cy} r={n.r} fill={"rgba(10,132,255," + (n.main ? ".22" : ".12") + ")"} stroke="#0A84FF" strokeWidth={n.main ? 1.8 : 1.2}/>
+          {n.main && (
+            <>
+              <motion.circle cx={n.cx} cy={n.cy} r={n.r}
+                stroke="#0A84FF" strokeWidth="1.5" fill="none"
+                animate={{ scale: [1, 2.2], opacity: [0.5, 0] }}
+                transition={{ repeat: Infinity, duration: 2.2, ease: "easeOut" }}
+                style={{ transformOrigin: n.cx + "px " + n.cy + "px" }}
+              />
+              <circle cx={n.cx} cy={n.cy - 5} r="5.5" fill="#0A84FF" opacity=".7"/>
+              <path d={"M" + (n.cx-9) + " " + (n.cy+12) + " Q" + n.cx + " " + (n.cy+5) + " " + (n.cx+9) + " " + (n.cy+12)} stroke="#0A84FF" strokeWidth="2" strokeLinecap="round" fill="none" opacity=".7"/>
+            </>
+          )}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function VisualTherapy() {
+  const bars = [4, 10, 18, 28, 22, 14, 24, 32, 20, 12, 8, 16, 26, 18, 10, 6];
+  return (
+    <svg width="220" height="200" viewBox="0 0 220 200" fill="none" aria-hidden>
+      <circle cx="110" cy="100" r="72" stroke="rgba(139,92,246,.1)" strokeWidth="1"/>
+      <motion.circle cx="110" cy="100" r="72"
+        stroke="#8B5CF6" strokeWidth="2.5" fill="none" strokeLinecap="round"
+        strokeDasharray="452"
+        animate={{ strokeDashoffset: [452, 130] }}
+        transition={{ duration: 2.8, ease: [0.22, 1, 0.36, 1], repeat: Infinity, repeatDelay: 1.2 }}
+        style={{ rotate: -90, transformOrigin: "110px 100px" }}
+      />
+      {bars.map((h, i) => (
+        <motion.rect key={i}
+          x={52 + i * 8} y={100 - h / 2} width="4.5" height={h}
+          rx="2.2" fill="#8B5CF6"
+          animate={{ scaleY: [1, 1.6, 0.7, 1.2, 1], opacity: [0.4, 1, 0.6, 0.9, 0.4] }}
+          transition={{ repeat: Infinity, duration: 1.8, delay: i * 0.09, ease: "easeInOut" }}
+          style={{ transformOrigin: (52 + i * 8 + 2) + "px 100px" }}
+        />
+      ))}
+      <rect x="84" y="74" width="52" height="36" rx="12" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" strokeWidth="1.5"/>
+      <path d="M100 110 L108 120 L116 110" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" strokeWidth="1.5" strokeLinejoin="round"/>
+      <line x1="94" y1="89" x2="126" y2="89" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" opacity=".7"/>
+      <line x1="94" y1="96" x2="118" y2="96" stroke="#8B5CF6" strokeWidth="1.5" strokeLinecap="round" opacity=".5"/>
+    </svg>
+  );
+}
+
+function VisualGamification() {
+  return (
+    <svg width="220" height="200" viewBox="0 0 220 200" fill="none" aria-hidden>
+      <circle cx="110" cy="100" r="70" stroke="rgba(245,158,11,.12)" strokeWidth="1" strokeDasharray="3 5"/>
+      {[0,1,2,3,4,5,6,7].map(i => {
+        const angle = (i / 8) * Math.PI * 2;
+        const x = 110 + 70 * Math.cos(angle);
+        const y = 100 + 70 * Math.sin(angle);
+        return (
+          <motion.circle key={i} cx={x} cy={y} r="4.5" fill="#F59E0B" opacity=".7"
+            animate={{ opacity: [0.3, 0.9, 0.3], scale: [0.8, 1.2, 0.8] }}
+            transition={{ repeat: Infinity, duration: 2 + i * 0.2, delay: i * 0.22, ease: "easeInOut" }}
+            style={{ transformOrigin: x + "px " + y + "px" }}
+          />
+        );
+      })}
+      <motion.g style={{ transformOrigin: "110px 100px" }}
+        animate={{ scale: [1, 1.06, 1] }}
+        transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+      >
+        <path d="M90 72 L130 72 L130 100 Q130 118 110 118 Q90 118 90 100 Z" fill="rgba(245,158,11,.18)" stroke="#F59E0B" strokeWidth="1.8" strokeLinejoin="round"/>
+        <path d="M90 80 Q78 80 78 90 Q78 100 90 98" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+        <path d="M130 80 Q142 80 142 90 Q142 100 130 98" stroke="#F59E0B" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+        <rect x="100" y="118" width="20" height="5" rx="2.5" fill="#F59E0B" opacity=".6"/>
+        <rect x="95" y="123" width="30" height="5" rx="2.5" fill="#F59E0B" opacity=".4"/>
+        <motion.path
+          d="M110 82 L113 91 L122 91 L115 97 L118 106 L110 100 L102 106 L105 97 L98 91 L107 91 Z"
+          fill="#F59E0B"
+          animate={{ opacity: [0.5, 1, 0.5], scale: [0.92, 1.08, 0.92] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+          style={{ transformOrigin: "110px 94px" }}
+        />
+      </motion.g>
+    </svg>
+  );
+}
+
+function VisualAudio() {
+  const wave = [6, 14, 22, 34, 42, 30, 18, 26, 38, 28, 16, 8, 12, 24, 36, 20, 10];
+  return (
+    <svg width="220" height="200" viewBox="0 0 220 200" fill="none" aria-hidden>
+      <rect x="84" y="40" width="52" height="90" rx="10" fill="rgba(16,185,129,.08)" stroke="#10B981" strokeWidth="1.5"/>
+      <rect x="89" y="48" width="42" height="66" rx="6" fill="rgba(16,185,129,.06)"/>
+      <circle cx="110" cy="122" r="4" fill="rgba(16,185,129,.3)" stroke="#10B981" strokeWidth="1"/>
+      {wave.slice(0, 11).map((h, i) => (
+        <motion.rect key={i}
+          x={91 + i * 3.5} y={81 - h / 2} width="2.5" height={h}
+          rx="1.2" fill="#10B981"
+          animate={{ scaleY: [1, 1.5, 0.6, 1.3, 1], opacity: [0.3, 0.9, 0.5, 0.8, 0.3] }}
+          transition={{ repeat: Infinity, duration: 1.4, delay: i * 0.08, ease: "easeInOut" }}
+          style={{ transformOrigin: (91 + i * 3.5 + 1) + "px 81px" }}
+        />
+      ))}
+      <path d="M84 82 Q84 46 110 46 Q136 46 136 82" stroke="#10B981" strokeWidth="2" fill="none" strokeLinecap="round"/>
+      <rect x="76" y="80" width="12" height="18" rx="5" fill="rgba(16,185,129,.2)" stroke="#10B981" strokeWidth="1.5"/>
+      <rect x="132" y="80" width="12" height="18" rx="5" fill="rgba(16,185,129,.2)" stroke="#10B981" strokeWidth="1.5"/>
+      {[0,1].map(i => (
+        <motion.circle key={i} cx={82} cy={89} r="8"
+          stroke="#10B981" strokeWidth="1.5" fill="none"
+          animate={{ scale: [1, 2.4], opacity: [0.6, 0] }}
+          transition={{ repeat: Infinity, duration: 2, delay: i * 0.8, ease: "easeOut" }}
+          style={{ transformOrigin: "82px 89px" }}
+        />
+      ))}
+      {[0,1].map(i => (
+        <motion.circle key={i} cx={138} cy={89} r="8"
+          stroke="#10B981" strokeWidth="1.5" fill="none"
+          animate={{ scale: [1, 2.4], opacity: [0.6, 0] }}
+          transition={{ repeat: Infinity, duration: 2, delay: 0.4 + i * 0.8, ease: "easeOut" }}
+          style={{ transformOrigin: "138px 89px" }}
+        />
+      ))}
+    </svg>
+  );
+}
+
+// ── DATA ──────────────────────────────────────────────────────────────────────────────────
 const featuredProjects: FeaturedProject[] = [
-  { key: "econnect",   imageSrc: "/projects/econnect.webp", stack: ["React", "Go", "GraphQL", "PostgreSQL", "Docker", "CI/CD"] },
-  { key: "begaiement", imageSrc: "/projects/begaiement.png", stack: ["React", "Go", "REST", "PostgreSQL", "Analytics", "Stripe"] },
-  { key: "qrwin",      imageSrc: "/projects/qrwin.png",      stack: ["React", "Go", "REST", "Stripe", "Wallet", "Back-office"] },
-  { key: "happiz",     imageSrc: "/projects/happiz.svg",     stack: ["React", "Go", "GraphQL", "Mobile backend", "Firebase", "Admin"] },
+  { key: "econnect",   accent: "#0A84FF", Visual: VisualCRM,          stack: ["React", "Go", "GraphQL", "PostgreSQL", "Docker", "CI/CD"] },
+  { key: "begaiement", accent: "#8B5CF6", Visual: VisualTherapy,      stack: ["React", "Go", "REST", "PostgreSQL", "Analytics", "Stripe"] },
+  { key: "qrwin",      accent: "#F59E0B", Visual: VisualGamification, stack: ["React", "Go", "REST", "Stripe", "Wallet", "Back-office"] },
+  { key: "happiz",     accent: "#10B981", Visual: VisualAudio,        stack: ["React", "Go", "GraphQL", "Mobile backend", "Firebase", "Admin"] },
 ];
 
 const archiveKeys: ArchiveKey[] = [
@@ -444,18 +603,26 @@ export default function Projects() {
                 style={{
                   position: "absolute", top: 0, left: 20, right: 20, height: 1,
                   transformOrigin: "left",
-                  background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.35), transparent)",
+                  background: `linear-gradient(90deg, ${project.accent}, ${project.accent}55, transparent)`,
                 }}
               />
-              <div style={{ position: "relative", overflow: "hidden", borderRadius: 18, background: "rgba(10,12,40,0.8)" }} className="group">
-                <div style={{ position: "absolute", inset: 0, zIndex: 10, background: "linear-gradient(to top, rgba(0,0,0,0.18), transparent)", opacity: 0, transition: "opacity 300ms" }} className="group-hover:opacity-100 pointer-events-none"/>
-                <Image
-                  src={project.imageSrc}
-                  alt={t(`items.${project.key}.title`)}
-                  width={900} height={640}
-                  style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 500ms" }}
-                  className="group-hover:scale-[1.04]"
-                />
+              {/* Concept visual — NDA-compliant icon instead of real screenshot */}
+              <div style={{
+                position: "relative", overflow: "hidden", borderRadius: 18,
+                background: "rgba(8,10,28,0.9)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                minHeight: 230,
+              }}>
+                {/* Fine grid */}
+                <div style={{ position:"absolute", inset:0, backgroundImage:"linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px)", backgroundSize:"22px 22px", pointerEvents:"none" }}/>
+                {/* Accent glow */}
+                <div style={{ position:"absolute", inset:0, background:`radial-gradient(ellipse at 50% 40%, ${project.accent}1a 0%, transparent 65%)`, pointerEvents:"none" }}/>
+                {/* Top accent line */}
+                <div style={{ position:"absolute", top:0, left:0, right:0, height:2, background:`linear-gradient(90deg, transparent, ${project.accent}88, transparent)`, pointerEvents:"none" }}/>
+                {/* Visual */}
+                <div style={{ position:"relative", zIndex:1 }}>
+                  <project.Visual />
+                </div>
               </div>
               <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div>

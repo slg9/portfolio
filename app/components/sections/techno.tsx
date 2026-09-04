@@ -110,11 +110,11 @@ const GROUP_ICONS = [
 const groups = [
   {
     key: "web",
-    items: ["React", "Blazor"],
+    items: ["React", "Next.js", "TypeScript", "Blazor", "C#"],
   },
   {
     key: "api",
-    items: ["Golang", "PostgreSQL", "SQL Server"],
+    items: ["Go", "Node.js", "ASP.NET Core", "GraphQL", "REST", "PostgreSQL", "SQL Server"],
   },
   {
     key: "software",
@@ -162,9 +162,9 @@ export default function Techno() {
             <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }} />
             {t("title")}
           </div>
-          <p style={{ fontSize: "1rem", lineHeight: 2, color: "#6B7A99", marginTop: 20, fontFamily: "var(--font-body), sans-serif" }}>
+          <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.4rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: "0 0 16px" }}>
             {t("subtitle")}
-          </p>
+          </h2>
         </motion.div>
 
         {/* Cards grid */}
