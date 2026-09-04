@@ -25,8 +25,7 @@ export default function CurtainBackground() {
   useEffect(() => {
     const canvas = ref.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+    const ctx = canvas.getContext("2d")!;
 
     const mobile = window.innerWidth < 900;
     let W = window.innerWidth;
