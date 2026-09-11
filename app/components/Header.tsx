@@ -26,13 +26,24 @@ export default function Header() {
     // Already past the curtain (hard refresh mid-page, or back navigation)
     if (document.body.dataset.curtainGone === "true") {
       setIntroReady(true);
-      return;
     }
 
     // Petit délai pour laisser le hero visible seul avant l'entrée du header
-    const onGone = () => setTimeout(() => setIntroReady(true), 420);
+    let showTimer: number | undefined;
+    const onGone = () => {
+      showTimer = window.setTimeout(() => setIntroReady(true), 420);
+    };
+    const onReturned = () => {
+      if (showTimer !== undefined) window.clearTimeout(showTimer);
+      setIntroReady(false);
+    };
     window.addEventListener("portfolio:curtain-gone", onGone);
-    return () => window.removeEventListener("portfolio:curtain-gone", onGone);
+    window.addEventListener("portfolio:curtain-returned", onReturned);
+    return () => {
+      if (showTimer !== undefined) window.clearTimeout(showTimer);
+      window.removeEventListener("portfolio:curtain-gone", onGone);
+      window.removeEventListener("portfolio:curtain-returned", onReturned);
+    };
   }, []);
 
   const scrollerRef = useRef<Window | HTMLElement>(

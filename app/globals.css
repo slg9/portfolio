@@ -91,13 +91,10 @@ button {
 
 /* ── MOBILE PERFORMANCE ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  /* Scroll */
+  /* Keep a single, native page scroller. Making both html and body scroll
+     containers breaks window.scrollY (and sticky sections) on mobile Safari. */
   html, body {
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    height: auto;
-    min-height: 100%;
+    overflow-x: clip;
   }
 
   /* Canvas orbital : autoriser le scroll vertical natif */

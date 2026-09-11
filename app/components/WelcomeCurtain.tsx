@@ -36,24 +36,23 @@ export default function WelcomeCurtain() {
   );
 
   useEffect(() => {
-    scrollY.set(window.scrollY);
-
-    if (window.scrollY > 480 && !hasFiredRef.current) {
-      hasFiredRef.current = true;
-      document.body.dataset.curtainGone = "true";
-      window.dispatchEvent(new CustomEvent("portfolio:curtain-gone"));
-    }
-
-    const onScroll = () => {
+    const syncCurtain = () => {
       const y = window.scrollY;
       scrollY.set(y);
+
       if (y > 480 && !hasFiredRef.current) {
         hasFiredRef.current = true;
         document.body.dataset.curtainGone = "true";
         window.dispatchEvent(new CustomEvent("portfolio:curtain-gone"));
+      } else if (y <= 80 && hasFiredRef.current) {
+        hasFiredRef.current = false;
+        delete document.body.dataset.curtainGone;
+        window.dispatchEvent(new CustomEvent("portfolio:curtain-returned"));
       }
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
+
+    syncCurtain();
+    window.addEventListener("scroll", syncCurtain, { passive: true });
 
     if (document.body.dataset.introReady === "true") {
       setIntroReady(true);
@@ -61,12 +60,12 @@ export default function WelcomeCurtain() {
       const onReady = () => setIntroReady(true);
       window.addEventListener("portfolio:intro-ready", onReady);
       return () => {
-        window.removeEventListener("scroll", onScroll);
+        window.removeEventListener("scroll", syncCurtain);
         window.removeEventListener("portfolio:intro-ready", onReady);
       };
     }
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", syncCurtain);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

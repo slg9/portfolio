@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const PALETTE: [number, number, number][] = [
   [10, 132, 255],
@@ -21,13 +21,35 @@ interface Sparkle  { x:number; y:number; life:number; max:number; c:[number,numb
 
 export default function CurtainBackground() {
   const ref = useRef<HTMLCanvasElement>(null);
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    const mobileQuery = window.matchMedia("(max-width: 900px)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const memoryGB = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+    const lowMemory = memoryGB !== undefined && memoryGB <= 4;
+
+    const update = () => {
+      setEnabled(!mobileQuery.matches && !reducedMotionQuery.matches && !lowMemory);
+    };
+
+    update();
+    mobileQuery.addEventListener("change", update);
+    reducedMotionQuery.addEventListener("change", update);
+
+    return () => {
+      mobileQuery.removeEventListener("change", update);
+      reducedMotionQuery.removeEventListener("change", update);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     const canvas = ref.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d")!;
 
-    const mobile = window.innerWidth < 900;
     let W = window.innerWidth;
     let H = window.innerHeight;
     canvas.width = W; canvas.height = H;
@@ -35,7 +57,7 @@ export default function CurtainBackground() {
     const mouse = { x: -9999, y: -9999 };
 
     // ── Particles ────────────────────────────────────────────────────────
-    const pts: Particle[] = mobile ? [] : Array.from({ length: N }, () => {
+    const pts: Particle[] = Array.from({ length: N }, () => {
       const fast = Math.random() < 0.18; // 18 % fast particles
       return {
         x: Math.random() * W, y: Math.random() * H,
@@ -217,7 +239,9 @@ export default function CurtainBackground() {
       window.removeEventListener("resize",    onResize);
       window.removeEventListener("scroll",    onScroll);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <canvas
