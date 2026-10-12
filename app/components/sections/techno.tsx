@@ -5,36 +5,36 @@ import { useTranslations } from "next-intl";
 const GROUP_ICONS = [
   /* Web */
   <svg key="web" width="48" height="48" viewBox="0 0 48 48" fill="none">
-    <circle cx="24" cy="24" r="4" fill="#5B8FC9" opacity="0.9" />
-    <ellipse cx="24" cy="24" rx="18" ry="7" stroke="#5B8FC9" strokeWidth="1" opacity="0.3" />
-    <ellipse cx="24" cy="24" rx="18" ry="7" stroke="#5B8FC9" strokeWidth="1" opacity="0.2" transform="rotate(60 24 24)" />
-    <ellipse cx="24" cy="24" rx="18" ry="7" stroke="#5B8FC9" strokeWidth="1" opacity="0.2" transform="rotate(120 24 24)" />
+    <circle cx="24" cy="24" r="4" fill="#6A9CD6" opacity="0.9" />
+    <ellipse cx="24" cy="24" rx="18" ry="7" stroke="#6A9CD6" strokeWidth="1" opacity="0.3" />
+    <ellipse cx="24" cy="24" rx="18" ry="7" stroke="#6A9CD6" strokeWidth="1" opacity="0.2" transform="rotate(60 24 24)" />
+    <ellipse cx="24" cy="24" rx="18" ry="7" stroke="#6A9CD6" strokeWidth="1" opacity="0.2" transform="rotate(120 24 24)" />
   </svg>,
 
   /* API */
   <svg key="api" width="48" height="48" viewBox="0 0 48 48" fill="none">
-    <circle cx="24" cy="24" r="4" fill="#5B8FC9" opacity="0.9" />
-    <line x1="24" y1="20" x2="24" y2="8" stroke="rgba(91,143,201,.25)" strokeWidth="1" />
-    <line x1="24" y1="28" x2="24" y2="40" stroke="rgba(91,143,201,.25)" strokeWidth="1" />
-    <line x1="20" y1="24" x2="8" y2="24" stroke="rgba(91,143,201,.25)" strokeWidth="1" />
-    <line x1="28" y1="24" x2="40" y2="24" stroke="rgba(91,143,201,.25)" strokeWidth="1" />
-    <circle cx="24" cy="8" r="3" stroke="rgba(91,143,201,.3)" strokeWidth="1" />
-    <circle cx="24" cy="40" r="3" stroke="rgba(91,143,201,.3)" strokeWidth="1" />
-    <circle cx="8" cy="24" r="3" stroke="rgba(91,143,201,.3)" strokeWidth="1" />
-    <circle cx="40" cy="24" r="3" stroke="rgba(91,143,201,.3)" strokeWidth="1" />
+    <circle cx="24" cy="24" r="4" fill="#6A9CD6" opacity="0.9" />
+    <line x1="24" y1="20" x2="24" y2="8" stroke="rgba(106,156,214,.25)" strokeWidth="1" />
+    <line x1="24" y1="28" x2="24" y2="40" stroke="rgba(106,156,214,.25)" strokeWidth="1" />
+    <line x1="20" y1="24" x2="8" y2="24" stroke="rgba(106,156,214,.25)" strokeWidth="1" />
+    <line x1="28" y1="24" x2="40" y2="24" stroke="rgba(106,156,214,.25)" strokeWidth="1" />
+    <circle cx="24" cy="8" r="3" stroke="rgba(106,156,214,.3)" strokeWidth="1" />
+    <circle cx="24" cy="40" r="3" stroke="rgba(106,156,214,.3)" strokeWidth="1" />
+    <circle cx="8" cy="24" r="3" stroke="rgba(106,156,214,.3)" strokeWidth="1" />
+    <circle cx="40" cy="24" r="3" stroke="rgba(106,156,214,.3)" strokeWidth="1" />
   </svg>,
 
   /* Software */
   <svg key="software" width="48" height="48" viewBox="0 0 48 48" fill="none">
-    <rect x="6" y="10" width="36" height="28" rx="4" stroke="rgba(91,143,201,.3)" strokeWidth="1" />
-    <rect x="6" y="10" width="36" height="8" rx="4" fill="rgba(91,143,201,.08)" />
-    <rect x="6" y="14" width="36" height="4" fill="rgba(91,143,201,.08)" />
+    <rect x="6" y="10" width="36" height="28" rx="4" stroke="rgba(106,156,214,.3)" strokeWidth="1" />
+    <rect x="6" y="10" width="36" height="8" rx="4" fill="rgba(106,156,214,.08)" />
+    <rect x="6" y="14" width="36" height="4" fill="rgba(106,156,214,.08)" />
     <circle cx="12" cy="14" r="1.5" fill="#FF5F57" opacity="0.6" />
     <circle cx="17" cy="14" r="1.5" fill="#FFBD2E" opacity="0.6" />
     <circle cx="22" cy="14" r="1.5" fill="#27C93F" opacity="0.6" />
-    <rect x="12" y="22" width="16" height="2" rx="1" fill="rgba(91,143,201,.3)" />
-    <rect x="12" y="27" width="22" height="2" rx="1" fill="rgba(91,143,201,.2)" />
-    <rect x="12" y="32" width="12" height="2" rx="1" fill="rgba(91,143,201,.15)" />
+    <rect x="12" y="22" width="16" height="2" rx="1" fill="rgba(106,156,214,.3)" />
+    <rect x="12" y="27" width="22" height="2" rx="1" fill="rgba(106,156,214,.2)" />
+    <rect x="12" y="32" width="12" height="2" rx="1" fill="rgba(106,156,214,.15)" />
   </svg>,
 ];
 
@@ -72,7 +72,7 @@ export default function Techno() {
           left: 0,
           right: 0,
           height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(91,143,201,0.3), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(106,156,214,0.3), transparent)",
         }}
       />
 
@@ -106,7 +106,7 @@ export default function Techno() {
                     left: 24,
                     right: 24,
                     height: 1,
-                    background: "linear-gradient(90deg, #5B8FC9, rgba(91,143,201,0.35), transparent)",
+                    background: "linear-gradient(90deg, #6A9CD6, rgba(106,156,214,0.35), transparent)",
                   }}
                 />
 
@@ -127,12 +127,12 @@ export default function Techno() {
                       key={item}
                       style={{
                         borderRadius: 999,
-                        border: "1px solid rgba(91,143,201,0.25)",
-                        background: "rgba(91,143,201,0.08)",
+                        border: "1px solid rgba(106,156,214,0.25)",
+                        background: "rgba(106,156,214,0.08)",
                         padding: "6px 12px",
                         fontSize: "0.75rem",
                         fontWeight: 500,
-                        color: "#5B8FC9",
+                        color: "#6A9CD6",
                       }}
                     >
                       {item}

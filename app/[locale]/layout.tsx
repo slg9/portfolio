@@ -76,9 +76,9 @@ export async function generateMetadata({
       siteName: t('metadata.siteName'),
       images: [
         {
-          url: '/sebastien.png',
-          width: 1200,
-          height: 630,
+          url: '/sebastien-pro.jpg',
+          width: 1254,
+          height: 1254,
           alt: t('metadata.alt'),
         },
       ],
@@ -87,7 +87,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: t('metadata.title'),
       description: t('metadata.description'),
-      images: ['/sebastien.png'],
+      images: ['/sebastien-pro.jpg'],
     },
     alternates: {
       canonical: 'https://sebastienlegros.me',

@@ -13,7 +13,7 @@ export default function Footer() {
     >
       <div style={{
         height: 1,
-        background: "linear-gradient(90deg, transparent, rgba(91,143,201,0.25), transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(106,156,214,0.25), transparent)",
       }} />
 
       <div style={{ padding: "20px 8vw" }}>

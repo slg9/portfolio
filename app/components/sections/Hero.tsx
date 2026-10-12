@@ -15,62 +15,65 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      style={{ minHeight: "100dvh", position: "relative", background: "#04040F" }}
+      style={{ position: "relative", background: "#04040F" }}
     >
       <style>{`
         .hero-wrap {
+          --nav-h: 80px;
+          padding: var(--nav-h) 6vw 0;
+        }
+        .hero-grid {
+          box-sizing: border-box;
+          min-height: calc(100svh - var(--nav-h));
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          min-height: 100dvh;
+          grid-template-columns: auto auto;
+          justify-content: center;
           align-items: center;
-          padding: 0 6vw;
-          max-width: 1400px;
-          margin: 0 auto;
-          gap: 4vw;
+          gap: clamp(48px, 5vw, 72px);
+          padding: 40px 0;
         }
         .hero-text {
           display: flex; flex-direction: column; gap: 20px;
-          position: relative; z-index: 2; padding: 84px 0 64px;
-        }
-        .hero-photo-col {
-          display: flex; flex-direction: column;
-          align-items: center; justify-content: center;
           position: relative; z-index: 2;
         }
-        .hero-photo-wrap {
+        .hero-photo {
           position: relative;
-          width: min(300px, 36vw);
+          width: min(360px, 32vw);
+          aspect-ratio: 4 / 5;
+          border-radius: 16px;
+          border: 1px solid var(--line);
+          overflow: hidden;
+          background: #0A0C1A;
         }
 
         @media (max-width: 900px) {
-          .hero-wrap {
-            grid-template-columns: 1fr;
+          .hero-wrap { padding: 104px 5vw 0; }
+          .hero-grid {
             min-height: auto;
-            padding: 0 5vw;
+            grid-template-columns: 1fr;
+            justify-content: stretch;
+            gap: 20px;
+            padding: 0 0 48px;
           }
-          .hero-photo-col {
-            order: -1;
-            padding-top: 88px;
-            padding-bottom: 0;
-            align-items: flex-start;
+          .hero-photo-col { order: -1; }
+          .hero-photo {
+            width: 96px;
+            aspect-ratio: 1 / 1;
+            border-radius: 50%;
           }
           .hero-text {
             gap: 16px;
-            padding: 16px 0 48px;
             align-items: flex-start;
             text-align: left;
           }
-          .hero-photo-wrap { width: 96px !important; }
           .hero-cta-row { flex-direction: column; width: 100%; }
           .hero-cta-primary { width: 100%; text-align: center; justify-content: center; }
           .hero-cta-secondary-row { display: flex; gap: 12px; width: 100%; }
         }
-        @media (max-width: 600px) {
-          .hero-photo-wrap { width: 80px !important; }
-        }
       `}</style>
 
       <div className="hero-wrap">
+      <div className="hero-grid">
         {/* Text column */}
         <div className="hero-text">
           <h1 style={{
@@ -100,8 +103,8 @@ export default function Hero() {
             <span style={{
               fontSize: "0.72rem", fontWeight: 600, color: "var(--accent)",
               letterSpacing: "0.04em",
-              border: "1px solid rgba(91,143,201,0.22)", borderRadius: 999,
-              padding: "4px 12px", background: "rgba(91,143,201,0.06)",
+              border: "1px solid rgba(106,156,214,0.22)", borderRadius: 999,
+              padding: "4px 12px", background: "rgba(106,156,214,0.06)",
             }}>
               {t("availability")}
             </span>
@@ -116,7 +119,7 @@ export default function Hero() {
               href="#projects"
               className="hero-cta-primary"
               style={{
-                background: "var(--accent)", color: "#fff",
+                background: "var(--accent)", color: "#04040F",
                 fontFamily: "var(--font-display),sans-serif", fontSize: ".84rem", fontWeight: 700,
                 padding: "13px 28px", borderRadius: 100, textDecoration: "none", letterSpacing: ".02em",
                 transition: "transform .2s, opacity .2s",
@@ -175,24 +178,18 @@ export default function Hero() {
 
         {/* Photo column */}
         <div className="hero-photo-col">
-          <div className="hero-photo-wrap">
-            <div style={{
-              position: "relative", borderRadius: 16, overflow: "hidden",
-              border: "1px solid rgba(255,255,255,0.08)", background: "#0A0C1A",
-              aspectRatio: "1/1",
-              boxShadow: "0 24px 60px rgba(0,0,0,.4)",
-            }}>
-              <Image
-                src="/sebastien.jpeg"
-                alt={`Sébastien Legros — ${t("jobTitle")}`}
-                fill
-                sizes="(max-width: 900px) 96px, 300px"
-                style={{ objectFit: "cover", objectPosition: "center top" }}
-                priority
-              />
-            </div>
+          <div className="hero-photo">
+            <Image
+              src="/sebastien-pro.webp"
+              alt={`Sébastien Legros — ${t("jobTitle")}`}
+              fill
+              sizes="(max-width: 900px) 96px, 360px"
+              style={{ objectFit: "cover", objectPosition: "center 35%" }}
+              priority
+            />
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

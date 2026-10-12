@@ -41,7 +41,7 @@ Site one-page avec sections : Hero, À propos (approche + stats), Projets (4 fea
 ## Evidence on Hand
 
 - CV PDF à jour (FR + EN) dans /public/docs/.
-- Photo portrait dans /public/sebastien.png.
+- Photo portrait dans /public/sebastien-pro.jpg (Hero : sebastien-pro.webp, 4:5).
 - Parcours vérifié et à jour dans les messages i18n.
 - Projets réels (eConnect, Bégaiement, QRWin, Happiz + 11 archives).
 - Pas de témoignages clients, pas de métriques publiques.

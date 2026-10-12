@@ -55,8 +55,8 @@ function InputField({
                 onBlur={() => setFocused(false)}
                 style={{
                     ...fieldStyle,
-                    borderColor: focused ? "#5B8FC9" : "rgba(255,255,255,0.08)",
-                    boxShadow: focused ? "0 0 0 3px rgba(91,143,201,0.15)" : "none",
+                    borderColor: focused ? "#6A9CD6" : "rgba(255,255,255,0.08)",
+                    boxShadow: focused ? "0 0 0 3px rgba(106,156,214,0.15)" : "none",
                 }}
             />
         </div>
@@ -90,8 +90,8 @@ function TextareaField({
                 style={{
                     ...fieldStyle,
                     resize: "vertical",
-                    borderColor: focused ? "#5B8FC9" : "rgba(255,255,255,0.08)",
-                    boxShadow: focused ? "0 0 0 3px rgba(91,143,201,0.15)" : "none",
+                    borderColor: focused ? "#6A9CD6" : "rgba(255,255,255,0.08)",
+                    boxShadow: focused ? "0 0 0 3px rgba(106,156,214,0.15)" : "none",
                 }}
             />
         </div>
@@ -110,7 +110,7 @@ function SubmitButton({ label, loadingLabel }: { label: string; loadingLabel: st
                 padding: "13px 32px",
                 fontSize: "0.875rem",
                 fontWeight: 700,
-                color: "#fff",
+                color: "#04040F",
                 border: "none",
                 cursor: pending ? "not-allowed" : "pointer",
                 opacity: pending ? 0.6 : 1,
@@ -121,8 +121,8 @@ function SubmitButton({ label, loadingLabel }: { label: string; loadingLabel: st
             {pending ? (
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
                     <svg width="14" height="14" viewBox="0 0 14 14" style={{ animation: "cfSpin 0.8s linear infinite" }}>
-                        <circle cx="7" cy="7" r="5" fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="2"/>
-                        <path d="M7 2 A5 5 0 0 1 12 7" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round"/>
+                        <circle cx="7" cy="7" r="5" fill="none" stroke="currentColor" strokeOpacity="0.3" strokeWidth="2"/>
+                        <path d="M7 2 A5 5 0 0 1 12 7" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                     </svg>
                     {loadingLabel}
                 </span>
@@ -167,8 +167,8 @@ export default function ContactForm({
                 padding: "24px 0",
                 minHeight: 280,
             }}>
-                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(91,143,201,0.12)", border: "2px solid var(--accent)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B8FC9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(106,156,214,0.12)", border: "2px solid var(--accent)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#6A9CD6" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="20 6 9 17 4 12" />
                     </svg>
                 </div>
@@ -195,8 +195,8 @@ export default function ContactForm({
                         transition: "all 0.2s",
                     }}
                     onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.borderColor = "#5B8FC9";
-                        (e.currentTarget as HTMLButtonElement).style.color = "#5B8FC9";
+                        (e.currentTarget as HTMLButtonElement).style.borderColor = "#6A9CD6";
+                        (e.currentTarget as HTMLButtonElement).style.color = "#6A9CD6";
                     }}
                     onMouseLeave={(e) => {
                         (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)";

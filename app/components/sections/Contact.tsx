@@ -25,7 +25,7 @@ export default function Contact() {
           left: 0,
           right: 0,
           height: 1,
-          background: "linear-gradient(90deg, transparent, rgba(91,143,201,0.3), transparent)",
+          background: "linear-gradient(90deg, transparent, rgba(106,156,214,0.3), transparent)",
         }}
       />
 
@@ -43,9 +43,9 @@ export default function Contact() {
           </p>
 
           {/* Availability badge */}
-          <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(91,143,201,0.08)", border: "1px solid rgba(91,143,201,0.22)", borderRadius: 999, padding: "6px 14px" }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#5B8FC9", animation: "contactPulse 2s ease-in-out infinite", flexShrink: 0 }} />
-            <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "#5B8FC9" }}>
+          <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(106,156,214,0.08)", border: "1px solid rgba(106,156,214,0.22)", borderRadius: 999, padding: "6px 14px" }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#6A9CD6", animation: "contactPulse 2s ease-in-out infinite", flexShrink: 0 }} />
+            <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "#6A9CD6" }}>
               {t("availability")}
             </span>
           </div>
@@ -69,11 +69,11 @@ export default function Contact() {
                 boxShadow: "0 18px 48px rgba(0,0,0,0.18)",
                 transition: "transform 180ms ease, border-color 180ms ease",
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "rgba(91,143,201,0.3)"; }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "rgba(106,156,214,0.3)"; }}
               onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"; }}
             >
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "rgba(91,143,201,0.12)", border: "1px solid rgba(91,143,201,0.2)", flexShrink: 0 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B8FC9" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "rgba(106,156,214,0.12)", border: "1px solid rgba(106,156,214,0.2)", flexShrink: 0 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6A9CD6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/>
                 </svg>
               </span>
@@ -99,11 +99,11 @@ export default function Contact() {
                 boxShadow: "0 18px 48px rgba(0,0,0,0.18)",
                 transition: "transform 180ms ease, border-color 180ms ease",
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "rgba(91,143,201,0.3)"; }}
+              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.borderColor = "rgba(106,156,214,0.3)"; }}
               onMouseLeave={e => { e.currentTarget.style.transform = ""; e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)"; }}
             >
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "rgba(91,143,201,0.12)", border: "1px solid rgba(91,143,201,0.2)", flexShrink: 0 }}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="#5B8FC9">
+              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 10, background: "rgba(106,156,214,0.12)", border: "1px solid rgba(106,156,214,0.2)", flexShrink: 0 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#6A9CD6">
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
                 </svg>
               </span>
@@ -131,7 +131,7 @@ export default function Contact() {
               left: 32,
               right: 32,
               height: 1,
-              background: "linear-gradient(90deg, #5B8FC9, rgba(91,143,201,0.35), transparent)",
+              background: "linear-gradient(90deg, #6A9CD6, rgba(106,156,214,0.35), transparent)",
             }}
           />
           <ContactForm action={sendMailjet} />

@@ -14,7 +14,7 @@ export default function StructuredData() {
       ? "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js with 10 years of experience, including 6 in software development and 3 as technical lead"
       : "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js avec 10 ans d'expérience, dont 6 en développement et 3 en lead technique",
     "url": "https://sebastienlegros.me",
-    "image": "https://sebastienlegros.me/sebastien.jpeg",
+    "image": "https://sebastienlegros.me/sebastien-pro.jpg",
     "sameAs": [
       "https://www.linkedin.com/in/sébastien-legros-23a85085",
       "https://github.com/slg9"
