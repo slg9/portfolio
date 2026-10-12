@@ -8,11 +8,11 @@ export default function StructuredData() {
     "@type": "Person",
     "name": "Sébastien Legros",
     "jobTitle": locale === 'en' 
-      ? "Full-Stack Developer & Software Engineer"
-      : "Développeur Full-Stack & Software Engineer",
+      ? "Senior Full-Stack Developer"
+      : "Développeur Full-Stack Senior",
     "description": locale === 'en'
-      ? "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js with 10 years of experience, including 6 in software development"
-      : "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js avec 10 ans d'expérience, dont 6 en développement",
+      ? "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js with 10 years of experience, including 6 in software development and 3 as technical lead"
+      : "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js avec 10 ans d'expérience, dont 6 en développement et 3 en lead technique",
     "url": "https://sebastienlegros.me",
     "image": "https://sebastienlegros.me/sebastien.png",
     "sameAs": [
@@ -41,7 +41,7 @@ export default function StructuredData() {
     ],
     "hasOccupation": {
       "@type": "Occupation",
-      "name": locale === 'en' ? "Full-Stack Developer" : "Développeur Full-Stack",
+      "name": locale === 'en' ? "Senior Full-Stack Developer" : "Développeur Full-Stack Senior",
       "description": locale === 'en'
         ? "Development of modern web applications and robust APIs"
         : "Développement d'applications web modernes et d'APIs robustes",

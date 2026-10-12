@@ -2,13 +2,13 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Sébastien Legros - Full-Stack Developer',
+    name: 'Sébastien Legros - Senior Full-Stack Developer',
     short_name: 'Sébastien Legros',
     description: 'Portfolio of Sébastien Legros, full-stack developer specialized in React, TypeScript, Go and Node.js',
     start_url: '/',
     display: 'standalone',
-    background_color: '#ffffff',
-    theme_color: '#6366f1',
+    background_color: '#04040F',
+    theme_color: '#0A84FF',
     lang: 'en',
     icons: [
       {

@@ -79,9 +79,9 @@ export default function Hero() {
 
           <div className="hero-identity" style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <div style={{ width: 22, height: 1.5, background: "rgba(10,132,255,.5)", flexShrink: 0 }} />
-            <span style={{ fontSize: ".77rem", fontWeight: 600, color: "rgba(240,244,255,.38)", letterSpacing: ".02em" }}>Sébastien Legros</span>
-            <span style={{ color: "rgba(255,255,255,.12)", fontSize: ".75rem" }}>·</span>
-            <span style={{ fontSize: ".77rem", fontWeight: 500, color: "rgba(240,244,255,.2)", letterSpacing: ".02em" }}>{t("jobTitle")}</span>
+            <span style={{ fontSize: ".77rem", fontWeight: 600, color: "rgba(240,244,255,.56)", letterSpacing: ".02em" }}>Sébastien Legros</span>
+            <span style={{ color: "rgba(255,255,255,.3)", fontSize: ".75rem" }}>·</span>
+            <span style={{ fontSize: ".77rem", fontWeight: 500, color: "rgba(240,244,255,.50)", letterSpacing: ".02em" }}>{t("jobTitle")}</span>
           </div>
 
           <div className="hero-cta-row" style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
@@ -117,13 +117,13 @@ export default function Hero() {
               href={cvHref}
               download
               style={{
-                background: "transparent", color: "rgba(255,255,255,.26)",
+                background: "transparent", color: "rgba(255,255,255,.48)",
                 fontFamily: "var(--font-display),sans-serif", fontSize: ".84rem", fontWeight: 600,
-                padding: "13px 20px", borderRadius: 100, border: "1.5px solid rgba(255,255,255,.06)",
+                padding: "13px 20px", borderRadius: 100, border: "1.5px solid rgba(255,255,255,.12)",
                 textDecoration: "none", transition: "all .2s", display: "inline-block",
               }}
-              onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = "rgba(255,255,255,.14)"; el.style.color = "rgba(255,255,255,.58)"; }}
-              onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = "rgba(255,255,255,.06)"; el.style.color = "rgba(255,255,255,.26)"; }}
+              onMouseEnter={e => { const el = e.currentTarget; el.style.borderColor = "rgba(255,255,255,.22)"; el.style.color = "rgba(255,255,255,.68)"; }}
+              onMouseLeave={e => { const el = e.currentTarget; el.style.borderColor = "rgba(255,255,255,.12)"; el.style.color = "rgba(255,255,255,.48)"; }}
             >
               {t("tertiaryCta")}
             </a>
@@ -135,15 +135,15 @@ export default function Hero() {
               { href: "https://www.linkedin.com/in/s%C3%A9bastien-legros-23a85085", title: "LinkedIn", d: "M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zM9 17H6.5v-7H9v7zm-1.25-8.27A1.37 1.37 0 1 1 9.12 7.36a1.37 1.37 0 0 1-1.37 1.37zM18 17h-2.5v-3.5c0-1-.38-1.5-1.13-1.5s-1.37.6-1.37 1.6V17H10.5v-7H13v1.07C13.53 10.36 14.32 10 15.25 10 16.89 10 18 11 18 13.3V17z" },
             ].map(({ href, title, d }) => (
               <a key={title} href={href} title={title} target="_blank" rel="noopener noreferrer"
-                style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.07)", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,.28)", textDecoration: "none", transition: "all .2s", cursor: "pointer" }}
+                style={{ width: 36, height: 36, borderRadius: 10, background: "rgba(255,255,255,.04)", border: "1px solid rgba(255,255,255,.07)", display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,.42)", textDecoration: "none", transition: "all .2s", cursor: "pointer" }}
                 onMouseEnter={e => { const el = e.currentTarget; el.style.background = "rgba(10,132,255,.12)"; el.style.borderColor = "#0A84FF"; el.style.color = "#0A84FF"; el.style.transform = "translateY(-2px)"; }}
-                onMouseLeave={e => { const el = e.currentTarget; el.style.background = "rgba(255,255,255,.04)"; el.style.borderColor = "rgba(255,255,255,.07)"; el.style.color = "rgba(255,255,255,.28)"; el.style.transform = ""; }}
+                onMouseLeave={e => { const el = e.currentTarget; el.style.background = "rgba(255,255,255,.04)"; el.style.borderColor = "rgba(255,255,255,.07)"; el.style.color = "rgba(255,255,255,.42)"; el.style.transform = ""; }}
               >
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden><path d={d} /></svg>
               </a>
             ))}
-            <div style={{ width: 1, height: 18, background: "rgba(255,255,255,.08)", margin: "0 2px" }} />
-            <span style={{ fontSize: ".62rem", color: "rgba(255,255,255,.18)", letterSpacing: ".04em" }}>La Réunion · Remote</span>
+            <div style={{ width: 1, height: 18, background: "rgba(255,255,255,.14)", margin: "0 2px" }} />
+            <span style={{ fontSize: ".62rem", color: "rgba(255,255,255,.42)", letterSpacing: ".04em" }}>La Réunion · Remote</span>
           </div>
         </div>
 
@@ -158,7 +158,7 @@ export default function Hero() {
             }}>
               <Image
                 src="/sebastien.png"
-                alt={`Sébastien Legros — ${t("jobTitle")}`}
+                alt={`Sébastien Legros - ${t("jobTitle")}`}
                 fill
                 sizes="(max-width: 900px) 74vw, 390px"
                 style={{ objectFit: "cover", objectPosition: "center top" }}
@@ -167,7 +167,7 @@ export default function Hero() {
               <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(4,4,15,.92) 0%, rgba(4,4,15,.04) 28%, transparent 40%)", pointerEvents: "none" }} />
               <div style={{ position: "absolute", bottom: 18, left: 18, right: 18, zIndex: 3 }}>
                 <p style={{ margin: 0, fontSize: ".86rem", fontWeight: 800, color: "#F0F4FF", letterSpacing: "-.02em", fontFamily: "var(--font-display),sans-serif", lineHeight: 1.2 }}>Sébastien Legros</p>
-                <p style={{ margin: "4px 0 0", fontSize: ".6rem", color: "rgba(255,255,255,.32)", letterSpacing: ".07em" }}>{t("jobTitle")}</p>
+                <p style={{ margin: "4px 0 0", fontSize: ".6rem", color: "rgba(255,255,255,.50)", letterSpacing: ".07em" }}>{t("jobTitle")}</p>
               </div>
             </div>
           </div>

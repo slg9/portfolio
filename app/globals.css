@@ -84,6 +84,15 @@ button {
   border-color: var(--line);
 }
 
+/* ── TOUCH FEEDBACK ─────────────────────────────────────────────────────── */
+@media (hover: none) {
+  a:active,
+  button:active {
+    transform: scale(0.97) !important;
+    opacity: 0.85;
+  }
+}
+
 /* ── MOBILE PERFORMANCE ──────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   html, body {
