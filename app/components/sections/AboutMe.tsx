@@ -177,10 +177,8 @@ const PILLAR_STYLE = `
 
 // ── STATS DATA ────────────────────────────────────────────────────────────────
 const STATS = [
-  { value: "12+", label: "Projets livrés" },
-  { value: "10",  label: "Ans d'expérience, dont 6 en dev" },
-  { value: "8+",  label: "Technologies" },
-];
+  { value: "10",  key: "years" },
+] as const;
 
 export default function AboutMe() {
   const t = useTranslations("about");
@@ -289,13 +287,13 @@ export default function AboutMe() {
 
               {/* Stats */}
               <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-                {STATS.map(({ value, label }) => (
-                  <div key={label} style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
+                {STATS.map(({ value, key }) => (
+                  <div key={key} style={{ display: "flex", alignItems: "baseline", gap: 10 }}>
                     <span style={{ fontSize: "2.6rem", fontWeight: 800, color: "#F0F4FF", letterSpacing: "-.045em", lineHeight: 1, fontFamily: "var(--font-display),sans-serif" }}>
                       {value}
                     </span>
                     <span style={{ fontSize: ".68rem", color: "rgba(255,255,255,.3)", letterSpacing: ".12em", textTransform: "uppercase" }}>
-                      {label}
+                      {t(`stats.${key}`)}
                     </span>
                   </div>
                 ))}
@@ -305,7 +303,7 @@ export default function AboutMe() {
               <div style={{ marginTop: 28, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(0,255,179,.06)", border: "1px solid rgba(0,255,179,.18)", borderRadius: 100, padding: "6px 14px", alignSelf: "flex-start" }}>
                 <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#00FFB3", boxShadow: "0 0 8px #00FFB3", animation: "aboutPulse 2s ease-in-out infinite" }}/>
                 <span style={{ fontSize: ".65rem", fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: "#00FFB3" }}>
-                  Open to freelance
+                  {t("availability")}
                 </span>
               </div>
             </motion.div>

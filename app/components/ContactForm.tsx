@@ -2,8 +2,6 @@
 import { useFormStatus } from "react-dom";
 import { useState } from "react";
 import { useTranslations } from 'next-intl';
-import Lottie from "lottie-react";
-import sendAnimation from "@/public/lotties/send-success.json";
 
 const fieldStyle: React.CSSProperties = {
     width: "100%",
@@ -180,13 +178,10 @@ export default function ContactForm({
                 padding: "24px 0",
                 minHeight: 280,
             }}>
-                <div style={{ width: 200, maxWidth: "80%" }}>
-                    <Lottie
-                        animationData={sendAnimation}
-                        loop={false}
-                        onComplete={() => setStatus("idle")}
-                        style={{ width: "100%", height: "auto" }}
-                    />
+                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(10,132,255,0.12)", border: "2px solid #0A84FF", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <polyline points="20 6 9 17 4 12" />
+                    </svg>
                 </div>
                 <p style={{
                     margin: 0,
@@ -211,8 +206,8 @@ export default function ContactForm({
                         transition: "all 0.2s",
                     }}
                     onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.borderColor = "#00D4FF";
-                        (e.currentTarget as HTMLButtonElement).style.color = "#00D4FF";
+                        (e.currentTarget as HTMLButtonElement).style.borderColor = "#0A84FF";
+                        (e.currentTarget as HTMLButtonElement).style.color = "#0A84FF";
                     }}
                     onMouseLeave={(e) => {
                         (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)";

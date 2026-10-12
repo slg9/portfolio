@@ -17,34 +17,9 @@ const NAV_KEYS = [
 
 export default function Header() {
   const t = useTranslations('navigation');
+  const tHero = useTranslations('hero');
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("hero");
-  // Header slides in only after the welcome curtain has been scrolled away
-  const [introReady, setIntroReady] = useState(false);
-
-  useEffect(() => {
-    // Already past the curtain (hard refresh mid-page, or back navigation)
-    if (document.body.dataset.curtainGone === "true") {
-      setIntroReady(true);
-    }
-
-    // Petit délai pour laisser le hero visible seul avant l'entrée du header
-    let showTimer: number | undefined;
-    const onGone = () => {
-      showTimer = window.setTimeout(() => setIntroReady(true), 420);
-    };
-    const onReturned = () => {
-      if (showTimer !== undefined) window.clearTimeout(showTimer);
-      setIntroReady(false);
-    };
-    window.addEventListener("portfolio:curtain-gone", onGone);
-    window.addEventListener("portfolio:curtain-returned", onReturned);
-    return () => {
-      if (showTimer !== undefined) window.clearTimeout(showTimer);
-      window.removeEventListener("portfolio:curtain-gone", onGone);
-      window.removeEventListener("portfolio:curtain-returned", onReturned);
-    };
-  }, []);
 
   const scrollerRef = useRef<Window | HTMLElement>(
     typeof window !== "undefined" ? window : ({} as Window)
@@ -213,8 +188,8 @@ export default function Header() {
     <motion.header
       className="fixed inset-x-0 top-0 z-50"
       initial={{ opacity: 0, y: -24, filter: "blur(10px)" }}
-      animate={introReady ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -24, filter: "blur(10px)" }}
-      transition={{ duration: 1.35, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Progress bar */}
       <div style={{ height: 2, background: "transparent" }}>
@@ -235,14 +210,14 @@ export default function Header() {
           boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
         }}
         initial={{ scale: 0.96 }}
-        animate={introReady ? { scale: 1 } : { scale: 0.96 }}
-        transition={{ duration: 1.2, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="flex items-center justify-between gap-3 px-4 py-3 md:px-5">
           {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -14, filter: "blur(6px)" }}
-            animate={introReady ? { opacity: 1, x: 0, filter: "blur(0px)" } : { opacity: 0, x: -14, filter: "blur(6px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
             transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
           <button
@@ -268,7 +243,7 @@ export default function Header() {
                 Sébastien Legros
               </span>
               <span className="hidden text-xs sm:block" style={{ color: "#6B7A99" }}>
-                Full-stack engineer
+                {tHero("jobTitle")}
               </span>
             </span>
           </button>
@@ -331,7 +306,7 @@ export default function Header() {
                     key={item.target}
                     className="relative"
                     initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-                    animate={introReady ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -10, filter: "blur(4px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ duration: 0.55, delay: 0.18 + idx * 0.07, ease: [0.22, 1, 0.36, 1] }}
                   >
                     <button
@@ -369,8 +344,8 @@ export default function Header() {
           <motion.div
             className="flex items-center gap-2"
             initial={{ opacity: 0, x: 14, filter: "blur(6px)" }}
-            animate={introReady ? { opacity: 1, x: 0, filter: "blur(0px)" } : { opacity: 0, x: 14, filter: "blur(6px)" }}
-            transition={{ duration: 0.7, delay: 0.60, ease: [0.22, 1, 0.36, 1] }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
             <LanguageSwitcher />
 

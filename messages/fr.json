@@ -1,10 +1,10 @@
 {
   "metadata": {
-    "title": "Sébastien Legros | Développeur Full-Stack & Software Engineer",
+    "title": "Sébastien Legros | Développeur Full-Stack Senior & Software Engineer",
     "description": "Développeur full-stack spécialisé en React, TypeScript, Go et Node.js. Je conçois des produits web robustes, maintenables et orientés métier.",
     "keywords": "développeur full-stack, React, TypeScript, Go, Node.js, software engineer, développeur web, portfolio, Sébastien Legros",
     "siteName": "Portfolio Sébastien Legros",
-    "alt": "Sébastien Legros - Développeur Full-Stack"
+    "alt": "Sébastien Legros - Développeur Full-Stack Senior"
   },
   "navigation": {
     "home": "Accueil",
@@ -26,6 +26,7 @@
   "hero": {
     "welcome": "Bienvenue sur mon portfolio",
     "name": "Sébastien Legros",
+    "jobTitle": "Développeur Full-Stack Senior",
     "role": "Développeur web & logiciel",
     "summary": "Je conçois des applications web et logicielles — frontend, backend, API, jusqu'au déploiement.",
     "eyebrow": "Full-stack engineer basé à La Réunion",
@@ -40,11 +41,17 @@
     "availability": "Disponible pour des missions full-stack, backend ou lead dev.",
     "stats": {
       "years": "10 ans",
-      "yearsLabel": "d'expérience, dont 6 sur des produits web et des API en production",
+      "yearsLabel": "d'expérience, dont 6 en développement et 3 en lead technique",
       "projects": "10+ projets",
       "projectsLabel": "livrés sur CRM, SaaS, paiement et mobile backend",
       "stack": "React • Blazor • C# • Go • SQL Server •PostgreSQL",
       "stackLabel": "web, logiciel métier et données sur une même base solide"
+    },
+    "statLabels": {
+      "projects": "Projets",
+      "years": "Ans d'XP",
+      "yearsDetail": "dont 6 en dev · 3 en lead",
+      "tech": "Technos"
     },
     "highlights": {
       "architecture": "Architecture lisible",
@@ -86,6 +93,11 @@
     "title": "Une approche orientée clarté, produit et exécution",
     "subtitle": "Je privilégie les systèmes simples à faire évoluer, les interfaces lisibles et les décisions techniques qui servent réellement le produit.",
     "body": "Mon terrain de jeu, ce sont les applications web à vrai usage et les logiciels bureautiques métier: back-offices, plateformes SaaS, logiciels C# sur mesure, APIs, paiements, contenus, intégrations et outils internes. J'aime transformer un besoin flou en solution utilisable, stable et propre à maintenir dans la durée.",
+    "stats": {
+      "projects": "Projets livrés",
+      "years": "Ans d'expérience, dont 6 en dev et 3 en lead",
+      "tech": "Technologies"
+    },
     "pillars": {
       "build": {
         "title": "Concevoir juste",
@@ -100,6 +112,7 @@
         "description": "CI/CD, Docker, APIs, qualité perçue et détails d'interface: la finition compte autant que la fonctionnalité."
       }
     },
+    "availability": "Ouvert aux opportunités",
     "contactMe": "Démarrer une discussion",
     "downloadCV": "Télécharger mon CV"
   },
@@ -152,9 +165,13 @@
         "title": "Plateforme d'Alertes Cinéma",
         "description": "Application Next.js dédiée au cinéma avec Supabase, Redis, paiements Stripe et logique d'alertes produit."
       },
-      "elearning": {
-        "title": "E-learning English",
-        "description": "Plateforme d'apprentissage en Next.js avec Prisma/PostgreSQL, interface riche, import de contenus et briques d'IA."
+      "mentora": {
+        "title": "Mentora — plateforme de cours d'anglais en ligne",
+        "description": "Espaces enseignant et élève, création de sessions étape par étape, suivi des résultats, import et export de supports. Next.js, Node.js, TypeScript, Prisma, PostgreSQL, NextAuth."
+      },
+      "preznt": {
+        "title": "Preznt (preznt.gifts)",
+        "description": "Plateforme de cadeaux numériques interactifs : authentification par code, paiements Stripe avec webhooks, notifications push, scènes 3D. Next.js 16, React 19, Node.js, PostgreSQL, Stripe, Three.js."
       },
       "leon": {
         "title": "Plateforme de Podcasts Guidés",
@@ -203,6 +220,10 @@
   "experience": {
     "title": "Parcours",
     "subtitle": "Une progression du réseau vers le produit, puis vers le lead technique.",
+    "badges": {
+      "work": "Expérience",
+      "education": "Formation"
+    },
     "items": {
       "dut": {
         "period": "2010 - 2012",
@@ -213,29 +234,34 @@
         "title": "Diplôme d'ingénieur Informatique & Télécommunications"
       },
       "ird": {
-        "period": "2016 – 2017",
+        "period": "01/2016 – 01/2017",
         "title": "Ingénieur d'études — IRD",
         "description": "Développement d'outils web et mobiles pour la collecte et la restitution de données de recherche."
       },
       "region": {
-        "period": "2017 – 2021",
+        "period": "01/2017 – 07/2021",
         "title": "Administrateur Systèmes & Réseaux — Région Réunion",
         "description": "Infrastructure, sécurité, exploitation et culture de la fiabilité."
       },
       "squirrel_dev": {
-        "period": "2021 – 2022",
+        "period": "07/2021 – 2022",
         "title": "Développeur Web — Squirrel",
         "description": "Création d'interfaces React, intégration d'APIs et montée en puissance sur les besoins produit."
       },
       "squirrel_lead": {
-        "period": "2022 – 2025",
-        "title": "Ingénieur Logiciel / Lead Dev Web — Squirrel",
-        "description": "Architecture, développement full-stack, APIs GraphQL/REST, modélisation des données et pipelines CI/CD."
+        "period": "2022 – 07/2025",
+        "title": "Lead Dev Full-Stack — Squirrel",
+        "description": "En full remote : architecture, développement full-stack, APIs GraphQL/REST, modélisation des données et pipelines CI/CD. Conception et développement seul d'un module de collecte de pièces justificatives (moteur de règles, cycle de validation, notifications e-mail/SMS, stockage S3, intégration API d'un logiciel métier)."
       },
       "willow": {
-        "period": "2026 – aujourd'hui",
+        "period": "01/2026 – aujourd'hui",
         "title": "Concepteur Développeur — Willow",
-        "description": "Conception et développement d'applications web et logicielles avec C#, MVVM, WPF, WinForms, DevExpress et Blazor, autour de SQL Server, XAF/XPO, Azure AI et Azure DevOps."
+        "description": "Conception et développement d'applications web et logicielles avec C#, MVVM, WPF, WinForms, DevExpress et Blazor, autour de SQL Server, XAF/XPO et Azure DevOps."
+      },
+      "neitsa": {
+        "period": "02/2026 – aujourd'hui",
+        "title": "Développeur freelance — Neitsa",
+        "description": "Évolutions, maintenance et mises en production du CRM d'un courtier en crédit immobilier ; conception et refonte de sites pour des indépendants. React, Next.js, Go, GraphQL, PostgreSQL."
       }
     }
   },
@@ -243,7 +269,7 @@
     "title": "Contact",
     "subtitle": "Un projet à structurer, livrer ou remettre à niveau ?",
     "description": "Je peux intervenir sur un produit existant, une base technique à consolider ou un nouveau chantier à cadrer proprement dès le départ.",
-    "availability": "Ouvert aux collaborations freelance",
+    "availability": "Ouvert aux opportunités",
     "preferEmail": "Ou directement par e-mail",
     "form": {
       "name": "Nom",

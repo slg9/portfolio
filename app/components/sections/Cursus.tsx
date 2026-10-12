@@ -14,6 +14,7 @@ type Step = {
 function TimelineCard({
   year, title, subtitle, type = "work", index, fromLeft,
 }: Step & { index: number; fromLeft: boolean }) {
+  const t = useTranslations("experience");
   return (
     <motion.div
       initial={{ opacity: 0, x: fromLeft ? -24 : 24, filter: "blur(8px)" }}
@@ -54,7 +55,7 @@ function TimelineCard({
         color: type === "work" ? "#0A84FF" : "#00FFB3",
         border: `1px solid ${type === "work" ? "rgba(10,132,255,0.25)" : "rgba(0,255,179,0.2)"}`,
       }}>
-        {type === "work" ? "Work" : "Education"}
+        {t(`badges.${type}`)}
       </span>
       <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", marginBottom: 8 }}>
         {year}
@@ -125,7 +126,7 @@ function TimelineItem({ year, title, subtitle, type = "work", index }: Step & { 
               style={{ textAlign: "right", paddingRight: 8, paddingTop: 4 }}
             >
               <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
-                {year.split(/[–-]/)[0].trim()}
+                {year.match(/\d{4}/)?.[0]}
               </span>
             </motion.div>
           )}
@@ -149,7 +150,7 @@ function TimelineItem({ year, title, subtitle, type = "work", index }: Step & { 
               style={{ paddingLeft: 8, paddingTop: 4 }}
             >
               <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
-                {year.split(/[–-]/)[0].trim()}
+                {year.match(/\d{4}/)?.[0]}
               </span>
             </motion.div>
           )}
@@ -165,13 +166,14 @@ export default function Cursus() {
 
   // Chronological order: oldest → newest
   const parcours: Step[] = [
-    { year: "2010 - 2012", title: t("items.dut.title"),           type: "education" },
-    { year: "2012 - 2015", title: t("items.master.title"),        type: "education" },
-    { year: "2016 – 2017", title: t("items.ird.title"),           subtitle: t("items.ird.description"),           type: "work" },
-    { year: "2017 – 2021", title: t("items.region.title"),        subtitle: t("items.region.description"),        type: "work" },
-    { year: "2021 – 2022", title: t("items.squirrel_dev.title"),  subtitle: t("items.squirrel_dev.description"),  type: "work" },
-    { year: "2022 – 2025", title: t("items.squirrel_lead.title"), subtitle: t("items.squirrel_lead.description"), type: "work" },
-    { year: "2026 – aujourd'hui", title: t("items.willow.title"), subtitle: t("items.willow.description"),        type: "work" },
+    { year: t("items.dut.period"),           title: t("items.dut.title"),           type: "education" },
+    { year: t("items.master.period"),        title: t("items.master.title"),        type: "education" },
+    { year: t("items.ird.period"),           title: t("items.ird.title"),           subtitle: t("items.ird.description"),           type: "work" },
+    { year: t("items.region.period"),        title: t("items.region.title"),        subtitle: t("items.region.description"),        type: "work" },
+    { year: t("items.squirrel_dev.period"),  title: t("items.squirrel_dev.title"),  subtitle: t("items.squirrel_dev.description"),  type: "work" },
+    { year: t("items.squirrel_lead.period"), title: t("items.squirrel_lead.title"), subtitle: t("items.squirrel_lead.description"), type: "work" },
+    { year: t("items.willow.period"),        title: t("items.willow.title"),        subtitle: t("items.willow.description"),        type: "work" },
+    { year: t("items.neitsa.period"),        title: t("items.neitsa.title"),        subtitle: t("items.neitsa.description"),        type: "work" },
   ];
 
   return (
