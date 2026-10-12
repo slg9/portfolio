@@ -178,7 +178,7 @@ const PILLAR_STYLE = `
 // ── STATS DATA ────────────────────────────────────────────────────────────────
 const STATS = [
   { value: "12+", label: "Projets livrés" },
-  { value: "5+",  label: "Ans d'expérience" },
+  { value: "10",  label: "Ans d'expérience, dont 6 en dev" },
   { value: "8+",  label: "Technologies" },
 ];
 

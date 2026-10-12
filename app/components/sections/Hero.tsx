@@ -317,7 +317,7 @@ export default function Hero() {
             >
               <Stat value="12+" label="Projets" />
               <div style={{ width:1, background:"rgba(255,255,255,.07)", alignSelf:"stretch" }}/>
-              <Stat value="5+" label="Ans d'XP" />
+              <Stat value="10" label="Ans d'XP · 6 en dev" />
               <div style={{ width:1, background:"rgba(255,255,255,.07)", alignSelf:"stretch" }}/>
               <Stat value="8+" label="Technos" />
             </motion.div>

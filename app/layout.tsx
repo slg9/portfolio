@@ -29,7 +29,7 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: "Sébastien Legros | Full-Stack Developer & Software Engineer",
-  description: "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js. 5+ years of experience in developing modern web applications and robust APIs.",
+  description: "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js. 10 years of experience, including 6 developing modern web applications and robust APIs.",
   keywords: ["full-stack developer", "React", "TypeScript", "Go", "Node.js", "software engineer", "web developer", "portfolio", "Sébastien Legros"],
   authors: [{ name: "Sébastien Legros" }],
   creator: "Sébastien Legros",

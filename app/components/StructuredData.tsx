@@ -11,8 +11,8 @@ export default function StructuredData() {
       ? "Full-Stack Developer & Software Engineer"
       : "Développeur Full-Stack & Software Engineer",
     "description": locale === 'en'
-      ? "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js with 5+ years of experience"
-      : "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js avec 5+ ans d'expérience",
+      ? "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js with 10 years of experience, including 6 in software development"
+      : "Développeur full-stack passionné spécialisé en React, TypeScript, Go et Node.js avec 10 ans d'expérience, dont 6 en développement",
     "url": "https://sebastienlegros.me",
     "image": "https://sebastienlegros.me/sebastien.png",
     "sameAs": [
