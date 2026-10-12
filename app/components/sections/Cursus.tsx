@@ -163,10 +163,6 @@ export default function Cursus() {
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
         {/* Header */}
         <div style={{ maxWidth: 720, marginBottom: 56 }}>
-          <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-            <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }} />
-            {t("title")}
-          </div>
           <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}>
             {t("subtitle")}
           </h2>

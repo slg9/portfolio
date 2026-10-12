@@ -78,10 +78,6 @@ export default function Techno() {
 
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
         <div style={{ maxWidth: 720 }}>
-          <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#0A84FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-            <span style={{ width: 24, height: 1, background: "#0A84FF", display: "inline-block", flexShrink: 0 }} />
-            {t("title")}
-          </div>
           <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.4rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: "0 0 16px" }}>
             {t("subtitle")}
           </h2>
@@ -89,7 +85,6 @@ export default function Techno() {
 
         <div className="mt-10 grid gap-4 lg:grid-cols-3">
           {groups.map((group, index) => {
-            const num = String(index + 1).padStart(2, "0");
             return (
               <article
                 key={group.key}
@@ -115,11 +110,7 @@ export default function Techno() {
                   }}
                 />
 
-                <span style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#0A84FF" }}>
-                  {num}
-                </span>
-
-                <div style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "center", marginTop: 8 }}>
+                <div style={{ height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
                   {GROUP_ICONS[index]}
                 </div>
 

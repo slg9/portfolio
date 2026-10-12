@@ -33,7 +33,6 @@ const PILLAR_ICONS = [
 ];
 
 function Pillar({ title, description, index }: { title: string; description: string; index: number }) {
-  const num = String(index + 1).padStart(2, "0");
   return (
     <article
       style={{
@@ -46,8 +45,7 @@ function Pillar({ title, description, index }: { title: string; description: str
       }}
     >
       <div style={{ position: "absolute", top: 0, left: 24, right: 24, height: 1, background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.4), transparent)" }} />
-      <div style={{ height: 64, display: "flex", alignItems: "center", justifyContent: "center", position: "relative", marginBottom: 4 }}>
-        <span style={{ position: "absolute", top: 0, right: 0, fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.15em", color: "rgba(10,132,255,0.25)" }}>{num}</span>
+      <div style={{ height: 64, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 4 }}>
         {PILLAR_ICONS[index]}
       </div>
       <h3 style={{ marginTop: 8, fontSize: "1rem", fontWeight: 700, color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif" }}>{title}</h3>
@@ -111,12 +109,6 @@ export default function AboutMe() {
               <div
                 style={{ position: "absolute", top: 0, left: 36, right: 36, height: 1, background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.4), transparent)" }}
               />
-
-              {/* Tag */}
-              <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-                <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }}/>
-                {t("title")}
-              </div>
 
               <h2 style={{ fontSize: "clamp(1.6rem, 2.4vw, 2.15rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", marginTop: 0, marginBottom: 20, maxWidth: 500 }}>
                 {t("subtitle")}

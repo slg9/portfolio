@@ -56,8 +56,18 @@ h4 {
   letter-spacing: -0.045em;
 }
 
-body::selection {
-  background: color-mix(in srgb, var(--accent) 28%, white);
+::selection {
+  background: rgba(10, 132, 255, 0.3);
+  color: #F0F4FF;
+}
+
+input, textarea {
+  caret-color: #0A84FF;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(10, 132, 255, 0.6);
+  outline-offset: 2px;
 }
 
 a,

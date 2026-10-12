@@ -71,10 +71,6 @@ export default function Hero() {
       <div className="hero-wrap">
         {/* Left */}
         <div className="hero-left">
-          <span style={{ fontSize: ".68rem", fontWeight: 500, color: "rgba(255,255,255,.22)", letterSpacing: ".08em" }}>
-            {t("eyebrow")}
-          </span>
-
           <h1 style={{ margin: 0, padding: 0, display: "flex", flexDirection: "column", gap: 1 }}>
             <span className="hero-line">{t("titleLine1")}</span>
             <span className="hero-line">{t("titleLine2")}</span>

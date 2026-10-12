@@ -290,10 +290,6 @@ export default function Projects() {
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
         {/* Header */}
         <div style={{ maxWidth: 720, position: "relative" }}>
-          <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-            <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }} />
-            {t("portfolio")}
-          </div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16 }}>
             <h2
               id="projects-title"
@@ -432,12 +428,9 @@ export default function Projects() {
 
         {/* ── Archive section ─────────────────────────────────────────────── */}
         <div style={{ marginTop: 72 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32 }}>
-            <span style={{ width: 24, height: 1, background: "#0A84FF", display: "inline-block" }} />
-            <span style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF" }}>
-              {t("archiveTitle")}
-            </span>
-          </div>
+          <h3 style={{ fontSize: "1.15rem", fontWeight: 700, color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", letterSpacing: "-0.03em", marginBottom: 24 }}>
+            {t("archiveTitle")}
+          </h3>
 
           <div
             className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
