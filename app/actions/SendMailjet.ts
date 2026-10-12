@@ -35,7 +35,7 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
 
         <!-- Top accent bar -->
         <tr>
-          <td style="height:3px;background:linear-gradient(90deg,#0A84FF,#00D4FF,#00FFB3);border-radius:3px 3px 0 0;"></td>
+          <td style="height:3px;background:linear-gradient(90deg,#0A84FF,#00D4FF,#D4A373);border-radius:3px 3px 0 0;"></td>
         </tr>
 
         <!-- Header -->

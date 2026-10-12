@@ -49,9 +49,9 @@ export default function Contact() {
           </p>
 
           {/* Availability badge */}
-          <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(0,255,179,0.08)", border: "1px solid rgba(0,255,179,0.2)", borderRadius: 999, padding: "6px 14px" }}>
-            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#00FFB3", boxShadow: "0 0 8px #00FFB3", animation: "contactPulse 2s ease-in-out infinite", flexShrink: 0 }} />
-            <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "#00FFB3" }}>
+          <div style={{ marginTop: 20, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(212,163,115,0.08)", border: "1px solid rgba(212,163,115,0.22)", borderRadius: 999, padding: "6px 14px" }}>
+            <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#D4A373", boxShadow: "0 0 8px rgba(212,163,115,.5)", animation: "contactPulse 2s ease-in-out infinite", flexShrink: 0 }} />
+            <span style={{ fontSize: "0.75rem", fontWeight: 600, color: "#D4A373" }}>
               {t("availability")}
             </span>
           </div>

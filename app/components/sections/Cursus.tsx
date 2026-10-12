@@ -50,9 +50,9 @@ function TimelineCard({
         padding: "2px 10px",
         fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase",
         marginBottom: 10,
-        background: type === "work" ? "rgba(10,132,255,0.12)" : "rgba(0,255,179,0.1)",
-        color: type === "work" ? "#0A84FF" : "#00FFB3",
-        border: `1px solid ${type === "work" ? "rgba(10,132,255,0.25)" : "rgba(0,255,179,0.2)"}`,
+        background: type === "work" ? "rgba(10,132,255,0.12)" : "rgba(212,163,115,0.1)",
+        color: type === "work" ? "#0A84FF" : "#D4A373",
+        border: `1px solid ${type === "work" ? "rgba(10,132,255,0.25)" : "rgba(212,163,115,0.22)"}`,
       }}>
         {t(`badges.${type}`)}
       </span>
@@ -181,7 +181,7 @@ export default function Cursus() {
               position: "absolute",
               left: "calc(50% - 0.5px)",
               top: 0, bottom: 0, width: 1,
-              background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #00FFB3)",
+              background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #D4A373)",
               opacity: 0.35,
             }}
             aria-hidden
@@ -194,7 +194,7 @@ export default function Cursus() {
               position: "absolute",
               left: 15,
               top: 0, bottom: 0, width: 1,
-              background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #00FFB3)",
+              background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #D4A373)",
               opacity: 0.35,
             }}
             aria-hidden

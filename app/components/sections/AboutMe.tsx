@@ -178,9 +178,9 @@ export default function AboutMe() {
               </div>
 
               {/* Availability badge */}
-              <div style={{ marginTop: 28, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(0,255,179,.06)", border: "1px solid rgba(0,255,179,.18)", borderRadius: 100, padding: "6px 14px", alignSelf: "flex-start" }}>
-                <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#00FFB3", boxShadow: "0 0 8px #00FFB3", animation: "aboutPulse 2s ease-in-out infinite" }}/>
-                <span style={{ fontSize: ".65rem", fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: "#00FFB3" }}>
+              <div style={{ marginTop: 28, display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(212,163,115,.08)", border: "1px solid rgba(212,163,115,.22)", borderRadius: 100, padding: "6px 14px", alignSelf: "flex-start" }}>
+                <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#D4A373", boxShadow: "0 0 8px rgba(212,163,115,.5)", animation: "aboutPulse 2s ease-in-out infinite" }}/>
+                <span style={{ fontSize: ".65rem", fontWeight: 600, letterSpacing: ".14em", textTransform: "uppercase", color: "#D4A373" }}>
                   {t("availability")}
                 </span>
               </div>
