@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Caveat, Geist, Geist_Mono, Manrope, Sora } from "next/font/google";
+import { Geist_Mono, Manrope } from "next/font/google";
 import "../globals.css";
 import Header from "../components/Header";
 import StructuredData from "../components/StructuredData";
@@ -7,11 +7,6 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -21,18 +16,6 @@ const geistMono = Geist_Mono({
 const fontBody = Manrope({
   subsets: ["latin"],
   variable: "--font-body",
-  display: "swap",
-});
-
-const fontDisplay = Sora({
-  subsets: ["latin"],
-  variable: "--font-display",
-  display: "swap",
-});
-
-const fontScript = Caveat({
-  subsets: ["latin"],
-  variable: "--font-script",
   display: "swap",
 });
 
@@ -137,7 +120,7 @@ export default async function RootLayout({
         <link rel="apple-touch-icon" href="/icon.png" />
       </head>
       <body
-        className={` ${fontBody.variable} ${fontDisplay.variable} ${fontScript.variable} ${geistMono.variable} antialiased font-sans`}
+        className={`${fontBody.variable} ${geistMono.variable} antialiased font-sans`}
         suppressHydrationWarning
       >
         <NextIntlClientProvider messages={messages}>

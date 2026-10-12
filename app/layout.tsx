@@ -1,25 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const fontBody = Manrope({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
 
 const locales = ['fr', 'en'];
 
@@ -28,8 +8,8 @@ export function generateStaticParams() {
 }
 
 export const metadata: Metadata = {
-  title: "Sébastien Legros | Full-Stack Developer & Software Engineer",
-  description: "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js. 10 years of experience, including 6 developing modern web applications and robust APIs.",
+  title: "Sébastien Legros | Senior Full-Stack Developer & Software Engineer",
+  description: "Passionate full-stack developer specialized in React, TypeScript, Go and Node.js. 10 years of experience, including 6 in software development and 3 as technical lead, building modern web applications and robust APIs.",
   keywords: ["full-stack developer", "React", "TypeScript", "Go", "Node.js", "software engineer", "web developer", "portfolio", "Sébastien Legros"],
   authors: [{ name: "Sébastien Legros" }],
   creator: "Sébastien Legros",
