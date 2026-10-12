@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AnimatePresence, motion, useMotionValue, useSpring, useVelocity, useTransform } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from 'next-intl';
 import LanguageSwitcher from './LanguageSwitcher';
@@ -70,16 +70,15 @@ export default function Header() {
         requestAnimationFrame(compute);
       }
     };
-    const onResize = onScroll;
 
     const scroller = scrollerRef.current as Window & typeof globalThis;
     (scroller === window ? window : scroller).addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onResize, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
 
     compute();
     return () => {
       (scroller === window ? window : scroller).removeEventListener("scroll", onScroll as EventListener);
-      window.removeEventListener("resize", onResize as EventListener);
+      window.removeEventListener("resize", onScroll as EventListener);
     };
   }, [active, getSections]);
 
@@ -120,85 +119,19 @@ export default function Header() {
 
   const underlineId = useMemo(() => "nav-underline", []);
 
-  // ── NAV CURSOR BLOB ───────────────────────────────────────────────────────────
-  const navRef = useRef<HTMLElement>(null);
-
-  // Fluid spring — high mass + low damping = natural overshoot & gentle settling
-  const rawX = useMotionValue(0);
-  const rawY = useMotionValue(0);
-  const springX = useSpring(rawX, { stiffness: 110, damping: 17, mass: 0.9 });
-  const springY = useSpring(rawY, { stiffness: 110, damping: 17, mass: 0.9 });
-
-  // Width spring — pill expansion on snap
-  const rawW = useMotionValue(38);
-  const springW = useSpring(rawW, { stiffness: 160, damping: 24, mass: 0.6 });
-
-  // Velocity of the spring output (lags behind cursor → feels physical)
-  const vx = useVelocity(springX);
-  const vy = useVelocity(springY);
-
-  // Gentle squash-and-stretch — barely perceptible at rest, visible on fast sweeps
-  const speed = useTransform([vx, vy], ([x, y]) =>
-    Math.sqrt((x as number) ** 2 + (y as number) ** 2)
-  );
-  const stretch = useTransform(speed, [0, 220, 800], [1, 1.14, 1.38], { clamp: true });
-  const squash  = useTransform(speed, [0, 220, 800], [1, 0.90, 0.76], { clamp: true });
-
-  // Rotation follows movement direction; freezes when nearly still
-  const angle = useTransform([vx, vy], ([x, y]) => {
-    const s = Math.sqrt((x as number) ** 2 + (y as number) ** 2);
-    if (s < 18) return 0;
-    return Math.atan2(y as number, x as number) * (180 / Math.PI);
-  });
-
-  // Centered position (top-left of blob = center − half-size)
-  const BLOB_H = 38;
-  const bulletX = useTransform([springX, springW], ([sx, sw]) => (sx as number) - (sw as number) / 2);
-  const bulletY = useTransform(springY, sy => sy - BLOB_H / 2);
-
-  const [navActive, setNavActive] = useState(false);
-  const snappedRef = useRef(false);
-  const [snapped, setSnapped] = useState(false);
-
-  const onNavMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    if (snappedRef.current || !navRef.current) return;
-    const rect = navRef.current.getBoundingClientRect();
-    rawX.set(e.clientX - rect.left);
-    rawY.set(e.clientY - rect.top);
-  }, [rawX, rawY]);
-
-  const onItemEnter = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
-    if (!navRef.current) return;
-    const btnRect = e.currentTarget.getBoundingClientRect();
-    const navRect = navRef.current.getBoundingClientRect();
-    rawX.set(btnRect.left + btnRect.width / 2 - navRect.left);
-    rawY.set(btnRect.top + btnRect.height / 2 - navRect.top);
-    rawW.set(btnRect.width + 6);
-    snappedRef.current = true;
-    setSnapped(true);
-  }, [rawX, rawY, rawW]);
-
-  const onItemLeave = useCallback(() => {
-    rawW.set(BLOB_H);
-    snappedRef.current = false;
-    setSnapped(false);
-  }, [rawW]);
-
   return (
     <motion.header
       className="fixed inset-x-0 top-0 z-50"
-      initial={{ opacity: 0, y: -24, filter: "blur(10px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      initial={{ opacity: 0, y: -24 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
     >
       {/* Progress bar */}
       <div style={{ height: 2, background: "transparent" }}>
-        <motion.div
-          style={{ height: 2, background: "#0A84FF", width: `${progress}%` }}
-        />
+        <div style={{ height: 2, background: "#0A84FF", width: `${progress}%`, transition: "width 100ms linear" }} />
       </div>
 
-      <motion.div
+      <div
         style={{
           margin: "12px auto 0",
           width: "min(100% - 1rem, 1120px)",
@@ -209,17 +142,9 @@ export default function Header() {
           WebkitBackdropFilter: "blur(16px)",
           boxShadow: "0 8px 32px rgba(0,0,0,0.3)",
         }}
-        initial={{ scale: 0.96 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.8, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
       >
         <div className="flex items-center justify-between gap-3 px-4 py-3 md:px-5">
           {/* Logo */}
-          <motion.div
-            initial={{ opacity: 0, x: -14, filter: "blur(6px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          >
           <button
             onClick={() => go("hero")}
             className="group inline-flex min-w-0 items-center gap-3 text-left"
@@ -238,7 +163,7 @@ export default function Header() {
             <span className="min-w-0">
               <span
                 className="block truncate text-sm font-extrabold tracking-[-0.02em]"
-                style={{ background: "linear-gradient(135deg, #F0F4FF, #6B7A99)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}
+                style={{ color: "#F0F4FF" }}
               >
                 Sébastien Legros
               </span>
@@ -247,72 +172,16 @@ export default function Header() {
               </span>
             </span>
           </button>
-          </motion.div>
 
           {/* Desktop nav */}
-          <nav
-            ref={navRef}
-            className="hidden md:block"
-            style={{ position: "relative" }}
-            onMouseEnter={() => setNavActive(true)}
-            onMouseLeave={() => { setNavActive(false); snappedRef.current = false; setSnapped(false); }}
-            onMouseMove={onNavMouseMove}
-          >
-            {/* Foggy cursor orb — behind text */}
-            <AnimatePresence>
-              {navActive && (
-                <motion.div
-                  key="nav-blob"
-                  style={{
-                    position: "absolute",
-                    top: 0, left: 0,
-                    x: bulletX,
-                    y: bulletY,
-                    width: springW,
-                    height: BLOB_H,
-                    borderRadius: BLOB_H / 2,
-                    scaleX: stretch,
-                    scaleY: squash,
-                    rotate: angle,
-                    pointerEvents: "none",
-                    zIndex: 0,
-                    // Radial gradient → dense core fading to transparent edges
-                    background: snapped
-                      ? "radial-gradient(ellipse at center, rgba(10,132,255,0.38) 0%, rgba(10,132,255,0.10) 60%, transparent 100%)"
-                      : "radial-gradient(ellipse at center, rgba(10,132,255,0.45) 0%, rgba(10,132,255,0.10) 55%, transparent 100%)",
-                    // Soft diffuse glow around the orb
-                    boxShadow: snapped
-                      ? "0 0 28px 10px rgba(10,132,255,0.14), 0 0 6px 2px rgba(10,132,255,0.22)"
-                      : "0 0 22px 8px rgba(10,132,255,0.18)",
-                    // Blur the blob itself for smoky/foggy edges
-                    filter: "blur(6px)",
-                  }}
-                  initial={{ opacity: 0, scale: 0.4 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.4 }}
-                  transition={{
-                    opacity: { duration: 0.35, ease: "easeOut" },
-                    scale:   { type: "spring", stiffness: 180, damping: 22 },
-                  }}
-                />
-              )}
-            </AnimatePresence>
-
-            <ul className="flex items-center gap-1" style={{ position: "relative", zIndex: 1 }}>
-              {NAV_KEYS.map((item, idx) => {
+          <nav className="hidden md:block">
+            <ul className="flex items-center gap-1">
+              {NAV_KEYS.map((item) => {
                 const isActive = active === item.target.toLowerCase();
                 return (
-                  <motion.li
-                    key={item.target}
-                    className="relative"
-                    initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{ duration: 0.55, delay: 0.18 + idx * 0.07, ease: [0.22, 1, 0.36, 1] }}
-                  >
+                  <li key={item.target} className="relative">
                     <button
                       onClick={() => go(item.target)}
-                      onMouseEnter={onItemEnter}
-                      onMouseLeave={onItemLeave}
                       className="relative cursor-pointer rounded-full px-3 py-2 text-sm font-medium transition-colors"
                       style={{ color: isActive ? "#F0F4FF" : "#6B7A99" }}
                       aria-current={isActive ? "page" : undefined}
@@ -334,19 +203,14 @@ export default function Header() {
                         />
                       )}
                     </button>
-                  </motion.li>
+                  </li>
                 );
               })}
             </ul>
           </nav>
 
           {/* CTA + burger */}
-          <motion.div
-            className="flex items-center gap-2"
-            initial={{ opacity: 0, x: 14, filter: "blur(6px)" }}
-            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div className="flex items-center gap-2">
             <LanguageSwitcher />
 
             <button
@@ -361,15 +225,14 @@ export default function Header() {
                 <path d="M4 7h16M4 12h16M4 17h16" strokeWidth="2" strokeLinecap="round" />
               </svg>
             </button>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Drawer mobile */}
       <AnimatePresence>
         {open && (
           <>
-            {/* overlay */}
             <motion.div
               style={{ position: "fixed", inset: 0, zIndex: 40, background: "rgba(0,0,0,0.6)", backdropFilter: "blur(2px)" }}
               initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}

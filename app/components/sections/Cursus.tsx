@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 
 type Step = {
@@ -10,18 +9,12 @@ type Step = {
   type?: "work" | "education";
 };
 
-// ── SHARED CARD CONTENT ───────────────────────────────────────────────────────
 function TimelineCard({
-  year, title, subtitle, type = "work", index, fromLeft,
-}: Step & { index: number; fromLeft: boolean }) {
+  year, title, subtitle, type = "work",
+}: Step) {
   const t = useTranslations("experience");
   return (
-    <motion.div
-      initial={{ opacity: 0, x: fromLeft ? -24 : 24, filter: "blur(8px)" }}
-      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-      whileHover={{ y: -4, borderColor: "rgba(10,132,255,0.3)", boxShadow: "0 0 32px rgba(10,132,255,0.1)" }}
-      transition={{ duration: 0.8, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+    <div
       style={{
         position: "relative",
         overflow: "hidden",
@@ -31,17 +24,23 @@ function TimelineCard({
         padding: "20px 24px",
         boxShadow: "0 18px 46px rgba(0,0,0,0.18)",
         width: "100%",
+        transition: "transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease",
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.transform = "translateY(-3px)";
+        e.currentTarget.style.borderColor = "rgba(10,132,255,0.25)";
+        e.currentTarget.style.boxShadow = "0 0 32px rgba(10,132,255,0.08)";
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.transform = "";
+        e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
+        e.currentTarget.style.boxShadow = "0 18px 46px rgba(0,0,0,0.18)";
       }}
     >
       {/* Top accent */}
-      <motion.div
-        initial={{ scaleX: 0, opacity: 0 }}
-        whileInView={{ scaleX: 1, opacity: 1 }}
-        transition={{ duration: 0.85, delay: index * 0.08 + 0.14, ease: [0.22, 1, 0.36, 1] }}
-        viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+      <div
         style={{
           position: "absolute", top: 0, left: 20, right: 20, height: 1,
-          transformOrigin: "left",
           background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.35), transparent)",
         }}
       />
@@ -68,18 +67,13 @@ function TimelineCard({
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </div>
   );
 }
 
-// ── TIMELINE DOT ──────────────────────────────────────────────────────────────
-function TimelineDot({ index }: { index: number }) {
+function TimelineDot() {
   return (
-    <motion.div
-      initial={{ scale: 0.4, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.55, delay: index * 0.08 + 0.12, ease: [0.22, 1, 0.36, 1] }}
-      viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
+    <div
       style={{
         width: 14, height: 14, borderRadius: "50%",
         background: "linear-gradient(135deg, #0A84FF, #00D4FF)",
@@ -90,7 +84,6 @@ function TimelineDot({ index }: { index: number }) {
   );
 }
 
-// ── TIMELINE ITEM ─────────────────────────────────────────────────────────────
 function TimelineItem({ year, title, subtitle, type = "work", index }: Step & { index: number }) {
   const isEven = index % 2 === 0;
 
@@ -98,13 +91,11 @@ function TimelineItem({ year, title, subtitle, type = "work", index }: Step & { 
     <>
       {/* ── MOBILE layout: left spine + full-width card ── */}
       <div className="flex md:hidden" style={{ position: "relative", gap: 16 }}>
-        {/* Dot column */}
         <div style={{ flexShrink: 0, width: 32, display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 22 }}>
-          <TimelineDot index={index} />
+          <TimelineDot />
         </div>
-        {/* Card */}
         <div style={{ flex: 1, minWidth: 0, paddingTop: 8 }}>
-          <TimelineCard year={year} title={title} subtitle={subtitle} type={type} index={index} fromLeft={false} />
+          <TimelineCard year={year} title={title} subtitle={subtitle} type={type} />
         </div>
       </div>
 
@@ -113,46 +104,31 @@ function TimelineItem({ year, title, subtitle, type = "work", index }: Step & { 
         className="hidden md:grid"
         style={{ gridTemplateColumns: "1fr 32px 1fr", gap: "0 24px", alignItems: "start" }}
       >
-        {/* Left */}
         <div style={{ display: "flex", justifyContent: "flex-end", paddingTop: 8 }}>
           {isEven ? (
-            <TimelineCard year={year} title={title} subtitle={subtitle} type={type} index={index} fromLeft={true} />
+            <TimelineCard year={year} title={title} subtitle={subtitle} type={type} />
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              style={{ textAlign: "right", paddingRight: 8, paddingTop: 4 }}
-            >
+            <div style={{ textAlign: "right", paddingRight: 8, paddingTop: 4 }}>
               <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
                 {year.match(/\d{4}/)?.[0]}
               </span>
-            </motion.div>
+            </div>
           )}
         </div>
 
-        {/* Dot */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", paddingTop: 20 }}>
-          <TimelineDot index={index} />
+          <TimelineDot />
         </div>
 
-        {/* Right */}
         <div style={{ paddingTop: 8 }}>
           {!isEven ? (
-            <TimelineCard year={year} title={title} subtitle={subtitle} type={type} index={index} fromLeft={false} />
+            <TimelineCard year={year} title={title} subtitle={subtitle} type={type} />
           ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              style={{ paddingLeft: 8, paddingTop: 4 }}
-            >
+            <div style={{ paddingLeft: 8, paddingTop: 4 }}>
               <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
                 {year.match(/\d{4}/)?.[0]}
               </span>
-            </motion.div>
+            </div>
           )}
         </div>
       </div>
@@ -160,11 +136,9 @@ function TimelineItem({ year, title, subtitle, type = "work", index }: Step & { 
   );
 }
 
-// ── MAIN SECTION ──────────────────────────────────────────────────────────────
 export default function Cursus() {
   const t = useTranslations("experience");
 
-  // Chronological order: oldest → newest
   const parcours: Step[] = [
     { year: t("items.dut.period"),           title: t("items.dut.title"),           type: "education" },
     { year: t("items.master.period"),        title: t("items.master.title"),        type: "education" },
@@ -181,69 +155,51 @@ export default function Cursus() {
       id="cursus"
       style={{ position: "relative", background: "#04040F", padding: "72px 8vw" }}
     >
-      {/* Top divider */}
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 1,
         background: "linear-gradient(90deg, transparent, rgba(10,132,255,0.3), transparent)",
-      }}/>
+      }} />
 
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          viewport={{ once: true, margin: "-10% 0px -10% 0px" }}
-          style={{ maxWidth: 720, marginBottom: 56 }}
-        >
+        <div style={{ maxWidth: 720, marginBottom: 56 }}>
           <div style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-            <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }}/>
+            <span style={{ width: 24, height: 1, background: "#00D4FF", display: "inline-block", flexShrink: 0 }} />
             {t("title")}
           </div>
           <h2 style={{ fontSize: "clamp(1.75rem, 3vw, 2.25rem)", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}>
             {t("subtitle")}
           </h2>
-        </motion.div>
+        </div>
 
         {/* Timeline */}
         <div style={{ position: "relative" }}>
-          {/* ── Desktop spine (centered) ── */}
-          <motion.div
+          {/* Desktop spine */}
+          <div
             className="hidden md:block"
-            initial={{ scaleY: 0, opacity: 0 }}
-            whileInView={{ scaleY: 1, opacity: 1 }}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
             style={{
               position: "absolute",
               left: "calc(50% - 0.5px)",
               top: 0, bottom: 0, width: 1,
-              transformOrigin: "top",
               background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #00FFB3)",
               opacity: 0.35,
             }}
             aria-hidden
           />
 
-          {/* ── Mobile spine (left aligned at center of 32px dot column) ── */}
-          <motion.div
+          {/* Mobile spine */}
+          <div
             className="md:hidden"
-            initial={{ scaleY: 0, opacity: 0 }}
-            whileInView={{ scaleY: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
             style={{
               position: "absolute",
-              left: 15, // center of 32px column
+              left: 15,
               top: 0, bottom: 0, width: 1,
-              transformOrigin: "top",
               background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #00FFB3)",
               opacity: 0.35,
             }}
             aria-hidden
           />
 
-          {/* Items */}
           <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
             {parcours.map((step, index) => (
               <TimelineItem key={step.year + step.title} index={index} {...step} />
