@@ -19,85 +19,20 @@
     "goToHome": "Aller à l'accueil",
     "changeLanguage": "Changer de langue"
   },
-  "loading": {
-    "prefix": "On arrive,",
-    "words": "on prépare le front|on branche les animations|on chauffe le setup|on finalise l'interface"
-  },
   "hero": {
-    "welcome": "Bienvenue sur mon portfolio",
     "name": "Sébastien Legros",
-    "jobTitle": "Développeur Full-Stack Senior",
-    "role": "Développeur web & logiciel",
-    "summary": "Je conçois des applications web et logicielles — frontend, backend, API, jusqu'au déploiement.",
-    "eyebrow": "Full-stack engineer basé à La Réunion",
-    "titleLine1": "Je conçois des interfaces nettes,",
-    "titleLine2": "des backends solides",
-    "titleLine3": "et des produits qui durent.",
-    "intro": "J'interviens sur l'ensemble de la chaîne produit, de l'architecture à la mise en production, avec une exigence forte sur la lisibilité, la maintenabilité et l'impact métier.",
+    "jobTitle": "Développeur full-stack senior",
+    "tagline": "Je conçois et livre des produits web de bout en bout, de la base de données à l'interface. React, Next.js, Node.js, Go, PostgreSQL. En full remote depuis La Réunion.",
+    "availability": "Ouvert aux opportunités",
     "primaryCta": "Voir les projets",
     "secondaryCta": "Me contacter",
-    "tertiaryCta": "Télécharger le CV",
-    "scrollCue": "Scroller pour construire le site",
-    "availability": "Disponible pour des missions full-stack, backend ou lead dev.",
-    "stats": {
-      "years": "10 ans",
-      "yearsLabel": "d'expérience, dont 6 en développement et 3 en lead technique",
-      "projects": "10+ projets",
-      "projectsLabel": "livrés sur CRM, SaaS, paiement et mobile backend",
-      "stack": "React • Blazor • C# • Go • SQL Server •PostgreSQL",
-      "stackLabel": "web, logiciel métier et données sur une même base solide"
-    },
-    "statLabels": {
-      "projects": "Projets",
-      "years": "Ans d'XP",
-      "yearsDetail": "dont 6 en dev · 3 en lead",
-      "tech": "Technos"
-    },
-    "highlights": {
-      "architecture": "Architecture lisible",
-      "product": "Vision produit",
-      "delivery": "Livraison fiable"
-    }
-  },
-  "story": {
-    "eyebrow": "Construction au scroll",
-    "steps": {
-      "0": {
-        "label": "Accueil",
-        "title": "On pose d'abord une présence claire, calme et lisible.",
-        "body": "Je voulais une entrée qui ressemble plus à une vraie page de présentation qu'à une landing surchargée: une photo centrée, du texte court, un ton net et une invitation à continuer."
-      },
-      "1": {
-        "label": "Structure",
-        "title": "Puis le profil, la stack et l'intention prennent leur place.",
-        "body": "Le scroll ajoute progressivement les blocs utiles: identité, rôle, technologies et hiérarchie. Rien n'est jeté d'un coup, tout apparaît au bon moment."
-      },
-      "2": {
-        "label": "Projet",
-        "title": "Enfin, le site bascule vers du concret: cas d'usage, image et contact.",
-        "body": "En descendant, on assemble une interface plus aboutie. En remontant, tout se déconstruit naturellement. Le portfolio devient une expérience réversible, pas une page figée."
-      }
-    },
-    "visual": {
-      "hello": "Point de départ",
-      "welcomeTitle": "Un message simple, une photo, une direction.",
-      "welcomeBody": "Pas de bruit inutile. Juste une présence claire qui donne envie de lire.",
-      "profileRole": "React, Blazor,Golang, C#, WPF, WinForms, SQL Server",
-      "caseStudy": "Case study",
-      "caseTitle": "Le contenu arrive après la structure.",
-      "caseBody": "Quand la base est lisible, on peut révéler projets, impact et contact avec beaucoup plus de fluidité.",
-      "finalCta": "Un projet à cadrer ou à remettre au propre ?"
-    }
+    "tertiaryCta": "Télécharger le CV"
   },
   "about": {
     "title": "Une approche orientée clarté, produit et exécution",
-    "subtitle": "Je privilégie les systèmes simples à faire évoluer, les interfaces lisibles et les décisions techniques qui servent réellement le produit.",
+    "subtitle": "Je construis des produits web pensés pour durer.",
     "body": "Mon terrain de jeu, ce sont les applications web à vrai usage et les logiciels bureautiques métier: back-offices, plateformes SaaS, logiciels C# sur mesure, APIs, paiements, contenus, intégrations et outils internes. J'aime transformer un besoin flou en solution utilisable, stable et propre à maintenir dans la durée.",
-    "stats": {
-      "projects": "Projets livrés",
-      "years": "Ans d'expérience, dont 6 en dev et 3 en lead",
-      "tech": "Technologies"
-    },
+    "experience_line": "10 ans d'expérience, dont 6 en développement et 3 en lead.",
     "pillars": {
       "build": {
         "title": "Concevoir juste",

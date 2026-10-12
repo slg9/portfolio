@@ -6,9 +6,7 @@
   --surface: rgba(8,10,30,0.7);
   --surface-strong: rgba(10,12,40,0.85);
   --line: rgba(255,255,255,0.07);
-  --accent: #0A84FF;
-  --accent2: #00D4FF;
-  --accent-warm: #D4A373;
+  --accent: #5B8FC9;
   --gray: #6B7A99;
 }
 
@@ -57,16 +55,16 @@ h4 {
 }
 
 ::selection {
-  background: rgba(10, 132, 255, 0.3);
+  background: rgba(91, 143, 201, 0.3);
   color: #F0F4FF;
 }
 
 input, textarea {
-  caret-color: #0A84FF;
+  caret-color: var(--accent);
 }
 
 :focus-visible {
-  outline: 2px solid rgba(10, 132, 255, 0.6);
+  outline: 2px solid rgba(91, 143, 201, 0.6);
   outline-offset: 2px;
 }
 

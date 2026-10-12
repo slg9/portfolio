@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "app/actions/SendMailjet.ts"
+        ],
+        "createdAt": "2026-10-12T10:29:52.521Z",
+        "reason": "email HTML template, not site UI — left-border on quoted message is standard email convention"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-10-12T10:29:52.558Z",
+        "reason": "email HTML template font stack — emails need safe system fonts, not the site display face"
+      }
+    ]
+  }
+}

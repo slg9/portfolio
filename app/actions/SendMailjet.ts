@@ -35,7 +35,7 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
 
         <!-- Top accent bar -->
         <tr>
-          <td style="height:3px;background:linear-gradient(90deg,#0A84FF,#00D4FF,#D4A373);border-radius:3px 3px 0 0;"></td>
+          <td style="height:3px;background:#5B8FC9;border-radius:3px 3px 0 0;"></td>
         </tr>
 
         <!-- Header -->
@@ -44,7 +44,7 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
               <tr>
                 <td>
-                  <span style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#00D4FF;">Portfolio</span>
+                  <span style="font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:#5B8FC9;">Portfolio</span>
                   <span style="font-size:11px;color:#3A4466;margin:0 8px;">·</span>
                   <span style="font-size:11px;color:#3A4466;letter-spacing:0.05em;">sebastienlegros.me</span>
                 </td>
@@ -66,7 +66,7 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
         <!-- Divider -->
         <tr>
           <td style="background:#080A1E;border-left:1px solid rgba(255,255,255,0.07);border-right:1px solid rgba(255,255,255,0.07);padding:0 32px;">
-            <div style="height:1px;background:linear-gradient(90deg,#0A84FF,rgba(10,132,255,0.2),transparent);"></div>
+            <div style="height:1px;background:linear-gradient(90deg,#5B8FC9,rgba(91,143,201,0.2),transparent);"></div>
           </td>
         </tr>
 
@@ -74,8 +74,8 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
         <tr>
           <td style="background:#080A1E;border-left:1px solid rgba(255,255,255,0.07);border-right:1px solid rgba(255,255,255,0.07);padding:24px 32px;">
             <table width="100%" cellpadding="0" cellspacing="0" border="0">
-              ${row("De", name, "#0A84FF")}
-              ${row("Email", email, "#00D4FF")}
+              ${row("De", name, "#5B8FC9")}
+              ${row("Email", email, "#5B8FC9")}
               ${row("Téléphone", phone)}
               ${row("Entreprise", company)}
               ${row("Sujet", subject)}
@@ -86,8 +86,8 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
         <!-- Message -->
         <tr>
           <td style="background:#080A1E;border-left:1px solid rgba(255,255,255,0.07);border-right:1px solid rgba(255,255,255,0.07);padding:0 32px 28px;">
-            <div style="background:#04040F;border:1px solid rgba(10,132,255,0.2);border-left:3px solid #0A84FF;border-radius:10px;padding:20px 22px;">
-              <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#0A84FF;">Message</p>
+            <div style="background:#04040F;border:1px solid rgba(91,143,201,0.2);border-left:3px solid #5B8FC9;border-radius:10px;padding:20px 22px;">
+              <p style="margin:0 0 10px;font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:#5B8FC9;">Message</p>
               <p style="margin:0;font-size:14px;line-height:1.8;color:#C8D0E8;white-space:pre-wrap;">${escapeHtml(message)}</p>
             </div>
           </td>
@@ -97,7 +97,7 @@ function buildHtml(name: string, email: string, phone: string, company: string, 
         <tr>
           <td style="background:#080A1E;border-left:1px solid rgba(255,255,255,0.07);border-right:1px solid rgba(255,255,255,0.07);padding:0 32px 28px;">
             <a href="mailto:${escapeHtml(email)}"
-               style="display:inline-block;background:linear-gradient(135deg,#0A84FF,#00D4FF);color:#fff;font-size:13px;font-weight:700;letter-spacing:0.06em;padding:11px 24px;border-radius:999px;text-decoration:none;">
+               style="display:inline-block;background:#5B8FC9;color:#fff;font-size:13px;font-weight:700;letter-spacing:0.06em;padding:11px 24px;border-radius:999px;text-decoration:none;">
               &#8594; Répondre à ${escapeHtml(name)}
             </a>
           </td>

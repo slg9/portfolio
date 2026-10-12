@@ -19,85 +19,20 @@
     "goToHome": "Go to home",
     "changeLanguage": "Change language"
   },
-  "loading": {
-    "prefix": "Almost there,",
-    "words": "setting up the frontend|wiring the animations|warming up the stack|finishing the interface"
-  },
   "hero": {
-    "welcome": "Welcome to my portfolio",
     "name": "Sébastien Legros",
-    "jobTitle": "Senior Full-Stack Developer",
-    "role": "Web & software developer",
-    "summary": "I design web and software applications — frontend, backend, API, through to deployment.",
-    "eyebrow": "Full-stack engineer based in Reunion Island",
-    "titleLine1": "I build clear interfaces,",
-    "titleLine2": "solid backends",
-    "titleLine3": "and products meant to last.",
-    "intro": "I work across the full product chain, from architecture to production, with a strong focus on readability, maintainability and business impact.",
+    "jobTitle": "Senior full-stack developer",
+    "tagline": "I design and ship web products end to end, from the database to the interface. React, Next.js, Node.js, Go, PostgreSQL. Working fully remote from Réunion Island.",
+    "availability": "Open to opportunities",
     "primaryCta": "View projects",
     "secondaryCta": "Get in touch",
-    "tertiaryCta": "Download CV",
-    "scrollCue": "Scroll to build the site",
-    "availability": "Available for full-stack, backend or technical lead roles.",
-    "stats": {
-      "years": "10 years",
-      "yearsLabel": "of experience, including 6 in software development and 3 as technical lead",
-      "projects": "10+ projects",
-      "projectsLabel": "delivered across CRM, SaaS, payments and mobile backends",
-      "stack": "React • Blazor • C# • Go • SQL Server •PostgreSQL",
-      "stackLabel": "web, business software and data on one solid foundation"
-    },
-    "statLabels": {
-      "projects": "Projects",
-      "years": "Years exp.",
-      "yearsDetail": "6 in dev · 3 as lead",
-      "tech": "Tech"
-    },
-    "highlights": {
-      "architecture": "Clear architecture",
-      "product": "Product thinking",
-      "delivery": "Reliable delivery"
-    }
-  },
-  "story": {
-    "eyebrow": "Scroll-built experience",
-    "steps": {
-      "0": {
-        "label": "Arrival",
-        "title": "First, a clear, calm and readable presence.",
-        "body": "I wanted the opening to feel more like an intentional presentation page than a noisy landing page: centered portrait, short copy, a clear tone and a reason to keep going."
-      },
-      "1": {
-        "label": "Structure",
-        "title": "Then the profile, the stack and the intent settle into place.",
-        "body": "As you scroll, the useful blocks appear progressively: identity, role, technologies and hierarchy. Nothing drops all at once; each layer arrives when it should."
-      },
-      "2": {
-        "label": "Project",
-        "title": "Finally, the page shifts into concrete work: case study, imagery and contact.",
-        "body": "Going down assembles a fuller interface. Going back up naturally undoes it. The portfolio behaves like a reversible experience rather than a static page."
-      }
-    },
-    "visual": {
-      "hello": "Starting point",
-      "welcomeTitle": "A simple message, a portrait, a direction.",
-      "welcomeBody": "No unnecessary noise. Just a clear presence that makes you want to keep reading.",
-      "profileRole": "React, Blazor, Golang, C#, WPF, WinForms, SQL Server",
-      "caseStudy": "Case study",
-      "caseTitle": "Content lands better once the structure is there.",
-      "caseBody": "When the foundation is readable, projects, impact and contact can be revealed with much more rhythm.",
-      "finalCta": "Need a product to structure, ship or clean up?"
-    }
+    "tertiaryCta": "Download CV"
   },
   "about": {
     "title": "An approach shaped by clarity, product thinking and execution",
-    "subtitle": "I favor systems that stay easy to evolve, interfaces that stay readable, and technical decisions that genuinely support the product.",
+    "subtitle": "I build web products made to last.",
     "body": "I enjoy building real-world web applications and business desktop software: back-offices, SaaS platforms, custom C# applications, APIs, payment flows, content systems, integrations and internal tools. My goal is to turn a fuzzy need into something usable, stable and clean to maintain over time.",
-    "stats": {
-      "projects": "Projects delivered",
-      "years": "Years of experience, 6 in dev and 3 as lead",
-      "tech": "Technologies"
-    },
+    "experience_line": "10 years of experience, including 6 in development and 3 as lead.",
     "pillars": {
       "build": {
         "title": "Design the right thing",

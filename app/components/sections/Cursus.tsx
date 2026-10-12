@@ -28,8 +28,8 @@ function TimelineCard({
       }}
       onMouseEnter={e => {
         e.currentTarget.style.transform = "translateY(-3px)";
-        e.currentTarget.style.borderColor = "rgba(10,132,255,0.25)";
-        e.currentTarget.style.boxShadow = "0 0 32px rgba(10,132,255,0.08)";
+        e.currentTarget.style.borderColor = "rgba(91,143,201,0.25)";
+        e.currentTarget.style.boxShadow = "0 18px 46px rgba(0,0,0,0.18)";
       }}
       onMouseLeave={e => {
         e.currentTarget.style.transform = "";
@@ -41,7 +41,7 @@ function TimelineCard({
       <div
         style={{
           position: "absolute", top: 0, left: 20, right: 20, height: 1,
-          background: "linear-gradient(90deg, #0A84FF, rgba(10,132,255,0.35), transparent)",
+          background: "linear-gradient(90deg, #5B8FC9, rgba(91,143,201,0.35), transparent)",
         }}
       />
       {/* Badge */}
@@ -50,13 +50,13 @@ function TimelineCard({
         padding: "2px 10px",
         fontSize: "0.625rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase",
         marginBottom: 10,
-        background: type === "work" ? "rgba(10,132,255,0.12)" : "rgba(212,163,115,0.1)",
-        color: type === "work" ? "#0A84FF" : "#D4A373",
-        border: `1px solid ${type === "work" ? "rgba(10,132,255,0.25)" : "rgba(212,163,115,0.22)"}`,
+        background: type === "work" ? "rgba(91,143,201,0.12)" : "rgba(91,143,201,0.1)",
+        color: type === "work" ? "#5B8FC9" : "#5B8FC9",
+        border: `1px solid ${type === "work" ? "rgba(91,143,201,0.25)" : "rgba(91,143,201,0.22)"}`,
       }}>
         {t(`badges.${type}`)}
       </span>
-      <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF", marginBottom: 8 }}>
+      <p style={{ fontSize: "0.68rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#5B8FC9", marginBottom: 8 }}>
         {year}
       </p>
       <h3 style={{ fontSize: "1.1rem", fontWeight: 800, letterSpacing: "-0.04em", color: "#F0F4FF", fontFamily: "var(--font-display), sans-serif", margin: 0 }}>
@@ -76,8 +76,7 @@ function TimelineDot() {
     <div
       style={{
         width: 14, height: 14, borderRadius: "50%",
-        background: "linear-gradient(135deg, #0A84FF, #00D4FF)",
-        boxShadow: "0 0 16px rgba(10,132,255,0.5)",
+        background: "#5B8FC9",
         flexShrink: 0, zIndex: 2,
       }}
     />
@@ -109,7 +108,7 @@ function TimelineItem({ year, title, subtitle, type = "work", index }: Step & { 
             <TimelineCard year={year} title={title} subtitle={subtitle} type={type} />
           ) : (
             <div style={{ textAlign: "right", paddingRight: 8, paddingTop: 4 }}>
-              <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
+              <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(91,143,201,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
                 {year.match(/\d{4}/)?.[0]}
               </span>
             </div>
@@ -125,7 +124,7 @@ function TimelineItem({ year, title, subtitle, type = "work", index }: Step & { 
             <TimelineCard year={year} title={title} subtitle={subtitle} type={type} />
           ) : (
             <div style={{ paddingLeft: 8, paddingTop: 4 }}>
-              <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(10,132,255,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
+              <span style={{ fontSize: "2.5rem", fontWeight: 800, color: "rgba(91,143,201,0.22)", letterSpacing: "-0.05em", lineHeight: 1, userSelect: "none", fontFamily: "var(--font-display), sans-serif" }}>
                 {year.match(/\d{4}/)?.[0]}
               </span>
             </div>
@@ -157,7 +156,7 @@ export default function Cursus() {
     >
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 1,
-        background: "linear-gradient(90deg, transparent, rgba(10,132,255,0.3), transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(91,143,201,0.3), transparent)",
       }} />
 
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
@@ -177,8 +176,7 @@ export default function Cursus() {
               position: "absolute",
               left: "calc(50% - 0.5px)",
               top: 0, bottom: 0, width: 1,
-              background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #D4A373)",
-              opacity: 0.35,
+              background: "linear-gradient(to bottom, rgba(91,143,201,0.5), rgba(91,143,201,0.15))",
             }}
             aria-hidden
           />
@@ -190,8 +188,7 @@ export default function Cursus() {
               position: "absolute",
               left: 15,
               top: 0, bottom: 0, width: 1,
-              background: "linear-gradient(to bottom, #0A84FF, #00D4FF 50%, #D4A373)",
-              opacity: 0.35,
+              background: "linear-gradient(to bottom, rgba(91,143,201,0.5), rgba(91,143,201,0.15))",
             }}
             aria-hidden
           />

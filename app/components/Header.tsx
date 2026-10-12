@@ -128,7 +128,7 @@ export default function Header() {
     >
       {/* Progress bar */}
       <div style={{ height: 2, background: "transparent" }}>
-        <div style={{ height: 2, background: "#0A84FF", width: `${progress}%`, transition: "width 100ms linear" }} />
+        <div style={{ height: 2, background: "#5B8FC9", width: `${progress}%`, transition: "width 100ms linear" }} />
       </div>
 
       <div
@@ -197,7 +197,7 @@ export default function Header() {
                             bottom: -2,
                             height: 2,
                             borderRadius: 999,
-                            background: "#0A84FF",
+                            background: "#5B8FC9",
                           }}
                           transition={{ type: "spring", stiffness: 450, damping: 30 }}
                         />
@@ -294,7 +294,7 @@ export default function Header() {
                             fontSize: "1rem",
                             fontWeight: 600,
                             letterSpacing: "0.01em",
-                            background: isActive ? "rgba(10,132,255,0.1)" : "transparent",
+                            background: isActive ? "rgba(91,143,201,0.1)" : "transparent",
                             color: isActive ? "#F0F4FF" : "#6B7A99",
                             border: "none",
                             cursor: "pointer",

@@ -31,16 +31,16 @@ function VisualCRM() {
     <svg width="220" height="200" viewBox="0 0 220 200" fill="none" aria-hidden>
       {edges.map(([a,b],i) => (
         <line key={i} x1={nodes[a].cx} y1={nodes[a].cy} x2={nodes[b].cx} y2={nodes[b].cy}
-          stroke="rgba(10,132,255,.28)" strokeWidth="1.2" strokeDasharray="4 4" />
+          stroke="rgba(91,143,201,.28)" strokeWidth="1.2" strokeDasharray="4 4" />
       ))}
       {nodes.map((n, i) => (
         <g key={i}>
-          <circle cx={n.cx} cy={n.cy} r={n.r + 6} fill={`rgba(10,132,255,${n.main ? ".12" : ".06"})`} />
-          <circle cx={n.cx} cy={n.cy} r={n.r} fill={`rgba(10,132,255,${n.main ? ".22" : ".12"})`} stroke="#0A84FF" strokeWidth={n.main ? 1.8 : 1.2} />
+          <circle cx={n.cx} cy={n.cy} r={n.r + 6} fill={`rgba(91,143,201,${n.main ? ".12" : ".06"})`} />
+          <circle cx={n.cx} cy={n.cy} r={n.r} fill={`rgba(91,143,201,${n.main ? ".22" : ".12"})`} stroke="#5B8FC9" strokeWidth={n.main ? 1.8 : 1.2} />
           {n.main && (
             <>
-              <circle cx={n.cx} cy={n.cy - 5} r="5.5" fill="#0A84FF" opacity=".7" />
-              <path d={`M${n.cx-9} ${n.cy+12} Q${n.cx} ${n.cy+5} ${n.cx+9} ${n.cy+12}`} stroke="#0A84FF" strokeWidth="2" strokeLinecap="round" fill="none" opacity=".7" />
+              <circle cx={n.cx} cy={n.cy - 5} r="5.5" fill="#5B8FC9" opacity=".7" />
+              <path d={`M${n.cx-9} ${n.cy+12} Q${n.cx} ${n.cy+5} ${n.cx+9} ${n.cy+12}`} stroke="#5B8FC9" strokeWidth="2" strokeLinecap="round" fill="none" opacity=".7" />
             </>
           )}
         </g>
@@ -107,7 +107,7 @@ function VisualAudio() {
 /* ── DATA ────────────────────────────────────────────────────────────────── */
 
 const featuredProjects: FeaturedProject[] = [
-  { key: "econnect",   accent: "#0A84FF", Visual: VisualCRM,          stack: ["React", "Go", "GraphQL", "PostgreSQL", "Docker", "CI/CD"] },
+  { key: "econnect",   accent: "#5B8FC9", Visual: VisualCRM,          stack: ["React", "Go", "GraphQL", "PostgreSQL", "Docker", "CI/CD"] },
   { key: "begaiement", accent: "#8B5CF6", Visual: VisualTherapy,      stack: ["React", "Go", "REST", "PostgreSQL", "Analytics", "Stripe"] },
   { key: "qrwin",      accent: "#F59E0B", Visual: VisualGamification, stack: ["React", "Go", "REST", "Stripe", "Wallet", "Back-office"] },
   { key: "happiz",     accent: "#10B981", Visual: VisualAudio,        stack: ["React", "Go", "GraphQL", "Mobile backend", "Firebase", "Admin"] },
@@ -284,7 +284,7 @@ export default function Projects() {
     >
       <div style={{
         position: "absolute", top: 0, left: 0, right: 0, height: 1,
-        background: "linear-gradient(90deg, transparent, rgba(10,132,255,0.3), transparent)",
+        background: "linear-gradient(90deg, transparent, rgba(91,143,201,0.3), transparent)",
       }} />
 
       <div style={{ maxWidth: 1152, margin: "0 auto" }}>
@@ -323,8 +323,8 @@ export default function Projects() {
                 className="md:grid-cols-[0.92fr_1.08fr] md:p-6"
                 onMouseEnter={e => {
                   e.currentTarget.style.transform = "translateY(-3px)";
-                  e.currentTarget.style.borderColor = "rgba(10,132,255,0.2)";
-                  e.currentTarget.style.boxShadow = "0 28px 70px rgba(10,132,255,0.06)";
+                  e.currentTarget.style.borderColor = "rgba(91,143,201,0.2)";
+                  e.currentTarget.style.boxShadow = "0 28px 70px rgba(91,143,201,0.06)";
                 }}
                 onMouseLeave={e => {
                   e.currentTarget.style.transform = "";
@@ -366,9 +366,9 @@ export default function Projects() {
                     <div style={{ marginTop: 20, display: "flex", flexWrap: "wrap", gap: 8 }}>
                       {project.stack.slice(0, 4).map((item) => (
                         <span key={item} style={{
-                          borderRadius: 999, border: "1px solid rgba(10,132,255,0.25)",
-                          background: "rgba(10,132,255,0.08)", padding: "6px 12px",
-                          fontSize: "0.6875rem", fontWeight: 500, color: "#00D4FF",
+                          borderRadius: 999, border: "1px solid rgba(91,143,201,0.25)",
+                          background: "rgba(91,143,201,0.08)", padding: "6px 12px",
+                          fontSize: "0.6875rem", fontWeight: 500, color: "#5B8FC9",
                         }}>
                           {item}
                         </span>
@@ -388,7 +388,7 @@ export default function Projects() {
                     >
                       {isExpanded ? t("hideDetails") : t("showDetails")}
                       <span style={{
-                        color: "#0A84FF", fontSize: "1.1rem",
+                        color: "#5B8FC9", fontSize: "1.1rem",
                         display: "inline-block",
                         transform: isExpanded ? "rotate(45deg)" : "rotate(0deg)",
                         transition: "transform 200ms ease",
@@ -401,7 +401,7 @@ export default function Projects() {
                       <dl style={{ overflow: "hidden" }}>
                         <div style={{ marginTop: 20, borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: 20, display: "flex", flexDirection: "column", gap: 16 }}>
                           <div>
-                            <dt style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF" }}>
+                            <dt style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#5B8FC9" }}>
                               {t("roleLabel")}
                             </dt>
                             <dd style={{ marginTop: 8, fontSize: "0.875rem", lineHeight: 1.75, color: "#6B7A99" }}>
@@ -409,7 +409,7 @@ export default function Projects() {
                             </dd>
                           </div>
                           <div>
-                            <dt style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#00D4FF" }}>
+                            <dt style={{ fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "#5B8FC9" }}>
                               {t("impactLabel")}
                             </dt>
                             <dd style={{ marginTop: 8, fontSize: "0.875rem", lineHeight: 1.75, color: "#6B7A99" }}>

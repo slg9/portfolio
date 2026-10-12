@@ -55,8 +55,8 @@ function InputField({
                 onBlur={() => setFocused(false)}
                 style={{
                     ...fieldStyle,
-                    borderColor: focused ? "#0A84FF" : "rgba(255,255,255,0.08)",
-                    boxShadow: focused ? "0 0 0 3px rgba(10,132,255,0.15)" : "none",
+                    borderColor: focused ? "#5B8FC9" : "rgba(255,255,255,0.08)",
+                    boxShadow: focused ? "0 0 0 3px rgba(91,143,201,0.15)" : "none",
                 }}
             />
         </div>
@@ -90,8 +90,8 @@ function TextareaField({
                 style={{
                     ...fieldStyle,
                     resize: "vertical",
-                    borderColor: focused ? "#0A84FF" : "rgba(255,255,255,0.08)",
-                    boxShadow: focused ? "0 0 0 3px rgba(10,132,255,0.15)" : "none",
+                    borderColor: focused ? "#5B8FC9" : "rgba(255,255,255,0.08)",
+                    boxShadow: focused ? "0 0 0 3px rgba(91,143,201,0.15)" : "none",
                 }}
             />
         </div>
@@ -106,7 +106,7 @@ function SubmitButton({ label, loadingLabel }: { label: string; loadingLabel: st
             disabled={pending}
             style={{
                 borderRadius: 999,
-                background: "linear-gradient(135deg, #0A84FF, #00D4FF)",
+                background: "var(--accent)",
                 padding: "13px 32px",
                 fontSize: "0.875rem",
                 fontWeight: 700,
@@ -114,19 +114,8 @@ function SubmitButton({ label, loadingLabel }: { label: string; loadingLabel: st
                 border: "none",
                 cursor: pending ? "not-allowed" : "pointer",
                 opacity: pending ? 0.6 : 1,
-                transition: "opacity 0.2s, transform 0.2s, box-shadow 0.2s",
-                boxShadow: "0 0 24px rgba(10,132,255,0.35)",
+                transition: "opacity 0.2s, transform 0.2s",
                 letterSpacing: "0.04em",
-            }}
-            onMouseEnter={(e) => {
-                if (!pending) {
-                    (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-2px)";
-                    (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 8px 32px rgba(10,132,255,0.55)";
-                }
-            }}
-            onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.transform = "";
-                (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 24px rgba(10,132,255,0.35)";
             }}
         >
             {pending ? (
@@ -178,8 +167,8 @@ export default function ContactForm({
                 padding: "24px 0",
                 minHeight: 280,
             }}>
-                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(10,132,255,0.12)", border: "2px solid #0A84FF", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#0A84FF" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <div style={{ width: 64, height: 64, borderRadius: "50%", background: "rgba(91,143,201,0.12)", border: "2px solid var(--accent)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5B8FC9" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <polyline points="20 6 9 17 4 12" />
                     </svg>
                 </div>
@@ -206,8 +195,8 @@ export default function ContactForm({
                         transition: "all 0.2s",
                     }}
                     onMouseEnter={(e) => {
-                        (e.currentTarget as HTMLButtonElement).style.borderColor = "#0A84FF";
-                        (e.currentTarget as HTMLButtonElement).style.color = "#0A84FF";
+                        (e.currentTarget as HTMLButtonElement).style.borderColor = "#5B8FC9";
+                        (e.currentTarget as HTMLButtonElement).style.color = "#5B8FC9";
                     }}
                     onMouseLeave={(e) => {
                         (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(255,255,255,0.12)";
