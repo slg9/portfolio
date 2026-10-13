@@ -1,4 +1,4 @@
-
+import { setRequestLocale } from "next-intl/server";
 import AboutMe from "../components/sections/AboutMe";
 import Contact from "../components/sections/Contact";
 import Cursus from "../components/sections/Cursus";
@@ -7,19 +7,21 @@ import Hero from "../components/sections/Hero";
 import Projects from "../components/sections/Projects";
 import Techno from "../components/sections/techno";
 
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  setRequestLocale(locale);
 
-export default function Home() {
   return (
-    <main
-      className="flex flex-col scroll-pt-24"
-      style={{ background: "#04040F" }}>
-      <Hero />
-      <AboutMe />
-      <Projects />
-      <Techno />
-      <Cursus />
-      <Contact />
+    <>
+      <main id="top">
+        <Hero />
+        <AboutMe />
+        <Projects />
+        <Techno />
+        <Cursus />
+        <Contact />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

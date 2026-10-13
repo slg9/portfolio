@@ -1,0 +1,300 @@
+- generic [active] [ref=f4e1]:
+  - banner [ref=f4e2]:
+    - generic [ref=f4e3]:
+      - link "Sébastien Legros" [ref=f4e4] [cursor=pointer]:
+        - /url: "#top"
+      - navigation "Navigation principale" [ref=f4e6]:
+        - group "Langue" [ref=f4e7]:
+          - generic [ref=f4e8]: fr
+          - link "en" [ref=f4e9] [cursor=pointer]:
+            - /url: /en
+  - navigation "Navigation principale" [ref=f4e10]:
+    - link "Projets" [ref=f4e11] [cursor=pointer]:
+      - /url: "#projects"
+    - link "Parcours" [ref=f4e14] [cursor=pointer]:
+      - /url: "#cursus"
+    - link "Contact" [ref=f4e17] [cursor=pointer]:
+      - /url: "#contact"
+    - link "CV" [ref=f4e20] [cursor=pointer]:
+      - /url: /docs/Sebastien_Legros_CV_FR.pdf
+  - main [ref=f4e23]:
+    - region [ref=f4e24]:
+      - generic [ref=f4e25]:
+        - heading "Sébastien Legros Full stack senior" [level=1] [ref=f4e26]:
+          - generic [ref=f4e27]: Sébastien Legros
+          - generic [ref=f4e28]:
+            - generic [ref=f4e29]: Full
+            - generic [ref=f4e31]: stack
+            - generic [ref=f4e33]: senior
+        - generic [ref=f4e35]:
+          - paragraph [ref=f4e36]: De la base de données à l'interface. React, Next.js, Go, PostgreSQL. En full remote depuis La Réunion.
+          - link "Voir les projets" [ref=f4e38] [cursor=pointer]:
+            - /url: "#projects"
+      - img "Sébastien Legros, Développeur full-stack senior" [ref=f4e42]
+    - region [ref=f4e43]:
+      - generic [ref=f4e44]:
+        - heading "Je construis des produits web pensés pour durer." [level=2] [ref=f4e45]
+        - generic [ref=f4e46]:
+          - paragraph [ref=f4e47]: "Mon terrain de jeu, ce sont les applications web à vrai usage et les logiciels bureautiques métier: back-offices, plateformes SaaS, logiciels C# sur mesure, APIs, paiements, contenus, intégrations et outils internes. J'aime transformer un besoin flou en solution utilisable, stable et propre à maintenir dans la durée."
+          - paragraph [ref=f4e48]: 10 ans d'expérience, dont 6 en développement et 3 en lead.
+          - paragraph [ref=f4e49]:
+            - generic [ref=f4e50]: Concevoir juste.
+            - text: Je pars du besoin réel, du parcours utilisateur et des contraintes métier avant de choisir une implémentation.
+          - paragraph [ref=f4e51]:
+            - generic [ref=f4e52]: Construire propre.
+            - text: J'accorde de l'importance à la structure, au naming, à la dette maîtrisée et à une base de code que l'équipe peut reprendre sans friction.
+          - paragraph [ref=f4e53]:
+            - generic [ref=f4e54]: Livrer serein.
+            - text: "CI/CD, Docker, APIs, qualité perçue et détails d'interface: la finition compte autant que la fonctionnalité."
+    - region [ref=f4e55]:
+      - generic [ref=f4e56]:
+        - heading "Des projets pensés pour être utiles, pas seulement beaux" [level=2] [ref=f4e57]
+        - paragraph [ref=f4e58]: Une sélection de produits et d'outils où j'ai travaillé l'architecture, l'expérience et la mise en production.
+        - list [ref=f4e59]:
+          - listitem [ref=f4e60]:
+            - generic [aria-hidden] [ref=f4e61]:
+              - generic [ref=f4e62]:
+                - generic [ref=f4e63]:
+                  - generic [ref=f4e64]: Interface
+                  - generic [ref=f4e65]: React
+                - generic [ref=f4e66]:
+                  - generic [ref=f4e67]: API
+                  - generic [ref=f4e68]: Go, GraphQL
+                - generic [ref=f4e69]:
+                  - generic [ref=f4e70]: Données
+                  - generic [ref=f4e71]: PostgreSQL
+              - generic [ref=f4e72]:
+                - generic [ref=f4e73]: CRM B2B
+                - generic [ref=f4e74]: CRM
+            - generic [ref=f4e75]:
+              - heading "Plateforme CRM Métier" [level=3] [ref=f4e76]
+              - paragraph [ref=f4e77]: Conception et développement d'un CRM complet pour centraliser la gestion des prospects, les workflows partenaires, le suivi des campagnes et les automatisations métier.
+              - paragraph [ref=f4e78]:
+                - generic [ref=f4e79]: "Stack:"
+                - text: React / Go / GraphQL / PostgreSQL / Docker / CI/CD
+              - group [ref=f4e80]:
+                - generic "Détails" [ref=f4e81] [cursor=pointer]
+          - listitem [ref=f4e85]:
+            - generic [aria-hidden] [ref=f4e86]:
+              - generic [ref=f4e87]:
+                - generic [ref=f4e88]:
+                  - generic [ref=f4e89]: Interface
+                  - generic [ref=f4e90]: React
+                - generic [ref=f4e91]:
+                  - generic [ref=f4e92]: API
+                  - generic [ref=f4e93]: Go, REST
+                - generic [ref=f4e94]:
+                  - generic [ref=f4e95]: Données
+                  - generic [ref=f4e96]: PostgreSQL
+              - generic [ref=f4e97]:
+                - generic [ref=f4e98]: Santé
+                - generic [ref=f4e99]: Soin
+            - generic [ref=f4e100]:
+              - heading "Plateforme de Soins Thérapeutiques" [level=3] [ref=f4e101]
+              - paragraph [ref=f4e102]: Une plateforme de soins spécialisée combinant du contenu structuré, le suivi patient et des workflows thérapeutiques métier.
+              - paragraph [ref=f4e103]:
+                - generic [ref=f4e104]: "Stack:"
+                - text: React / Go / REST / PostgreSQL / Stripe
+              - group [ref=f4e105]:
+                - generic "Détails" [ref=f4e106] [cursor=pointer]
+          - listitem [ref=f4e110]:
+            - generic [aria-hidden] [ref=f4e111]:
+              - generic [ref=f4e112]:
+                - generic [ref=f4e113]:
+                  - generic [ref=f4e114]: Interface
+                  - generic [ref=f4e115]: React
+                - generic [ref=f4e116]:
+                  - generic [ref=f4e117]: API
+                  - generic [ref=f4e118]: Go, REST
+                - generic [ref=f4e119]:
+                  - generic [ref=f4e120]: Paiements
+                  - generic [ref=f4e121]: Stripe, wallet
+              - generic [ref=f4e122]:
+                - generic [ref=f4e123]: Gamification
+                - generic [ref=f4e124]: QR
+            - generic [ref=f4e125]:
+              - heading "Moteur de Gamification & Campagnes" [level=3] [ref=f4e126]
+              - paragraph [ref=f4e127]: Back-office et APIs pour orchestrer des mécaniques de jeu, des plans d'abonnement et des flux de récompenses liés à des déclencheurs physiques.
+              - paragraph [ref=f4e128]:
+                - generic [ref=f4e129]: "Stack:"
+                - text: React / Go / REST / Stripe / Wallet
+              - group [ref=f4e130]:
+                - generic "Détails" [ref=f4e131] [cursor=pointer]
+          - listitem [ref=f4e135]:
+            - generic [aria-hidden] [ref=f4e136]:
+              - generic [ref=f4e137]:
+                - generic [ref=f4e138]:
+                  - generic [ref=f4e139]: Interface
+                  - generic [ref=f4e140]: React
+                - generic [ref=f4e141]:
+                  - generic [ref=f4e142]: API
+                  - generic [ref=f4e143]: Go, GraphQL
+                - generic [ref=f4e144]:
+                  - generic [ref=f4e145]: Données
+                  - generic [ref=f4e146]: Firebase
+              - generic [ref=f4e147]:
+                - generic [ref=f4e148]: Audio mobile
+                - generic [ref=f4e149]: Audio
+            - generic [ref=f4e150]:
+              - heading "Plateforme Audio Mobile" [level=3] [ref=f4e151]
+              - paragraph [ref=f4e152]: Backend GraphQL et back-office éditorial pour une application mobile délivrant du contenu audio structuré aux utilisateurs.
+              - paragraph [ref=f4e153]:
+                - generic [ref=f4e154]: "Stack:"
+                - text: React / Go / GraphQL / Firebase
+              - group [ref=f4e155]:
+                - generic "Détails" [ref=f4e156] [cursor=pointer]
+        - generic [ref=f4e160]:
+          - heading "Autres réalisations" [level=3] [ref=f4e161]
+          - generic [ref=f4e162]:
+            - generic [ref=f4e163]:
+              - heading "Web et back-offices" [level=4] [ref=f4e164]
+              - list [ref=f4e165]:
+                - listitem [ref=f4e166]:
+                  - generic [ref=f4e167]: Pipeline Éditorial Automatisé
+                  - generic [ref=f4e168]: Pipeline éditorial vidéo automatisé en Go avec un dashboard Next.js, rendu Remotion/FFmpeg, génération de sous-titres et orchestration de contenu.
+                - listitem [ref=f4e169]:
+                  - generic [ref=f4e170]: Suite de Gestion Documentaire
+                  - generic [ref=f4e171]: API Go et écosystème back-office React pour gérer documents, workflows métier, contenus structurés et outils d'administration.
+                - listitem [ref=f4e172]:
+                  - generic [ref=f4e173]: Plateforme d'Alertes Cinéma
+                  - generic [ref=f4e174]: Application Next.js dédiée au cinéma avec Supabase, Redis, paiements Stripe et logique d'alertes produit.
+                - listitem [ref=f4e175]:
+                  - generic [ref=f4e176]: Mentora, plateforme de cours d'anglais en ligne
+                  - generic [ref=f4e177]: Espaces enseignant et élève, création de sessions étape par étape, suivi des résultats, import et export de supports. Next.js, Node.js, TypeScript, Prisma, PostgreSQL, NextAuth.
+                - listitem [ref=f4e178]:
+                  - generic [ref=f4e179]: Preznt (preznt.gifts)
+                  - generic [ref=f4e180]: "Plateforme de cadeaux numériques interactifs : authentification par code, paiements Stripe avec webhooks, notifications push, scènes 3D. Next.js 16, React 19, Node.js, PostgreSQL, Stripe, Three.js."
+                - listitem [ref=f4e181]:
+                  - generic [ref=f4e182]: Back-Office Paiements & KYC
+                  - generic [ref=f4e183]: "Plateforme web de gestion MangoPay : flux de paiement, vérification KYC, wallets et conciliations."
+                - listitem [ref=f4e184]:
+                  - generic [ref=f4e185]: Back-Office Campagnes VIP
+                  - generic [ref=f4e186]: Back-office de gestion de campagnes SMS et d'informations invités VIP sous contraintes opérationnelles.
+            - generic [ref=f4e187]:
+              - heading "Mobile et données" [level=4] [ref=f4e188]
+              - list [ref=f4e189]:
+                - listitem [ref=f4e190]:
+                  - generic [ref=f4e191]: Plateforme de Podcasts Guidés
+                  - generic [ref=f4e192]: Application mobile de contenus audio structurés avec APIs, pipeline éditorial, i18n et logique produit.
+                - listitem [ref=f4e193]:
+                  - generic [ref=f4e194]: Analytics SQL Fidélité
+                  - generic [ref=f4e195]: Optimisation de requêtes SQL et travail de performance sur un produit mobile de fidélisation avec des modèles de données complexes.
+                - listitem [ref=f4e196]:
+                  - generic [ref=f4e197]: Application Terrain Accessibilité
+                  - generic [ref=f4e198]: Application Android pour localiser des lieux accessibles aux fauteuils roulants et enrichir les informations d'accessibilité terrain.
+                - listitem [ref=f4e199]:
+                  - generic [ref=f4e200]: App de Mise en Relation par Intérêts
+                  - generic [ref=f4e201]: Application Android mettant en relation des personnes via leurs intérêts communs et la proximité géographique.
+    - region [ref=f4e202]:
+      - generic [ref=f4e203]:
+        - heading "Un profil hybride entre applications web, APIs métier et logiciels desktop, avec une stack choisie pour durer et rester maintenable." [level=2] [ref=f4e204]
+        - generic [ref=f4e205]:
+          - generic [ref=f4e206]:
+            - heading "Web" [level=3] [ref=f4e207]
+            - paragraph [ref=f4e208]: React, Next.js, TypeScript, Blazor, C#
+            - paragraph [ref=f4e209]: Interfaces web en React/TypeScript et Next.js, back-offices Blazor en C#, du composant à la mise en production.
+          - generic [ref=f4e210]:
+            - heading "API & données" [level=3] [ref=f4e211]
+            - paragraph [ref=f4e212]: Go, Node.js, ASP.NET Core, GraphQL, REST, PostgreSQL, SQL Server
+            - paragraph [ref=f4e213]: APIs REST et GraphQL en Go, Node.js ou ASP.NET Core, sur PostgreSQL et SQL Server, architecture claire, logique métier maîtrisée.
+          - generic [ref=f4e214]:
+            - heading "Logiciel" [level=3] [ref=f4e215]
+            - paragraph [ref=f4e216]: C#, XPO/XAF, DevExpress, WPF, WinForms
+            - paragraph [ref=f4e217]: Applications métier desktop en environnement .NET avec frameworks orientés productivité et UI riches.
+    - region [ref=f4e218]:
+      - generic [ref=f4e219]:
+        - heading "Une progression du réseau vers le produit, puis vers le lead technique." [level=2] [ref=f4e220]
+        - list [ref=f4e221]:
+          - listitem [ref=f4e222]:
+            - time [ref=f4e223]: 02/2026 - aujourd'hui
+            - generic [ref=f4e224]:
+              - heading "Développeur freelance, Neitsa" [level=3] [ref=f4e225]:
+                - text: Développeur freelance
+                - generic [ref=f4e226]: ", Neitsa"
+              - paragraph [ref=f4e227]: Évolutions, maintenance et mises en production du CRM d'un courtier en crédit immobilier ; conception et refonte de sites pour des indépendants. React, Next.js, Go, GraphQL, PostgreSQL.
+          - listitem [ref=f4e228]:
+            - time [ref=f4e229]: 01/2026 - aujourd'hui
+            - generic [ref=f4e230]:
+              - heading "Concepteur Développeur, Willow" [level=3] [ref=f4e231]:
+                - text: Concepteur Développeur
+                - generic [ref=f4e232]: ", Willow"
+              - paragraph [ref=f4e233]: Conception et développement d'applications web et logicielles avec C#, MVVM, WPF, WinForms, DevExpress et Blazor, autour de SQL Server, XAF/XPO et Azure DevOps.
+          - listitem [ref=f4e234]:
+            - time [ref=f4e235]: 2022 - 07/2025
+            - generic [ref=f4e236]:
+              - heading "Lead Dev Full-Stack, Squirrel" [level=3] [ref=f4e237]:
+                - text: Lead Dev Full-Stack
+                - generic [ref=f4e238]: ", Squirrel"
+              - paragraph [ref=f4e239]: "En full remote : architecture, développement full-stack, APIs GraphQL/REST, modélisation des données et pipelines CI/CD. Conception et développement seul d'un module de collecte de pièces justificatives (moteur de règles, cycle de validation, notifications e-mail/SMS, stockage S3, intégration API d'un logiciel métier)."
+          - listitem [ref=f4e240]:
+            - time [ref=f4e241]: 07/2021 - 2022
+            - generic [ref=f4e242]:
+              - heading "Développeur Web, Squirrel" [level=3] [ref=f4e243]:
+                - text: Développeur Web
+                - generic [ref=f4e244]: ", Squirrel"
+              - paragraph [ref=f4e245]: Création d'interfaces React, intégration d'APIs et montée en puissance sur les besoins produit.
+          - listitem [ref=f4e246]:
+            - time [ref=f4e247]: 01/2017 - 07/2021
+            - generic [ref=f4e248]:
+              - heading "Administrateur Systèmes & Réseaux, Région Réunion" [level=3] [ref=f4e249]:
+                - text: Administrateur Systèmes & Réseaux
+                - generic [ref=f4e250]: ", Région Réunion"
+              - paragraph [ref=f4e251]: Infrastructure, sécurité, exploitation et culture de la fiabilité.
+          - listitem [ref=f4e252]:
+            - time [ref=f4e253]: 01/2016 - 01/2017
+            - generic [ref=f4e254]:
+              - heading "Ingénieur d'études, IRD" [level=3] [ref=f4e255]:
+                - text: Ingénieur d'études
+                - generic [ref=f4e256]: ", IRD"
+              - paragraph [ref=f4e257]: Développement d'outils web et mobiles pour la collecte et la restitution de données de recherche.
+          - listitem [ref=f4e258]:
+            - time [ref=f4e259]: 2012 - 2015
+            - generic [ref=f4e260]:
+              - heading "Diplôme d'ingénieur Informatique & Télécommunications" [level=3] [ref=f4e261]
+              - generic [ref=f4e262]: Formation
+          - listitem [ref=f4e263]:
+            - time [ref=f4e264]: 2010 - 2012
+            - generic [ref=f4e265]:
+              - heading "DUT Réseaux & Télécommunications" [level=3] [ref=f4e266]
+              - generic [ref=f4e267]: Formation
+    - region [ref=f4e268]:
+      - generic [ref=f4e269]:
+        - generic [ref=f4e270]:
+          - heading "Contact" [level=2] [ref=f4e271]
+          - paragraph [ref=f4e272]: Un projet à structurer, livrer ou remettre à niveau ?
+          - paragraph [ref=f4e273]: Je peux intervenir sur un produit existant, une base technique à consolider ou un nouveau chantier à cadrer proprement dès le départ.
+          - paragraph [ref=f4e274]: Ouvert aux opportunités.
+          - link "slegros9@gmail.com" [ref=f4e275] [cursor=pointer]:
+            - /url: mailto:slegros9@gmail.com
+          - generic [ref=f4e276]:
+            - link "LinkedIn" [ref=f4e277] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/s%C3%A9bastien-legros-23a85085
+            - link "GitHub" [ref=f4e280] [cursor=pointer]:
+              - /url: https://github.com/slg9
+            - link "Télécharger le CV" [ref=f4e283] [cursor=pointer]:
+              - /url: /docs/Sebastien_Legros_CV_FR.pdf
+        - generic [ref=f4e286]:
+          - generic [ref=f4e287]:
+            - generic [ref=f4e288]:
+              - generic [ref=f4e289]: Nom*
+              - textbox "Nom" [ref=f4e290]
+            - generic [ref=f4e291]:
+              - generic [ref=f4e292]: Email*
+              - textbox "Email" [ref=f4e293]
+          - generic [ref=f4e294]:
+            - generic [ref=f4e295]:
+              - generic [ref=f4e296]: Sujet
+              - textbox "Sujet" [ref=f4e297]
+            - generic [ref=f4e298]:
+              - generic [ref=f4e299]: Téléphone
+              - textbox "Téléphone" [ref=f4e300]
+          - generic [ref=f4e301]:
+            - generic [ref=f4e302]: Message*
+            - textbox "Message" [ref=f4e303]
+          - button "Envoyer le message" [ref=f4e305]
+  - contentinfo [ref=f4e308]:
+    - generic [ref=f4e309]:
+      - generic [ref=f4e310]: © 2026 Sébastien Legros. Tous droits réservés.
+      - link "Voir le code source sur GitHub" [ref=f4e311] [cursor=pointer]:
+        - /url: https://github.com/slg9/portfolio
+  - alert [ref=f4e312]

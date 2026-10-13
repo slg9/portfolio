@@ -1,25 +1,35 @@
-import type { Metadata } from "next";
-import { Geist_Mono, Manrope } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Archivo } from "next/font/google";
 import "../globals.css";
 import Header from "../components/Header";
 import StructuredData from "../components/StructuredData";
 import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
+import { getMessages, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// One variable family carries both voices: condensed display and normal-width text.
+const archivo = Archivo({
   subsets: ["latin"],
-});
-
-const fontBody = Manrope({
-  subsets: ["latin"],
-  variable: "--font-body",
+  axes: ["wdth"],
+  variable: "--font-archivo",
   display: "swap",
 });
 
 const locales = ['fr', 'en'];
+
+export function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5f5f2" },
+    { media: "(prefers-color-scheme: dark)", color: "#121212" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export async function generateMetadata({
   params
@@ -27,7 +37,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  if (!locales.includes(locale as any)) return {};
+  if (!locales.includes(locale)) return {};
   const messages = await getMessages({ locale });
   const t = (key: string) => {
     const keys = key.split('.');
@@ -90,7 +100,11 @@ export async function generateMetadata({
       images: ['/sebastien-pro.jpg'],
     },
     alternates: {
-      canonical: 'https://sebastienlegros.me',
+      canonical: `https://sebastienlegros.me/${locale}`,
+      languages: {
+        fr: 'https://sebastienlegros.me/fr',
+        en: 'https://sebastienlegros.me/en',
+      },
     },
     category: 'technology',
   };
@@ -104,27 +118,21 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }>) {
   const { locale } = await params;
-  // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) notFound();
+  if (!locales.includes(locale)) notFound();
+  setRequestLocale(locale);
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages({ locale });
+  // Only the contact form runs on the client; ship just its strings.
+  const messages = (await getMessages({ locale })) as any;
+  const clientMessages = { contact: { form: messages.contact.form } };
 
   return (
     <html lang={locale}>
       <head>
         <StructuredData />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/icon.png" />
       </head>
-      <body
-        className={`${fontBody.variable} ${geistMono.variable} antialiased font-sans`}
-        suppressHydrationWarning
-      >
-        <NextIntlClientProvider messages={messages}>
-          <Header/>
+      <body className={archivo.variable} suppressHydrationWarning>
+        <NextIntlClientProvider locale={locale} messages={clientMessages}>
+          <Header />
           {children}
         </NextIntlClientProvider>
       </body>

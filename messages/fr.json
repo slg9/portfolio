@@ -17,7 +17,10 @@
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu",
     "goToHome": "Aller à l'accueil",
-    "changeLanguage": "Changer de langue"
+    "changeLanguage": "Changer de langue",
+    "cv": "CV",
+    "primary": "Navigation principale",
+    "language": "Langue"
   },
   "hero": {
     "name": "Sébastien Legros",
@@ -26,7 +29,12 @@
     "availability": "Ouvert aux opportunités",
     "primaryCta": "Voir les projets",
     "secondaryCta": "Me contacter",
-    "tertiaryCta": "Télécharger le CV"
+    "tertiaryCta": "Télécharger le CV",
+    "word1": "Full",
+    "word2": "stack",
+    "word3": "senior",
+    "lede": "De la base de données à l'interface. React, Next.js, Go, PostgreSQL. En full remote depuis La Réunion.",
+    "status": "Disponible pour une nouvelle mission"
   },
   "about": {
     "title": "Une approche orientée clarté, produit et exécution",
@@ -48,8 +56,8 @@
       }
     },
     "availability": "Ouvert aux opportunités",
-    "contactMe": "Démarrer une discussion",
-    "downloadCV": "Télécharger mon CV"
+    "contactMe": "Me contacter",
+    "downloadCV": "Télécharger le CV"
   },
   "projects": {
     "portfolio": "Sélection",
@@ -67,7 +75,7 @@
       "econnect": {
         "title": "Plateforme CRM Métier",
         "summary": "Conception et développement d'un CRM complet pour centraliser la gestion des prospects, les workflows partenaires, le suivi des campagnes et les automatisations métier.",
-        "role": "Conception technique, modélisation des données, APIs Go GraphQL, interfaces React back-office et intégrations de services tiers.",
+        "role": "Conception technique, modélisation des données, APIs Go GraphQL, back-office React (Apollo) et intégrations de services tiers.",
         "impact": "Une base produit unifiée pour suivre les dossiers clients, automatiser les workflows de communication et supporter plusieurs configurations opérateurs."
       },
       "begaiement": {
@@ -79,60 +87,94 @@
       "qrwin": {
         "title": "Moteur de Gamification & Campagnes",
         "summary": "Back-office et APIs pour orchestrer des mécaniques de jeu, des plans d'abonnement et des flux de récompenses liés à des déclencheurs physiques.",
-        "role": "Conception API Go, outils d'administration, abonnements Stripe, système de portefeuille virtuel et interfaces de gestion opérateur.",
+        "role": "Conception de l'API Go GraphQL, back-office React (Apollo), abonnements Stripe, système de portefeuille virtuel et interfaces de gestion opérateur.",
         "impact": "Une base technique capable d'orchestrer campagnes, utilisateurs, récompenses et logique transactionnelle sans outillage fragmenté."
       },
       "happiz": {
         "title": "Plateforme Audio Mobile",
         "summary": "Backend GraphQL et back-office éditorial pour une application mobile délivrant du contenu audio structuré aux utilisateurs.",
-        "role": "Modélisation, APIs GraphQL, interfaces d'administration et outils de gestion du contenu et des utilisateurs.",
+        "role": "Modélisation, APIs GraphQL, back-office React (Apollo) et outils de gestion du contenu et des utilisateurs.",
         "impact": "Une base plus fiable pour opérer le produit, gérer la publication de contenu et maintenir une administration simple."
       },
       "actuflux": {
         "title": "Pipeline Éditorial Automatisé",
-        "description": "Pipeline éditorial vidéo automatisé en Go avec un dashboard Next.js, rendu Remotion/FFmpeg, génération de sous-titres et orchestration de contenu."
+        "description": "Pipeline éditorial vidéo automatisé en Go avec un dashboard Next.js, rendu Remotion/FFmpeg, génération de sous-titres et orchestration de contenu.",
+        "short": "Vidéos éditoriales générées automatiquement, sous-titres compris."
       },
       "prelys": {
         "title": "Suite de Gestion Documentaire",
-        "description": "API Go et écosystème back-office React pour gérer documents, workflows métier, contenus structurés et outils d'administration."
+        "description": "API Go GraphQL et écosystème back-office React (Apollo) pour gérer documents, workflows métier, contenus structurés et outils d'administration.",
+        "short": "Documents et workflows métier pilotés depuis un back-office."
       },
       "cineactu": {
         "title": "Plateforme d'Alertes Cinéma",
-        "description": "Application Next.js dédiée au cinéma avec Supabase, Redis, paiements Stripe et logique d'alertes produit."
+        "description": "Application Next.js dédiée au cinéma avec Supabase, Redis, paiements Stripe et logique d'alertes produit.",
+        "short": "Alertes cinéma personnalisées, avec paiement intégré."
       },
       "mentora": {
-        "title": "Mentora — plateforme de cours d'anglais en ligne",
-        "description": "Espaces enseignant et élève, création de sessions étape par étape, suivi des résultats, import et export de supports. Next.js, Node.js, TypeScript, Prisma, PostgreSQL, NextAuth."
+        "title": "Mentora, plateforme de cours d'anglais en ligne",
+        "description": "Espaces enseignant et élève, création de sessions étape par étape, suivi des résultats, import et export de supports. Next.js, Node.js, TypeScript, Prisma, PostgreSQL, NextAuth.",
+        "short": "Cours d'anglais en ligne, espaces enseignant et élève."
       },
       "preznt": {
         "title": "Preznt (preznt.gifts)",
-        "description": "Plateforme de cadeaux numériques interactifs : authentification par code, paiements Stripe avec webhooks, notifications push, scènes 3D. Next.js 16, React 19, Node.js, PostgreSQL, Stripe, Three.js."
+        "description": "Plateforme de cadeaux numériques interactifs : authentification par code, paiements Stripe avec webhooks, notifications push, scènes 3D. Next.js 16, React 19, Node.js, PostgreSQL, Stripe, Three.js.",
+        "short": "Cadeaux numériques interactifs, paiement et scènes 3D."
       },
       "leon": {
         "title": "Plateforme de Podcasts Guidés",
-        "description": "Application mobile de contenus audio structurés avec APIs, pipeline éditorial, i18n et logique produit."
+        "description": "Back-office React (Apollo, GraphQL) et backend Go/PostgreSQL d'une application mobile de podcasts guidés : pipeline éditorial, i18n et logique produit.",
+        "short": "Back-office et backend d'une app mobile de podcasts guidés."
       },
       "raoul": {
         "title": "Back-Office Paiements & KYC",
-        "description": "Plateforme web de gestion MangoPay : flux de paiement, vérification KYC, wallets et conciliations."
+        "description": "Back-office React (Apollo, GraphQL) de gestion MangoPay : flux de paiement, vérification KYC, wallets et conciliations.",
+        "short": "Paiements, vérification KYC et rapprochements."
       },
       "psg": {
         "title": "Back-Office Campagnes VIP",
-        "description": "Back-office de gestion de campagnes SMS et d'informations invités VIP sous contraintes opérationnelles."
+        "description": "Back-office React, sur API REST, de gestion de campagnes SMS et d'informations invités VIP sous contraintes opérationnelles.",
+        "short": "Campagnes SMS et gestion des invités VIP."
       },
       "fidelatoo": {
         "title": "Analytics SQL Fidélité",
-        "description": "Optimisation de requêtes SQL et travail de performance sur un produit mobile de fidélisation avec des modèles de données complexes."
+        "description": "Optimisation de requêtes SQL et travail de performance sur un produit mobile de fidélisation avec des modèles de données complexes.",
+        "short": "Requêtes SQL optimisées pour une app de fidélité."
       },
       "handimobi": {
         "title": "Application Terrain Accessibilité",
-        "description": "Application Android pour localiser des lieux accessibles aux fauteuils roulants et enrichir les informations d'accessibilité terrain."
+        "description": "Application Android pour localiser des lieux accessibles aux fauteuils roulants et enrichir les informations d'accessibilité terrain.",
+        "short": "Lieux accessibles en fauteuil, renseignés sur le terrain."
       },
       "ladar": {
         "title": "App de Mise en Relation par Intérêts",
-        "description": "Application Android mettant en relation des personnes via leurs intérêts communs et la proximité géographique."
+        "description": "Application Android mettant en relation des personnes via leurs intérêts communs et la proximité géographique.",
+        "short": "Mise en relation par intérêts communs et proximité."
       }
-    }
+    },
+    "notes": "Détails",
+    "closeNotes": "Refermer",
+    "archiveWeb": "Web et back-offices",
+    "archiveMobile": "Mobile et données",
+    "covers": {
+      "econnect": "CRM",
+      "begaiement": "Soin",
+      "qrwin": "QR",
+      "happiz": "Audio"
+    },
+    "domains": {
+      "econnect": "CRM B2B",
+      "begaiement": "Santé",
+      "qrwin": "Gamification",
+      "happiz": "Audio mobile"
+    },
+    "layers": {
+      "ui": "Interface",
+      "api": "API",
+      "data": "Données",
+      "payments": "Paiements"
+    },
+    "moreDetails": "Afficher la description"
   },
   "technologies": {
     "title": "Expertise",
@@ -140,11 +182,11 @@
     "groups": {
       "web": {
         "title": "Web",
-        "description": "Interfaces web en React/TypeScript et Next.js, back-offices Blazor en C# — du composant à la mise en production."
+        "description": "Interfaces web en React/TypeScript et Next.js, back-offices Blazor en C#, du composant à la mise en production."
       },
       "api": {
         "title": "API & données",
-        "description": "APIs REST et GraphQL en Go, Node.js ou ASP.NET Core, sur PostgreSQL et SQL Server — architecture claire, logique métier maîtrisée."
+        "description": "APIs REST et GraphQL en Go, Node.js ou ASP.NET Core, sur PostgreSQL et SQL Server, architecture claire, logique métier maîtrisée."
       },
       "software": {
         "title": "Logiciel",
@@ -169,36 +211,43 @@
         "title": "Diplôme d'ingénieur Informatique & Télécommunications"
       },
       "ird": {
-        "period": "01/2016 – 01/2017",
-        "title": "Ingénieur d'études — IRD",
-        "description": "Développement d'outils web et mobiles pour la collecte et la restitution de données de recherche."
+        "period": "01/2016 - 01/2017",
+        "title": "Ingénieur d'études",
+        "description": "Développement d'outils web et mobiles pour la collecte et la restitution de données de recherche.",
+        "org": "IRD"
       },
       "region": {
-        "period": "01/2017 – 07/2021",
-        "title": "Administrateur Systèmes & Réseaux — Région Réunion",
-        "description": "Infrastructure, sécurité, exploitation et culture de la fiabilité."
+        "period": "01/2017 - 07/2021",
+        "title": "Administrateur Systèmes & Réseaux",
+        "description": "Infrastructure, sécurité, exploitation et culture de la fiabilité.",
+        "org": "Région Réunion"
       },
       "squirrel_dev": {
-        "period": "07/2021 – 2022",
-        "title": "Développeur Web — Squirrel",
-        "description": "Création d'interfaces React, intégration d'APIs et montée en puissance sur les besoins produit."
+        "period": "07/2021 - 2022",
+        "title": "Développeur Web",
+        "description": "Création d'interfaces React, intégration d'APIs et montée en puissance sur les besoins produit.",
+        "org": "Squirrel"
       },
       "squirrel_lead": {
-        "period": "2022 – 07/2025",
-        "title": "Lead Dev Full-Stack — Squirrel",
-        "description": "En full remote : architecture, développement full-stack, APIs GraphQL/REST, modélisation des données et pipelines CI/CD. Conception et développement seul d'un module de collecte de pièces justificatives (moteur de règles, cycle de validation, notifications e-mail/SMS, stockage S3, intégration API d'un logiciel métier)."
+        "period": "2022 - 07/2025",
+        "title": "Lead Dev Full-Stack",
+        "description": "En full remote : architecture, développement full-stack, APIs GraphQL/REST, modélisation des données et pipelines CI/CD. Conception et développement seul d'un module de collecte de pièces justificatives (moteur de règles, cycle de validation, notifications e-mail/SMS, stockage S3, intégration API d'un logiciel métier).",
+        "org": "Squirrel"
       },
       "willow": {
-        "period": "01/2026 – aujourd'hui",
-        "title": "Concepteur Développeur — Willow",
-        "description": "Conception et développement d'applications web et logicielles avec C#, MVVM, WPF, WinForms, DevExpress et Blazor, autour de SQL Server, XAF/XPO et Azure DevOps."
+        "period": "01/2026 - aujourd'hui",
+        "title": "Concepteur Développeur",
+        "description": "Conception et développement d'applications web et logicielles avec C#, MVVM, WPF, WinForms, DevExpress et Blazor, autour de SQL Server, XAF/XPO et Azure DevOps.",
+        "org": "Willow"
       },
       "neitsa": {
-        "period": "02/2026 – aujourd'hui",
-        "title": "Développeur freelance — Neitsa",
-        "description": "Évolutions, maintenance et mises en production du CRM d'un courtier en crédit immobilier ; conception et refonte de sites pour des indépendants. React, Next.js, Go, GraphQL, PostgreSQL."
+        "period": "02/2026 - aujourd'hui",
+        "title": "Développeur freelance",
+        "description": "Évolutions, maintenance et mises en production du CRM d'un courtier en crédit immobilier ; conception et refonte de sites pour des indépendants. React, Next.js, Go, GraphQL, PostgreSQL.",
+        "org": "Neitsa"
       }
-    }
+    },
+    "education": "Formation"
   },
   "contact": {
     "title": "Contact",
@@ -223,7 +272,9 @@
       "messageTooShort": "Message trop court.",
       "spamDetected": "Spam détecté.",
       "sendAnother": "Envoyer un autre message"
-    }
+    },
+    "cvCta": "Télécharger le CV",
+    "elsewhere": "Ailleurs"
   },
   "footer": {
     "builtWith": "Construit avec",
@@ -232,7 +283,7 @@
     "and": "&",
     "deployedOn": "déployé sur",
     "viewSource": "Voir le code source sur GitHub",
-    "copyright": "© {year} Sébastien Legros — Tous droits réservés",
+    "copyright": "© {year} Sébastien Legros. Tous droits réservés.",
     "stack": "Stack",
     "productionReady": "production ready"
   }

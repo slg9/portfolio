@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Portfolio of Sébastien Legros, full-stack developer specialized in React, TypeScript, Go and Node.js',
     start_url: '/',
     display: 'standalone',
-    background_color: '#04040F',
-    theme_color: '#6A9CD6',
+    background_color: '#f5f5f2',
+    theme_color: '#0e6ba8',
     lang: 'en',
     icons: [
       {

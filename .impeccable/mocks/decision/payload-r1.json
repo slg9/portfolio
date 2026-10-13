@@ -1,0 +1,118 @@
+{
+  "title": "Choisis l'univers visuel du portfolio",
+  "question": "Nouveau tirage : « Pochettes jazz années 60 ». Tu la gardes, tu prends une alternative, ou tu relances ?",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Pochettes jazz années 60",
+      "kicker": "THE ROLL",
+      "lineage": "L'école graphique Reid Miles : pochettes de jazz 1956-67, photo bichromie, typographie géante recadrée, notes de pochette au verso",
+      "thesis": "Tu es l'artiste, tes projets sont les albums : recto pour accrocher, verso (notes de pochette) pour les détails du recruteur.",
+      "palette": ["#F3F1EC", "#111111", "#0E6BA8", "#E2711D", "#3F7D3A"],
+      "materials": ["photo en bichromie", "aplats de couleur pleine page", "grotesque noire condensée recadrée"],
+      "viewport": "« FULL / STACK / SENIOR » en grotesque condensée géante, la 2e ligne en bleu lagon, qui déborde sur ta photo en bichromie bleue à droite ; ton nom en tête, accroche et bouton en bas à gauche, référence verticale sur la tranche.",
+      "risk": "Si la typo est posée timidement, ça devient un simple « thème rétro » ; il faut des tailles franchement énormes.",
+      "raised": [
+        {"from": "challenger-cereal", "raise": "Sur mobile, les pochettes forment un rayon horizontal à défilement aimanté (scroll-snap), comme une appli musique."},
+        {"from": "challenger-ribbon", "raise": "Le parcours se lit comme une seule ligne continue datée (la discographie), pas comme des cartes."},
+        {"from": "challenger-terminal", "raise": "Les états s'impriment comme du texte (« Disponible — 2026 »), jamais en badges ou pastilles."},
+        {"from": "challenger-algorave", "raise": "Une seule horloge de mouvement : toutes les transitions partagent la même durée et la même courbe."}
+      ],
+      "html": ".impeccable/mocks/decision/r1-assigned.html"
+    },
+    {
+      "id": "model-pick",
+      "label": "Affiche suisse",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Style typographique international (Müller-Brockmann, années 50-60)",
+      "thesis": "Une grille 12 colonnes rigoureuse, une grotesque, un rouge : la rigueur d'ingénieur rendue visible.",
+      "palette": ["#FFFFFF", "#111111", "#E30613"],
+      "materials": ["grille modulaire apparente", "filets noirs épais", "aplat rouge"],
+      "viewport": "Titre « Développeur full-stack » énorme aligné sur la grille, un grand aplat rouge à droite, trois colonnes de faits en bas.",
+      "risk": "Le style suisse est très répandu chez les designers : solide, mais c'est là qu'atterrissent beaucoup de portfolios « sérieux ».",
+      "html": ".impeccable/mocks/decision/r1-pick.html"
+    },
+    {
+      "id": "challenger-brick",
+      "label": "Notice de montage",
+      "verdict": "competitive",
+      "lineage": "Notices de briques à construire : étapes numérotées, encadrés 1:1, fond bleu ciel",
+      "thesis": "Chaque projet expliqué comme une notice : l'architecture se monte étape par étape, la nouvelle brique en rouge.",
+      "palette": ["#CFE6F5", "#111111", "#D7261E", "#F5C400"],
+      "materials": ["fond bleu ciel à picots", "contours noirs", "flèches sans texte"],
+      "viewport": "Grand numéro d'étape, ton nom, une pile React / API Go / PostgreSQL avec la brique nouvelle en rouge, un encadré 1:1 de la stack.",
+      "case": "Très clair pour montrer le full-stack, mais l'univers jouet affaiblit la crédibilité senior.",
+      "risk": "Ludique au point de paraître junior.",
+      "html": ".impeccable/mocks/decision/r1-brick.html",
+      "hero": "https://impeccable.style/worlds/cards/games-toys-physics-play-brick-build-instructions-hero.webp"
+    },
+    {
+      "id": "challenger-ribbon",
+      "label": "Ruban de provenance",
+      "verdict": "declined",
+      "lineage": "Muséographie : ruban rouge de la vie d'un objet",
+      "thesis": "Un ruban rouge continu trace la vie d'un objet.",
+      "palette": ["#E9DFC9", "#B3201E", "#8A8A8A"],
+      "materials": ["papier d'archive", "soie rouge"],
+      "viewport": "Une colonne guidée par le ruban.",
+      "case": "Pensé pour des objets d'archive, pas pour un profil de dev.",
+      "kept": "Le parcours en une seule ligne continue.",
+      "risk": "Crème + serif : la palette par défaut de l'IA.",
+      "hero": "https://impeccable.style/worlds/cards/exhibition-museum-curation-provenance-ribbon-hero.webp"
+    },
+    {
+      "id": "challenger-terminal",
+      "label": "Terminal phosphore",
+      "verdict": "declined",
+      "lineage": "Terminal vert dans une salle machine",
+      "thesis": "Curseur clignotant, lueur verte.",
+      "palette": ["#33FF66", "#050805"],
+      "materials": ["verre noir", "phosphore"],
+      "viewport": "Une transcription qui défile.",
+      "case": "Le cliché absolu du portfolio de développeur.",
+      "kept": "Les états imprimés en texte, pas en badges.",
+      "risk": "Cliché.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-phosphor-terminal-midnight-hero.webp"
+    },
+    {
+      "id": "challenger-algorave",
+      "label": "Algorave",
+      "verdict": "declined",
+      "lineage": "Live coding musical projeté",
+      "thesis": "Le code projeté pilote la musique.",
+      "palette": ["#00FF88", "#FF00AA", "#000000"],
+      "materials": ["code projeté", "noir"],
+      "viewport": "Un buffer de code géant.",
+      "case": "Néon sur noir, code en décor : à l'opposé de la sobriété voulue.",
+      "kept": "Une seule horloge de mouvement.",
+      "risk": "Cliché néon.",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-algorave-source-floor-hero.webp"
+    },
+    {
+      "id": "challenger-cereal",
+      "label": "Rayon céréales",
+      "verdict": "declined",
+      "lineage": "Mur de boîtes de céréales",
+      "thesis": "Boîtes saturées, mascottes, pastilles NOUVEAU.",
+      "palette": ["#E52521", "#FFD100", "#FFFFFF"],
+      "materials": ["carton couché", "pastilles éclatées"],
+      "viewport": "Un planogramme de boîtes.",
+      "case": "Trop criard pour un recruteur tech.",
+      "kept": "Le rayon à défilement aimanté sur mobile.",
+      "risk": "Criard.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-cereal-box-aisle-hero.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "canon": true,
+  "canonCard": {
+    "label": "Le standard de la catégorie",
+    "thesis": "Le portfolio de dev sombre façon Linear/Vercel, exécuté avec soin.",
+    "palette": ["#08090C", "#EDEEF0", "#9A9CA3"],
+    "materials": ["fond quasi noir", "titre centré", "capture produit"],
+    "viewport": "Grand titre centré, deux boutons, visuel produit dessous.",
+    "risk": "Indiscernable des autres portfolios, par construction.",
+    "html": ".impeccable/mocks/decision/canon.html"
+  },
+  "steer": true
+}

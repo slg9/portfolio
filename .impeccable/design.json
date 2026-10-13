@@ -1,0 +1,487 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-13T13:12:02+00:00",
+  "title": "Design System: Sébastien Legros, Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#f5f5f2",
+        "tonalRamp": [
+          "oklch(15% 0.003 106)",
+          "oklch(25% 0.005 106)",
+          "oklch(35% 0.006 106)",
+          "oklch(45% 0.006 106)",
+          "oklch(55% 0.006 106)",
+          "oklch(65% 0.006 106)",
+          "oklch(80% 0.005 106)",
+          "oklch(95% 0.003 106)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#141414",
+        "tonalRamp": [
+          "oklch(15% 0.000 0)",
+          "oklch(25% 0.000 0)",
+          "oklch(35% 0.000 0)",
+          "oklch(45% 0.000 0)",
+          "oklch(55% 0.000 0)",
+          "oklch(65% 0.000 0)",
+          "oklch(80% 0.000 0)",
+          "oklch(95% 0.000 0)"
+        ]
+      },
+      "ink-grey": {
+        "role": "neutral",
+        "displayName": "Ink Grey",
+        "canonical": "#4a4a46",
+        "tonalRamp": [
+          "oklch(15% 0.003 106)",
+          "oklch(25% 0.005 106)",
+          "oklch(35% 0.006 106)",
+          "oklch(45% 0.006 106)",
+          "oklch(55% 0.006 106)",
+          "oklch(65% 0.006 106)",
+          "oklch(80% 0.005 106)",
+          "oklch(95% 0.003 106)"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "rgb(20 20 20 / 0.16)",
+        "tonalRamp": [
+          "oklch(15% 0.000 0)",
+          "oklch(25% 0.000 0)",
+          "oklch(35% 0.000 0)",
+          "oklch(45% 0.000 0)",
+          "oklch(55% 0.000 0)",
+          "oklch(65% 0.000 0)",
+          "oklch(80% 0.000 0)",
+          "oklch(95% 0.000 0)"
+        ]
+      },
+      "lagoon-blue": {
+        "role": "primary",
+        "displayName": "Lagoon Blue",
+        "canonical": "#0e6ba8",
+        "tonalRamp": [
+          "oklch(15% 0.069 245)",
+          "oklch(25% 0.100 245)",
+          "oklch(35% 0.125 245)",
+          "oklch(45% 0.125 245)",
+          "oklch(55% 0.125 245)",
+          "oklch(65% 0.125 245)",
+          "oklch(80% 0.100 245)",
+          "oklch(95% 0.069 245)"
+        ]
+      },
+      "lagoon-blue-light": {
+        "role": "primary",
+        "displayName": "Lagoon Blue Light (dark-mode text)",
+        "canonical": "#6cb2e4",
+        "tonalRamp": [
+          "oklch(15% 0.061 242)",
+          "oklch(25% 0.088 242)",
+          "oklch(35% 0.110 242)",
+          "oklch(45% 0.110 242)",
+          "oklch(55% 0.110 242)",
+          "oklch(65% 0.110 242)",
+          "oklch(80% 0.088 242)",
+          "oklch(95% 0.061 242)"
+        ]
+      },
+      "cane-green": {
+        "role": "secondary",
+        "displayName": "Cane Green",
+        "canonical": "#2f7a45",
+        "tonalRamp": [
+          "oklch(15% 0.061 150)",
+          "oklch(25% 0.088 150)",
+          "oklch(35% 0.110 150)",
+          "oklch(45% 0.110 150)",
+          "oklch(55% 0.110 150)",
+          "oklch(65% 0.110 150)",
+          "oklch(80% 0.088 150)",
+          "oklch(95% 0.061 150)"
+        ]
+      },
+      "volcano-orange": {
+        "role": "secondary",
+        "displayName": "Volcano Orange",
+        "canonical": "#e0712a",
+        "tonalRamp": [
+          "oklch(15% 0.088 50)",
+          "oklch(25% 0.128 50)",
+          "oklch(35% 0.160 50)",
+          "oklch(45% 0.160 50)",
+          "oklch(55% 0.160 50)",
+          "oklch(65% 0.160 50)",
+          "oklch(80% 0.128 50)",
+          "oklch(95% 0.088 50)"
+        ]
+      },
+      "hibiscus-red": {
+        "role": "secondary",
+        "displayName": "Hibiscus Red",
+        "canonical": "#c2364f",
+        "tonalRamp": [
+          "oklch(15% 0.099 15)",
+          "oklch(25% 0.144 15)",
+          "oklch(35% 0.180 15)",
+          "oklch(45% 0.180 15)",
+          "oklch(55% 0.180 15)",
+          "oklch(65% 0.180 15)",
+          "oklch(80% 0.144 15)",
+          "oklch(95% 0.099 15)"
+        ]
+      },
+      "night-paper": {
+        "role": "neutral",
+        "displayName": "Night Paper (dark paper)",
+        "canonical": "#121212",
+        "tonalRamp": [
+          "oklch(15% 0.000 0)",
+          "oklch(25% 0.000 0)",
+          "oklch(35% 0.000 0)",
+          "oklch(45% 0.000 0)",
+          "oklch(55% 0.000 0)",
+          "oklch(65% 0.000 0)",
+          "oklch(80% 0.000 0)",
+          "oklch(95% 0.000 0)"
+        ]
+      },
+      "night-ink": {
+        "role": "neutral",
+        "displayName": "Night Ink (dark text)",
+        "canonical": "#f2f1ec",
+        "tonalRamp": [
+          "oklch(15% 0.003 95)",
+          "oklch(25% 0.005 95)",
+          "oklch(35% 0.006 95)",
+          "oklch(45% 0.006 95)",
+          "oklch(55% 0.006 95)",
+          "oklch(65% 0.006 95)",
+          "oklch(80% 0.005 95)",
+          "oklch(95% 0.003 95)"
+        ]
+      },
+      "night-ink-grey": {
+        "role": "neutral",
+        "displayName": "Night Ink Grey",
+        "canonical": "#b4b3ad",
+        "tonalRamp": [
+          "oklch(15% 0.003 100)",
+          "oklch(25% 0.005 100)",
+          "oklch(35% 0.006 100)",
+          "oklch(45% 0.006 100)",
+          "oklch(55% 0.006 100)",
+          "oklch(65% 0.006 100)",
+          "oklch(80% 0.005 100)",
+          "oklch(95% 0.003 100)"
+        ]
+      },
+      "night-hairline": {
+        "role": "neutral",
+        "displayName": "Night Hairline",
+        "canonical": "rgb(242 241 236 / 0.16)",
+        "tonalRamp": [
+          "oklch(15% 0.003 95)",
+          "oklch(25% 0.005 95)",
+          "oklch(35% 0.006 95)",
+          "oklch(45% 0.006 95)",
+          "oklch(55% 0.006 95)",
+          "oklch(65% 0.006 95)",
+          "oklch(80% 0.005 95)",
+          "oklch(95% 0.003 95)"
+        ]
+      },
+      "field-shade": {
+        "role": "neutral",
+        "displayName": "Field Shade",
+        "canonical": "rgb(0 0 0 / 0.14)",
+        "purpose": "Input fill on the lagoon-blue contact field."
+      },
+      "field-shade-focus": {
+        "role": "neutral",
+        "displayName": "Field Shade Focus",
+        "canonical": "rgb(0 0 0 / 0.24)",
+        "purpose": "Input fill on focus, on the lagoon-blue contact field."
+      }
+    },
+    "typographyMeta": {
+      "display-hero": {
+        "displayName": "Display Hero",
+        "purpose": "The three hero words only; masked lines, second line lagoon blue, rises once on load."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Cropped poster words: expertise headings, contact title, project cover words (sized per container)."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles, sentence case, max 21ch, balanced."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Project names and the form's done message."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "The one sentence under a headline; ink grey (paper on the contact field), max 46ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text; about columns run 1.0625rem/1.65, archive taglines and descriptions 0.9375rem."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, summaries, dates; nav at 600. Form labels and footer one step down at 0.875rem."
+      },
+      "label-sm": {
+        "displayName": "Label Small",
+        "purpose": "Technology chips, layer technologies, language switch, career entry type, cover domain floor."
+      },
+      "label-xs": {
+        "displayName": "Label XS",
+        "purpose": "Archive chips and mobile layer technologies."
+      },
+      "label-micro": {
+        "displayName": "Label Micro",
+        "purpose": "Layer names (650, 75% opacity) and tab bar labels (700)."
+      },
+      "display-hero-mobile": {
+        "displayName": "Display Hero Mobile",
+        "purpose": "The three hero words under 768px, first line overlapping the portrait."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "Expertise technology lists and career entry titles."
+      }
+    },
+    "shadows": [
+      {
+        "name": "lang-hover-outline",
+        "value": "inset 0 0 0 1.5px var(--ink)",
+        "purpose": "Hover state of the language switch; an inset outline, not elevation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "clock",
+        "value": "420ms",
+        "purpose": "The single duration for colour, underline, icon, chip and disclosure transitions."
+      },
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.2, 0.8, 0.2, 1)",
+        "purpose": "The single easing for every transition and animation."
+      },
+      {
+        "name": "press",
+        "value": "160ms; scale(0.97) buttons, scale(0.92) tab cells",
+        "purpose": "Press feedback on :active."
+      },
+      {
+        "name": "layer-slide",
+        "value": "588ms (1.4 x clock), delay layer index * 60ms; translateX(3% / 4.5% / 6%) to translateX(37%); text transparent to paper over 420ms",
+        "purpose": "Architecture layers slide out from behind the cover on hover/focus-within (desktop); 56% on mobile hover."
+      },
+      {
+        "name": "layer-peek",
+        "value": "animation-timeline: view(inline); rest -> 56% (40-60%) -> rest",
+        "purpose": "Scroll-linked layer reveal on the mobile shelf, where supported."
+      },
+      {
+        "name": "chip-shift",
+        "value": "420ms, delay chip index * 40ms; translateX(6px) and lagoon-blue fill",
+        "purpose": "Chips react to hovering their project or archive row, hover-capable devices only."
+      },
+      {
+        "name": "word-up",
+        "value": "900ms, delay i*90ms + 80ms; translateY(105%) to 0",
+        "purpose": "Hero words rise once from their line mask on load; the hero foot fades up 28px over 700ms at 420ms."
+      },
+      {
+        "name": "details-open",
+        "value": "opacity over 420ms with content-visibility allow-discrete; plus rotates 45deg, caret 180deg",
+        "purpose": "Details and archive disclosure content fades in when opened."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "transition-duration 0.01ms; animation none; scroll-behavior auto",
+        "purpose": "prefers-reduced-motion: reduce removes all movement; everything is visible by default."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "max-width: 767px",
+        "purpose": "App layout: bottom tab bar, stacked hero, snap shelf (86% items, 62% covers), single columns."
+      },
+      {
+        "name": "narrow",
+        "value": "max-width: 900px",
+        "purpose": "Expertise rows and career layout collapse to one column."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Solid Button",
+      "kind": "button",
+      "refersTo": "button-solid",
+      "description": "Primary action: ink block that fills lagoon blue on hover; trailing icon nudges right.",
+      "html": "<a class=\"ds-btn-solid\" href=\"#\">Voir les projets <svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z\"/></svg></a>",
+      "css": ".ds-btn-solid { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; font-weight: 750; font-size: 0.9375rem; letter-spacing: 0.02em; text-decoration: none; white-space: nowrap; border: 2px solid var(--ink, #141414); border-radius: 0; transition: background-color 420ms cubic-bezier(0.2,0.8,0.2,1), color 420ms cubic-bezier(0.2,0.8,0.2,1), transform 160ms cubic-bezier(0.2,0.8,0.2,1); background: var(--ink, #141414); color: var(--paper, #f5f5f2); } .ds-btn-solid svg { transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1); } .ds-btn-solid:hover { background: var(--blue, #0e6ba8); border-color: var(--blue, #0e6ba8); color: var(--on-blue, #f5f5f2); } .ds-btn-solid:hover svg { transform: translateX(4px); } .ds-btn-solid:active { transform: scale(0.97); } .ds-btn-solid:focus-visible { outline: 2px solid var(--blue-text, #0e6ba8); outline-offset: 3px; }"
+    },
+    {
+      "name": "Line Button",
+      "kind": "button",
+      "refersTo": "button-line",
+      "description": "Secondary action (CV download): ink outline that fills with ink on hover.",
+      "html": "<a class=\"ds-btn-line\" href=\"#\">Télécharger le CV <svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224,144v64a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V144a8,8,0,0,1,16,0v56H208V144a8,8,0,0,1,16,0Zm-101.66,5.66a8,8,0,0,0,11.32,0l40-40a8,8,0,0,0-11.32-11.32L136,124.69V32a8,8,0,0,0-16,0v92.69L93.66,98.34a8,8,0,0,0-11.32,11.32Z\"/></svg></a>",
+      "css": ".ds-btn-line { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; font-weight: 750; font-size: 0.9375rem; letter-spacing: 0.02em; text-decoration: none; white-space: nowrap; border: 2px solid var(--ink, #141414); border-radius: 0; transition: background-color 420ms cubic-bezier(0.2,0.8,0.2,1), color 420ms cubic-bezier(0.2,0.8,0.2,1), transform 160ms cubic-bezier(0.2,0.8,0.2,1); background: transparent; color: var(--ink, #141414); } .ds-btn-line svg { transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1); } .ds-btn-line:hover { background: var(--ink, #141414); color: var(--paper, #f5f5f2); } .ds-btn-line:hover svg { transform: translateX(4px); } .ds-btn-line:active { transform: scale(0.97); } .ds-btn-line:focus-visible { outline: 2px solid var(--blue-text, #0e6ba8); outline-offset: 3px; }"
+    },
+    {
+      "name": "Button on Blue",
+      "kind": "button",
+      "refersTo": "button-on-blue",
+      "description": "Contact submit on the lagoon-blue field: paper block that inverts to ink on hover.",
+      "html": "<div class=\"ds-blue-field\"><button class=\"ds-btn-on-blue\" type=\"button\">Envoyer <svg width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M205.66,149.66l-72,72a8,8,0,0,1-11.32,0l-72-72a8,8,0,0,1,11.32-11.32L120,196.69V40a8,8,0,0,1,16,0V196.69l58.34-58.35a8,8,0,0,1,11.32,11.32Z\"/></svg></button></div>",
+      "css": ".ds-blue-field { background: #0e6ba8; padding: 24px; } .ds-btn-on-blue { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 24px; font-weight: 750; font-size: 0.9375rem; letter-spacing: 0.02em; text-decoration: none; white-space: nowrap; border: 2px solid var(--ink, #141414); border-radius: 0; transition: background-color 420ms cubic-bezier(0.2,0.8,0.2,1), color 420ms cubic-bezier(0.2,0.8,0.2,1), transform 160ms cubic-bezier(0.2,0.8,0.2,1); background: #f5f5f2; color: #141414; border-color: #f5f5f2; cursor: pointer; } .ds-btn-on-blue:hover { background: #141414; border-color: #141414; color: #f5f5f2; } .ds-btn-on-blue:active { transform: scale(0.97); } .ds-btn-on-blue:focus-visible { outline: 2px solid #f5f5f2; outline-offset: 3px; }"
+    },
+    {
+      "name": "Field on Blue",
+      "kind": "input",
+      "refersTo": "field-on-blue",
+      "description": "Contact form field on the lagoon-blue field: dark well, paper underline, no ring.",
+      "html": "<div class=\"ds-field-wrap\"><label class=\"ds-field-label\" for=\"ds-name\">Nom</label><input class=\"ds-field\" id=\"ds-name\" placeholder=\"Ada Lovelace\"></div>",
+      "css": ".ds-field-wrap { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; background: #0e6ba8; color: #f5f5f2; padding: 24px; } .ds-field-label { display: block; font-size: 0.875rem; font-weight: 700; margin-bottom: 6px; } .ds-field { width: 100%; background: rgb(0 0 0 / 0.14); color: #f5f5f2; border: 0; border-bottom: 2px solid rgb(245 245 242 / 0.7); border-radius: 0; padding: 12px 14px; font: inherit; font-size: 1rem; transition: border-color 420ms cubic-bezier(0.2,0.8,0.2,1), background-color 420ms cubic-bezier(0.2,0.8,0.2,1); } .ds-field::placeholder { color: rgb(245 245 242 / 0.6); } .ds-field:focus { outline: none; background: rgb(0 0 0 / 0.24); border-bottom-color: #f5f5f2; }"
+    },
+    {
+      "name": "Top Bar",
+      "kind": "nav",
+      "refersTo": "topbar",
+      "description": "Desktop sticky bar: ink brand mark, growing-underline links, printed language switch.",
+      "html": "<header class=\"ds-topbar\"><a class=\"ds-brand\" href=\"#\"><span class=\"ds-brand-mark\">SL</span>Sébastien Legros</a><nav class=\"ds-topnav\"><a href=\"#\">Projets</a><a href=\"#\">Expertise</a><a href=\"#\">Contact</a><span class=\"ds-lang\"><span aria-current=\"true\">fr</span><a href=\"#\">en</a></span></nav></header>",
+      "css": ".ds-topbar { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; padding: 0 24px; background: var(--paper, #f5f5f2); color: var(--ink, #141414); border-bottom: 1px solid var(--rule, rgb(20 20 20 / 0.16)); } .ds-brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 850; text-transform: uppercase; letter-spacing: 0.01em; text-decoration: none; color: inherit; } .ds-brand-mark { display: grid; place-items: center; width: 40px; height: 40px; background: var(--ink, #141414); color: var(--paper, #f5f5f2); font-weight: 900; font-stretch: 62%; font-variation-settings: 'wdth' 62; font-size: 1.25rem; } .ds-topnav { display: flex; align-items: center; gap: 24px; font-size: 0.9375rem; font-weight: 600; } .ds-topnav > a { color: inherit; text-decoration: none; padding-block: 8px; background: linear-gradient(currentColor, currentColor) no-repeat 0 100% / 0 2px; transition: background-size 420ms cubic-bezier(0.2,0.8,0.2,1); } .ds-topnav > a:hover, .ds-topnav > a:focus-visible { background-size: 100% 2px; } .ds-lang { display: flex; gap: 2px; font-size: 0.8125rem; font-weight: 750; } .ds-lang a, .ds-lang span { display: grid; place-items: center; min-width: 36px; height: 32px; text-transform: uppercase; text-decoration: none; color: inherit; } .ds-lang span[aria-current] { background: var(--ink, #141414); color: var(--paper, #f5f5f2); } .ds-lang a:hover { box-shadow: inset 0 0 0 1.5px var(--ink, #141414); }"
+    },
+    {
+      "name": "Tab Bar",
+      "kind": "nav",
+      "refersTo": "tabbar",
+      "description": "Mobile bottom navigation: four cells (Stack, Path, EnvelopeSimple, DownloadSimple), icon over label-micro label, CV cell solid ink, press scale.",
+      "html": "<nav class=\"ds-tabbar\"><a href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M234.36,170A12,12,0,0,1,230,186.37l-96,56a12,12,0,0,1-12.1,0l-96-56a12,12,0,0,1,12.09-20.74l90,52.48L218,165.63A12,12,0,0,1,234.36,170ZM218,117.63,128,170.11,38.05,117.63A12,12,0,0,0,26,138.37l96,56a12,12,0,0,0,12.1,0l96-56A12,12,0,0,0,218,117.63ZM20,80a12,12,0,0,1,6-10.37l96-56a12.06,12.06,0,0,1,12.1,0l96,56a12,12,0,0,1,0,20.74l-96,56a12,12,0,0,1-12.1,0l-96-56A12,12,0,0,1,20,80Zm35.82,0L128,122.11,200.18,80,128,37.89Z\"/></svg>Projets</a><a href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M200,164a36.07,36.07,0,0,0-33.94,24H72a28,28,0,0,1,0-56h96a44,44,0,0,0,0-88H72a12,12,0,0,0,0,24h96a20,20,0,0,1,0,40H72a52,52,0,0,0,0,104h94.06A36,36,0,1,0,200,164Zm0,48a12,12,0,1,1,12-12A12,12,0,0,1,200,212Z\"/></svg>Parcours</a><a href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M224,44H32A12,12,0,0,0,20,56V192a20,20,0,0,0,20,20H216a20,20,0,0,0,20-20V56A12,12,0,0,0,224,44ZM193.15,68,128,127.72,62.85,68ZM44,188V83.28l75.89,69.57a12,12,0,0,0,16.22,0L212,83.28V188Z\"/></svg>Contact</a><a href=\"#\"><svg width=\"22\" height=\"22\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M228,144v64a12,12,0,0,1-12,12H40a12,12,0,0,1-12-12V144a12,12,0,0,1,24,0v52H204V144a12,12,0,0,1,24,0Zm-108.49,8.49a12,12,0,0,0,17,0l40-40a12,12,0,0,0-17-17L140,115V32a12,12,0,0,0-24,0v83L96.49,95.51a12,12,0,0,0-17,17Z\"/></svg>CV</a></nav>",
+      "css": ".ds-tabbar { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; display: grid; grid-template-columns: repeat(4, 1fr); height: 64px; max-width: 390px; background: var(--paper, #f5f5f2); color: var(--ink, #141414); border-top: 1px solid var(--rule, rgb(20 20 20 / 0.16)); } .ds-tabbar a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; color: inherit; transition: transform 160ms cubic-bezier(0.2,0.8,0.2,1); } .ds-tabbar a:active { transform: scale(0.92); } .ds-tabbar a:last-child { background: var(--ink, #141414); color: var(--paper, #f5f5f2); } .ds-tabbar a:focus-visible { outline: 2px solid var(--blue-text, #0e6ba8); outline-offset: -3px; }"
+    },
+    {
+      "name": "Project Cover with Cross-Section",
+      "kind": "card",
+      "refersTo": "cover",
+      "description": "Signature project unit: a 16:10 one-colour cover with domain label and cropped cover word; three ink architecture layers slide out from behind it on hover/focus.",
+      "html": "<a class=\"ds-project\" href=\"#\"><span class=\"ds-cover-wrap\"><span class=\"ds-layers\"><span class=\"ds-layer\" style=\"--l:0\"><span class=\"ds-layer-name\">Interface</span><span class=\"ds-layer-tech\">React</span></span><span class=\"ds-layer\" style=\"--l:1\"><span class=\"ds-layer-name\">API</span><span class=\"ds-layer-tech\">Go, GraphQL</span></span><span class=\"ds-layer\" style=\"--l:2\"><span class=\"ds-layer-name\">Données</span><span class=\"ds-layer-tech\">PostgreSQL</span></span></span><span class=\"ds-cover\"><span class=\"ds-cover-domain\">CRM B2B</span><span class=\"ds-cover-word\">CRM</span></span></span></a>",
+      "css": ".ds-project { --c: #0e6ba8; --fg: #f5f5f2; display: block; width: 360px; font-family: var(--font-archivo), Archivo, system-ui, sans-serif; text-decoration: none; } .ds-cover-wrap { position: relative; display: block; width: 72%; aspect-ratio: 16 / 10; } .ds-cover { position: relative; z-index: 2; display: block; height: 100%; background: var(--c); color: var(--fg); overflow: hidden; container-type: inline-size; } .ds-cover-domain { position: absolute; top: 5cqw; left: 5cqw; right: 5cqw; font-weight: 750; font-size: max(0.8125rem, 3.4cqw); line-height: 1.2; letter-spacing: 0.01em; } .ds-cover-word { position: absolute; left: -0.03em; bottom: -0.04em; font-size: 62cqw; font-weight: 900; font-stretch: 62%; font-variation-settings: 'wdth' 62; line-height: 0.82; letter-spacing: -0.01em; text-transform: uppercase; white-space: nowrap; } .ds-layers { position: absolute; inset: 0; z-index: 1; display: grid; grid-template-rows: repeat(3, 1fr); gap: 4px; } .ds-layer { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; padding-inline: 12px; background: var(--ink, #141414); color: transparent; text-align: right; line-height: 1.15; transform: translateX(calc(3% + var(--l) * 1.5%)); transition: transform 588ms cubic-bezier(0.2,0.8,0.2,1), color 420ms cubic-bezier(0.2,0.8,0.2,1); transition-delay: calc(var(--l) * 60ms); } .ds-layer-name { font-size: 0.6875rem; font-weight: 650; opacity: 0.75; } .ds-layer-tech { font-size: 0.8125rem; font-weight: 800; white-space: nowrap; } .ds-project:hover .ds-layer, .ds-project:focus-visible .ds-layer { transform: translateX(37%); color: var(--paper, #f5f5f2); } .ds-project:focus-visible { outline: 2px solid var(--blue-text, #0e6ba8); outline-offset: 3px; }"
+    },
+    {
+      "name": "Technology Chips",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Technologies as square ink blocks (the layers' material); on hover each shifts 6px and fills lagoon blue, staggered 40ms.",
+      "html": "<div class=\"ds-chip-host\"><ul class=\"ds-chips\" aria-label=\"Technologies\"><li style=\"--i:0\">React</li><li style=\"--i:1\">Go</li><li style=\"--i:2\">GraphQL</li><li style=\"--i:3\">PostgreSQL</li></ul></div>",
+      "css": ".ds-chip-host { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; padding: 8px 16px 8px 0; } .ds-chips { display: flex; flex-wrap: wrap; gap: 4px; margin: 0; padding: 0; list-style: none; } .ds-chips li { padding: 5px 9px; background: var(--ink, #141414); color: var(--paper, #f5f5f2); font-size: 0.8125rem; font-weight: 750; line-height: 1.2; border-radius: 0; transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1), background-color 420ms cubic-bezier(0.2,0.8,0.2,1); transition-delay: calc(var(--i) * 40ms); } @media (hover: hover) { .ds-chip-host:hover .ds-chips li { transform: translateX(6px); background: var(--blue, #0e6ba8); color: var(--on-blue, #f5f5f2); } }"
+    },
+    {
+      "name": "Details Disclosure",
+      "kind": "custom",
+      "description": "Featured project details: summary underlined 2px in the project colour, bold plus rotates 45deg when open, role and impact fade in.",
+      "html": "<details class=\"ds-details\"><summary>Détails <svg width=\"16\" height=\"16\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z\"/></svg></summary><dl><div><dt>Rôle</dt><dd>Lead full-stack, architecture API.</dd></div></dl></details>",
+      "css": ".ds-details { --c: #0e6ba8; font-family: var(--font-archivo), Archivo, system-ui, sans-serif; color: var(--ink, #141414); } .ds-details summary { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 750; cursor: pointer; list-style: none; border-bottom: 2px solid var(--c); } .ds-details summary::-webkit-details-marker { display: none; } .ds-details summary svg { transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1); } .ds-details[open] summary svg { transform: rotate(45deg); } .ds-details summary:focus-visible { outline: 2px solid var(--blue-text, #0e6ba8); outline-offset: 3px; } .ds-details dl { display: grid; gap: 14px; padding-top: 18px; margin: 0; } .ds-details dt { font-weight: 800; font-size: 0.9375rem; } .ds-details dd { margin: 0; color: var(--ink-2, #4a4a46); }"
+    },
+    {
+      "name": "Archive Disclosure",
+      "kind": "custom",
+      "description": "Other work as hairline-separated disclosure rows: name, one-line tagline, caret; full description on open, chips below.",
+      "html": "<ul class=\"ds-tracks\"><li><details class=\"ds-track\"><summary><span><b>Actuflux</b><span class=\"ds-short\">Vidéos éditoriales générées automatiquement, sous-titres compris.</span></span><svg class=\"ds-caret\" width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z\"/></svg></summary><p class=\"ds-desc\">Pipeline qui assemble, sous-titre et publie des vidéos éditoriales.</p></details><ul class=\"ds-mini\"><li>Go</li><li>Next.js</li><li>FFmpeg</li></ul></li><li><details class=\"ds-track\"><summary><span><b>Prelys</b><span class=\"ds-short\">Documents et workflows métier pilotés depuis un back-office.</span></span><svg class=\"ds-caret\" width=\"18\" height=\"18\" viewBox=\"0 0 256 256\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M216.49,104.49l-80,80a12,12,0,0,1-17,0l-80-80a12,12,0,0,1,17-17L128,159l71.51-71.52a12,12,0,0,1,17,17Z\"/></svg></summary><p class=\"ds-desc\">Back-office de gestion documentaire.</p></details><ul class=\"ds-mini\"><li>Go</li><li>React</li></ul></li></ul>",
+      "css": ".ds-tracks { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; max-width: 520px; color: var(--ink, #141414); } .ds-tracks > li { padding-block: 12px 14px; } .ds-tracks > li + li { border-top: 1px solid var(--rule, rgb(20 20 20 / 0.16)); } .ds-track summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; cursor: pointer; list-style: none; } .ds-track summary::-webkit-details-marker { display: none; } .ds-track b { display: block; font-weight: 800; line-height: 1.3; } .ds-track summary:hover b { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 0.2em; } .ds-short { display: block; margin-top: 2px; font-size: 0.9375rem; color: var(--ink-2, #4a4a46); } .ds-caret { margin-top: 3px; transition: transform 420ms cubic-bezier(0.2,0.8,0.2,1); } .ds-track[open] .ds-caret { transform: rotate(180deg); } .ds-track summary:focus-visible { outline: 2px solid var(--blue-text, #0e6ba8); outline-offset: 3px; } .ds-desc { margin: 8px 0 0; font-size: 0.9375rem; color: var(--ink-2, #4a4a46); max-width: 62ch; } .ds-mini { display: flex; flex-wrap: wrap; gap: 4px; margin: 10px 0 0; padding: 0; list-style: none; } .ds-mini li { padding: 4px 8px; background: var(--ink, #141414); color: var(--paper, #f5f5f2); font-size: 0.75rem; font-weight: 750; line-height: 1.2; }"
+    },
+    {
+      "name": "Career Line",
+      "kind": "custom",
+      "description": "Career as one continuous 2px ink line with outlined dots; the current role's dot is lagoon blue.",
+      "html": "<ol class=\"ds-career\"><li class=\"now\"><time>2023 - auj.</time><div><h3>Lead développeur<span>, e-Connect</span></h3></div></li><li><time>2019 - 2023</time><div><h3>Développeur full-stack<span>, Studio</span></h3></div></li></ol>",
+      "css": ".ds-career { font-family: var(--font-archivo), Archivo, system-ui, sans-serif; list-style: none; padding: 0; margin: 0; position: relative; color: var(--ink, #141414); } .ds-career::before { content: ''; position: absolute; top: 10px; bottom: 10px; left: calc(11rem + 20px); width: 2px; background: var(--ink, #141414); } .ds-career li { position: relative; display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 40px; padding-block: 18px; } .ds-career li::before { content: ''; position: absolute; top: 28px; left: calc(11rem + 14px); width: 14px; height: 14px; border-radius: 50%; background: var(--paper, #f5f5f2); border: 2px solid var(--ink, #141414); box-sizing: border-box; } .ds-career li.now::before { background: var(--blue, #0e6ba8); border-color: var(--blue, #0e6ba8); } .ds-career time { font-weight: 750; font-size: 0.9375rem; text-align: right; padding-top: 4px; font-variant-numeric: tabular-nums; } .ds-career h3 { margin: 0; font-weight: 800; font-size: 1.25rem; line-height: 1.3; } .ds-career h3 span { font-weight: 500; color: var(--ink-2, #4a4a46); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cut-Away Cover",
+    "overview": "Each project is a flat colour cover with its architecture cut away behind it. The cover states the domain and one huge condensed word. On hover, focus or scroll, three ink strips (interface, API, storage) slide out from its right edge and name the real technologies. The page shows the work first and then how it was built, and that order is the system. The graphic lineage is the Reid Miles school of the late 1950s and 60s, kept only as typographic and colour heritage: huge cropped condensed grotesque, flat full fields of colour, duotone photography and off-white paper. There is no record, sleeve or music framing anywhere.\n\nThe page alternates enormous type with quiet reading text. One variable family carries both voices: Archivo at condensed width and 850-900 weight for display, normal width for text. Every corner is square, there are no shadows and no cards. Hairline rules and 2px ink rules give the structure. Ink is also a material: the architecture layers and the technology chips are the same small ink blocks. States are printed: a filled block, an underline, a filled dot, a strip sliding into view. They are never glows or rounded badges.\n\nDark mode inverts paper and ink. The project colours and the identity blue keep their fills, ink blocks turn light with dark text, and blue text lightens so it stays readable.",
+    "keyCharacteristics": [
+      "Condensed 900-weight uppercase display, cropped and running off the column, the cover or onto the photograph.",
+      "One identity colour (lagoon blue) plus one colour per featured project; everything else is paper and ink.",
+      "Ink as material: architecture layers and technology chips are square ink blocks, never outlined tags or pills.",
+      "Duotone photography only: greyscale, luminosity-blended over lagoon blue, multiplied with a blue wash.",
+      "Square corners everywhere; the only circles are the career timeline dots.",
+      "One motion clock (420ms, cubic-bezier(0.2, 0.8, 0.2, 1)). Every element is visible by default, and reduced motion removes all movement."
+    ],
+    "rules": [
+      {
+        "name": "The One Colour Per Project Rule",
+        "body": "Each featured project owns exactly one colour. It fills that project's cover and underlines its details summary, and appears nowhere else on the page.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Colour Field Rule",
+        "body": "Lagoon blue is the only colour that fills a full-width section, and it does so once, at contact. Everywhere else it appears as type, photo ground, a cover or a state.",
+        "section": "colors"
+      },
+      {
+        "name": "The Fixed On-Colour Rule",
+        "body": "Text on a coloured field (blue, green, red, or the duotone) is paper (or ink on orange) in both themes. It never follows the theme's paper/ink swap.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Widths Rule",
+        "body": "Display is always condensed (width 62-72) and heavy (850-900). Text is always normal width. Nothing sits in between.",
+        "section": "typography"
+      },
+      {
+        "name": "The Crop Rule",
+        "body": "Display words can be cropped by their container: masked lines in the hero, cover words bleeding off the cover's bottom-left edge, expertise headings set slightly into the left margin (-0.04em). Cropping is the poster effect. Don't shrink a word to make it fit.",
+        "section": "typography"
+      },
+      {
+        "name": "The Small Steps Rule",
+        "body": "Below body, text uses only 0.9375, 0.875, 0.8125, 0.75 and 0.6875rem. Nothing else sits between them.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat Planes Rule",
+        "body": "If it needs a shadow to read as a separate surface, it should be a flat colour field, an ink block or a ruled block instead. Depth is only ever one plane sliding out from behind another.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "**Do** set display type in Archivo at width 62-72, weight 850-900, uppercase, with line-height under 1. Let it crop.",
+      "**Do** give each featured project exactly one colour and use it only on that project (cover fill, details underline).",
+      "**Do** show a project's architecture as ink layers behind its cover, named with its real technologies, hidden at rest and revealed by hover, focus or scroll.",
+      "**Do** render technologies as square ink chips, the same material as the layers.",
+      "**Do** treat photography as duotone: greyscale with contrast(1.12), luminosity-blended over lagoon blue, plus a 35% multiply wash.",
+      "**Do** print states: filled ink blocks, 2px underlines, filled dots, sliding planes, text messages.",
+      "**Do** run every transition on the one clock (420ms, cubic-bezier(0.2, 0.8, 0.2, 1)), keep everything visible without animation, and remove all motion under prefers-reduced-motion.",
+      "**Do** keep text on coloured fields at paper (or ink on volcano orange) in both themes."
+    ],
+    "donts": [
+      "**Don't** reintroduce music framing: no records, sleeves, discs, track numbers, artist credits or liner-note naming.",
+      "**Don't** round corners on any rectangle; only the career timeline dots are circles.",
+      "**Don't** add drop shadows, elevated cards, rounded pills or outlined tags; separate content with hairlines, ink rules, ink blocks and flat colour fields.",
+      "**Don't** fill a second full-width section with colour; contact is the one colour field.",
+      "**Don't** use a medium-width or light-weight display; the two voices are condensed-heavy and normal-width text.",
+      "**Don't** set small text outside the small steps (0.9375, 0.875, 0.8125, 0.75, 0.6875rem).",
+      "**Don't** put full-colour photography on the page; images are always the lagoon-blue duotone."
+    ]
+  }
+}

@@ -17,7 +17,10 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "goToHome": "Go to home",
-    "changeLanguage": "Change language"
+    "changeLanguage": "Change language",
+    "cv": "CV",
+    "primary": "Main navigation",
+    "language": "Language"
   },
   "hero": {
     "name": "Sébastien Legros",
@@ -26,7 +29,12 @@
     "availability": "Open to opportunities",
     "primaryCta": "View projects",
     "secondaryCta": "Get in touch",
-    "tertiaryCta": "Download CV"
+    "tertiaryCta": "Download CV",
+    "word1": "Senior",
+    "word2": "full",
+    "word3": "stack",
+    "lede": "From the database to the interface. React, Next.js, Go, PostgreSQL. Fully remote from Réunion Island.",
+    "status": "Available for a new engagement"
   },
   "about": {
     "title": "An approach shaped by clarity, product thinking and execution",
@@ -48,7 +56,7 @@
       }
     },
     "availability": "Open to opportunities",
-    "contactMe": "Start a conversation",
+    "contactMe": "Get in touch",
     "downloadCV": "Download CV"
   },
   "projects": {
@@ -67,7 +75,7 @@
       "econnect": {
         "title": "Business CRM Platform",
         "summary": "Design and development of a complete CRM to centralize prospect management, partner workflows, campaign tracking and business automations.",
-        "role": "Technical design, data modeling, Go GraphQL APIs, React back-office interfaces and third-party service integrations.",
+        "role": "Technical design, data modeling, Go GraphQL APIs, React (Apollo) back-office and third-party service integrations.",
         "impact": "A unified platform foundation to track customer cases, automate communication workflows and support multiple operator configurations."
       },
       "begaiement": {
@@ -79,60 +87,94 @@
       "qrwin": {
         "title": "Gamification & Campaign Engine",
         "summary": "Back-office and APIs to orchestrate game mechanics, subscription plans and reward flows around physical activation triggers.",
-        "role": "Go API design, admin tooling, Stripe subscriptions, virtual wallet system and operator-facing management interfaces.",
+        "role": "Go GraphQL API design, React (Apollo) back-office, Stripe subscriptions, virtual wallet system and operator-facing management interfaces.",
         "impact": "A technical base able to orchestrate campaigns, users, rewards and transactional logic without fragmented tooling."
       },
       "happiz": {
         "title": "Mobile Audio Content Platform",
         "summary": "GraphQL backend and editorial back-office for a mobile application delivering structured audio content to end users.",
-        "role": "Model design, GraphQL APIs, administration interfaces and tooling for content publishing and user management.",
+        "role": "Model design, GraphQL APIs, React (Apollo) back-office and tooling for content publishing and user management.",
         "impact": "A more reliable stack to operate the product, manage content publishing workflows and keep administration straightforward."
       },
       "actuflux": {
         "title": "Automated Editorial Pipeline",
-        "description": "An automated video editorial pipeline in Go with a Next.js dashboard, Remotion/FFmpeg video rendering, subtitle generation and content orchestration."
+        "description": "An automated video editorial pipeline in Go with a Next.js dashboard, Remotion/FFmpeg video rendering, subtitle generation and content orchestration.",
+        "short": "Editorial videos generated automatically, subtitles included."
       },
       "prelys": {
         "title": "Document Management Suite",
-        "description": "A Go API plus React back-office ecosystem to manage documents, business workflows, structured content and admin tooling."
+        "description": "A Go GraphQL API plus React (Apollo) back-office ecosystem to manage documents, business workflows, structured content and admin tooling.",
+        "short": "Documents and business workflows run from a back-office."
       },
       "cineactu": {
         "title": "Cinema Alert Platform",
-        "description": "A Next.js cinema-focused application with Supabase, Redis, Stripe payments and alert-driven notification logic."
+        "description": "A Next.js cinema-focused application with Supabase, Redis, Stripe payments and alert-driven notification logic.",
+        "short": "Personalised cinema alerts with built-in payments."
       },
       "mentora": {
-        "title": "Mentora — online English learning platform",
-        "description": "Teacher and student spaces, step-by-step session builder, results tracking, course material import and export. Next.js, Node.js, TypeScript, Prisma, PostgreSQL, NextAuth."
+        "title": "Mentora, online English learning platform",
+        "description": "Teacher and student spaces, step-by-step session builder, results tracking, course material import and export. Next.js, Node.js, TypeScript, Prisma, PostgreSQL, NextAuth.",
+        "short": "Online English lessons with teacher and student spaces."
       },
       "preznt": {
         "title": "Preznt (preznt.gifts)",
-        "description": "Interactive digital gift platform: passwordless code sign-in, Stripe payments with webhooks, push notifications, 3D scenes. Next.js 16, React 19, Node.js, PostgreSQL, Stripe, Three.js."
+        "description": "Interactive digital gift platform: passwordless code sign-in, Stripe payments with webhooks, push notifications, 3D scenes. Next.js 16, React 19, Node.js, PostgreSQL, Stripe, Three.js.",
+        "short": "Interactive digital gifts, payments and 3D scenes."
       },
       "leon": {
         "title": "Guided Podcast Platform",
-        "description": "Mobile audio content app with APIs, editorial pipeline, i18n and structured product logic."
+        "description": "React (Apollo, GraphQL) back-office and Go/PostgreSQL backend for a guided podcast mobile app: editorial pipeline, i18n and product logic.",
+        "short": "Back-office and backend for a guided podcast mobile app."
       },
       "raoul": {
         "title": "Payments & KYC Back-Office",
-        "description": "Web platform for MangoPay payment management: payment flows, KYC verification, wallets and reconciliations."
+        "description": "React (Apollo, GraphQL) back-office for MangoPay payment management: payment flows, KYC verification, wallets and reconciliations.",
+        "short": "Payments, KYC verification and reconciliations."
       },
       "psg": {
         "title": "VIP Campaign Back-Office",
-        "description": "Back-office for SMS campaign management and VIP guest information handling under operational constraints."
+        "description": "React back-office, on a REST API, for SMS campaign management and VIP guest information handling under operational constraints.",
+        "short": "SMS campaigns and VIP guest management."
       },
       "fidelatoo": {
         "title": "SQL Loyalty Analytics",
-        "description": "SQL query optimization and performance work on a mobile loyalty product with complex data models."
+        "description": "SQL query optimization and performance work on a mobile loyalty product with complex data models.",
+        "short": "Optimised SQL queries for a loyalty app."
       },
       "handimobi": {
         "title": "Accessibility Field App",
-        "description": "Android application to locate wheelchair-accessible places and enrich accessibility field information."
+        "description": "Android application to locate wheelchair-accessible places and enrich accessibility field information.",
+        "short": "Wheelchair-accessible places, mapped in the field."
       },
       "ladar": {
         "title": "Interest-Based Matching App",
-        "description": "Android app matching people through shared interests and geolocation-based proximity."
+        "description": "Android app matching people through shared interests and geolocation-based proximity.",
+        "short": "Matching people by shared interests and proximity."
       }
-    }
+    },
+    "notes": "Details",
+    "closeNotes": "Close",
+    "archiveWeb": "Web and back-offices",
+    "archiveMobile": "Mobile and data",
+    "covers": {
+      "econnect": "CRM",
+      "begaiement": "Care",
+      "qrwin": "QR",
+      "happiz": "Audio"
+    },
+    "domains": {
+      "econnect": "B2B CRM",
+      "begaiement": "Healthcare",
+      "qrwin": "Gamification",
+      "happiz": "Mobile audio"
+    },
+    "layers": {
+      "ui": "Interface",
+      "api": "API",
+      "data": "Data",
+      "payments": "Payments"
+    },
+    "moreDetails": "Show description"
   },
   "technologies": {
     "title": "Expertise",
@@ -140,11 +182,11 @@
     "groups": {
       "web": {
         "title": "Web",
-        "description": "React/TypeScript and Next.js interfaces, Blazor back-offices in C# — from component to production."
+        "description": "React/TypeScript and Next.js interfaces, Blazor back-offices in C#, from component to production."
       },
       "api": {
         "title": "API & data",
-        "description": "REST and GraphQL APIs in Go, Node.js or ASP.NET Core, on PostgreSQL and SQL Server — clean architecture, solid business logic."
+        "description": "REST and GraphQL APIs in Go, Node.js or ASP.NET Core, on PostgreSQL and SQL Server, clean architecture, solid business logic."
       },
       "software": {
         "title": "Software",
@@ -169,36 +211,43 @@
         "title": "Computer & Telecommunications Engineering Degree"
       },
       "ird": {
-        "period": "01/2016 – 01/2017",
-        "title": "Research Engineer — IRD",
-        "description": "Built web and mobile tools for research data collection and visualization."
+        "period": "01/2016 - 01/2017",
+        "title": "Research Engineer",
+        "description": "Built web and mobile tools for research data collection and visualization.",
+        "org": "IRD"
       },
       "region": {
-        "period": "01/2017 – 07/2021",
-        "title": "Systems & Networks Administrator — Reunion Region",
-        "description": "Infrastructure, security, operations and a strong reliability mindset."
+        "period": "01/2017 - 07/2021",
+        "title": "Systems & Networks Administrator",
+        "description": "Infrastructure, security, operations and a strong reliability mindset.",
+        "org": "Reunion Region"
       },
       "squirrel_dev": {
-        "period": "07/2021 – 2022",
-        "title": "Web Developer — Squirrel",
-        "description": "Built React interfaces, integrated APIs and grew into product-driven development."
+        "period": "07/2021 - 2022",
+        "title": "Web Developer",
+        "description": "Built React interfaces, integrated APIs and grew into product-driven development.",
+        "org": "Squirrel"
       },
       "squirrel_lead": {
-        "period": "2022 – 07/2025",
-        "title": "Lead Full-Stack Developer — Squirrel",
-        "description": "Fully remote: architecture, full-stack development, GraphQL/REST APIs, data modeling and CI/CD pipelines. Designed and built single-handedly a supporting-documents collection module (rules engine, validation workflow, e-mail/SMS notifications, S3 storage, third-party business software API integration)."
+        "period": "2022 - 07/2025",
+        "title": "Lead Full-Stack Developer",
+        "description": "Fully remote: architecture, full-stack development, GraphQL/REST APIs, data modeling and CI/CD pipelines. Designed and built single-handedly a supporting-documents collection module (rules engine, validation workflow, e-mail/SMS notifications, S3 storage, third-party business software API integration).",
+        "org": "Squirrel"
       },
       "willow": {
-        "period": "01/2026 – present",
-        "title": "Software Designer & Developer — Willow",
-        "description": "Design and development of web and business applications with C#, MVVM, WPF, WinForms, DevExpress and Blazor, powered by SQL Server, XAF/XPO and Azure DevOps."
+        "period": "01/2026 - present",
+        "title": "Software Designer & Developer",
+        "description": "Design and development of web and business applications with C#, MVVM, WPF, WinForms, DevExpress and Blazor, powered by SQL Server, XAF/XPO and Azure DevOps.",
+        "org": "Willow"
       },
       "neitsa": {
-        "period": "02/2026 – present",
-        "title": "Freelance Developer — Neitsa",
-        "description": "New features, maintenance and production releases for a mortgage broker's CRM; design and redesign of websites for independent professionals. React, Next.js, Go, GraphQL, PostgreSQL."
+        "period": "02/2026 - present",
+        "title": "Freelance Developer",
+        "description": "New features, maintenance and production releases for a mortgage broker's CRM; design and redesign of websites for independent professionals. React, Next.js, Go, GraphQL, PostgreSQL.",
+        "org": "Neitsa"
       }
-    }
+    },
+    "education": "Education"
   },
   "contact": {
     "title": "Contact",
@@ -223,7 +272,9 @@
       "messageTooShort": "Message too short.",
       "spamDetected": "Spam detected.",
       "sendAnother": "Send another message"
-    }
+    },
+    "cvCta": "Download CV",
+    "elsewhere": "Elsewhere"
   },
   "footer": {
     "builtWith": "Built with",
@@ -232,7 +283,7 @@
     "and": "&",
     "deployedOn": "deployed on",
     "viewSource": "View source on GitHub",
-    "copyright": "© {year} Sébastien Legros — All rights reserved",
+    "copyright": "© {year} Sébastien Legros. All rights reserved.",
     "stack": "Stack",
     "productionReady": "production ready"
   }

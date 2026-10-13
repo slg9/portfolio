@@ -27,8 +27,8 @@ Site one-page avec sections : Hero, À propos (approche + stats), Projets (4 fea
 - Bilingue FR/EN complet, switcher dans le header.
 - Formulaire de contact fonctionnel via Mailjet.
 - CVs téléchargeables en FR et EN (PDF).
-- Pas de screenshots de projets (NDA) — illustrations SVG conceptuelles à la place.
-- Dark theme uniquement (#04040F).
+- Pas de screenshots de projets (NDA) : chaque projet est une couverture en aplat de couleur (16:10) avec un mot typographique, et sa coupe d'architecture réelle (interface, API, données).
+- Thème clair par défaut, sombre automatique via prefers-color-scheme.
 - Mobile-first responsive.
 
 ## Brand Commitments
@@ -36,7 +36,7 @@ Site one-page avec sections : Hero, À propos (approche + stats), Projets (4 fea
 - Nom : Sébastien Legros.
 - Ton : sobre, direct, professionnel. Pas de marketing startup agressif.
 - Pas de logo formel — initiales "SL" via favicon/icon.png.
-- Couleurs actuelles (bleu #0A84FF, cyan #00D4FF, vert #00FFB3) ne sont pas un engagement — elles peuvent évoluer.
+- Univers visuel : grande typographie condensée, aplats de couleur par projet, photo en bichromie (héritage graphique Reid Miles, sans métaphore musicale), voir DESIGN.md.
 
 ## Evidence on Hand
 

@@ -1,0 +1,132 @@
+{
+  "title": "Choisis l'univers visuel du portfolio",
+  "question": "Le tirage a désigné « La fiche technique ». Tu la gardes, tu prends une alternative, ou tu relances ?",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "La fiche technique",
+      "kicker": "THE ROLL",
+      "lineage": "Datasheets de composants : page de garde Caractéristiques / Applications / Description, schémas-blocs, historique des révisions",
+      "thesis": "Ton profil présenté comme la fiche technique d'un composant fiable : on le parcourt en quelques secondes, et tout est vérifiable.",
+      "palette": ["#F7F7F4", "#111317", "#2438D0", "#C9CCD1"],
+      "materials": ["papier blanc et encre noire", "filets fins et tableaux réglés", "schémas-blocs dessinés au trait"],
+      "viewport": "Bandeau : référence SL-FS10, Rev. 2026.10, statut Disponible. Titre en grotesque condensée géante, photo légendée Fig. 1. Dessous : Caractéristiques / Applications / Description, puis un schéma-bloc PostgreSQL → API Go → React → Production.",
+      "risk": "Peut sembler un clin d'œil d'ingénieur si les tableaux sont timides ; il faut l'assumer pleinement.",
+      "raised": [
+        {"from": "challenger-cabaret", "raise": "Discipline deux encres : papier, encre et un seul bleu ; aucune carte grise, aucune ombre, seulement des filets."},
+        {"from": "challenger-app", "raise": "Couleur réservée à l'action : le bleu n'apparaît que sur ce qu'on peut toucher ; barre d'onglets au pouce sur mobile."},
+        {"from": "challenger-scope", "raise": "Tout est mesuré sur une seule grille réglée visible, comme un graticule."},
+        {"from": "challenger-canopy", "raise": "Les recouvrements de stack entre projets sont étiquetés en texte, jamais par la seule couleur."}
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html"
+    },
+    {
+      "id": "model-pick",
+      "label": "Le catalogue Braun",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Catalogues produits Braun / Dieter Rams, années 60-70",
+      "thesis": "« Moins mais mieux » : tu es présenté comme un objet bien conçu, chaque projet comme un modèle du catalogue.",
+      "palette": ["#E6E3DC", "#1C1B19", "#E3570F", "#F3F1EC"],
+      "materials": ["gris chaud mat", "objets posés sur fond doux", "pastille orange"],
+      "viewport": "Grand titre léger à gauche, photo présentée comme un produit dans un écrin à droite, une ligne de specs dessous.",
+      "risk": "Proche de ce que font beaucoup de portfolios « minimal premium » : familier et efficace, moins mémorable.",
+      "html": ".impeccable/mocks/decision/model-pick.html"
+    },
+    {
+      "id": "challenger-app",
+      "label": "Appli grand public chaleureuse",
+      "verdict": "competitive",
+      "lineage": "Applis grand public : cartes douces, barre d'onglets en bas",
+      "thesis": "Le portfolio comme une appli : cartes généreuses, une seule couleur d'action, navigation au pouce.",
+      "palette": ["#F4EEE6", "#FFFFFF", "#2A2420", "#FF5A36"],
+      "materials": ["cartes blanches à grands rayons", "fond teinté chaud", "ressort au toucher"],
+      "viewport": "Salutation en grand, carte profil avec CTA, cartes projets à côté, barre d'onglets flottante.",
+      "case": "Gagne sur le côté app mobile, perd sur la crédibilité senior : ça ressemble à une appli grand public, pas à un ingénieur.",
+      "risk": "Retombe dans le mur de cartes que l'audit reprochait déjà.",
+      "html": ".impeccable/mocks/decision/challenger-app.html",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-warm-consumer-app-surface-hero.webp"
+    },
+    {
+      "id": "challenger-cabaret",
+      "label": "Affiche de cabaret berlinois",
+      "verdict": "declined",
+      "lineage": "Affiches de cabaret de Weimar",
+      "thesis": "Jaune acide sur noir, lettrage expressionniste.",
+      "palette": ["#E8E000", "#0A0A0A"],
+      "materials": ["deux encres crues", "papier bon marché"],
+      "viewport": "Programme en colonne en escalier, figure découpée dans le noir.",
+      "case": "Trop théâtral pour un recruteur qui cherche de la fiabilité.",
+      "kept": "La discipline deux encres, sans demi-teintes.",
+      "risk": "Ton hors sujet pour un CTO.",
+      "hero": "https://impeccable.style/worlds/cards/posters-covers-sleeves-weimar-cabaret-bill-hero.webp"
+    },
+    {
+      "id": "challenger-scope",
+      "label": "Oscilloscope",
+      "verdict": "declined",
+      "lineage": "Banc de mesure à tube cathodique",
+      "thesis": "Trace phosphore verte sur graticule gravé.",
+      "palette": ["#39FF7A", "#05070A", "#FFB300"],
+      "materials": ["verre noir", "phosphore"],
+      "viewport": "Un écran, plusieurs signaux superposés.",
+      "case": "C'est le cliché néon sur noir du portfolio de dev, déguisé en outil.",
+      "kept": "Tout mesurer sur une seule grille.",
+      "risk": "Cliché dev sombre + néon.",
+      "hero": "https://impeccable.style/worlds/cards/scientific-notation-oscilloscope-signal-bench-hero.webp"
+    },
+    {
+      "id": "challenger-canopy",
+      "label": "Voiles de soie colorées",
+      "verdict": "declined",
+      "lineage": "Art génératif d'accords de couleurs",
+      "thesis": "Bandes translucides indigo, garance, safran qui se croisent.",
+      "palette": ["#2E3A87", "#A23B2A", "#E8A317", "#FFFFFF"],
+      "materials": ["soie translucide", "pavé blanc"],
+      "viewport": "Couloirs de couleur qui se superposent.",
+      "case": "Beau mais sans lien avec ton métier ; brouille la lecture.",
+      "kept": "Étiqueter les recouvrements en texte, pas seulement par la couleur.",
+      "risk": "Décoratif, peu lisible.",
+      "hero": "https://impeccable.style/worlds/cards/generative-art-computational-color-chord-counterpoint-hero.webp"
+    },
+    {
+      "id": "challenger-room",
+      "label": "Mini-chambre Cyworld",
+      "verdict": "declined",
+      "lineage": "Minihompy coréen",
+      "thesis": "Une pièce isométrique pastel à décorer.",
+      "palette": ["#F9D5E5", "#B5EAD7", "#FFFFFF"],
+      "materials": ["papier peint pastel", "autocollants"],
+      "viewport": "La chambre au centre, panneaux autour.",
+      "case": "Ludique, hors cible pour un profil senior.",
+      "kept": "Des compteurs honnêtes comme petite interface : date de révision, statut.",
+      "risk": "Infantilisant.",
+      "hero": "https://impeccable.style/worlds/cards/cyworld-minihompy-room-hero.webp"
+    },
+    {
+      "id": "challenger-cel",
+      "label": "Aube en animation multiplan",
+      "verdict": "declined",
+      "lineage": "Cel-animation multiplan",
+      "thesis": "Plans peints de forêt glissant à des vitesses différentes.",
+      "palette": ["#3E5A3A", "#8FA3A8", "#3A2A1E", "#F2B544"],
+      "materials": ["gouache", "brume"],
+      "viewport": "La caméra plonge vers une maison éclairée.",
+      "case": "Lourd en images et en parallaxe : mauvais pour PageSpeed et hors sujet.",
+      "kept": "Le texte toujours sur le plan le plus proche : en-têtes de section collants.",
+      "risk": "Coût perf élevé.",
+      "hero": "https://impeccable.style/worlds/cards/cinema-cinematography-editing-multiplane-cel-dawn-hero.webp"
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "canon": true,
+  "canonCard": {
+    "label": "Le standard de la catégorie",
+    "thesis": "Le portfolio de dev sombre façon Linear/Vercel, exécuté avec soin.",
+    "palette": ["#08090C", "#EDEEF0", "#9A9CA3"],
+    "materials": ["fond quasi noir", "titre centré", "capture produit"],
+    "viewport": "Grand titre centré, deux boutons, visuel produit dessous.",
+    "risk": "Indiscernable des autres portfolios, par construction.",
+    "html": ".impeccable/mocks/decision/canon.html"
+  },
+  "steer": true
+}
