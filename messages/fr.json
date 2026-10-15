@@ -117,7 +117,7 @@
         "short": "Cours d'anglais en ligne, espaces enseignant et élève."
       },
       "preznt": {
-        "title": "Preznt (preznt.gifts)",
+        "title": "Preznt (preznt.fr)",
         "description": "Plateforme de cadeaux numériques interactifs : authentification par code, paiements Stripe avec webhooks, notifications push, scènes 3D. Next.js 16, React 19, Node.js, PostgreSQL, Stripe, Three.js.",
         "short": "Cadeaux numériques interactifs, paiement et scènes 3D."
       },

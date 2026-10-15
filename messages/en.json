@@ -117,7 +117,7 @@
         "short": "Online English lessons with teacher and student spaces."
       },
       "preznt": {
-        "title": "Preznt (preznt.gifts)",
+        "title": "Preznt (preznt.fr)",
         "description": "Interactive digital gift platform: passwordless code sign-in, Stripe payments with webhooks, push notifications, 3D scenes. Next.js 16, React 19, Node.js, PostgreSQL, Stripe, Three.js.",
         "short": "Interactive digital gifts, payments and 3D scenes."
       },
